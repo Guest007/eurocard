@@ -1,0 +1,7 @@
+django
+south
+django-grappelli
+pillow
+django-filebrowser
+django-debug-toolbar
+django-menu
