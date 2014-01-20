@@ -67,8 +67,11 @@ WSGI_APPLICATION = 'eurocard.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        "HOST": '/var/run/mysqld',
+        'NAME': 'eurocard',
+        'USER': 'eurocard',
+        'PASSWORD': 'Gfhjkm_eurocard',
     }
 }
 
