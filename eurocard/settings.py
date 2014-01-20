@@ -29,7 +29,9 @@ ALLOWED_HOSTS = [
     '.guest007.tk.',
 ]
 
-
+INTERNAL_IPS = (
+    '95.215.252.196',
+)
 # Application definition
 
 INSTALLED_APPS = (
