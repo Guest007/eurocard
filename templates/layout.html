@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+
+{% load articles_tags %}
+
+    {% block wrap_all %}
+
+		<div class="wrap_all">
+			<header>
+				<div>
+					<a href="/" title="eurocard"></a>
+					<section class="location">
+						<div>
+							<ul>
+								<li class="current">Санкт-Петербург<i class="fa fa-caret-down"></i></li>
+								<li>Москва<i class="fa fa-caret-down"></i></li>
+								<li>Казахстан<i class="fa fa-caret-down"></i></li>
+							</ul>
+						</div>
+						<div>
+							<span class="current">812 702 77 77</span> {# телефон в Питере #}
+							<span>945 702 114 43</span> {# телефон в Москве #}
+							<span>600 702 100 000</span> {# телефон в Казахстане #}
+
+						</div>
+						<span>
+							<span class="current">Б.Сампсониевский проспект, д.30, к.1</span> {# Адрес в Питере #}
+							<span>Какаятоулицавмоскве, д.1, к.1</span> {# Адрес в Москве #}
+							<span>Ленинградская обл., д.30, к.1</span> {# Адрес в Казахстане #}
+						</span>
+						<a href="#">Заказать обратный звонок
+
+						</a>
+						<form class="call hide">
+							<span>Заказ звонка<small><i class="fa fa-times"></i></small></span>
+							<small><i class="fa fa-asterisk"></i></small>
+							<input type="text" placeholder="ФИО">
+							<small class="phone"><i class="fa fa-asterisk"></i></small>
+							<input type="text" placeholder="Телефон">
+							<textarea placeholder="Сообщение"></textarea>
+							<input type="submit" value="Отправить">
+						</form>
+					</section>
+					<nav>
+						<ul>
+{% load menubuilder %}
+
+{% menu main_menu %}
+
+{% for item in menuitems %}
+    <li>
+        <a href="{{ item.url }}" {% if item.current %} class='current'{% endif %}>{{ item.title }}</a>
+    </li>
+{% endfor %}
+
+						</ul>
+					</nav>
+				</div>
+			</header>
+			<article>
+
+            {% block content %}
+
+            {% endblock %}
+
+				<section class="benefits">
+					<ul>
+						<li class="good_price">
+							<span>Лучшие цены</span>
+							<span>1000 карт ВСЕГО 4 рубля за шт.</span>
+						</li>
+						<li class="equipment">
+							<span>Современное оборудование</span>
+							<span>Для печати мы выбрали KBA Genius</span>
+						</li>
+						<li class="once_we">
+							<span>Только у нас</span>
+							<span>Микрошрифт, печать волосяных линий</span>
+						</li>
+						<li class="fast_order">
+							<span>Быстрый заказ</span>
+							<span>Если вы здесь не в первый раз</span>
+						</li>
+					</ul>
+				</section>
+            {% block our_clients %}
+
+				<section class="clients">
+					<span><span>Наши клиенты</span></span>
+					<a href="#" style="background: url('//') no-repeat left center"></a>
+					<a href="#" style="background: url('//') no-repeat left center"></a>
+					<a href="#" style="background: url('//') no-repeat left center"></a>
+					<a href="#" style="background: url('//') no-repeat left center"></a>
+					<a href="#" style="background: url('//') no-repeat left center"></a>
+					<a href="#" style="background: url('//') no-repeat left center"></a>
+				</section>
+
+            {% endblock %}
+
+{% block actions %}
+    {% active_news_block %}
+{% endblock %}
+
+			</article>
+			<div class="clear_footer"></div>
+		</div>
+    {% endblock %}
+
+    {% block footer %}
+		<footer>
+			<div>
+				<span>
+					Приходите в наш офис на м. Выборгская, по адресу:<br>
+					<small>Б. Сампсониевский проспект д.30 к.1</small>
+					<span>812 702 77 77</span>
+					<a href="mailto:order@eurocard.ru">order@eurocard.ru</a><br>
+					Eurocard &copy; 2002-2013
+				</span>
+						<ul>
+{% load menubuilder %}
+
+{% menu main_menu %}
+
+{% for item in menuitems %}
+    <li>
+        <a href="{{ item.url }}">{{ item.title }}</a>
+    </li>
+{% endfor %}
+
+						</ul>
+			</div>
+		</footer>
+    {% endblock %}>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>eurocard</title>
+		<meta charset="utf-8">
+		<link rel='stylesheet' href='{{ STATIC_URL }}css/reset.css'>
+		<link rel='stylesheet' href='{{ STATIC_URL }}css/template.css'>
+		<link rel='stylesheet' href='{{ STATIC_URL }}libs/fonts/awesome/css/font-awesome.css'>
+		<link rel='stylesheet' href='{{ STATIC_URL }}libs/jClever/jCleverTemplate/alice/css/jClever.css'>
+		<link rel='stylesheet' href='{{ STATIC_URL }}libs/jClever/jCleverTemplate/alice/css/jquery.jscrollpane.css'>
+		<!--[if IE]
+			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		[endif]-->
+		<script src='{{ STATIC_URL }}libs/jquery-1.10.2.min.js'></script>
+		<script src='{{ STATIC_URL }}libs/jClever/jquery.jscrollpane.min.js'></script>
+		<script src='{{ STATIC_URL }}libs/jClever/jquery.mousewheel.js'></script>
+		<script src='{{ STATIC_URL }}libs/jClever/jClever.js'></script>
+		<script src='{{ STATIC_URL }}js/init.js'></script>
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,600italic,300,400italic,700,300italic,700italic&subset=latin,cyrillic-ext,cyrillic' rel='stylesheet'>
+	</head>
+	<body>
+    {% block wrap_all %}
+    {% endblock %}
+
+    {% block footer %}
+    {% endblock %}>
+	</body>
+</html>

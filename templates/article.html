@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% load menubuilder %}
+
+{% block content %}
+
+{% if prod.category_id == 1 %}
+    <h1>{{ prod.title }}</h1>
+    <div class="content">
+            {{ prod.content|safe }}
+    </div>
+{% endif %}
+
+{% if clients %}
+<ul class="clients">
+
+{% for client in clients %}
+    <li>
+        <a style="background: url('{{ client.logo.url }}') no-repeat center center" href="#"></a>
+        <span style="background: url('{{ client.card.url }}') no-repeat center center"></span>
+        <p>{{ client.content|safe }}</p>
+    </li>
+{% endfor %}
+</ul>
+{% endif %}
+
+{% if news %}
+<ul class="news">
+{% for item in news %}
+    <li>
+        <h2>
+            <a href="/article/{{ item.slug }}">{{ item.title }}</a>
+        </h2>
+        <small>{{ item.published_at }}</small>
+        {{ item.annotation|safe }}
+    </li>
+{% endfor %}
+</ul>
+{% endif %}
+
+{% if newsitem %}
+
+    <h1>{{ newsitem.title }}</h1>
+    <div class="content">
+            {{ newsitem.content|safe }}
+    </div>
+
+{% endif %}
+{% endblock %}
+
+{% block our_clients %}
+{% endblock %}
+
+

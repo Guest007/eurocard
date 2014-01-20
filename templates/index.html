@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>eurocard</title>
+		<meta charset="utf-8">
+		<link rel='stylesheet' href='{{ STATIC_URL }}css/reset.css'>
+		<link rel='stylesheet' href='{{ STATIC_URL }}css/template.css'>
+		<link rel='stylesheet' href='{{ STATIC_URL }}libs/fonts/awesome/css/font-awesome.css'>
+		<link rel='stylesheet' href='{{ STATIC_URL }}libs/jClever/jCleverTemplate/alice/css/jClever.css'>
+		<link rel='stylesheet' href='{{ STATIC_URL }}libs/jClever/jCleverTemplate/alice/css/jquery.jscrollpane.css'>
+		<!--[if IE]
+			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		[endif]-->
+		<script src='{{ STATIC_URL }}libs/jquery-1.10.2.min.js'></script>
+		<script src='{{ STATIC_URL }}libs/jClever/jquery.jscrollpane.min.js'></script>
+		<script src='{{ STATIC_URL }}libs/jClever/jquery.mousewheel.js'></script>
+		<script src='{{ STATIC_URL }}libs/jClever/jClever.js'></script>
+		<script src='{{ STATIC_URL }}js/init.js'></script>
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,600italic,300,400italic,700,300italic,700italic&subset=latin,cyrillic-ext,cyrillic' rel='stylesheet'>
+	</head>
+	<body>
+		<div class="wrap_all">
+			<header>
+				<div>
+					<a href="/" title="eurocard"></a>
+					<section class="location">
+						<div>
+							<ul>
+								<li class="current">Санкт-Петербург<i class="fa fa-caret-down"></i></li>
+								<li>Москва<i class="fa fa-caret-down"></i></li>
+								<li>Казахстан<i class="fa fa-caret-down"></i></li>
+							</ul>
+						</div>
+						<div>
+							<span class="current">812 702 77 77</span> {# телефон в Питере #}
+							<span>945 702 114 43</span> {# телефон в Москве #}
+							<span>600 702 100 000</span> {# телефон в Казахстане #}
+
+						</div>
+						<span>
+							<span class="current">Б.Сампсониевский проспект, д.30, к.1</span> {# Адрес в Питере #}
+							<span>Какаятоулицавмоскве, д.1, к.1</span> {# Адрес в Москве #}
+							<span>Ленинградская обл., д.30, к.1</span> {# Адрес в Казахстане #}
+						</span>
+						<a href="#">Заказать обратный звонок
+
+						</a>
+						<form class="call hide">  {# TODO: разместить здесь template_tag отправки заказа звонка по email #}
+							<span>Заказ звонка<small><i class="fa fa-times"></i></small></span>
+							<small><i class="fa fa-asterisk"></i></small>
+							<input type="text" placeholder="ФИО">
+							<small class="phone"><i class="fa fa-asterisk"></i></small>
+							<input type="text" placeholder="Телефон">
+							<textarea placeholder="Сообщение"></textarea>
+							<input type="submit" value="Отправить">
+						</form>
+					</section>
+					<nav>
+						<ul>
+							<li><a href="about.html">О нас</a></li>
+							<li><a href="page.html">Производство</a></li>
+							<li><a href="clients.html">Клиенты</a></li>
+							<li><a href="price.html">Цены</a></li>
+							<li><a href="#">Сотрудничество</a></li>
+							<li><a href="news.html">Новости</a></li>
+							<li><a href="contacts.html">Контакты</a></li>
+						</ul>
+					</nav>
+				</div>
+			</header>
+			<article>
+				<section class="order">
+					<div>
+						<ul>
+							<li class="current">Калькулятор карт</li>
+							<li>Быстрый заказ</li>
+							<li>Готовые варианты</li>
+						</ul>
+						<div class="easy_form current">
+							<form class="jClever">
+								<ul>
+									<li>
+										<span>
+											<span></span>
+											<i class="fa fa-times"></i>
+										</span>
+										<small>
+											<i class="fa fa-question"></i>
+											<span class="first"><i class="fa fa-sort-asc"></i></span>
+										</small>
+										<p>Тиснение фольгой</p>
+									</li>
+									<li>
+										<span>
+											<span></span>
+											<i class="fa fa-times"></i>
+										</span>
+										<small>
+											<i class="fa fa-question"></i>
+											<span class="second"><i class="fa fa-caret-down"></i></span>
+										</small>
+										<p>Эмбоссирование</p>
+									</li>
+									<li>
+										<span>
+											<span></span>
+											<i class="fa fa-times"></i>
+										</span>
+										<small>
+											<i class="fa fa-question"></i>
+											<span class="third"><span></span><i class="fa fa-caret-right"></i></span>
+										</small>
+										<p>Полоса для подписи</p>
+									</li>
+									<li>
+										<span>
+											<span></span>
+											<i class="fa fa-times"></i>
+										</span>
+										<small>
+											<i class="fa fa-question"></i>
+											<span class="fourth"><span></span><i class="fa fa-caret-left"></i></span>
+										</small>
+										<p>Индент печать</p>
+									</li>
+								</ul>
+								<ul>
+									<li>
+										<span>
+											<span></span>
+											<i class="fa fa-times"></i>
+										</span>
+										<small>
+											<i class="fa fa-question"></i>
+											<span class="fifth"><i class="fa fa-caret-right"></i></span>
+										</small>
+										<p>Печатный номер</p>
+									</li>
+									<li>
+										<span>
+											<span></span>
+											<i class="fa fa-times"></i>
+										</span>
+										<small>
+											<i class="fa fa-question"></i>
+											<span class="sixth"><i class="fa fa-caret-right"></i></span>
+										</small>
+										<p>Магнитная полоса</p>
+									</li>
+									<li>
+										<span>
+											<span></span>
+											<i class="fa fa-times"></i>
+										</span>
+										<small>
+											<i class="fa fa-question"></i>
+											<span class="seventh"><i class="fa fa-caret-up"></i></span>
+										</small>
+										<p>Штрих код</p>
+									</li>
+									<li>
+										<span>
+											<span></span>
+											<i class="fa fa-times"></i>
+										</span>
+										<small>
+											<i class="fa fa-question"></i>
+											<span class="eighth"><i class="fa fa-caret-up"></i></span>
+										</small>
+										<p>Скрейтч панель</p>
+									</li>
+								</ul>
+								<ul class="order">
+									<li>
+										<label>Тираж:</label>
+										<input type="text" class="edition" name="count">
+									</li>
+									<li>
+										<label>Цвет:</label>
+										<select name="color">
+											<option value="1">Text one</option>
+											<option value="2">Text two</option>
+											<option value="3">Text three</option>
+											<option value="4">Text four</option>
+										</select>
+									</li>
+									<li>
+										<label>Материал:</label>
+										<select name="material">
+											<option value="1">Text one</option>
+											<option value="2">Text two</option>
+											<option value="3">Text three</option>
+											<option value="4">Text four</option>
+										</select>
+									</li>
+									<li>
+										<label>Сумма:</label>
+										<p class="sum">15 000 000 руб.</p>
+									</li>
+									<li>
+										<label>ФИО:</label>
+										<input type="text" name="user">
+									</li>
+									<li>
+										<label>Телефон:</label>
+										<input type="text" name="phone">
+									</li>
+									<li>
+										<label>Email:</label>
+										<input type="email" name="email">
+									</li>
+									<li>
+										<a href="#" class="next_step">Заказать</a>
+										<!--
+										<input type="submit" value="Заказать">
+										-->
+									</li>
+								</ul>
+							</form>
+						</div>
+
+						<div class="fast_form">
+							<form class="jClever">
+								<ul class="order">
+									<li>
+										<span>Я хочу напечатать карты</span>
+
+									</li>
+									<li>
+										<span>из</span>
+										<div class="select materials">
+											<select>
+												<option value="1">шкуры с жопы дракона</option>
+												<option value="2">шкуры с жопы мамонта</option>
+												<option value="3">неважно чья жопа</option>
+												<option value="4">золотые</option>
+											</select>
+										</div>
+										<span>, тиражом</span>
+										<input type="text">
+										<span>штук</span>
+									</li>
+									<li>
+										<span>Количество цветов на лицевой стороне</span>
+										<div class="select color">
+											<select>
+												<option value="1">4</option>
+												<option value="2">3</option>
+												<option value="3">2</option>
+												<option value="4">1</option>
+											</select>
+										</div>
+										<span>, на обороте</span>
+										<div class="select color">
+											<select>
+												<option value="1">4</option>
+												<option value="2">3</option>
+												<option value="3">2</option>
+												<option value="4">1</option>
+											</select>
+										</div>
+									</li>
+									<li>
+										<span>Вид ламинации</span>
+										<div class="select type_of_lamination">
+											<select>
+												<option value="1">матовая</option>
+												<option value="2">глянцевая</option>
+											</select>
+										</div>
+									</li>
+									<li>
+										<div>Необходимо использовть следующие виды персонализации:</div>
+										<small><input type="checkbox"><label>карта с чипом</label></small>
+										<small><input type="checkbox"><label>стираемая полоса</label></small>
+										<small><input type="checkbox"><label>магнитная полоса</label></small>
+										<small><input type="checkbox"><label>эмбоссирование</label></small>
+										<small><input type="checkbox"><label>печать УФ краской</label></small>
+										<small><input type="checkbox"><label>печать номера</label></small>
+										<small><input type="checkbox"><label>полоса для подписи</label></small>
+										<small><input type="checkbox"><label>тиснение фольгой</label></small>
+										<small><input type="checkbox"><label>печать штрих-кода</label></small>
+										<small><input type="checkbox"><label>идентная печать</label></small>
+									</li>
+									<li>
+										<span>Мой макет (если есть)</span>
+										<div class="file">
+											<input type="file">
+										</div>
+									</li>
+									<li>
+										<label>ФИО:</label>
+										<input type="text" name="user">
+										<label>Телефон:</label>
+										<input type="text" name="phone">
+										<label>Email:</label>
+										<input type="email" name="email">
+
+									</li>
+									<li>
+										<a href="#" class="next_step">Заказать</a>
+										<!--
+										<input type="submit" value="Заказать">
+										-->
+									</li>
+								</ul>
+							</form>
+						</div>
+						<div class="ready no_background">
+							<ul>
+								<li>
+									<span>Вариант №4</span>
+									<img src="/images/demo/ready_card.png">
+									<ul>
+										<li>Полоса для подписи</li>
+										<li>Индент печать</li>
+										<li>Эмбоссирование</li>
+										<li>Тиснение фольгой</li>
+									</ul>
+									<form>
+										<label>Тираж<span><i class="fa fa-question"></i></span></label>
+										<input type="text"><span>x <small>4.99</small> = <span></span></span>
+										<input type="submit" value="Заказать">
+									</form>
+								</li>
+								<li>
+									<span>Вариант №4</span>
+									<img src="/images/demo/ready_card.png">
+									<ul>
+										<li>Полоса для подписи</li>
+										<li>Индент печать</li>
+										<li>Эмбоссирование</li>
+										<li>Тиснение фольгой</li>
+									</ul>
+									<form>
+										<label>Тираж<span><i class="fa fa-question"></i></span></label>
+										<input type="text"><span>x <small>4.99</small> = <span></span></span>
+										<input type="submit" value="Заказать">
+									</form>
+								</li>
+								<li>
+									<span>Вариант №4</span>
+									<img src="/images/demo/ready_card.png">
+									<ul>
+										<li>Полоса для подписи</li>
+										<li>Индент печать</li>
+										<li>Эмбоссирование</li>
+										<li>Тиснение фольгой</li>
+									</ul>
+									<form>
+										<label>Тираж<span><i class="fa fa-question"></i></span></label>
+										<input type="text"><span>x <small>4.99</small> = <span></span></span>
+										<input type="submit" value="Заказать">
+									</form>
+								</li>
+								<li>
+									<span>Вариант №4</span>
+									<img src="/images/demo/ready_card.png">
+									<ul>
+										<li>Полоса для подписи</li>
+										<li>Индент печать</li>
+										<li>Эмбоссирование</li>
+										<li>Тиснение фольгой</li>
+									</ul>
+									<form>
+										<label>Тираж<span><i class="fa fa-question"></i></span></label>
+										<input type="text"><span>x <small>4.99</small> = <span></span></span>
+										<input type="submit" value="Заказать">
+									</form>
+								</li>
+								<li>
+									<span>Вариант №4</span>
+									<img src="/images/demo/ready_card.png">
+									<ul>
+										<li>Полоса для подписи</li>
+										<li>Индент печать</li>
+										<li>Эмбоссирование</li>
+										<li>Тиснение фольгой</li>
+									</ul>
+									<form>
+										<label>Тираж<span><i class="fa fa-question"></i></span></label>
+										<input type="text"><span>x <small>4.99</small> = <span></span></span>
+										<input type="submit" value="Заказать">
+									</form>
+								</li>
+								<li>
+									<span>Вариант №4</span>
+									<img src="/images/demo/ready_card.png">
+									<ul>
+										<li>Полоса для подписи</li>
+										<li>Индент печать</li>
+										<li>Эмбоссирование</li>
+										<li>Тиснение фольгой</li>
+									</ul>
+									<form>
+										<label>Тираж<span><i class="fa fa-question"></i></span></label>
+										<input type="text"><span>x <small>4.99</small> = <span></span></span>
+										<input type="submit" value="Заказать">
+									</form>
+								</li>
+								<li>
+									<span>Вариант №4</span>
+									<img src="/images/demo/ready_card.png">
+									<ul>
+										<li>Полоса для подписи</li>
+										<li>Индент печать</li>
+										<li>Эмбоссирование</li>
+										<li>Тиснение фольгой</li>
+										<li>Тиснение фольгой</li>
+										<li>Тиснение фольгой</li>
+										<li>Тиснение фольгой</li>
+										<li>Тиснение фольгой</li>
+									</ul>
+									<form>
+										<label>Тираж<span><i class="fa fa-question"></i></span></label>
+										<input type="text"><span>x <small>4.99</small> = <span></span></span>
+										<input type="submit" value="Заказать">
+									</form>
+								</li>
+								<li>
+									<span>Вариант №4</span>
+									<img src="/images/demo/ready_card.png">
+									<ul>
+										<li>Полоса для подписи</li>
+										<li>Индент печать</li>
+										<li>Эмбоссирование</li>
+										<li>Тиснение фольгой</li>
+									</ul>
+									<form>
+										<label>Тираж<span><i class="fa fa-question"></i></span></label>
+										<input type="text"><span>x <small>4.99</small> = <span></span></span>
+										<input type="submit" value="Заказать">
+									</form>
+								</li>
+								<li>
+									<span>Вариант №4</span>
+									<img src="/images/demo/ready_card.png">
+									<ul>
+										<li>Полоса для подписи</li>
+									</ul>
+									<form>
+										<label>Тираж<span><i class="fa fa-question"></i></span></label>
+										<input type="text"><span>x <small>4.99</small> = <span></span></span>
+										<input type="submit" value="Заказать">
+									</form>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+				<section class="benefits">
+					<ul>
+						<li class="good_price">
+							<a href="#">Лучшие цены</a>
+							<span>1000 карт ВСЕГО 4 рубля за шт.</span>
+						</li>
+						<li class="equipment">
+							<a href="#">Современное оборудование</a>
+							<span>Для печати мы выбрали KBA Genius</span>
+						</li>
+						<li class="once_we">
+							<a href="#">Только у нас</a>
+							<span>Микрошрифт, печать волосяных линий</span>
+						</li>
+						<li class="fast_order">
+							<a href="#">Быстрый заказ</a>
+							<span>Если вы здесь не в первый раз</span>
+						</li>
+					</ul>
+				</section>
+				<section class="clients">
+					<span><span>Наши клиенты</span></span>
+					<a href="#" style="background: url('//') no-repeat left center"></a>
+					<a href="#" style="background: url('//') no-repeat left center"></a>
+					<a href="#" style="background: url('//') no-repeat left center"></a>
+					<a href="#" style="background: url('//') no-repeat left center"></a>
+					<a href="#" style="background: url('//') no-repeat left center"></a>
+					<a href="#" style="background: url('//') no-repeat left center"></a>
+				</section>
+				<section class="news">
+					<span><span>Акции и спецпредложения</span></span>
+					<ul>
+						<li>
+							<a href="#">Теперь у нас и псевдопластиковые карты</a>
+							<span>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</span>
+						</li>
+						<li>
+							<a href="#">Теперь у нас и псевдопластиковые карты</a>
+							<span>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</span>
+						</li>
+						<li>
+							<a href="#">Теперь у нас и псевдопластиковые карты</a>
+							<span>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</span>
+						</li>
+					</ul>
+				</section>
+			</article>
+			<div class="clear_footer"></div>
+		</div>
+		<footer>
+			<div>
+				<span>
+					Приходите в наш офис на м. Выборгская, по адресу:<br>
+					<small>Б. Сампсониевский проспект д.30 к.1</small>
+					<span>812 702 77 77</span>
+					<a href="#">order@eurocard.ru</a><br>
+					Eurocard &copy; 2002-2013
+				</span>
+				<ul>
+					<li><a href="/about.html">О нас</a></li>
+					<li><a href="/page.html">Производство</a></li>
+					<li><a href="/clients.html">Клиенты</a></li>
+					<li><a href="/price.html">Цены</a></li>
+					<li><a href="#">Сотрудничество</a></li>
+					<li><a href="/news.html">Новости</a></li>
+					<li><a href="/contacts.html">Контакты</a></li>
+				</ul>
+			</div>
+		</footer>
+	</body>
+</html>

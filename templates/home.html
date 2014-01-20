@@ -1,0 +1,392 @@
+
+{% extends "layout.html" %}
+
+{% block content %}
+
+<section class="order">
+    <div>
+        <ul>
+            <li class="current">Калькулятор карт</li>
+            <li>Быстрый заказ</li>
+            <li>Готовые варианты</li>
+        </ul>
+        <div class="easy_form current">
+            <form class="jClever filter">
+                <ul>
+                    <li>
+                        <span>
+                            <span></span>
+                            <i class="fa fa-times"></i>
+                        </span>
+                        <small>
+                            <i class="fa fa-question"></i>
+                            <span class="first"><i class="fa fa-circle"></i></span>
+                        </small>
+                        <p>Тиснение фольгой</p>
+                    </li>
+                    <li>
+                        <span>
+                            <span></span>
+                            <i class="fa fa-times"></i>
+                        </span>
+                        <small>
+                            <i class="fa fa-question"></i>
+                            <span class="second"><i class="fa fa-circle"></i></span>
+                        </small>
+                        <p>Эмбоссирование</p>
+                    </li>
+                    <li>
+                        <span>
+                            <span></span>
+                            <i class="fa fa-times"></i>
+                        </span>
+                        <small>
+                            <i class="fa fa-question"></i>
+                            <span class="third"><span></span><i class="fa fa-circle"></i></span>
+                        </small>
+                        <p>Полоса для подписи</p>
+                    </li>
+                    <li>
+                        <span>
+                            <span></span>
+                            <i class="fa fa-times"></i>
+                        </span>
+                        <small>
+                            <i class="fa fa-question"></i>
+                            <span class="fourth"><span></span><i class="fa fa-circle"></i></span>
+                        </small>
+                        <p>Индент печать</p>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <span>
+                            <span></span>
+                            <i class="fa fa-times"></i>
+                        </span>
+                        <small>
+                            <i class="fa fa-question"></i>
+                            <span class="fifth"><i class="fa fa-circle"></i></span>
+                        </small>
+                        <p>Печатный номер</p>
+                    </li>
+                    <li>
+                        <span>
+                            <span></span>
+                            <i class="fa fa-times"></i>
+                        </span>
+                        <small>
+                            <i class="fa fa-question"></i>
+                            <span class="sixth"><i class="fa fa-circle"></i></span>
+                        </small>
+                        <p>Магнитная полоса</p>
+                    </li>
+                    <li>
+                        <span>
+                            <span></span>
+                            <i class="fa fa-times"></i>
+                        </span>
+                        <small>
+                            <i class="fa fa-question"></i>
+                            <span class="seventh"><i class="fa fa-circle"></i></span>
+                        </small>
+                        <p>Штрих код</p>
+                    </li>
+                    <li>
+                        <span>
+                            <span></span>
+                            <i class="fa fa-times"></i>
+                        </span>
+                        <small>
+                            <i class="fa fa-question"></i>
+                            <span class="eighth"><i class="fa fa-circle"></i></span>
+                        </small>
+                        <p>Скрейтч панель</p>
+                    </li>
+                </ul>
+                <ul class="order">
+                    <li class="time"></li>
+                    <li>
+                        <label>Тираж:</label>
+                        <input type="text" class="edition" name="count">
+                    </li>
+                    <li>
+                        <label>Цвет:</label>
+                        <div class="select color">
+                            <select name="color">
+                                <option value="1">Text one</option>
+                                <option value="2">Text two</option>
+                                <option value="3">Text three</option>
+                                <option value="4">Text four</option>
+                            </select>
+                        </div>
+                    </li>
+                    <li>
+                        <label>Материал:</label>
+                        <div class="select materials">
+                            <select name="material">
+                                <option value="1">Text one</option>
+                                <option value="2">Text two</option>
+                                <option value="3">Text three</option>
+                                <option value="4">Text four</option>
+                            </select>
+                        </div>
+                    </li>
+                    <li>
+                        <label>Сумма:</label>
+                        <p class="sum">15 000 000 руб.</p>
+                    </li>
+                    <li>
+                        <label>ФИО:</label>
+                        <input type="text" name="user">
+                    </li>
+                    <li>
+                        <label>Телефон:</label>
+                        <input type="text" name="phone">
+                    </li>
+                    <li>
+                        <label>Email:</label>
+                        <input type="email" name="email">
+                    </li>
+                    <li>
+                        <a href="#" class="next_step">Заказать</a>
+                        <!--
+                        <input type="submit" value="Заказать">
+                        -->
+                    </li>
+                </ul>
+            </form>
+        </div>
+
+        <div class="fast_form">
+            <form class="jClever">
+                <ul class="order">
+                    <li class="time"></li>
+                    <li>
+                        <span>Я хочу напечатать карты</span>
+
+                    </li>
+                    <li>
+                        <span>из</span>
+                        <div class="select materials">
+                            <select>
+                                <option value="1">пластика</option>
+                                <option value="2">кожи</option>
+                                <option value="3">золотые</option>
+                            </select>
+                        </div>
+                        <span>, тиражом</span>
+                        <input type="text">
+                        <span>штук</span>
+                    </li>
+                    <li>
+                        <span>Количество цветов на лицевой стороне</span>
+                        <div class="select color">
+                            <select>
+                                <option value="1">4</option>
+                                <option value="2">3</option>
+                                <option value="3">2</option>
+                                <option value="4">1</option>
+                            </select>
+                        </div>
+                        <span>, на обороте</span>
+                        <div class="select color">
+                            <select>
+                                <option value="1">4</option>
+                                <option value="2">3</option>
+                                <option value="3">2</option>
+                                <option value="4">1</option>
+                            </select>
+                        </div>
+                    </li>
+                    <li>
+                        <span>Вид ламинации</span>
+                        <div class="select type_of_lamination">
+                            <select>
+                                <option value="1">матовая</option>
+                                <option value="2">глянцевая</option>
+                            </select>
+                        </div>
+                    </li>
+                    <li>
+                        <div>Необходимо использовть следующие виды персонализации:</div>
+                        <small><input type="checkbox"><label>карта с чипом</label></small>
+                        <small><input type="checkbox"><label>стираемая полоса</label></small>
+                        <small><input type="checkbox"><label>магнитная полоса</label></small>
+                        <small><input type="checkbox"><label>эмбоссирование</label></small>
+                        <small><input type="checkbox"><label>печать УФ краской</label></small>
+                        <small><input type="checkbox"><label>печать номера</label></small>
+                        <small><input type="checkbox"><label>полоса для подписи</label></small>
+                        <small><input type="checkbox"><label>тиснение фольгой</label></small>
+                        <small><input type="checkbox"><label>печать штрих-кода</label></small>
+                        <small><input type="checkbox"><label>идентная печать</label></small>
+                    </li>
+                    <li>
+                        <span>Мой макет (если есть)</span>
+                        <div class="file">
+                            <input type="file">
+                        </div>
+                    </li>
+                    <li>
+                        <label>ФИО:</label>
+                        <input type="text" name="user">
+                        <label>Телефон:</label>
+                        <input type="text" name="phone">
+                        <label>Email:</label>
+                        <input type="email" name="email">
+
+                    </li>
+                    <li>
+                        <a href="#" class="next_step">Заказать</a>
+                        <!--
+                        <input type="submit" value="Заказать">
+                        -->
+                    </li>
+                </ul>
+            </form>
+        </div>
+        <div class="ready no_background">
+            <ul>
+                <li>
+                    <span>Вариант №4</span>
+                    <img src="/images/demo/ready_card.png">
+                    <ul>
+                        <li>Полоса для подписи</li>
+                        <li>Индент печать</li>
+                        <li>Эмбоссирование</li>
+                        <li>Тиснение фольгой</li>
+                    </ul>
+                    <form>
+                        <label>Тираж<span><i class="fa fa-question"></i></span></label>
+                        <input type="text"><span>x <small>4.99</small> = <span></span></span>
+                        <input type="submit" value="Заказать">
+                    </form>
+                </li>
+                <li>
+                    <span>Вариант №4</span>
+                    <img src="/images/demo/ready_card.png">
+                    <ul>
+                        <li>Полоса для подписи</li>
+                        <li>Индент печать</li>
+                        <li>Эмбоссирование</li>
+                        <li>Тиснение фольгой</li>
+                    </ul>
+                    <form>
+                        <label>Тираж<span><i class="fa fa-question"></i></span></label>
+                        <input type="text"><span>x <small>4.99</small> = <span></span></span>
+                        <input type="submit" value="Заказать">
+                    </form>
+                </li>
+                <li>
+                    <span>Вариант №4</span>
+                    <img src="/images/demo/ready_card.png">
+                    <ul>
+                        <li>Полоса для подписи</li>
+                        <li>Индент печать</li>
+                        <li>Эмбоссирование</li>
+                        <li>Тиснение фольгой</li>
+                    </ul>
+                    <form>
+                        <label>Тираж<span><i class="fa fa-question"></i></span></label>
+                        <input type="text"><span>x <small>4.99</small> = <span></span></span>
+                        <input type="submit" value="Заказать">
+                    </form>
+                </li>
+                <li>
+                    <span>Вариант №4</span>
+                    <img src="/images/demo/ready_card.png">
+                    <ul>
+                        <li>Полоса для подписи</li>
+                        <li>Индент печать</li>
+                        <li>Эмбоссирование</li>
+                        <li>Тиснение фольгой</li>
+                    </ul>
+                    <form>
+                        <label>Тираж<span><i class="fa fa-question"></i></span></label>
+                        <input type="text"><span>x <small>4.99</small> = <span></span></span>
+                        <input type="submit" value="Заказать">
+                    </form>
+                </li>
+                <li>
+                    <span>Вариант №4</span>
+                    <img src="/images/demo/ready_card.png">
+                    <ul>
+                        <li>Полоса для подписи</li>
+                        <li>Индент печать</li>
+                        <li>Эмбоссирование</li>
+                        <li>Тиснение фольгой</li>
+                    </ul>
+                    <form>
+                        <label>Тираж<span><i class="fa fa-question"></i></span></label>
+                        <input type="text"><span>x <small>4.99</small> = <span></span></span>
+                        <input type="submit" value="Заказать">
+                    </form>
+                </li>
+                <li>
+                    <span>Вариант №4</span>
+                    <img src="/images/demo/ready_card.png">
+                    <ul>
+                        <li>Полоса для подписи</li>
+                        <li>Индент печать</li>
+                        <li>Эмбоссирование</li>
+                        <li>Тиснение фольгой</li>
+                    </ul>
+                    <form>
+                        <label>Тираж<span><i class="fa fa-question"></i></span></label>
+                        <input type="text"><span>x <small>4.99</small> = <span></span></span>
+                        <input type="submit" value="Заказать">
+                    </form>
+                </li>
+                <li>
+                    <span>Вариант №4</span>
+                    <img src="/images/demo/ready_card.png">
+                    <ul>
+                        <li>Полоса для подписи</li>
+                        <li>Индент печать</li>
+                        <li>Эмбоссирование</li>
+                        <li>Тиснение фольгой</li>
+                        <li>Тиснение фольгой</li>
+                        <li>Тиснение фольгой</li>
+                        <li>Тиснение фольгой</li>
+                        <li>Тиснение фольгой</li>
+                    </ul>
+                    <form>
+                        <label>Тираж<span><i class="fa fa-question"></i></span></label>
+                        <input type="text"><span>x <small>4.99</small> = <span></span></span>
+                        <input type="submit" value="Заказать">
+                    </form>
+                </li>
+                <li>
+                    <span>Вариант №4</span>
+                    <img src="/images/demo/ready_card.png">
+                    <ul>
+                        <li>Полоса для подписи</li>
+                        <li>Индент печать</li>
+                        <li>Эмбоссирование</li>
+                        <li>Тиснение фольгой</li>
+                    </ul>
+                    <form>
+                        <label>Тираж<span><i class="fa fa-question"></i></span></label>
+                        <input type="text"><span>x <small>4.99</small> = <span></span></span>
+                        <input type="submit" value="Заказать">
+                    </form>
+                </li>
+                <li>
+                    <span>Вариант №4</span>
+                    <img src="/images/demo/ready_card.png">
+                    <ul>
+                        <li>Полоса для подписи</li>
+                    </ul>
+                    <form>
+                        <label>Тираж<span><i class="fa fa-question"></i></span></label>
+                        <input type="text"><span>x <small>4.99</small> = <span></span></span>
+                        <input type="submit" value="Заказать">
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}
