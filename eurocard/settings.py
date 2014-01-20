@@ -68,7 +68,7 @@ WSGI_APPLICATION = 'eurocard.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        "HOST": '/var/run/mysqld',
+        "HOST": '/var/run/mysqld/mysqld.pid',
         'NAME': 'eurocard',
         'USER': 'eurocard',
         'PASSWORD': 'Gfhjkm_eurocard',
