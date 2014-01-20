@@ -24,7 +24,10 @@ DEBUG = False
 
 TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '.guest007.tk',
+    '.guest007.tk.',
+]
 
 
 # Application definition
@@ -68,7 +71,7 @@ WSGI_APPLICATION = 'eurocard.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        "HOST": '/var/run/mysqld/mysqld.pid',
+        "HOST": '/var/run/mysqld/mysqld.sock',
         'NAME': 'eurocard',
         'USER': 'eurocard',
         'PASSWORD': 'Gfhjkm_eurocard',
