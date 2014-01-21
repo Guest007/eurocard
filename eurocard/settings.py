@@ -114,6 +114,10 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = '/media/'
 
+STATICFILES_DIRS = (
+    '/var/www/007.tk/theme',
+)
+
 try:
     from local_settings import *
 except ImportError, exp:
