@@ -101,7 +101,7 @@ $(document).ready(function(){
 		$('a.next_step').click(function(){
 			$('body').addClass('under_overlay')
 			.append('<div class="overlay"></div><div class="data_checking"><form class="jClever"></form></div>');
-			$('.data_checking > form').load('/include/helpers.html', function(){
+			$('.data_checking > form').load('/static/include/helpers.html', function(){
 
 				$('.jClever').jClever({
 					selfClass: "alice",
