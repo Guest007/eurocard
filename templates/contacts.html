@@ -1,0 +1,34 @@
+
+{% extends "layout.html" %}
+
+{% block header-additions %}
+    	<script src="http://api-maps.yandex.ru/1.1/index.xml?key=AF58u1IBAAAAcNVVWwQAXBM5OHn7SWRLAKE1a8OPwIyaA7oAAAAAAAAAAADzxRN81bihKz1Z-V5AaTgeNIxNmQ=="
+		type="text/javascript"></script>
+		<script type="text/javascript">
+			window.onload = function () {
+				var map = new YMaps.Map(document.getElementById("YMapsID"));
+				map.setCenter(new YMaps.GeoPoint(37.64, 55.76), 10);
+			}
+		</script>
+{% endblock %}
+
+{% block content %}
+
+<div class="contacts">
+    <ul>
+        <li><h1>Контактные данные</h1></li>
+        <li>Адрес: 194044, СПб. Б. Сампсониевский проспект д.30, к.1, м. Выборгская</li>
+        <li>Телефон: (812) 702-77-77</li>
+        <li>Время работы: с 9:00 до 18:00<br>Суббота, воскресенье - выходной</li>
+        <li>Email: <a href="#">order@eurocard.ru</a></li>
+    </ul>
+    <div>
+        <div id="YMapsID" style="width:620px;height:280px"></div>
+    </div>
+    <span>
+        <small></small>
+        <small></small>
+    </span>
+</div>
+
+{% endblock %}

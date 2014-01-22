@@ -17,6 +17,8 @@
 		<script src='{{ STATIC_URL }}libs/jClever/jClever.js'></script>
 		<script src='{{ STATIC_URL }}js/init.js'></script>
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,600italic,300,400italic,700,300italic,700italic&subset=latin,cyrillic-ext,cyrillic' rel='stylesheet'>
+        {% block header-additions %}
+        {% endblock %}
 	</head>
 	<body>
     {% block wrap_all %}

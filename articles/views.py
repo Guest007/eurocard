@@ -54,5 +54,5 @@ def cooperation(request):
 def contacts(request):
     # production = Article.objects.get(category__slug='prod')
     # context = {'prod': production}
-    return render(request, 'home.html')
+    return render(request, 'contacts.html')
 
