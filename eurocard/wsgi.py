@@ -22,8 +22,8 @@ sys.path.append('/home/guest007/eurocard/eurocard/eurocard')
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "eurocard.settings")
 
 # Activate your virtual env
-# activate_env=os.path.expanduser("/home/guest007/eurocard/bin/activate_this.py")
-# execfile(activate_env, dict(__file__=activate_env))
+activate_env=os.path.expanduser("/home/guest007/eurocard/bin/activate_this.py")
+execfile(activate_env, dict(__file__=activate_env))
 
 
 from django.core.wsgi import get_wsgi_application
