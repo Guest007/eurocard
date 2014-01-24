@@ -2,13 +2,14 @@ from django.contrib import admin
 from articles.models import Category, Article
 __author__ = 'guest007'
 
+
 class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
 
 
 class ArticleAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
-    list_display = ['category', 'title', 'published_at', 'is_active']
+    list_display = ['title', 'category', 'published_at', 'is_active']
     ordering = ["category", 'published_at']
     list_filter = ['category', 'is_active']
 

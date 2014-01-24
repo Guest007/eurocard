@@ -7,21 +7,27 @@
 
 {% block content %}
 
-<div class="contacts">
-    <ul>
-        <li><h1>Контактные данные</h1></li>
-        <li>Адрес: 194044, СПб. Б. Сампсониевский проспект д.30, к.1, м. Выборгская</li>
-        <li>Телефон: (812) 702-77-77</li>
-        <li>Время работы: с 9:00 до 18:00<br>Суббота, воскресенье - выходной</li>
-        <li>Email: <a href="#">order@eurocard.ru</a></li>
-    </ul>
-    <div>
-        <div id="YMapsID" style="width:620px;height:280px"></div>
-    </div>
-    <span>
-        <small></small>
-        <small></small>
-    </span>
-</div>
 
+{{ about.richtext|safe }}
+
+{#<div class="contacts">#}
+{#    <ul>#}
+{#        <li><h1>Контактные данные</h1></li>#}
+{#        <li>Адрес: 194044, СПб. Б. Сампсониевский проспект д.30, к.1, м. Выборгская</li>#}
+{#        <li>Телефон: (812) 702-77-77</li>#}
+{#        <li>Время работы: с 9:00 до 18:00<br>Суббота, воскресенье - выходной</li>#}
+{#        <li>Email: <a href="#">order@eurocard.ru</a></li>#}
+{#    </ul>#}
+{#    <div>#}
+{#        <div id="YMapsID" style="width:620px;height:280px"></div>#}
+{#    </div>#}
+{#    <span>#}
+{#        <small></small>#}
+{#        <small></small>#}
+{#    </span>#}
+{#</div>#}
+
+{% endblock %}
+
+{% block our_clients %}
 {% endblock %}

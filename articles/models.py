@@ -31,7 +31,6 @@ class Article(models.Model):
         verbose_name = "Article"
         verbose_name_plural = "Articles"
 
-
     def __unicode__(self):
         return self.title
 
