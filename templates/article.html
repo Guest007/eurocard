@@ -10,6 +10,27 @@
     </div>
 {% endif %}
 
+{% if price %}
+    <h1>{{ price.title }}</h1>
+    <div class="content">
+            {{ price.content|safe }}
+    </div>
+{% endif %}
+
+{% if coop %}
+    <h1>{{ coop.title }}</h1>
+    <div class="content">
+            {{ coop.content|safe }}
+    </div>
+{% endif %}
+
+{% if about %}
+    <h1>{{ about.title }}</h1>
+    <div class="content">
+            {{ about.content|safe }}
+    </div>
+{% endif %}
+
 {% if clients %}
 <ul class="clients">
 

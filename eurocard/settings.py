@@ -24,14 +24,8 @@ DEBUG = False
 
 TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = [
-    '.guest007.tk',
-    '.guest007.tk.',
-]
+ALLOWED_HOSTS = []
 
-INTERNAL_IPS = (
-    '95.215.252.196',
-)
 # Application definition
 
 INSTALLED_APPS = (
@@ -74,10 +68,10 @@ WSGI_APPLICATION = 'eurocard.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        "HOST": '/var/run/mysqld/mysqld.sock',
-        'NAME': 'eurocard',
+        "HOST": 'mysql',
+        'NAME': 'eurocard_naminteresno_ru',
         'USER': 'eurocard',
-        'PASSWORD': 'Gfhjkm_eurocard',
+        'PASSWORD': 'sUoh5tezRL',
     }
 }
 
@@ -116,7 +110,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = '/media/'
 
 STATICFILES_DIRS = (
-    '/var/www/007.tk/theme',
+    '/home/www/eurocard/theme',
 )
 
 try:

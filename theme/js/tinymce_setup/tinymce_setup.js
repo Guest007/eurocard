@@ -27,7 +27,7 @@ tinyMCE.init({
     // Init
     mode: 'textareas',
     theme: 'advanced',
-    skin: 'grappelli',
+    skin: 'o2k7',
     
     // General
     accessibility_warnings: false,

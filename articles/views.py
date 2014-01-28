@@ -36,21 +36,21 @@ def home(request):
 
 
 def about(request):
-    # production = Article.objects.get(category__slug='prod')
-    # context = {'prod': production}
-    return render(request, 'home.html')
+    about_ = Article.objects.get(category__slug='about')
+    context = {'about': about_}
+    return render(request, 'article.html', context)
 
 
 def price(request):
-    # production = Article.objects.get(category__slug='prod')
-    # context = {'prod': production}
-    return render(request, 'home.html')
+    price_ = Article.objects.get(category__slug='price')
+    context = {'price': price_}
+    return render(request, 'article.html', context)
 
 
 def cooperation(request):
-    # production = Article.objects.get(category__slug='prod')
-    # context = {'prod': production}
-    return render(request, 'home.html')
+    cooperation_ = Article.objects.get(category__slug='coop')
+    context = {'coop': cooperation_}
+    return render(request, 'article.html', context)
 
 
 def contacts(request):
