@@ -72,7 +72,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         "HOST": 'mysql',
-        'NAME': 'eurocard_naminteresno_ru',
+        'NAME': 'eurocard',
         'USER': 'eurocard',
         'PASSWORD': 'sUoh5tezRL',
     }
