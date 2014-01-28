@@ -24,7 +24,10 @@ DEBUG = False
 
 TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '.eurocard.naminteresno.ru',
+    '.eurocard.naminteresno.ru.',
+]
 
 # Application definition
 
