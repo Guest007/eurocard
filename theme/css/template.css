@@ -370,13 +370,24 @@ body.under_overlay > div.data_checking.files {
   height: 100%;
   min-height: 300px;
 }
+.wrap_all > article > h1,
+.wrap_all > article > h2,
+.wrap_all > article > h3 {
+  color: #000;
+  margin: 0 0 20px;
+}
 .wrap_all > article h1 {
-  font: 600 22px/22px 'Open Sans', sans-serif;
+  font: 600 24px/24px 'Open Sans', sans-serif;
   color: #000;
   margin: 0 0 20px;
 }
 .wrap_all > article h2 {
   font: 600 20px/20px 'Open Sans', sans-serif;
+  color: #000;
+  margin: 0 0 20px;
+}
+.wrap_all > article h3 {
+  font: 600 16px/16px 'Open Sans', sans-serif;
   color: #000;
   margin: 0 0 20px;
 }
@@ -476,6 +487,7 @@ body.under_overlay > div.data_checking.files {
 .wrap_all > article > ul.news > li > p {
   width: 100% !important;
   margin: 0;
+  font: 600 16px/18px 'Open Sans', sans-serif;
 }
 .wrap_all > article > section {
   font: 0px/0px 'Open Sans', sans-serif;
@@ -1247,18 +1259,23 @@ footer > div > span {
   color: #000;
   font: 300 14px/30px 'Open Sans', sans-serif;
 }
-footer > div > span > small,
 footer > div > span > span,
 footer > div > span > a {
   display: inline-block;
   width: 100%;
 }
-footer > div > span > small {
-  color: #000;
-}
 footer > div > span > span {
-  color: #000;
+  display: none;
+}
+footer > div > span > span > * {
+  display: inline-block;
+  width: 100%;
+}
+footer > div > span > span > span {
   font: 400 30px/48px 'Open Sans', sans-serif;
+}
+footer > div > span > span.current {
+  display: inline-block;
 }
 footer > div > span > a {
   color: #dc3b3b;

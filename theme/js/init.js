@@ -16,7 +16,8 @@ $(document).ready(function(){
 	//Выбор адреса
 	var x=0,
 		y=0,
-		z=0;
+		z=0,
+		f=0;
 	tabs_count = $('section.location > div > ul > li').length;
 	$('section.location > div > ul > li').each(function(){
 		x++;
@@ -30,10 +31,14 @@ $(document).ready(function(){
 		z++;
 		$(this).attr('rel', z);
 	});
+	$('footer > div > span > span').each(function(){
+		f++;
+		$(this).attr('rel', f);
+	});
 	$('section.location > div > ul > li').not('current').click(function(){
 		var this_id = $(this).attr('id');
 		$(this).addClass('current').siblings('li').removeClass('current');
-		$('section.location > div > span[rel="'+this_id+'"], section.location > span > span[rel="'+this_id+'"]')
+		$('section.location > div > span[rel="'+this_id+'"], section.location > span > span[rel="'+this_id+'"], footer > div > span > span[rel="'+this_id+'"]')
 		.addClass('current')
 		.siblings('span')
 		.removeClass('current');

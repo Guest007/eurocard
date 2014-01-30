@@ -40,7 +40,7 @@ body {
 	width: 100%;
 	min-width: 1024px;
 	position: relative;
-	background: url('/images/main_background.png') repeat left top;
+	background: url('../images/main_background.png') repeat left top;
 	&.under_overlay {
 		& > div {
 			&.overlay {
@@ -235,7 +235,7 @@ body {
 										margin: 0 0 20px;
 										padding: 0 100px 0 80px;
 										font: 400 18px/34px @main_font;
-										background: url('/images/file_icon.png') no-repeat 30px 3px;
+										background: url('../images/file_icon.png') no-repeat 30px 3px;
 									}
 								}
 							}
@@ -421,13 +421,24 @@ body {
 		margin: 0 auto;
 		height: 100%;
 		min-height: 300px; //Удалить
+		& > h1,
+		& > h2,
+		& > h3 {
+			color: #000;
+			margin: 0 0 20px;
+		}
 		h1 {
-			font: 600 22px/22px @main_font;
+			font: 600 24px/24px @main_font;
 			color: #000;
 			margin: 0 0 20px;
 		}
 		h2 {
 			font: 600 20px/20px @main_font;
+			color: #000;
+			margin: 0 0 20px;
+		}
+		h3 {
+			font: 600 16px/16px @main_font;
 			color: #000;
 			margin: 0 0 20px;
 		}
@@ -534,6 +545,7 @@ body {
 					& > p {
 						width: 100% !important;
 						margin: 0;
+						font: 600 16px/18px @main_font;
 					}
 				}
 			}
@@ -679,7 +691,7 @@ body {
 										right: 0 !important;
 										margin: 0 !important;
 										top: -39px !important;
-										background: url('/images/order_time.png') no-repeat center center;
+										background: url('../images/order_time.png') no-repeat center center;
 									}
 								}
 							}
@@ -689,7 +701,7 @@ body {
 							padding: 0 29px;
 							position: relative;
 							left: -29px;
-							background: url('/images/easy_form_background.png') no-repeat left 100px;
+							background: url('../images/easy_form_background.png') no-repeat left 100px;
 							& > form {
 								& > ul {
 									width: 100%;
@@ -1280,16 +1292,16 @@ body {
 							}
 						}
 						&.good_price {
-							background: url('/images/good_price_icon.png') no-repeat left top;
+							background: url('../images/good_price_icon.png') no-repeat left top;
 						}
 						&.equipment {
-							background: url('/images/equipment_icon.png') no-repeat left top;
+							background: url('../images/equipment_icon.png') no-repeat left top;
 						}
 						&.once_we {
-							background: url('/images/once_we_icon.png') no-repeat left top;
+							background: url('../images/once_we_icon.png') no-repeat left top;
 						}
 						&.fast_order {
-							background: url('/images/fast_order_icon.png') no-repeat left top;
+							background: url('../images/fast_order_icon.png') no-repeat left top;
 						}
 					}
 				}
@@ -1401,19 +1413,33 @@ footer {
 			float: left;
 			color: #000;
 			font: 300 14px/30px @main_font;
-			& > small,
+
+
 			& > span,
 			& > a {
 				display: inline-block;
 				width: 100%;
 			}
-			& > small {
-				color: #000;
-			}
+
 			& > span {
-				color: #000;
-				font: 400 30px/48px @main_font;
+				display: none;
+				& > * {
+					display: inline-block;
+					width: 100%;
+					//color: #000
+				}
+				& > span {
+					//color: #000;
+					font: 400 30px/48px @main_font;
+				}
+				& > small {
+					//color: #000;
+				}
+				&.current {
+					display: inline-block;
+				}
 			}
+
 			& > a {
 				color: #dc3b3b;
 				margin: 0 0 45px;
