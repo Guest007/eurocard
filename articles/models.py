@@ -2,6 +2,7 @@
 from django.db import models
 __author__ = 'guest007'
 
+
 class Category(models.Model):
 
     name = models.CharField(max_length=100, verbose_name="Категория")
