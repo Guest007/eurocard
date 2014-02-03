@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     'config',
     'menu',
     'articles',
+    'orders',
 )
 
 MIDDLEWARE_CLASSES = (
