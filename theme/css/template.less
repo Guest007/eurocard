@@ -446,6 +446,10 @@ body {
 			&.content {
 				font: 14px/20px @main_font;
 				color: #000;
+				padding: 0 0 40px;
+				& > * {
+					margin: 20px 0;
+				}
 				a {
 					color: #dc3b3b;
 					text-decoration: underline;
@@ -461,6 +465,99 @@ body {
 						list-style: disc;
 						padding: 0 0 0 10px;
 					}
+				}
+				table {
+					border: 1px solid #999;
+					width: 100%;
+					td,
+					th {
+						padding: 10px;
+						font: 14px/20px @main_font;
+						border: 1px solid #999;
+
+
+					}
+					th {
+						background: #eee;
+						font: bold 14px/20px @main_font;
+						color: #DC3B3B;
+					}
+				}
+				form {
+					display: block;
+					input {
+						display: block;
+						margin: 0 0 20px;
+						&[type="text"],
+						&[type="email"],
+						&[type="password"] {
+							background: #fff;
+							border: 2px solid #cb3434;
+							border-radius: 6px;
+							padding: 0 10px;
+							width: 276px;
+							height: 36px;
+							display: block;
+							position: relative;
+						}
+					}
+					textarea {
+						display: block;
+						margin: 0 0 20px;
+						background: #fff;
+						border: 2px solid #cb3434;
+						border-radius: 6px;
+						padding: 10px;
+						height: 70px;
+						font: 14px/14px @main_font;
+						resize: none;
+						width: 924px;
+					}
+				}
+				& > div {
+					&.images {
+						width: 924px;
+						height: 280px;
+						position: relative;
+
+						.item {
+							position: relative;
+							width: 308px;
+							float: left;
+							height: 280px;
+						}
+						a {
+							position: absolute;
+							display: inline-block;
+							color: #999;
+							top: 50%;
+							margin: -20px 0 0;
+							& > i {
+								display: inline-block;
+								font-size: 38px;
+
+							}
+							&:hover {
+								color: #DC3B3B;
+							}
+							&.next {
+								right: -15px;
+
+							}
+							&.prev {
+								left: -15px;
+							}
+							&.disabled {
+								cursor: default;
+								& > i {
+									display: none;
+
+								}
+							}
+
+						}
+					}
+
 				}
 			}
 			&.contacts {
@@ -552,10 +649,11 @@ body {
 		}
 		& > section {
 			font: 0px/0px @main_font;
+			margin: 0 0 40px;
 			&.order {
 				display: inline-block;
 				width: 944px;
-				margin: 30px 0 0;
+				margin: 30px 0 40px;
 				input {
 					height: 36px;
 					display: block;
@@ -632,7 +730,7 @@ body {
 								position: relative;
 								width: 936px;
 								height: 192px;
-								padding: 35px 30px;
+								padding: 45px 30px 35px;
 								margin: 0 0 0 2px;
 								left: -28px;
 								background: #dc3b3b;
@@ -692,6 +790,24 @@ body {
 										margin: 0 !important;
 										top: -39px !important;
 										background: url('../images/order_time.png') no-repeat center center;
+									}
+									&.info {
+										position: absolute !important;
+										width: 329px !important;
+										height: 70px !important;
+										left: 10px !important;
+										margin: 0 !important;
+										top: -26px !important;
+										background: url('../images/order_info.png') no-repeat center center;
+									}
+									&.printing {
+										position: absolute !important;
+										width: 200px !important;
+										height: 95px !important;
+										right: 225px !important;
+										margin: 0 !important;
+										top: -39px !important;
+										background: url('../images/order_printing.png') no-repeat center center;
 									}
 								}
 							}
@@ -940,7 +1056,7 @@ body {
 										position: relative;
 										width: 936px;
 										height: 192px;
-										padding: 35px 30px;
+										padding: 70px 30px 35px;
 										margin: 0 0 0 2px;
 										left: -28px;
 										background: #dc3b3b;
@@ -1271,7 +1387,7 @@ body {
 					}
 				}
 			}
-			&.benefits {
+			&.about {
 				width: 924px;
 				padding: 0 10px 60px;
 				display: inline-block;
@@ -1280,7 +1396,7 @@ body {
 						display: inline-block;
 						float: left;
 						width: 380px;
-						margin: 80px 0 0;
+						margin: 40px 0 0;
 						padding: 0 0 0 80px;
 						& > span {
 							font: 18px/30px @main_font;
@@ -1315,7 +1431,7 @@ body {
 						float: left;
 						display: inline-block;
 						width: 260px;
-						margin: 0 0 0 46px;
+						margin: 40px 0 0 46px;
 						& > a {
 							color: #000;
 							font: 600 18px/30px @main_font;
@@ -1330,19 +1446,127 @@ body {
 							font: 14px/20px @main_font;
 						}
 						&:first-child {
-							margin: 0;
+							margin: 40px 0 0;
 						}
 					}
 				}
 			}
-			&.news,
+			&.benefits {
+				width: 924px;
+				padding: 0 10px 20px;
+				display: inline-block;
+				& > ul {
+					position: relative;
+					left: -27px;
+					& > li {
+						display: inline-block;
+						float: left;
+						width: 280px;
+						height: 330px;
+						margin: 40px 0 0 28px;
+						padding: 0;
+						text-align: center;
+						& > * {
+							display: inline-block;
+						}
+						& > span {
+							font: 18px/24px @main_font;
+							&:first-child {
+								width: 200px;
+								height: 200px;
+								overflow: hidden;
+								border: 2px solid #dfdfdf;
+								border-radius: 100%;
+							}
+							&.cool_one {
+								background: url('../images/cool_1.png') no-repeat center center;
+							}
+							&.cool_two {
+								background: url('../images/cool_2.png') no-repeat center center;
+							}
+							&.cool_three {
+								background: url('../images/cool_3.png') no-repeat center center;
+							}
+							&.cool_four {
+								background: url('../images/cool_4.png') no-repeat center center;
+							}
+							&.cool_five {
+								background: url('../images/cool_5.png') no-repeat center center;
+							}
+							&.cool_six {
+								background: url('../images/cool_6.png') no-repeat center center;
+							}
+						}
+						& > h2 {
+							color: #000;
+							font: 24px/40px @main_font;
+						}
+					}
+				}
+			}
 			&.clients {
+				width: 924px;
+				padding: 0 10px 20px;
+				display: inline-block;
+				& > div {
+					display: block;
+					width: 100%;
+					height: 100px;
+					margin: 20px 0 20px;
+					//overflow: hidden;
+					position: relative;
+
+				}
+				.item {
+					float: left;
+					width: 150px;
+					height: 100px;
+					margin: 0 0 0 3px;
+
+				}
+				a {
+					position: absolute;
+					display: inline-block;
+					color: #999;
+					top: 50%;
+					margin: -20px 0 0;
+					& > i {
+						display: inline-block;
+						font-size: 38px;
+
+					}
+					&:hover {
+						color: #DC3B3B;
+					}
+					&.next {
+						right: -15px;
+
+					}
+					&.prev {
+						left: -15px;
+					}
+					&.disabled {
+						cursor: default;
+						& > i {
+							display: none;
+
+						}
+					}
+
+				}
+
+
+			}
+			&.news,
+			&.clients,
+			&.about,
+			&.benefits {
 				& > span {
 					display: inline-block;
 					width: 100%;
 					height: 30px;
 					text-align: center;
-					margin: 0 0 15px;
+					margin: 0;
 					position: relative;
 					&:after {
 						content: " ";
@@ -1351,7 +1575,7 @@ body {
 						height: 2px;
 						background: #ddd;
 						z-index: 1;
-						top: 14px;
+						top: 15px;
 						left: 0;
 					}
 					& > span {
@@ -1361,7 +1585,10 @@ body {
 						background: #fff;
 						position: relative;
 						z-index: 2;
-						padding: 0 5px;
+						padding: 0 10px;
+						& > span {
+							text-transform: uppercase;
+						}
 					}
 				}
 			}

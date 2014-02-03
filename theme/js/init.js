@@ -158,6 +158,49 @@ $(document).ready(function(){
 		$(this).children().children('li').last().addClass('last');
 	});
 
+	//Клиенты
+	$('.carousel > div').carouFredSel({
+		circular: false,
+		infinite: false,
+		auto: false,
+		direction: 'left',
+		//width: 938,
+		align: 'left',
+		prev: {
+			button: '.clients > div > a.prev',
+			key: 'left'
+		},
+		next: {
+			button: '.clients > div > a.next',
+			key: 'right'
+		},
+	});
+
+	//Картинки в контенте
+
+	$('div.content > div.images').each(function(){
+		var next = $(this).find('a.next'),
+			prev = $(this).find('a.prev');
+		$(this).children('div.carousel').carouFredSel({
+			circular: false,
+			infinite: false,
+			items: 3,
+			auto    : false,
+			direction: "left",
+			width: 924,
+			height: 280,
+			align: "left",
+			prev    : {
+				button  : prev,
+				key     : "left"
+			},
+			next    : {
+				button  : next,
+				key     : "right"
+			},
+		});
+	});
+
 
 });
 //Глобальная загрузка Jclever для ajax контента

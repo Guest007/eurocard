@@ -27,6 +27,18 @@
 {% if about %}
     <h1>{{ about.title }}</h1>
     <div class="content">
+    		<div class="images">
+    			<a href="#" class="prev"><i class="fa fa-angle-left"></i></a>
+				<a href="#" class="next"><i class="fa fa-angle-right"></i></a>
+    			<div class="carousel">
+    				<div class="item" style="background: url('/static/images/demo/marko.jpg') no-repeat center center / cover"></div>
+    				<div class="item" style="background: url('/static/images/demo/pissofart_1.jpg') no-repeat center center / cover"></div>
+    				<div class="item" style="background: url('/static/images/demo/rojo_nova.jpg') no-repeat center center / cover"></div>
+    				<div class="item" style="background: url('/static/images/demo/pissofart_1.jpg') no-repeat center center / cover"></div>
+    				<div class="item" style="background: url('/static/images/demo/marko.jpg') no-repeat center center / cover"></div>
+    				<div class="item" style="background: url('/static/images/demo/rojo_nova.jpg') no-repeat center center / cover"></div>
+    			</div>
+    		</div>
             {{ about.content|safe }}
     </div>
 {% endif %}
@@ -36,7 +48,7 @@
 
 {% for client in clients %}
     <li>
-        <a style="background: url('{{ client.logo.url }}') no-repeat center center" href="#"></a>
+        <span style="background: url('{{ client.logo.url }}') no-repeat center center" href="#"></span>
         <span style="background: url('{{ client.card.url }}') no-repeat center center"></span>
         <p>{{ client.content|safe }}</p>
     </li>
@@ -70,5 +82,3 @@
 
 {% block our_clients %}
 {% endblock %}
-
-
