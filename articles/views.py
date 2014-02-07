@@ -7,7 +7,7 @@ __author__ = 'guest007'
 def prod(request):
     production = Article.objects.get(category__slug='prod')
     context = {'prod': production}
-    return render(request, 'article.html', context)
+    return render(request, 'prod.html', context)
 
 
 def clients(request):

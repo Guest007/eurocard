@@ -5,3 +5,4 @@ pillow
 django-filebrowser
 django-debug-toolbar
 django-menu
+django-annoying==0.7.7

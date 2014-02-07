@@ -52,27 +52,42 @@ class Color(models.Model):
         return self.name
 
 
+class Modificators(models.Model):
+    name = models.CharField(max_length=255, verbose_name="Наименование")
+    value = models.BooleanField(default=False, verbose_name="Значение")
+    cost = models.FloatField(blank=True, null=True, verbose_name="Стоимость модификатора")
+
+    class Meta:
+        verbose_name = "Модификатор"
+        verbose_name_plural = "Модификаторы"
+
+    def __unicode__(self):
+        return self.name
+
+
 class OrderTemplate(models.Model):
     # constant fields
-    name = models.CharField(max_length=100, verbose_name="Наименование")
-    description = models.CharField(max_length=255, verbose_name="Описание")
+    name = models.CharField(blank=True, null=True, max_length=100, verbose_name="Наименование")
+    description = models.CharField(blank=True, null=True, max_length=255, verbose_name="Описание")
     # constant boolean fields
-    is_template = models.BooleanField(verbose_name="Это заготовка?")
-    chip = models.BooleanField(verbose_name="карта с чипом")
-    scratch = models.BooleanField(verbose_name="стираемая полоса")
-    magnet = models.BooleanField(verbose_name="магнитная полоса")
-    emboss = models.BooleanField(verbose_name="эмбоссирование")
-    uv = models.BooleanField(verbose_name="печать УФ краской")
-    print_num = models.BooleanField(verbose_name="печать номера")
-    sign = models.BooleanField(verbose_name="полоса для подписи")
-    foil = models.BooleanField(verbose_name="тиснение фольгой")
-    barcode = models.BooleanField(verbose_name="печать штрих-кода")
-    indent = models.BooleanField(verbose_name="идентная печать")
+    is_template = models.BooleanField(default=False, verbose_name="Это заготовка?")
+    chip = models.BooleanField(default=False, verbose_name="карта с чипом")
+    scratch = models.BooleanField(default=False, verbose_name="стираемая полоса")
+    magnet = models.BooleanField(default=False, verbose_name="магнитная полоса")
+    emboss = models.BooleanField(default=False, verbose_name="эмбоссирование")
+    uv = models.BooleanField(default=False, verbose_name="печать УФ краской")
+    print_num = models.BooleanField(default=False, verbose_name="печать номера")
+    sign = models.BooleanField(default=False, verbose_name="полоса для подписи")
+    foil = models.BooleanField(default=False, verbose_name="тиснение фольгой")
+    barcode = models.BooleanField(default=False, verbose_name="печать штрих-кода")
+    indent = models.BooleanField(default=False, verbose_name="идентная печать")
+    price = models.FloatField(blank=True, null=True, verbose_name="Цена за штуку")
+
     # related fields
-    material = models.ForeignKey(Material, verbose_name="Материал")
-    lamination = models.ForeignKey(Lamination, verbose_name="Вид ламинации")
-    color_front = models.ForeignKey(Color, related_name="color_front", verbose_name="Количество цветов на лицевой стороне")
-    color_back = models.ForeignKey(Color, related_name="color_back", verbose_name="на обороте")
+    material = models.ForeignKey(Material, blank=True, null=True, verbose_name="Материал")
+    lamination = models.ForeignKey(Lamination, blank=True, null=True, verbose_name="Вид ламинации")
+    color_front = models.ForeignKey(Color, blank=True, null=True, related_name="color_front", verbose_name="Количество цветов на лицевой стороне")
+    color_back = models.ForeignKey(Color, blank=True, null=True, related_name="color_back", verbose_name="на обороте")
     # load file
     image = models.ImageField(upload_to="card/", blank=True, null=True, verbose_name="Образец")
 
@@ -86,15 +101,15 @@ class OrderTemplate(models.Model):
 
 class Orders(models.Model):
     # constant fields
-    FIO = models.CharField(max_length=255, verbose_name="ФИО")
-    phone = models.CharField(max_length=255, verbose_name="Телефон")
-    email = models.EmailField(verbose_name="E-mail")
-    draw = models.IntegerField(default=1000, verbose_name="Тираж")
-    cost = models.FloatField(blank=True, null=True, verbose_name="Стоимость за заказа")
+    FIO = models.CharField(blank=True, null=True, max_length=255, verbose_name="ФИО")
+    phone = models.CharField(blank=True, null=True, max_length=255, verbose_name="Телефон")
+    email = models.EmailField(blank=True, null=True, verbose_name="E-mail")
+    draw = models.IntegerField(default=500, verbose_name="Тираж")
+    cost = models.FloatField(blank=True, null=True, default=0, verbose_name="Стоимость заказа")
     # load file
     maket = models.FileField(upload_to="maket/", blank=True, null=True, verbose_name="Мой макет (если есть)")
     # related fields
-    template = models.ForeignKey(OrderTemplate, unique=True, verbose_name="Болванка заказа")
+    template = models.ForeignKey(OrderTemplate, blank=True, null=True, unique=True, verbose_name="Болванка заказа")
 
     class Meta:
         verbose_name = "Заказ"

@@ -52,8 +52,8 @@ class OrdersAdmin(admin.ModelAdmin):
 
 class OrderTemplateAdmin(admin.ModelAdmin):
     model = OrderTemplate
-    list_display = ['name', 'is_template', 'image']
-    # ordering = ["category", 'published_at']
+    list_display = ['name', 'is_template', 'price']
+    ordering = ["name", 'is_template', 'price']
     list_filter = ['name', 'is_template']
 
 
