@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render, get_object_or_404
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from orders.models import OrderTemplate, Orders, Material, Lamination, Color
+from orders.models import OrderTemplate, Orders, Material, Lamination, Color, Modificators, Coefficient
 import json
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django import http
@@ -14,9 +14,12 @@ __author__ = 'guest007'
 
 
 def home(request):
+    price = Modificators.objects.all()
+    coeff = Coefficient.objects.all()
     template_name = 'home1.html'
     return render_to_response(template_name,
-                              {'draw': '500',
+                              {'modif': price,
+                               'coeff': coeff,
                               'materials': Material.objects.all(),
                               'lamination': Lamination.objects.all(),
                               'color_front': Color.objects.all().order_by('-id'),
@@ -40,7 +43,7 @@ def edit_order(request, pk, step=0):
             'color_back': Color.objects.all().order_by('-id')}
 
 
-# @render_to()
+@csrf_exempt
 def nextstep_order(request, pk):
     """Final confirm of Order"""
     print "pk: ", pk
@@ -48,12 +51,12 @@ def nextstep_order(request, pk):
     templ = OrderTemplate.objects.get(id=order.template.id)
     result = {"object": order,
               "templ": templ,
-              'material': Material.objects.get(id=templ.material),
-              'lamination': Lamination.objects.get(id=templ.lamination),
-              'color_front': Color.objects.get(id=templ.color_front),
-              'color_back': Color.objects.get(id=templ.color_back)}
+              'material': templ.material,
+              'lamination': templ.lamination,
+              'color_front': templ.color_front,
+              'color_back': templ.color_back}
     return render_to_response('helpers.html', result,
-        mimetype="application/xhtml+xml")
+        mimetype="text/html; charset=utf-8")
 
 
 @csrf_protect
@@ -92,7 +95,8 @@ def save_order(request, step=1):
     templ.barcode = request.POST.get("barcode", False)
     templ.foil = request.POST.get("foil", False)
 
-    draw = request.POST.get("draw", '500')  # количество в заказ
+    draw = request.POST.get("draw", 500)  # количество в заказ
+    print "DRAW: ", draw
 
     templ.save()  # Сохраняем тело заказа для того, чтобы потом создать сам заказ
     if templ is None:  # Если тело заказа не сохранилось - возвращаем ошибку?
@@ -115,10 +119,14 @@ def save_order(request, step=1):
 
     order.template = OrderTemplate(id=templ.id)
     order.FIO = user
+    print order.FIO
     order.draw = draw  # Количество
+    print  order.draw
     order.cost = 0  # TODO: Пока просто пишем 0. ИСПРАВИТЬ!!!!
     order.email = email
+    print order.email
     order.phone = phone
+    print order.phone
     # order.maket = ''  # TODO: Пока ничего не пишем. ИСПРАВИТЬ!!!
 
     order.save()

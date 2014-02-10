@@ -1,25 +1,28 @@
-
-{% extends "layout.html" %}
-
-{% block content %}
-
-<section class="order">
-    <div>
-        <ul>
-            <li>Калькулятор карт</li>
-            <li class="current">Быстрый заказ</li>
-            <li>Готовые варианты</li>
-        </ul>
-        <div class="easy_form">
-
-        </div>
-
-        <div class="fast_form current">
+{##}
+{#{% extends "layout.html" %}#}
+{##}
+{#{% block content %}#}
+{##}
+{#<section class="order">#}
+{#    <div>#}
+{#        <ul>#}
+{#            <li>Калькулятор карт</li>#}
+{#            <li class="current">Быстрый заказ</li>#}
+{#            <li>Готовые варианты</li>#}
+{#        </ul>#}
+{#        <div class="easy_form">#}
+{##}
+{#        </div>#}
+{##}
+{#        <div class="fast_form current">#}
 
             <form id='fast_form' class="jClever" action="{% url 'ajax-save-order' step=2 %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
             <input type="hidden" id="id" name="id" class="common" value="{{ object.id }}">
             <input type="hidden" id="templ" class="common" value="{{ object.templ }}">
+            {{ coeff }}+ {% for it in coeff %}
+                - {{ it.coeff }}
+            {% endfor %}
                 <ul class="order">
                     <li class="info"></li>
 					<li class="printing"></li>
@@ -109,7 +112,7 @@
                 </ul>
             </form>
 
-        </div>
+{#        </div>#}
 <script type="application/javascript">
     $('#fast_form').submit(function(){
         var action = $(this).attr('action');
@@ -127,22 +130,10 @@
 
     	//Заказ (открываем модальное окно)
 	function confirmOrder(result) {
-		var self=$(this);
         $('input#id').val(result.id);
-{#        console.log('/second/'+result.id+'/');#}
-{#        console.log(that);#}
-{#        $.ajax({#}
-{#            url: '/second/'+result.id+'/',#}
-{#            type: 'POST',#}
-{#            data: self.serialize(),#}
-{#            success: function(data){#}
-{#                console.log(data);#}
-{#            }#}
-{#        });#}
-
         $('body').addClass('under_overlay')
         .append('<div class="overlay"></div><div class="data_checking"><form class="jClever"></form></div>');
-        $('.data_checking > form').load('/static/include/helpers.html', function(){
+        $('.data_checking > form').load('/second/'+result.id+'/', function(){
             $('.jClever').jClever({
                 selfClass: "alice",
                 applyTo: {
@@ -159,14 +150,14 @@
     }
 
 </script>
-        <div class="ready no_background">
-
-        </div>
-    </div>
-</section>
-
-
-{% endblock %}
-
-{% block our_clients %}
-{% endblock %}
+{#        <div class="ready no_background">#}
+{##}
+{#        </div>#}
+{#    </div>#}
+{#</section>#}
+{##}
+{##}
+{#{% endblock %}#}
+{##}
+{#{% block our_clients %}#}
+{#{% endblock %}#}
