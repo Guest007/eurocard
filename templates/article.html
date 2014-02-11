@@ -4,42 +4,310 @@
 {% block content %}
 
 {% if prod.category_id == 1 %}
-    <h1>{{ prod.title }}</h1>
     <div class="content">
-            {{ prod.content|safe }}
+        <h1>{{ prod.title }} </h1>
+        <!--
+        {{ prod.content|safe }}
+        -->
+        <p>Производство пластиковых карт - сложный многоступенчатый процесс.<br>
+        Обычная пластиковая карта состоит из четырех слоев:</p>
+        <ol class="round_numbers">
+            <li><small>1</small>Слой прозрачного ламината для защиты лицевой стороны карты (80 микрон).</li>
+            <li><small>2</small>Слой пластика с рисунком лицевой стороны карты (300 микрон).</li>
+            <li><small>3</small>Слой пластика с рисунком оборотной стороны карты (300 микрон).</li>
+            <li><small>4</small>Слой прозрачного ламината для защиты оборотной стороны карты (80 микрон).</li>
+        </ol>
+        <p>Таким образом в итоге мы получим пластиковую карту толщиной 0,76 мм.</p>
+        <!--
+        <img src="/static/images/content/do_.jpg" alt="Производство пластиковых карт.">
+        -->
+        <h2>В рамках производства пластиковой карты необходимо пройти следующие этапы:</h2>
+        <ul class="card_way">
+            <li>
+                <span><img src="/static/images/content/do_.jpg" alt="Производство пластиковых карт."></span>
+                <h2>Печать</h2>
+                <p>При печати мы используем одну из самых современных и мощных офсетных машин - KBA Genius 52 UV. Использование данной машины позволяет нам предоставлять ряд эксклюзивных услуг: пантонная печать, печать микрошрифтов. При этом мы достигаем высочайшего качества печати и стабильности цвета. Кроме того, мы имеем возможность быстро повторить идентичный по цвету тираж, что зачастую крайне важно для компаний с постоянным большим оборотом пластиковых карт.</p>
+            </li>
+            <li>
+                <span><img src="/static/images/content/do_.jpg" alt="Производство пластиковых карт."></span>
+                <h2>Ламинация</h2>
+                <p>Ламинация - процесс спекания 4х слоев в единый монолитный сендвич. Очень важно при ламинации использовать высокоглянцевые зеркала (пластины), что обеспечивает гладкую глянцевую поверхность карты.</p>
+            </li>
+            <li>
+                <span><img src="/static/images/content/do_.jpg" alt="Производство пластиковых карт."></span>
+                <h2>Вырубка</h2>
+                <p>Мы производим вырубку, используя вырубщик KRAL RESLER, что обеспечивает идеальную точность высечки карты из сендвича и отсутствие неровных карев карты и волосатости.</p>
+            </li>
+            <li>
+                <span><img src="/static/images/content/do_.jpg" alt="Производство пластиковых карт."></span>
+                <h2>ОТК</h2>
+                <p>Команда ОТК тщательно проверяет каждую карту с 2х сторон на пристутсвие брака, что позволяет вам быть уверенным в качестве каждой карты из тиража.</p>
+            </li>
+            <li>
+                <span><img src="/static/images/content/do_.jpg" alt="Производство пластиковых карт."></span>
+                <h2>Персонализация</h2>
+                <p>Производится на промышленом европейском оборудовании, которое обеспечивает высокое качество нанесения и долгий срок службы переменных данных.</p>
+            </li>
+            <li>
+                <span><img src="/static/images/content/do_.jpg" alt="Производство пластиковых карт."></span>
+                <h2>ОТК и Упаковка</h2>
+                <p>На этапе упаковки мы проводим дополнительный контроль качества продукции, чтобы исключить возможность брака. Двойной контроль качества делает наш сервис ИСКЛЮЧИТЕЛЬНЫМ.</p>
+            </li>
+        </ul>
     </div>
 {% endif %}
 
 {% if price %}
-    <h1>{{ price.title }}</h1>
     <div class="content">
-            {{ price.content|safe }}
+        <h1>{{ price.title }}</h1>
+        <!--		
+        {{ price.content|safe }}
+        -->
+        <a class="button" href="#"><i class="fa fa-usd"></i> Посмотреть прайс</a>
+        <p>Карта 0,76мм толщиной и печатью с двух сторон!<br>Печатаем сборным тиражом, <span>офсетной печатью</span> на оборудовании KBA Genius, тонкие линии, микрошрифт - суперкачество.</p>
+        <table class="vertical">
+            <tr>
+                <th>Количество карт 0,76мм 4х4</th>
+                <td>500</td>
+                <td>1000</td>
+                <td>4000</td>
+                <td>5000</td>
+                <td>10000</td>
+            </tr>
+            <tr>
+                <th>Цена с учётом НДС</th>
+                <td>6 <i class="fa fa-rub"></i></td>
+                <td>4 <i class="fa fa-rub"></i></td>
+                <td>4 <i class="fa fa-rub"></i></td>
+                <td>3,5 <i class="fa fa-rub"></i></td>
+                <td>3,5 <i class="fa fa-rub"></i></td>
+            </tr>
+        </table>
+        <h3>Срок изготовления сборных тиражей - 7 рабочих дней.</h3>
+        <table class="vertical">
+            <tr>
+                <th>Печать штрих-кода печатной нумерации чёрным цветом</th>
+                <td>0.5 <i class="fa fa-rub"></i> за одну сторону</td>
+            </tr>
+            <tr>
+                <th>Эмбоссирование с окрасом(типирование) серебро, золото</th>
+                <td>1.8 <i class="fa fa-rub"></i> за карту</td>
+            </tr>
+            <tr>
+                <th>Магнитная полоса HiCo</th>
+                <td>1.8 <i class="fa fa-rub"></i> за карту</td>
+            </tr>
+            <tr>
+                <th>Кодирование магнитной полосы</th>
+                <td>0.9 <i class="fa fa-rub"></i> за карту</td>
+            </tr>
+            <tr>
+                <th>Нанесение полосы для подписи</th>
+                <td>3.5 <i class="fa fa-rub"></i> за одну сторону</td>
+            </tr>
+            <tr>
+                <th>Нанесение скретч-панели</th>
+                <td>2.5 <i class="fa fa-rub"></i> за одну сторону</td>
+            </tr>
+            <tr>
+                <th>Нанесение фольги</th>
+                <td>3 <i class="fa fa-rub"></i> за одну сторону</td>
+            </tr>
+        </table>
+        <p>Если у вас возникли вопросы, можете обратиться к нашим менеджерам по телефону: <span class="phone">(812) 999 99 88</span></p>
+        <p>Так же вы можете воспользоваться интерективным калькулятором расчета карт</p>
+        <h1>Калькулятор карт</h1>
     </div>
+    <section class="order">
+        <div>
+            <div class="easy_form current">
+                <form class="jClever filter">
+                    <ul>
+                        <li>
+                            <span id="first_flag">
+                                <span></span>
+                                <i class="fa fa-times"></i>
+                            </span>
+                            <small>
+                                <i class="fa fa-question"></i>
+                                <span class="first_flag"><i class="fa fa-circle"></i></span>
+                            </small>
+                            <p>Тиснение фольгой</p>
+                        </li>
+                        <li>
+                            <span id="second_flag">
+                                <span></span>
+                                <i class="fa fa-times"></i>
+                            </span>
+                            <small>
+                                <i class="fa fa-question"></i>
+                                <span class="second_flag"><i class="fa fa-circle"></i></span>
+                            </small>
+                            <p>Эмбоссирование</p>
+                        </li>
+                        <li>
+                            <span id="third_flag">
+                                <span></span>
+                                <i class="fa fa-times"></i>
+                            </span>
+                            <small>
+                                <i class="fa fa-question"></i>
+                                <span class="third_flag"><span></span><i class="fa fa-circle"></i></span>
+                            </small>
+                            <p>Полоса для подписи</p>
+                        </li>
+                        <li>
+                            <span id="fourth_flag">
+                                <span></span>
+                                <i class="fa fa-times"></i>
+                            </span>
+                            <small>
+                                <i class="fa fa-question"></i>
+                                <span class="fourth_flag"><span></span><i class="fa fa-circle"></i></span>
+                            </small>
+                            <p>Индент печать</p>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <span id="fifth_flag">
+                                <span></span>
+                                <i class="fa fa-times"></i>
+                            </span>
+                            <small>
+                                <i class="fa fa-question"></i>
+                                <span class="fifth_flag"><i class="fa fa-circle"></i></span>
+                            </small>
+                            <p>Печатный номер</p>
+                        </li>
+                        <li>
+                            <span id="sixth_flag">
+                                <span></span>
+                                <i class="fa fa-times"></i>
+                            </span>
+                            <small>
+                                <i class="fa fa-question"></i>
+                                <span class="sixth_flag"><i class="fa fa-circle"></i></span>
+                            </small>
+                            <p>Магнитная полоса</p>
+                        </li>
+                        <li>
+                            <span id="seventh_flag">
+                                <span></span>
+                                <i class="fa fa-times"></i>
+                            </span>
+                            <small>
+                                <i class="fa fa-question"></i>
+                                <span class="seventh_flag"><i class="fa fa-circle"></i></span>
+                            </small>
+                            <p>Штрих код</p>
+                        </li>
+                        <li>
+                            <span id="eighth_flag">
+                                <span></span>
+                                <i class="fa fa-times"></i>
+                            </span>
+                            <small>
+                                <i class="fa fa-question"></i>
+                                <span class="eighth_flag"><i class="fa fa-circle"></i></span>
+                            </small>
+                            <p>Скрейтч панель</p>
+                        </li>
+                    </ul>
+                    <ul class="order">
+                        <li class="info"></li>
+                        <li class="printing"></li>
+                        <li class="time"></li>
+                        <li>
+                            <label>Тираж:</label>
+                            <input type="text" class="edition" name="count">
+                        </li>
+                        <li>
+                            <label>Цвет:</label>
+                            <div class="select color">
+                                <select name="color">
+                                    <option value="1">Text one</option>
+                                    <option value="2">Text two</option>
+                                    <option value="3">Text three</option>
+                                    <option value="4">Text four</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li>
+                            <label>Материал:</label>
+                            <div class="select materials">
+                                <select name="material">
+                                    <option value="1">Text one</option>
+                                    <option value="2">Text two</option>
+                                    <option value="3">Text three</option>
+                                    <option value="4">Text four</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li>
+                            <label>Сумма:</label>
+                            <p class="sum">15 000 000 руб.</p>
+                        </li>
+                        <li>
+                            <label>ФИО:</label>
+                            <input type="text" name="user">
+                        </li>
+                        <li>
+                            <label>Телефон:</label>
+                            <input type="text" name="phone">
+                        </li>
+                        <li>
+                            <label>Email:</label>
+                            <input type="email" name="email">
+                        </li>
+                        <li>
+                            <a href="#" class="next_step">Заказать</a>
+                            <!--
+                            <input type="submit" value="Заказать">
+                            -->
+                        </li>
+                    </ul>
+                    <input type="hidden" name="first_flag" value="">
+                    <input type="hidden" name="second_flag" value="">
+                    <input type="hidden" name="third_flag" value="">
+                    <input type="hidden" name="fourth_flag" value="">
+                    <input type="hidden" name="fifth_flag" value="">
+                    <input type="hidden" name="sixth_flag" value="">
+                    <input type="hidden" name="seventh_flag" value="">
+                    <input type="hidden" name="eighth_flag" value="">
+                </form>
+            </div>
+        </div>
+    </section>
+
 {% endif %}
 
 {% if coop %}
-    <h1>{{ coop.title }}</h1>
+    
     <div class="content">
-            {{ coop.content|safe }}
+        <h1>{{ coop.title }}</h1>
+        {{ coop.content|safe }}
     </div>
 {% endif %}
 
 {% if about %}
-    <h1>{{ about.title }}</h1>
     <div class="content">
+    <h1>{{ about.title }}</h1>
+    <!--
     		<div class="images">
     			<a href="#" class="prev"><i class="fa fa-angle-left"></i></a>
 				<a href="#" class="next"><i class="fa fa-angle-right"></i></a>
     			<div class="carousel">
-    				<div class="item" style="background: url('{{ STATIC_URL }}images/demo/marko.jpg') no-repeat center center / cover"></div>
-    				<div class="item" style="background: url('{{ STATIC_URL }}images/demo/pissofart_1.jpg') no-repeat center center / cover"></div>
-    				<div class="item" style="background: url('{{ STATIC_URL }}images/demo/rojo_nova.jpg') no-repeat center center / cover"></div>
-    				<div class="item" style="background: url('{{ STATIC_URL }}images/demo/pissofart_1.jpg') no-repeat center center / cover"></div>
-    				<div class="item" style="background: url('{{ STATIC_URL }}images/demo/marko.jpg') no-repeat center center / cover"></div>
-    				<div class="item" style="background: url('{{ STATIC_URL }}images/demo/rojo_nova.jpg') no-repeat center center / cover"></div>
+    				<div class="item" style="background: url('/static/images/demo/marko.jpg') no-repeat center center / cover"></div>
+    				<div class="item" style="background: url('/static/images/demo/pissofart_1.jpg') no-repeat center center / cover"></div>
+    				<div class="item" style="background: url('/static/images/demo/rojo_nova.jpg') no-repeat center center / cover"></div>
+    				<div class="item" style="background: url('/static/images/demo/pissofart_1.jpg') no-repeat center center / cover"></div>
+    				<div class="item" style="background: url('/static/images/demo/marko.jpg') no-repeat center center / cover"></div>
+    				<div class="item" style="background: url('/static/images/demo/rojo_nova.jpg') no-repeat center center / cover"></div>
     			</div>
     		</div>
-            {{ about.content|safe }}
+    -->
+        {{ about.content|safe }}
     </div>
 {% endif %}
 
@@ -81,7 +349,4 @@
 {% endblock %}
 
 {% block our_clients %}
-{% endblock %}
-
-{% block benefits %}
 {% endblock %}

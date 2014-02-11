@@ -399,21 +399,76 @@ body.under_overlay > div.data_checking.files {
 .wrap_all > article > div.content > * {
   margin: 20px 0;
 }
+.wrap_all > article > div.content img {
+  display: block;
+}
+.wrap_all > article > div.content i.fa-rub {
+  font-size: 13px;
+}
 .wrap_all > article > div.content a {
   color: #dc3b3b;
   text-decoration: underline;
 }
+.wrap_all > article > div.content a.button {
+  background: #fff;
+  border: 2px solid #cb3434;
+  border-radius: 6px;
+  padding: 8px 10px 10px;
+  display: inline-block;
+  clear: both;
+  color: #cb3434;
+  text-decoration: none;
+  font: 600 16px/18px 'Open Sans', sans-serif;
+  box-shadow: 1px 2px 0 #d49494;
+}
+.wrap_all > article > div.content a.button > i {
+  font-size: 18px;
+}
 .wrap_all > article > div.content p {
   margin: 20px 0;
 }
-.wrap_all > article > div.content ul {
+.wrap_all > article > div.content ul,
+.wrap_all > article > div.content ol {
   padding: 0 0 0 40px;
   margin: 20px 0;
-}
-.wrap_all > article > div.content ul > li {
-  margin: 0 0 10px;
   list-style: disc;
+}
+.wrap_all > article > div.content ul > li,
+.wrap_all > article > div.content ol > li {
+  margin: 0 0 10px;
+  float: left;
   padding: 0 0 0 10px;
+}
+.wrap_all > article > div.content ul.round_numbers,
+.wrap_all > article > div.content ol.round_numbers {
+  padding: 0;
+  display: inline-block;
+  margin: 0;
+}
+.wrap_all > article > div.content ul.round_numbers > li,
+.wrap_all > article > div.content ol.round_numbers > li {
+  list-style: none !important;
+  margin: 0 0 30px;
+  padding: 0 20px 0 60px;
+  width: 380px;
+  position: relative;
+}
+.wrap_all > article > div.content ul.round_numbers > li > small,
+.wrap_all > article > div.content ol.round_numbers > li > small {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  border-radius: 100%;
+  background: #dc3b3b;
+  color: #fff;
+  font: 600 14px/36px 'Open Sans', sans-serif;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.wrap_all > article > div.content ol {
+  list-style: decimal;
 }
 .wrap_all > article > div.content table {
   border: 1px solid #999;
@@ -421,14 +476,18 @@ body.under_overlay > div.data_checking.files {
 }
 .wrap_all > article > div.content table td,
 .wrap_all > article > div.content table th {
-  padding: 10px;
+  padding: 10px 20px;
   font: 14px/20px 'Open Sans', sans-serif;
   border: 1px solid #999;
 }
 .wrap_all > article > div.content table th {
-  background: #eee;
   font: bold 14px/20px 'Open Sans', sans-serif;
-  color: #DC3B3B;
+  background: #DC3B3B;
+  color: #fff;
+  border: 1px solid #eee;
+}
+.wrap_all > article > div.content table.vertical th {
+  text-align: left;
 }
 .wrap_all > article > div.content form {
   display: block;
@@ -498,27 +557,137 @@ body.under_overlay > div.data_checking.files {
 .wrap_all > article > div.content > div.images a.disabled > i {
   display: none;
 }
-.wrap_all > article > div.contacts > ul {
+.wrap_all > article > div.content > ul.card_way {
+  padding: 0;
+}
+.wrap_all > article > div.content > ul.card_way > li {
   display: inline-block;
-  width: 324px;
+  width: 100%;
+  margin: 0 0 45px;
+}
+.wrap_all > article > div.content > ul.card_way > li > span {
+  display: block;
+  padding: 10px;
+  width: 244px;
+  height: 156px;
+  float: right;
+  border: 2px solid #dc3b3b;
+  overflow: hidden;
+  border-radius: 6px;
+  margin: 0 250px 0 20px;
+}
+.wrap_all > article > div.content > ul.card_way > li > span > img {
+  width: 244px;
+  height: 156px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+}
+.wrap_all > article > div.content > ul.card_way > li > p,
+.wrap_all > article > div.content > ul.card_way > li > h2 {
+  overflow: hidden;
+  text-align: right;
+}
+.wrap_all > article > div.content > ul.card_way > li > h2 {
+  overflow: visible;
+  color: #dc3b3b;
+}
+.wrap_all > article > div.content > ul.card_way > li:nth-child(even) > span {
+  float: left;
+  margin: 0 20px 0 250px;
+}
+.wrap_all > article > div.content > ul.card_way > li:nth-child(even) > p,
+.wrap_all > article > div.content > ul.card_way > li:nth-child(even) > h2 {
+  text-align: left;
+}
+.wrap_all > article > div.content > ul.card_way > li:first-child > span {
+  margin: 0 20px;
+}
+.wrap_all > article > div.contacts {
+  margin: 0 0 30px;
+  display: inline-block;
+  width: 100%;
+}
+.wrap_all > article > div.contacts > div {
+  float: right;
+  overflow: hidden;
+  border-radius: 6px;
+  margin: 0 0 0 20px;
+  border: 2px solid #dc3b3b;
+  padding: 25px;
+  display: inline-block;
+}
+.wrap_all > article > div.contacts > div:first-child {
+  margin: 0;
+  border-radius: 0;
+  border: 0;
+  padding: 0;
   float: left;
 }
-.wrap_all > article > div.contacts > ul > li {
+.wrap_all > article > div.contacts > div:first-child > span {
+  display: block;
+  margin: 0 0 18px;
+}
+.wrap_all > article > div.contacts > div:first-child > span > a {
+  font: 600 16px/20px 'Open Sans', sans-serif;
+  display: inline-block;
+  text-decoration: none;
+  border-bottom: 1px dashed #000;
+  margin: 0 0 0 10px;
+  color: #000;
+}
+.wrap_all > article > div.contacts > div:first-child > span > a.current {
+  color: #dc3b3b;
+  border-bottom: 1px solid transparent;
+}
+.wrap_all > article > div.contacts > div:first-child > span > a:first-child {
+  margin: 0;
+}
+.wrap_all > article > div.contacts > div:first-child > a {
+  margin: 0 0 20px;
+  font: 14px/20px 'Open Sans', sans-serif;
+  color: #000;
+  display: inline-block;
+}
+.wrap_all > article > div.contacts > div:first-child > ul {
+  display: block;
+  width: 364px;
+}
+.wrap_all > article > div.contacts > div:first-child > ul > li {
   display: inline-block;
   width: 100%;
   font: 14px/20px 'Open Sans', sans-serif;
   color: #000;
-  margin: 0 0 10px;
+  margin: 0 0 18px;
 }
-.wrap_all > article > div.contacts > ul > li > a {
-  text-decoration: underline;
-  color: #000;
+.wrap_all > article > div.contacts > div:first-child > ul > li > span {
+  font: 600 24px/24px 'Open Sans', sans-serif;
+  color: #50505d;
+}
+.wrap_all > article > div.contacts > div:first-child > ul > li > h3 {
+  margin: 0 0 20px;
+}
+.wrap_all > article > div.contacts > div:first-child > ul > li > img {
+  border-radius: 6px;
+}
+.wrap_all > article > div.contacts > div:first-child > ul > li > small {
+  display: inline-block;
+  font: 10px/20px 'Open Sans', sans-serif;
+  color: #dc3b3b;
 }
 .wrap_all > article > div.contacts > div {
-  background: #bebebe;
+  background: #fff;
+  float: right;
   overflow: hidden;
   border-radius: 6px;
   margin: 0 0 0 20px;
+  border: 2px solid #dc3b3b;
+  padding: 25px;
+  display: inline-block;
+}
+.wrap_all > article > div.contacts > div > img {
+  border-radius: 6px;
+  overflow: hidden;
 }
 .wrap_all > article > ul.clients,
 .wrap_all > article > ul.news {
@@ -794,7 +963,7 @@ body.under_overlay > div.data_checking.files {
   position: absolute;
   display: block;
 }
-.wrap_all > article > section.order > div > div.easy_form > form > ul > li > small > span.fifth {
+.wrap_all > article > section.order > div > div.easy_form > form > ul > li > small > span.fifth_flag {
   border-bottom: 0;
   border-right: 0;
   top: -120px;
@@ -802,11 +971,11 @@ body.under_overlay > div.data_checking.files {
   width: 90px;
   height: 110px;
 }
-.wrap_all > article > section.order > div > div.easy_form > form > ul > li > small > span.fifth > i {
+.wrap_all > article > section.order > div > div.easy_form > form > ul > li > small > span.fifth_flag > i {
   top: -7px;
   right: -5px;
 }
-.wrap_all > article > section.order > div > div.easy_form > form > ul > li > small > span.sixth {
+.wrap_all > article > section.order > div > div.easy_form > form > ul > li > small > span.sixth_flag {
   border-bottom: 0;
   border-right: 0;
   top: -155px;
@@ -814,12 +983,12 @@ body.under_overlay > div.data_checking.files {
   width: 160px;
   height: 145px;
 }
-.wrap_all > article > section.order > div > div.easy_form > form > ul > li > small > span.sixth > i {
+.wrap_all > article > section.order > div > div.easy_form > form > ul > li > small > span.sixth_flag > i {
   top: -7px;
   right: -7px;
 }
-.wrap_all > article > section.order > div > div.easy_form > form > ul > li > small > span.seventh,
-.wrap_all > article > section.order > div > div.easy_form > form > ul > li > small > span.eighth {
+.wrap_all > article > section.order > div > div.easy_form > form > ul > li > small > span.seventh_flag,
+.wrap_all > article > section.order > div > div.easy_form > form > ul > li > small > span.eighth_flag {
   border-bottom: 0;
   border-right: 0;
   border-top: 0;
@@ -828,12 +997,12 @@ body.under_overlay > div.data_checking.files {
   width: 80px;
   height: 120px;
 }
-.wrap_all > article > section.order > div > div.easy_form > form > ul > li > small > span.seventh > i,
-.wrap_all > article > section.order > div > div.easy_form > form > ul > li > small > span.eighth > i {
+.wrap_all > article > section.order > div > div.easy_form > form > ul > li > small > span.seventh_flag > i,
+.wrap_all > article > section.order > div > div.easy_form > form > ul > li > small > span.eighth_flag > i {
   top: -9px;
   right: 76px;
 }
-.wrap_all > article > section.order > div > div.easy_form > form > ul > li > small > span.eighth {
+.wrap_all > article > section.order > div > div.easy_form > form > ul > li > small > span.eighth_flag {
   top: -240px;
   height: 230px;
 }
@@ -849,20 +1018,20 @@ body.under_overlay > div.data_checking.files {
 .wrap_all > article > section.order > div > div.easy_form > form > ul > li > small.active > span > span {
   border: 2px solid #dc3b3b !important;
 }
-.wrap_all > article > section.order > div > div.easy_form > form > ul > li > small.active > span.third > span,
-.wrap_all > article > section.order > div > div.easy_form > form > ul > li > small.active > span.fourth > span {
+.wrap_all > article > section.order > div > div.easy_form > form > ul > li > small.active > span.third_flag > span,
+.wrap_all > article > section.order > div > div.easy_form > form > ul > li > small.active > span.fourth_flag > span {
   border: 0 !important;
   border-bottom: 2px solid #dc3b3b !important;
 }
-.wrap_all > article > section.order > div > div.easy_form > form > ul > li > small.active > span.fifth,
-.wrap_all > article > section.order > div > div.easy_form > form > ul > li > small.active > span.sixth,
-.wrap_all > article > section.order > div > div.easy_form > form > ul > li > small.active > span.seventh,
-.wrap_all > article > section.order > div > div.easy_form > form > ul > li > small.active > span.eighth {
+.wrap_all > article > section.order > div > div.easy_form > form > ul > li > small.active > span.fifth_flag,
+.wrap_all > article > section.order > div > div.easy_form > form > ul > li > small.active > span.sixth_flag,
+.wrap_all > article > section.order > div > div.easy_form > form > ul > li > small.active > span.seventh_flag,
+.wrap_all > article > section.order > div > div.easy_form > form > ul > li > small.active > span.eighth_flag {
   border-bottom: 0;
   border-right: 0;
 }
-.wrap_all > article > section.order > div > div.easy_form > form > ul > li > small.active > span.seventh,
-.wrap_all > article > section.order > div > div.easy_form > form > ul > li > small.active > span.eighth {
+.wrap_all > article > section.order > div > div.easy_form > form > ul > li > small.active > span.seventh_flag,
+.wrap_all > article > section.order > div > div.easy_form > form > ul > li > small.active > span.eighth_flag {
   border-top: 0;
 }
 .wrap_all > article > section.order > div > div.easy_form > form > ul > li > p {
@@ -886,22 +1055,22 @@ body.under_overlay > div.data_checking.files {
   right: -6px;
   font-size: 10px;
 }
-.wrap_all > article > section.order > div > div.easy_form > form > ul:first-child > li > small > span.first {
+.wrap_all > article > section.order > div > div.easy_form > form > ul:first-child > li > small > span.first_flag {
   right: -66px;
   width: 56px;
   height: 195px;
 }
-.wrap_all > article > section.order > div > div.easy_form > form > ul:first-child > li > small > span.second {
+.wrap_all > article > section.order > div > div.easy_form > form > ul:first-child > li > small > span.second_flag {
   right: -66px;
   width: 56px;
   height: 184px;
 }
-.wrap_all > article > section.order > div > div.easy_form > form > ul:first-child > li > small > span.third {
+.wrap_all > article > section.order > div > div.easy_form > form > ul:first-child > li > small > span.third_flag {
   right: -66px;
   width: 56px;
   height: 235px;
 }
-.wrap_all > article > section.order > div > div.easy_form > form > ul:first-child > li > small > span.third > span {
+.wrap_all > article > section.order > div > div.easy_form > form > ul:first-child > li > small > span.third_flag > span {
   right: -48px;
   width: 46px;
   border: 0;
@@ -910,16 +1079,16 @@ body.under_overlay > div.data_checking.files {
   border-bottom-color: #dfdfdf;
   bottom: 0;
 }
-.wrap_all > article > section.order > div > div.easy_form > form > ul:first-child > li > small > span.third > i {
+.wrap_all > article > section.order > div > div.easy_form > form > ul:first-child > li > small > span.third_flag > i {
   right: -50px;
   bottom: -4px;
 }
-.wrap_all > article > section.order > div > div.easy_form > form > ul:first-child > li > small > span.fourth {
+.wrap_all > article > section.order > div > div.easy_form > form > ul:first-child > li > small > span.fourth_flag {
   right: -66px;
   width: 56px;
   height: 170px;
 }
-.wrap_all > article > section.order > div > div.easy_form > form > ul:first-child > li > small > span.fourth > span {
+.wrap_all > article > section.order > div > div.easy_form > form > ul:first-child > li > small > span.fourth_flag > span {
   left: 0;
   width: 58px;
   border: 0;
@@ -928,7 +1097,7 @@ body.under_overlay > div.data_checking.files {
   border-bottom-color: #dfdfdf;
   bottom: 0;
 }
-.wrap_all > article > section.order > div > div.easy_form > form > ul:first-child > li > small > span.fourth > i {
+.wrap_all > article > section.order > div > div.easy_form > form > ul:first-child > li > small > span.fourth_flag > i {
   left: -52px;
   bottom: -4px;
 }

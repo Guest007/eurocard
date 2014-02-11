@@ -18,18 +18,20 @@
 		<script src='{{ STATIC_URL }}libs/helper/jquery.touchSwipe.min.js'></script>
 		<script src='{{ STATIC_URL }}libs/helper/jquery.ba-throttle-debounce.min.js'></script>
 
-
 		<script src='{{ STATIC_URL }}libs/jclever/jclever.js'></script>
 		<script src='{{ STATIC_URL }}libs/carousel_fred/jquery.carouFredSel-6.2.1-packed.js'></script>
 		<script src='{{ STATIC_URL }}js/init.js'></script>
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,600italic,300,400italic,700,300italic,700italic&subset=latin,cyrillic-ext,cyrillic' rel='stylesheet'>
         {% block header-additions %}
         {% endblock %}
+        {% comment %}
+        {% block ya_map %}
+        {% endblock %}
+        {% endcomment %}
 	</head>
 	<body>
     {% block wrap_all %}
     {% endblock %}
-
     {% block footer %}
     {% endblock %}
 	</body>
