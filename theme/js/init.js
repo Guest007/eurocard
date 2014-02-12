@@ -164,26 +164,26 @@ $(document).ready(function(){
 	//Картинки в контенте
 
 	//$('div.content > div.images').each(function(){
-		var next = $(this).find('a.next'),
-			prev = $(this).find('a.prev');
-		$(this).children('div.carousel').carouFredSel({
-			circular: false,
-			infinite: false,
-			items: 3,
-			auto    : false,
-			direction: "left",
-			width: 924,
-			height: 280,
-			align: "left",
-			prev    : {
-				button  : prev,
-				key     : "left"
-			},
-			next    : {
-				button  : next,
-				key     : "right"
-			},
-		});
+		//var next = $(this).find('a.next'),
+			//prev = $(this).find('a.prev');
+	//	$(this).children('div.carousel').carouFredSel({
+		//	circular: false,
+			//infinite: false,
+		//	items: 3,
+		///	auto    : false,
+		//	direction: "left",
+		//	width: 924,
+		//	height: 280,
+		//	align: "left",
+		//	prev    : {
+		//		button  : prev,
+		//		key     : "left"
+		//	},
+		//	next    : {
+		//		button  : next,
+		//		key     : "right"
+		//	},
+		//});
 	//});
 	
 	//Подсказки в первой форме
@@ -192,48 +192,32 @@ $(document).ready(function(){
 	});
 
 	//Калькулятор
-	$select_option_selected = $('input[name="count"]');
-	$select_option_selected.keyup(function(){
-			option = parseFloat($(this).val())||0;
-			
-			
-	});
-	option = $select_option_selected.val();
-
-
-
-
-
-	//$('div.easy_form > form > ul > li > span').not('sum').click(function(){
-		self = $(this),
-		self_id = $(this).attr('id');
-		self.toggleClass('active');
-		if(self.hasClass('active')){
-			self.children('i').removeClass('fa-times').addClass('fa-check');
-			//console.log(self_id);
-			$('input[name="'+self_id+'"]').val(parseInt(self.data('price'))).trigger('change');	
-		}
-		else{
-			if(self.children('i').hasClass('fa-check')){
-				self.children('i').removeClass('fa-check').addClass('fa-times');
-			}
-			$('input[name="'+self_id+'"]').val('').trigger('change');
-		}
-	//});
-
 	$('form.calc').each(function(){
 		var self = $(this),
-			flag = $('span.flag'),
-			count_val,
-			total_val;
-		//переключаем состояние атрибута (передаем значение в скрытые поля)
+			min_count = 500,
+			default_color_val = $('select[name="color"]').find("option:selected").data('price'),
+			default_material_val = $('select[name="material"]').find("option:selected").data('price');
+
+		//сбрасываем значения hidden
+		$('input[type="hidden"]').val(0);
+
+		//присваиваем значение по умолчанию селектам
+		$('select').each(function(){
+			var this_name = $(this).attr('name'),
+			default_val = $(this).find("option:selected").data('price');
+			$('input[name="'+this_name+'"]').val(default_val);
+		})	
+		//min тираж  - 500
+		$('input[name="count"]').val('')
+		$('input[name="count_hidden"]').val(min_count);
+
+		//переключаем состояние атрибута, передаем значение в hidden, следим за измененнием
 		$('span.flag').click(function(){
 			var this_flag = $(this),
 				flag_id = $(this).attr('id');
 			this_flag.toggleClass('active');
 			if($(this).hasClass('active')){
 				$(this).children('i').removeClass('fa-times').addClass('fa-check');
-				//console.log(self_id);
 				$('input[name="'+flag_id+'"]').val(parseInt($(this).data('price'))).trigger('change');	
 			}
 			else{
@@ -243,37 +227,68 @@ $(document).ready(function(){
 				$('input[name="'+flag_id+'"]').val('').trigger('change');
 			}
 		});
-		//следим за суммой значений атрибутов
-		$('input[type="hidden"]').change(function(){
-			total_val = 0;
-			$('input[type="hidden"]').each(function() {
-				total_val += parseInt($(this).val(), 10)||0;
-			});
-			console.log(total_val);
-		});
-		//вводим значение тиража
-		count_val = 0;
+
+		//вводим тираж, следим за его значением (min - 500)
 		$('input[name="count"]').keyup(function(){
-			count_val = parseFloat($(this).val())||0;
-			console.log(count_val);
+			var count_val = parseFloat($(this).val())||0,
+				this_name = $(this).attr('name');
+			//error mes.
+			if(count_val < 500){
+				$(this).addClass('error').siblings('i').addClass('show');;
+			}
+			else{
+				$(this).removeClass('error').siblings('i').removeClass('show');
+				$('input[name="'+this_name+'_hidden"]').val(parseInt(count_val)).trigger('change');
+			};
 		});
+
+		//следим за изменением значений селектов	
+		$('select').change(function(){
+			var this_name = $(this).attr('name'),
+				this_val = $(this).find("option:selected").data('price');
+
+			$('input[name="'+this_name+'"]').val(parseInt(this_val)).trigger('change');
+		});
+
+		//счетаем
+		$('input[type="hidden"]').change(function(){
+			var flag_val = 0, //на хосте ошибка ))) вместо 0 - 1
+				count_val = parseInt($('input[name="count_hidden"]').val()),
+				color_val = parseInt($('input[name="color"]').val()),
+				material_val = parseInt($('input[name="material"]').val());
+
+			console.log(color_val);
+			$('input.flag').each(function() {
+				flag_val += parseInt($(this).val())||0;
+			});
+
+			sum = count_val*(flag_val+color_val+material_val);
+			$('p.sum').html(sum+' руб.');
+			//console.log(sum);
+		});	
+		
+		//console.log(sum);
+
 	});
 	
 
 
 });
-//Глобальная загрузка Jclever для ajax контента
-//$(document).ajaxComplete(function(event, xhr, settings){
-		//$('.jClever').jClever({
-			//selfClass: "alice",
-			//applyTo: {
-				//input: false,
-				//select: true,
-				//checkbox: true,
-				//radio: true,
-				//button: false,
-				//file: true,
-				//textarea: false
-			//}
-		//});
-//});
+
+// !! ПОПРОБУЙ УБРАТЬ ИНИЦИАЛИЗАЦИЮ ИЗ AJAX ФУНКЦИИ В home.html ОНА ДОЛЖНА ИНИЦИАЛИЗИРОВАТЬСЯ ОТ СЮДА ПО ИДЕЕ .))
+
+//Глобальная загрузка Jclever для ajax контента 
+$(document).ajaxComplete(function(event, xhr, settings){
+	$('.jClever').jClever({
+		selfClass: "alice",
+		applyTo: {
+			input: false,
+			select: true,
+			checkbox: true,
+			radio: true,
+			button: false,
+			file: true,
+			textarea: false
+		}
+	});
+});
