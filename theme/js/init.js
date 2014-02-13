@@ -1,6 +1,5 @@
 $(document).ready(function(){
 
-
 	//Формы
 	$('.jClever').jClever({
 		selfClass: "alice",
@@ -162,30 +161,30 @@ $(document).ready(function(){
 	});
 
 	//Картинки в контенте
-
-	//$('div.content > div.images').each(function(){
-		//var next = $(this).find('a.next'),
-			//prev = $(this).find('a.prev');
-	//	$(this).children('div.carousel').carouFredSel({
-		//	circular: false,
-			//infinite: false,
-		//	items: 3,
-		///	auto    : false,
-		//	direction: "left",
-		//	width: 924,
-		//	height: 280,
-		//	align: "left",
-		//	prev    : {
-		//		button  : prev,
-		//		key     : "left"
-		//	},
-		//	next    : {
-		//		button  : next,
-		//		key     : "right"
-		//	},
-		//});
-	//});
-	
+	/*
+	$('div.content > div.images').each(function(){
+		var next = $(this).find('a.next'),
+			prev = $(this).find('a.prev');
+		$(this).children('div.carousel').carouFredSel({
+			circular: false,
+			infinite: false,
+			items: 3,
+			auto    : false,
+			direction: "left",
+			width: 924,
+			height: 280,
+			align: "left",
+			prev    : {
+				button  : prev,
+				key     : "left"
+			},
+			next    : {
+				button  : next,
+				key     : "right"
+			},
+		});
+	});
+	*/
 	//Подсказки в первой форме
 	$('div.easy_form > form > ul > li > small').click(function(){
 			$(this).toggleClass('active');
@@ -193,10 +192,6 @@ $(document).ready(function(){
 
 	//Калькулятор
 	$('form.calc').each(function(){
-		var self = $(this),
-			min_count = 500,
-			default_color_val = $('select[name="color"]').find("option:selected").data('price'),
-			default_material_val = $('select[name="material"]').find("option:selected").data('price');
 
 		//сбрасываем значения hidden
 		$('input[type="hidden"]').val(0);
@@ -209,7 +204,7 @@ $(document).ready(function(){
 		})	
 		//min тираж  - 500
 		$('input[name="count"]').val('')
-		$('input[name="count_hidden"]').val(min_count);
+		$('input[name="count_hidden"]').val(500);
 
 		//переключаем состояние атрибута, передаем значение в hidden, следим за измененнием
 		$('span.flag').click(function(){
@@ -234,7 +229,8 @@ $(document).ready(function(){
 				this_name = $(this).attr('name');
 			//error mes.
 			if(count_val < 500){
-				$(this).addClass('error').siblings('i').addClass('show');;
+				$(this).addClass('error').siblings('i').addClass('show');
+				$('input[name="count_hidden"]').val(0);
 			}
 			else{
 				$(this).removeClass('error').siblings('i').removeClass('show');
@@ -252,7 +248,7 @@ $(document).ready(function(){
 
 		//счетаем
 		$('input[type="hidden"]').change(function(){
-			var flag_val = 0, //на хосте ошибка ))) вместо 0 - 1
+			var flag_val = 0,
 				count_val = parseInt($('input[name="count_hidden"]').val()),
 				color_val = parseInt($('input[name="color"]').val()),
 				material_val = parseInt($('input[name="material"]').val());
@@ -270,14 +266,11 @@ $(document).ready(function(){
 		//console.log(sum);
 
 	});
-	
 
 
 });
 
-// !! ПОПРОБУЙ УБРАТЬ ИНИЦИАЛИЗАЦИЮ ИЗ AJAX ФУНКЦИИ В home.html ОНА ДОЛЖНА ИНИЦИАЛИЗИРОВАТЬСЯ ОТ СЮДА ПО ИДЕЕ .))
-
-//Глобальная загрузка Jclever для ajax контента 
+//Глобальная загрузка Jclever для ajax контента
 $(document).ajaxComplete(function(event, xhr, settings){
 	$('.jClever').jClever({
 		selfClass: "alice",

@@ -77,16 +77,46 @@
                     </li>
                     <li>
                         <div>Необходимо использовть следующие виды персонализации:</div>
-                        <small><input type="checkbox" name="chip" {% if templ.chip %}checked="" {% endif %}><label>карта с чипом</label></small>
-                        <small><input type="checkbox" name="scratch" {% if templ.scratch %}checked="" {% endif %}><label>стираемая полоса</label></small>
-                        <small><input type="checkbox" name="magnet" {% if templ.magnet %}checked="" {% endif %}><label>магнитная полоса</label></small>
-                        <small><input type="checkbox" name="emboss" {% if templ.emboss %}checked="" {% endif %}><label>эмбоссирование</label></small>
-                        <small><input type="checkbox" name="uv" {% if templ.uv %}checked="" {% endif %}><label>печать УФ краской</label></small>
-                        <small><input type="checkbox" name="print_num" {% if templ.print_num %}checked="" {% endif %}><label>печать номера</label></small>
-                        <small><input type="checkbox" name="sign" {% if templ.sign %}checked="" {% endif %}><label>полоса для подписи</label></small>
-                        <small><input type="checkbox" name="foil" {% if templ.foil %}checked="" {% endif %}><label>тиснение фольгой</label></small>
-                        <small><input type="checkbox" name="barcode" {% if templ.barcode %}checked="" {% endif %}><label>печать штрих-кода</label></small>
-                        <small><input type="checkbox" name="indent" {% if templ.indent %}checked="" {% endif %}><label>идентная печать</label></small>
+                        <small>
+                            <input type="checkbox" name="chip" {% if templ.chip %}checked="" {% endif %}>
+                            <label>карта с чипом</label>
+                        </small>
+                        <small>
+                            <input type="checkbox" name="scratch" {% if templ.scratch %}checked="" {% endif %}>
+                            <label>стираемая полоса<label>
+                        </small>
+                        <small>
+                            <input type="checkbox" name="magnet" {% if templ.magnet %}checked="" {% endif %}>
+                            <label>магнитная полоса</label>
+                        </small>
+                        <small>
+                            <input type="checkbox" name="emboss" {% if templ.emboss %}checked="" {% endif %}>
+                            <label>эмбоссирование</label>
+                        </small>
+                        <small>
+                            <input type="checkbox" name="uv" {% if templ.uv %}checked="" {% endif %}>
+                            <label>печать УФ краской</label>
+                        </small>
+                        <small>
+                            <input type="checkbox" name="print_num" {% if templ.print_num %}checked="" {% endif %}>
+                            <label>печать номера</label>
+                        </small>
+                        <small>
+                            <input type="checkbox" name="sign" {% if templ.sign %}checked="" {% endif %}>
+                            <label>полоса для подписи</label>
+                        </small>
+                        <small>
+                            <input type="checkbox" name="foil" {% if templ.foil %}checked="" {% endif %}>
+                            <label>тиснение фольгой</label>
+                        </small>
+                        <small>
+                            <input type="checkbox" name="barcode" {% if templ.barcode %}checked="" {% endif %}>
+                            <label>печать штрих-кода</label>
+                        </small>
+                        <small>
+                            <input type="checkbox" name="indent" {% if templ.indent %}checked="" {% endif %}>
+                            <label>идентная печать</label>
+                        </small>
                     </li>
                     <li>
                         <span>Мой макет (если есть)</span>
