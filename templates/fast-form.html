@@ -1,0 +1,165 @@
+
+            <form id='fast_form' class="jClever" action="{% url 'ajax-save-order' step=2 %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+            <input type="hidden" id="id" name="id" class="common" value="{{ object.id }}">
+            <input type="hidden" id="templ" class="common" value="{{ object.templ }}">
+            {{ coeff }}+ {% for it in coeff %}
+                - {{ it.coeff }}
+            {% endfor %}
+                <ul class="order">
+                    <li class="info"></li>
+					<li class="printing"></li>
+					<li class="time"></li>
+                    <li>
+                        <span>Я хочу напечатать карты</span>
+
+                    </li>
+                    <li>
+                        <span>из</span>
+                        <div class="select materials">
+                            <select name="materials">
+                                {% for item in materials %}
+                                    <option value="{{ item.id }}" {% if templ.material and templ.material.id == item.id %}selected="selected"{% endif %}>{{ item.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <span>, тиражом</span>
+                        <input type="text" name="count" value="{{ object.draw }}">
+                        <span>штук</span>
+                    </li>
+                    <li>
+                        <span>Количество цветов на лицевой стороне</span>
+                        <div class="select color">
+                            <select name="color_front">
+                                {% for item in color_front %}
+                                    <option value="{{ item.id }}"{% if templ.color_front and templ.color_front.id == item.id %}selected="selected"{% endif %}>{{ item.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <span>, на обороте</span>
+                        <div class="select color">
+                            <select name="color_back">
+                                {% for item in color_back %}
+                                    <option value="{{ item.id }}"{% if templ.color_back and templ.color_back.id == item.id %}selected="selected"{% endif %}>{{ item.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </li>
+                    <li>
+                        <span>Вид ламинации</span>
+                        <div class="select type_of_lamination">
+                            <select name="lamination">
+                                {% for item in lamination %}
+                                    <option value="{{ item.id }}"
+                                    {% if templ.lamination and templ.lamination.id == item.id %}
+                                        selected="selected"
+                                    {% endif %}>{{ item.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </li>
+                    <li>
+                        <div>Необходимо использовть следующие виды персонализации:</div>
+                        <small>
+                            <input type="checkbox" name="chip" {% if templ.chip %}checked="" {% endif %}>
+                            <label>карта с чипом</label>
+                        </small>
+                        <small>
+                            <input type="checkbox" name="scratch" {% if templ.scratch %}checked="" {% endif %}>
+                            <label>стираемая полоса<label>
+                        </small>
+                        <small>
+                            <input type="checkbox" name="magnet" {% if templ.magnet %}checked="" {% endif %}>
+                            <label>магнитная полоса</label>
+                        </small>
+                        <small>
+                            <input type="checkbox" name="emboss" {% if templ.emboss %}checked="" {% endif %}>
+                            <label>эмбоссирование</label>
+                        </small>
+                        <small>
+                            <input type="checkbox" name="uv" {% if templ.uv %}checked="" {% endif %}>
+                            <label>печать УФ краской</label>
+                        </small>
+                        <small>
+                            <input type="checkbox" name="print_num" {% if templ.print_num %}checked="" {% endif %}>
+                            <label>печать номера</label>
+                        </small>
+                        <small>
+                            <input type="checkbox" name="sign" {% if templ.sign %}checked="" {% endif %}>
+                            <label>полоса для подписи</label>
+                        </small>
+                        <small>
+                            <input type="checkbox" name="foil" {% if templ.foil %}checked="" {% endif %}>
+                            <label>тиснение фольгой</label>
+                        </small>
+                        <small>
+                            <input type="checkbox" name="barcode" {% if templ.barcode %}checked="" {% endif %}>
+                            <label>печать штрих-кода</label>
+                        </small>
+                        <small>
+                            <input type="checkbox" name="indent" {% if templ.indent %}checked="" {% endif %}>
+                            <label>идентная печать</label>
+                        </small>
+                    </li>
+                    <li>
+                        <span>Мой макет (если есть)</span>
+                        <div class="file">
+                            <input type="file" name="maket" value="{{ object.maket }}">
+                        </div>
+                    </li>
+                    <li>
+                        <label>ФИО:</label>
+                        <input type="text" name="user" value="{{ object.fio }}">
+                        <label>Телефон:</label>
+                        <input type="text" name="phone" value="{{ object.phone }}">
+                        <label>Email:</label>
+                        <input type="email" name="email" value="{{ object.email }}">
+
+                    </li>
+                    <li>
+{#                        <a href="{% url 'ajax-save-order' step=2 %}" class="next_step">Заказать</a>#}
+
+                        <input type="submit" name="order" value="Заказать" class="next_step">
+
+                    </li>
+                </ul>
+            </form>
+
+<script type="application/javascript">
+    $('#fast_form').submit(function(){
+        var action = $(this).attr('action');
+        var that = $(this);
+        $.ajax({
+            url: action,
+            type: 'POST',
+            data: that.serialize(),
+            success: function(result){
+                confirmOrder(result);
+            }
+        });
+        return false;
+    });
+
+    	//Заказ (открываем модальное окно)
+	function confirmOrder(result) {
+        $('input#id').val(result.id);
+        $('body').addClass('under_overlay')
+        .append('<div class="overlay"></div><div class="data_checking"><form class="jClever"></form></div>');
+        $('.data_checking > form').load('/second/'+result.id+'/', function(){
+            $('.jClever').jClever({
+                selfClass: "alice",
+                applyTo: {
+                    input: false,
+                    select: true,
+                    checkbox: true,
+                    radio: true,
+                    button: false,
+                    file: true,
+                    textarea: false
+                }
+            });
+        });
+    }
+
+</script>
+

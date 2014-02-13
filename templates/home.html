@@ -11,7 +11,7 @@
             <li>Готовые варианты</li>
         </ul>
         <div class="easy_form current">
-            <form class="jClever filter calc">
+<!--            <form class="jClever filter calc">
                 <ul>
                     <li>
                         <span id="foil" data-price="11" class="flag">
@@ -153,10 +153,10 @@
                         <input type="email" name="email">
                     </li>
                     <li>
-                        <!--
+-->                        <!--
                         <a href="#" class="next_step">Заказать</a>
                         -->
-                        
+<!--
                         <input type="submit" value="Заказать">
                         
                     </li>
@@ -173,10 +173,27 @@
                 <input type="hidden" name="colors" value="">
                 <input type="hidden" name="materials" value="">
             </form>
-        </div>
+-->        </div>
+
+            <script type="application/javascript">
+                $('.easy_form').load('{% url "e_order" %}', function(){
+                    $('.jClever').jClever({
+                        selfClass: "alice",
+                        applyTo: {
+                            input: false,
+                            select: true,
+                            checkbox: true,
+                            radio: true,
+                            button: false,
+                            file: true,
+                            textarea: false
+                        }
+                    });
+                });
+            </script>
 
         <div class="fast_form">
-            <form class="jClever">
+<!--            <form class="jClever">
                 <ul class="order">
                     <li class="info"></li>
 					<li class="printing"></li>
@@ -286,16 +303,34 @@
 
                     </li>
                     <li>
-                        <!--
+-->                        <!--
                         <a href="#" class="next_step">Заказать</a>
                         -->
-                        
+<!--
                         <input type="submit" value="Заказать">
                         
                     </li>
                 </ul>
             </form>
-        </div>
+-->        </div>
+
+            <script type="application/javascript">
+                $('.fast_form').load('{% url "f_order" %}', function(){
+                    $('.jClever').jClever({
+                        selfClass: "alice",
+                        applyTo: {
+                            input: false,
+                            select: true,
+                            checkbox: true,
+                            radio: true,
+                            button: false,
+                            file: true,
+                            textarea: false
+                        }
+                    });
+                });
+            </script>
+
         <div class="ready no_background">
             <ul>
                 <li>

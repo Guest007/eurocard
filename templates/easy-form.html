@@ -1,0 +1,338 @@
+
+            <form id="easy_form" class="jClever filter calc" action="{% url 'ajax-save-order' step=12 %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" id="id" name="id" class="common" value="{{ object.id }}">
+            <input type="hidden" id="templ" class="common" value="{{ object.templ }}">
+                <ul class="first-child">
+                    <li>
+                        <span id="foil" data-price="
+                        {% for item in modif %}
+                            {% if item.slug == 'foil' %}
+                                {{ item.cost }}
+                            {% endif %}
+                        {% endfor %}
+                        " class="flag{% if templ.foil %} active{% endif %}">
+                            <span></span>
+                            <i class="fa fa-times"></i>
+                        </span>
+                        <small>
+                            <i class="fa fa-question"></i>
+                            <span class="first_flag"><i class="fa fa-circle"></i></span>
+                        </small>
+                        <p>Тиснение фольгой</p>
+                    </li>
+                    <li>
+                        <span id="emboss" data-price="
+                        {% for item in modif %}
+                            {% if item.slug == 'emboss' %}
+                                {{ item.cost }}
+                            {% endif %}
+                        {% endfor %}
+                        " class="flag{% if templ.emboss %} active{% endif %}">
+                            <span></span>
+                            <i class="fa fa-times"></i>
+                        </span>
+                        <small>
+                            <i class="fa fa-question"></i>
+                            <span class="second_flag"><i class="fa fa-circle"></i></span>
+                        </small>
+                        <p>Эмбоссирование</p>
+                    </li>
+                    <li>
+                        <span id="sign" data-price="
+                        {% for item in modif %}
+                            {% if item.slug == 'sign' %}
+                                {{ item.cost }}
+                            {% endif %}
+                        {% endfor %}
+                        " class="flag{% if templ.sign %} active{% endif %}">
+                            <span></span>
+                            <i class="fa fa-times"></i>
+                        </span>
+                        <small>
+                            <i class="fa fa-question"></i>
+                            <span class="third_flag"><span></span><i class="fa fa-circle"></i></span>
+                        </small>
+                        <p>Полоса для подписи</p>
+                    </li>
+                    <li>
+                        <span id="indent" data-price="
+                        {% for item in modif %}
+                            {% if item.slug == 'indent' %}
+                                {{ item.cost }}
+                            {% endif %}
+                        {% endfor %}
+                        " class="flag{% if templ.indent %} active{% endif %}">
+                            <span></span>
+                            <i class="fa fa-times"></i>
+                        </span>
+                        <small>
+                            <i class="fa fa-question"></i>
+                            <span class="fourth_flag"><span></span><i class="fa fa-circle"></i></span>
+                        </small>
+                        <p>Индент печать</p>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <span id="print_num" data-price="
+                        {% for item in modif %}
+                            {% if item.slug == 'print_num' %}
+                                {{ item.cost }}
+                            {% endif %}
+                        {% endfor %}
+                        " class="flag{% if templ.print_num %} active{% endif %}">
+                            <span></span>
+                            <i class="fa fa-times"></i>
+                        </span>
+                        <small>
+                            <i class="fa fa-question"></i>
+                            <span class="fifth_flag"><i class="fa fa-circle"></i></span>
+                        </small>
+                        <p>Печатный номер</p>
+                    </li>
+                    <li>
+                        <span id="magnet" data-price="
+                        {% for item in modif %}
+                            {% if item.slug == 'magnet' %}
+                                {{ item.cost }}
+                            {% endif %}
+                        {% endfor %}
+                        " class="flag{% if templ.magnet %} active{% endif %}">
+                            <span></span>
+                            <i class="fa fa-times"></i>
+                        </span>
+                        <small>
+                            <i class="fa fa-question"></i>
+                            <span class="sixth_flag"><i class="fa fa-circle"></i></span>
+                        </small>
+                        <p>Магнитная полоса</p>
+                    </li>
+                    <li>
+                        <span id="barcode" data-price="
+                        {% for item in modif %}
+                            {% if item.slug == 'barcode' %}
+                                {{ item.cost }}
+                            {% endif %}
+                        {% endfor %}
+                        " class="flag{% if templ.barcode %} active{% endif %}">
+                            <span></span>
+                            <i class="fa fa-times"></i>
+                        </span>
+                        <small>
+                            <i class="fa fa-question"></i>
+                            <span class="seventh_flag"><i class="fa fa-circle"></i></span>
+                        </small>
+                        <p>Штрих код</p>
+                    </li>
+                    <li>
+                        <span id="scratch" data-price="
+                        {% for item in modif %}
+                            {% if item.slug == 'scratch' %}
+                                {{ item.cost }}
+                            {% endif %}
+                        {% endfor %}
+                        " class="flag{% if templ.scratch %} active{% endif %}">
+                            <span></span>
+                            <i class="fa fa-times"></i>
+                        </span>
+                        <small>
+                            <i class="fa fa-question"></i>
+                            <span class="eighth_flag"><i class="fa fa-circle"></i></span>
+                        </small>
+                        <p>Скрейтч панель</p>
+                    </li>
+                </ul>
+                <ul class="order">
+                    <li class="info"></li>
+					<li class="printing"></li>
+					<li class="time"></li>
+                    <li>
+                        <i class="error">Минимальное количество - 500 экземпляров</i>
+                        <label for="count">Тираж:</label>
+                        <input type="text" class="edition" id="count" name="count" placeholder="500" value="{{ object.draw }}">
+                    </li>
+                    <li>
+                        <label for="color">Цвет:</label>
+                        <div class="select color">
+                            <select name="color" id="all_color">
+                                {% for item in color %}
+                                    <option value="{{ item.id }}"{% if templ.color_front and templ.color_front.id == item.id %}selected="selected"{% endif %} data-price="{{ item.cost }}">{{ item.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </li>
+                    <li>
+                        <label>Материал:</label>
+                        <div class="select materials">
+                            <select name="materials">
+                                {% for item in materials %}
+                                    <option value="{{ item.id }}" {% if templ.material and templ.material.id == item.id %}selected="selected"{% endif %}  data-price="{{ item.cost }}">{{ item.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </li>
+                    <li>
+                        <label>Сумма:</label>
+                        <p class="sum">0 руб.</p>
+                    </li>
+                    <li>
+                        <label>ФИО:</label>
+                        <input type="text" name="user" value="{{ object.fio }}">
+                    </li>
+                    <li>
+                        <label>Телефон:</label>
+                        <input type="text" name="phone" value="{{ object.phone }}">
+                    </li>
+                    <li>
+                        <label>Email:</label>
+                        <input type="email" name="email" value="{{ object.email }}">
+                    </li>
+                    <li>
+                        <!--
+                        <a href="#" class="next_step">Заказать</a>
+                        -->
+
+                        <input type="submit" name="order" value="Заказать" class="next_step">
+
+                    </li>
+                </ul>
+                <input type="hidden" name="foil" class="flag" value="">
+                <input type="hidden" name="emboss" class="flag" value="">
+                <input type="hidden" name="sign" class="flag" value="">
+                <input type="hidden" name="indent" class="flag" value="">
+                <input type="hidden" name="print_num" class="flag" value="">
+                <input type="hidden" name="magnet" class="flag" value="">
+                <input type="hidden" name="barcode" class="flag" value="">
+                <input type="hidden" name="scratch" class="flag" value="">
+                <input type="hidden" name="count_hidden" value="">
+                <input type="hidden" name="color" value="">
+                <input type="hidden" name="materials" value="">
+
+            </form>
+
+
+<script type="application/javascript">
+    $('div.easy_form > form > ul > li > small').click(function(){
+        //console.log($(this));
+			$(this).toggleClass('active');
+	});
+
+    	//Калькулятор
+	$('form.calc').each(function(){
+
+		//сбрасываем значения hidden
+		$('input[type="hidden"]').val(0);
+
+		//присваиваем значение по умолчанию селектам
+		$('select').each(function(){
+			var this_name = $(this).attr('name'),
+			default_val = $(this).find("option:selected").data('price').replace(',','.');
+			$('input[name="'+this_name+'"]').val(default_val);
+		})
+		//min тираж  - 500
+		$('input[name="count"]').val('')
+		$('input[name="count_hidden"]').val(500);
+
+		//переключаем состояние атрибута, передаем значение в hidden, следим за измененнием
+		$('span.flag').click(function(){
+			var this_flag = $(this),
+				flag_id = $(this).attr('id');
+			this_flag.toggleClass('active');
+			if($(this).hasClass('active')){
+				$(this).children('i').removeClass('fa-times').addClass('fa-check');
+                //console.log("qwertyui", parseFloat($(this).data('price')));
+				$('input[name="'+flag_id+'"]').val(parseFloat($(this).data('price').replace(',','.'))).trigger('change');
+			}
+			else{
+				if($(this).children('i').hasClass('fa-check')){
+					$(this).children('i').removeClass('fa-check').addClass('fa-times');
+				}
+				$('input[name="'+flag_id+'"]').val('0').trigger('change');
+			}
+		});
+
+		//вводим тираж, следим за его значением (min - 500)
+		$('input[name="count"]').keyup(function(){
+			var count_val = parseFloat($(this).val())||0,
+				this_name = $(this).attr('name');
+			//error mes.
+			if(count_val < 500){
+				$(this).addClass('error').siblings('i').addClass('show');
+				$('input[name="count_hidden"]').val(0);
+			}
+			else{
+				$(this).removeClass('error').siblings('i').removeClass('show');
+				$('input[name="'+this_name+'_hidden"]').val(parseFloat(count_val)).trigger('change');
+			};
+		});
+
+		//следим за изменением значений селектов
+		$('select').change(function(){
+			var this_name = $(this).attr('name'),
+				this_val = $(this).find("option:selected").data('price').replace(',','.');
+
+			$('input[name="'+this_name+'"]').val(parseFloat(this_val)).trigger('change');
+		});
+
+		//счетаем
+		$('input[type="hidden"]').change(function(){
+			var flag_val = 0,
+				count_val = parseFloat($('input[name="count_hidden"]').val()),
+				color_val = parseFloat($('input[name="color"]').val()),
+				material_val = parseFloat($('input[name="materials"]').val());
+
+			$('input.flag').each(function() {
+				flag_val += parseFloat($(this).val())||0;
+			});
+
+			sum = count_val*(flag_val+color_val+material_val);
+			$('p.sum').html(sum.toFixed(2)+' руб.');
+			//console.log(sum);
+		});
+
+		//console.log(sum);
+
+	})
+
+</script>
+
+<script type="application/javascript">
+
+    $('#easy_form').submit(function(){
+        console.log("Call AJAX");
+        var action = $(this).attr('action');
+        var that = $(this);
+        console.log(that);
+        $.ajax({
+            url: action,
+            type: 'POST',
+            data: that.serialize(),
+            success: function(result){
+                confirmOrder(result);
+            }
+        });
+        return false;
+    });
+
+    	//Заказ (открываем модальное окно)
+	function confirmOrder(result) {
+        $('input#id').val(result.id);
+        $('body').addClass('under_overlay')
+        .append('<div class="overlay"></div><div class="data_checking check_easy"><form class="jClever"></form></div>');
+        $('.check_easy > form').load('/second/'+result.id+'/', function(){
+            $('.jClever').jClever({
+                selfClass: "alice",
+                applyTo: {
+                    input: false,
+                    select: true,
+                    checkbox: true,
+                    radio: true,
+                    button: false,
+                    file: true,
+                    textarea: false
+                }
+            });
+        });
+    }
+</script>

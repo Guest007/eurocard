@@ -12,9 +12,10 @@ class CoefficientAdmin(admin.ModelAdmin):
 
 
 class ModificatorsAdmin(admin.ModelAdmin):
-    list_display = ['name', 'value', 'cost']
-    list_filter = ['name']
-    list_editable = ['value', 'cost']
+    list_display = ['name', 'slug', 'cost']
+    list_filter = ['name', 'slug']
+    list_editable = ['cost']
+    prepopulated_fields = {"slug": ("name",)}
     
 
 class MaterialAdmin(admin.ModelAdmin):
@@ -30,9 +31,9 @@ class LaminationAdmin(admin.ModelAdmin):
 
 
 class ColorAdmin(admin.ModelAdmin):
-    list_display = ['name', 'cost']
+    list_display = ['name', 'is_easy', 'cost']
     list_filter = ['name']
-    list_editable = ['cost']
+    list_editable = ['is_easy', 'cost']
 
 
 class OrdersAdmin(admin.ModelAdmin):

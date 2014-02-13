@@ -13,28 +13,41 @@ from django import http
 __author__ = 'guest007'
 
 
-def home(request):
+def fastform(request):
     price = Modificators.objects.all()
     coeff = Coefficient.objects.all()
-    template_name = 'home1.html'
+    template_name = 'fast-form.html'
     return render_to_response(template_name,
                               {'modif': price,
                                'coeff': coeff,
                               'materials': Material.objects.all(),
                               'lamination': Lamination.objects.all(),
-                              'color_front': Color.objects.all().order_by('-id'),
-                              'color_back': Color.objects.all().order_by('-id')},
+                              'color_front': Color.objects.filter(is_easy=False).order_by('-id'),
+                              'color_back': Color.objects.filter(is_easy=False).order_by('-id')},
+                              context_instance=RequestContext(request))
+
+
+def easyform(request):
+    price = Modificators.objects.all()
+    coeff = Coefficient.objects.all()
+    template_name = 'easy-form.html'
+    return render_to_response(template_name,
+                              {'modif': price,
+                               'coeff': coeff,
+                              'materials': Material.objects.all(),
+                              'lamination': Lamination.objects.all(),
+                              'color': Color.objects.filter(is_easy=True).order_by('-id')},
                               context_instance=RequestContext(request))
 
 
 @render_to()
-def edit_order(request, pk, step=0):
+def edit_fast(request, pk, step=0):
     """Edit selected Order"""
     if step == 0:
         return http.HttpResponseRedirect('1/')
     order = get_object_or_404(Orders, pk=int(pk))
     templ = OrderTemplate.objects.get(id=order.template.id)
-    return {"TEMPLATE": 'home1.html',
+    return {"TEMPLATE": 'fast-form.html',
             "object": order,
             "templ": templ,
             'materials': Material.objects.all(),
@@ -59,7 +72,8 @@ def nextstep_order(request, pk):
         mimetype="text/html; charset=utf-8")
 
 
-@csrf_protect
+# @csrf_protect
+@csrf_exempt
 def save_order(request, step=1):
     """Save order with AJAX"""
     if request.method != "POST":
@@ -80,9 +94,16 @@ def save_order(request, step=1):
     if templ is None:
         templ = OrderTemplate(name=(user if user else ''))  # Создаем тело заказа. Название - имя заказчика
 
+    if step > 10:
+        templ.color_back = Color(id=request.POST.get("color_back", None))
+        templ.color_front = Color(id=request.POST.get("color", None))
+    else:
+        templ.color_back = Color(id=request.POST.get("color_back", None))
+        templ.color_front = Color(id=request.POST.get("color_front", None))
+
+    print templ.color_back, templ.color_front
+
     templ.material = Material(id=request.POST.get("materials", None))
-    templ.color_back = Color(id=request.POST.get("color_back", None))
-    templ.color_front = Color(id=request.POST.get("color_front", None))
     templ.lamination = Lamination(id=request.POST.get("lamination", None))
     templ.chip = request.POST.get("chip", False)
     templ.uv = request.POST.get("uv", False)
@@ -95,9 +116,15 @@ def save_order(request, step=1):
     templ.barcode = request.POST.get("barcode", False)
     templ.foil = request.POST.get("foil", False)
 
-    draw = request.POST.get("draw", 500)  # количество в заказ
-    print "DRAW: ", draw
+    # print templ.material
+    # print templ.lamination
+    # print templ.chip
+    # print templ.barcode
+    # print templ.foil
 
+    draw = request.POST.get("count", 500)  # количество в заказ
+    # print "DRAW: ", draw
+    # print templ
     templ.save()  # Сохраняем тело заказа для того, чтобы потом создать сам заказ
     if templ is None:  # Если тело заказа не сохранилось - возвращаем ошибку?
         result = {"result": "ERROR", "msg": "Please, correct the property type to get access to other tabs."}
@@ -121,8 +148,8 @@ def save_order(request, step=1):
     order.FIO = user
     print order.FIO
     order.draw = draw  # Количество
-    print  order.draw
-    order.cost = 0  # TODO: Пока просто пишем 0. ИСПРАВИТЬ!!!!
+    print order.draw
+    order.cost = request.POST.get("sum", False)
     order.email = email
     print order.email
     order.phone = phone

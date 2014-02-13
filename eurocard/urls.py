@@ -22,13 +22,15 @@ urlpatterns = patterns('',
     url(r'^price/', views.price, name='price'),
     url(r'^cooperation/', views.cooperation, name='cooperation'),
     url(r'^contacts/', views.contacts, name='contacts'),
-    url(r'^test/', orders.home, name='t_order'),
+    url(r'^fastform/', orders.fastform, name='f_order'),
+    url(r'^easyform/', orders.easyform, name='e_order'),
     # Ajax actions
     url(r"^second/(?P<pk>\d+)/$", orders.nextstep_order, name="ajax-nextstep-order"),
-    url(r"^(?P<pk>\d+)/(?P<step>\d+)/$", orders.edit_order, name="edit-order"),
-    url(r"^(?P<pk>\d+)/$", orders.edit_order, name="edit-order"),
+    url(r"^(?P<pk>\d+)/(?P<step>\d+)/$", orders.edit_fast, name="edit-fast"),
+    url(r"^(?P<pk>\d+)/$", orders.edit_fast, name="edit-fast"),
     url(r"^save/ajax/(?P<step>\d+)/$", orders.save_order, name="ajax-save-order"),
 
+    url(r'^test/', views.test, name='test'),
 
     url(r'^grappelli/', include('grappelli.urls')),
     url(r'^admin/filebrowser/', include(site.urls)),

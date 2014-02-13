@@ -43,6 +43,7 @@ class Lamination(models.Model):
 class Color(models.Model):
     name = models.CharField(max_length=255, verbose_name="Цвет")
     cost = models.FloatField(blank=True, null=True, verbose_name="Стоимость за единицу")
+    is_easy = models.BooleanField(default=False, verbose_name="Для простого калькулятора?")
 
     class Meta:
         verbose_name = "Цвета"
@@ -54,7 +55,7 @@ class Color(models.Model):
 
 class Modificators(models.Model):
     name = models.CharField(max_length=255, verbose_name="Наименование")
-    value = models.BooleanField(default=False, verbose_name="Значение")
+    slug = models.SlugField(verbose_name="Идентификатор")
     cost = models.FloatField(blank=True, null=True, verbose_name="Стоимость модификатора")
 
     class Meta:
