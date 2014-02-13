@@ -1117,6 +1117,7 @@ body.under_overlay > div.data_checking.files {
   float: left;
   margin: -25px 18px 75px 0;
   height: 80px;
+  position: relative;
 }
 .wrap_all > article > section.order > div > div.easy_form > form > ul.order > li > label {
   display: block;
@@ -1759,4 +1760,23 @@ form.call > textarea {
 }
 form.call.hide {
   display: none;
+}
+i.error {
+  position: absolute;
+  display: none;
+  padding: 20px;
+  border-radius: 6px 6px 6px 0;
+  background: #22B77E;
+  opacity: 0.8;
+  width: 200px;
+  color: #fff;
+  font: 600 14px/14px 'Open Sans', sans-serif;
+  top: -10px;
+  z-index: 99;
+}
+i.error.show {
+  display: inline-block;
+}
+input.error {
+  border: 2px solid #22B77E !important;
 }

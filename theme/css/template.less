@@ -1261,6 +1261,7 @@ body {
 											float: left;
 											margin: -25px 18px 75px 0;
 											height: 80px;
+											position: relative;
 											& > label {
 												display: block;
 												font: 600 14px/48px @main_font;
@@ -1975,4 +1976,24 @@ form.call {
 	&.hide {
 		display: none;
 	}
+}
+
+i.error {
+	position: absolute;
+	display: none;
+	padding: 20px;
+	border-radius: 6px 6px 6px 0;
+	background: #22B77E;
+	opacity: 0.8;
+	width: 200px;
+	color: #fff;
+	font: 600 14px/14px @main_font;
+	top: -10px;
+	z-index: 99;
+	&.show {
+		display: inline-block;
+	}
+}
+input.error {
+	border: 2px solid #22B77E !important;
 }
