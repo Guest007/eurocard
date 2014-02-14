@@ -194,7 +194,7 @@ $(document).ready(function(){
 	$('form.calc').each(function(){
 
 		//сбрасываем значения hidden
-		$('input[type="hidden"]').val(0);
+		$('input.flag').val(0);
 
 		//присваиваем значение по умолчанию селектам
 		$('select').each(function(){
@@ -246,6 +246,11 @@ $(document).ready(function(){
 			$('input[name="'+this_name+'"]').val(parseInt(this_val)).trigger('change');
 		});
 
+		//var $inputs = $('input.ratio');
+
+	    // get an associative array of the values
+
+
 		//счетаем
 		$('input[type="hidden"]').change(function(){
 			var flag_val = 0,
@@ -258,8 +263,33 @@ $(document).ready(function(){
 				flag_val += parseInt($(this).val())||0;
 			});
 
+			var values = {};
+			$('input.ratio').each(function() {
+				var this_val = parseFloat($(this).val());
+					this_name = parseFloat($(this).attr('name')),
+					q = count_val-this_name;
+				console.log(this_val, this_name, count_val, q);
+				values[this_val] = q;
+			});
+		    console.log(values);
+
+		    //Array.min = function(values){
+				//return Math.min.apply(Math, values);
+			//};
+
+		    //var min_q = Array.min(values);
+		    //console.log(min_q);
+		    $.each(values, function(key, value) {
+				//var min_q = $(this).min(value);
+				//var min_q = Math.min.apply(Math,value);
+				var qq = $(this).min();
+				console.log(qq);
+			});
+
+
 			sum = count_val*(flag_val+color_val+material_val);
-			$('p.sum').html(sum+' руб.');
+			$('p.sum').html(sum.toFixed(2)+' руб.');
+
 			//console.log(sum);
 		});	
 		

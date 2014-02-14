@@ -3,7 +3,7 @@
             {% csrf_token %}
             <input type="hidden" id="id" name="id" class="common" value="{{ object.id }}">
             <input type="hidden" id="templ" class="common" value="{{ object.templ }}">
-                <ul class="first-child">
+                <ul class="visual_first">
                     <li>
                         <span id="foil" data-price="
                         {% for item in modif %}
@@ -73,7 +73,7 @@
                         <p>Индент печать</p>
                     </li>
                 </ul>
-                <ul>
+                <ul class="visual_second">
                     <li>
                         <span id="print_num" data-price="
                         {% for item in modif %}
@@ -208,6 +208,11 @@
                 <input type="hidden" name="count_hidden" value="">
                 <input type="hidden" name="color" value="">
                 <input type="hidden" name="materials" value="">
+                <input type="hidden" name="1000" value="0.7" class="ratio">
+                <input type="hidden" name="4000" value="0.6" class="ratio">
+                <input type="hidden" name="7000" value="0.5" class="ratio">
+                <input type="hidden" name="11000" value="0.4" class="ratio">
+                <input type="hidden" name="15000" value="0.3" class="ratio">
 
             </form>
 

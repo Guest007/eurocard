@@ -886,8 +886,8 @@ body.under_overlay > div.data_checking.files {
   background: url('../images/easy_form_background.png') no-repeat left 100px;
 }
 .wrap_all > article > section.order > div > div.easy_form > form > ul {
-  display: inline-block;
   width: 100%;
+  display: inline-block;
   margin: 0 0 50px;
 }
 .wrap_all > article > section.order > div > div.easy_form > form > ul > li {
@@ -1041,36 +1041,36 @@ body.under_overlay > div.data_checking.files {
   color: #000;
   margin: 20px 0 0;
 }
-.wrap_all > article > section.order > div > div.easy_form > form > ul:first-child {
+.wrap_all > article > section.order > div > div.easy_form > form > ul.visual_first {
   margin: 0 0 405px;
 }
-.wrap_all > article > section.order > div > div.easy_form > form > ul:first-child > li > small > span {
+.wrap_all > article > section.order > div > div.easy_form > form > ul.visual_first > li > small > span {
   border-left: 0;
   border-bottom: 0;
   top: 12px;
 }
-.wrap_all > article > section.order > div > div.easy_form > form > ul:first-child > li > small > span > i {
+.wrap_all > article > section.order > div > div.easy_form > form > ul.visual_first > li > small > span > i {
   position: absolute;
   bottom: -6px;
   right: -6px;
   font-size: 10px;
 }
-.wrap_all > article > section.order > div > div.easy_form > form > ul:first-child > li > small > span.first_flag {
+.wrap_all > article > section.order > div > div.easy_form > form > ul.visual_first > li > small > span.first_flag {
   right: -66px;
   width: 56px;
   height: 195px;
 }
-.wrap_all > article > section.order > div > div.easy_form > form > ul:first-child > li > small > span.second_flag {
+.wrap_all > article > section.order > div > div.easy_form > form > ul.visual_first > li > small > span.second_flag {
   right: -66px;
   width: 56px;
   height: 184px;
 }
-.wrap_all > article > section.order > div > div.easy_form > form > ul:first-child > li > small > span.third_flag {
+.wrap_all > article > section.order > div > div.easy_form > form > ul.visual_first > li > small > span.third_flag {
   right: -66px;
   width: 56px;
   height: 235px;
 }
-.wrap_all > article > section.order > div > div.easy_form > form > ul:first-child > li > small > span.third_flag > span {
+.wrap_all > article > section.order > div > div.easy_form > form > ul.visual_first > li > small > span.third_flag > span {
   right: -48px;
   width: 46px;
   border: 0;
@@ -1079,16 +1079,16 @@ body.under_overlay > div.data_checking.files {
   border-bottom-color: #dfdfdf;
   bottom: 0;
 }
-.wrap_all > article > section.order > div > div.easy_form > form > ul:first-child > li > small > span.third_flag > i {
+.wrap_all > article > section.order > div > div.easy_form > form > ul.visual_first > li > small > span.third_flag > i {
   right: -50px;
   bottom: -4px;
 }
-.wrap_all > article > section.order > div > div.easy_form > form > ul:first-child > li > small > span.fourth_flag {
+.wrap_all > article > section.order > div > div.easy_form > form > ul.visual_first > li > small > span.fourth_flag {
   right: -66px;
   width: 56px;
   height: 170px;
 }
-.wrap_all > article > section.order > div > div.easy_form > form > ul:first-child > li > small > span.fourth_flag > span {
+.wrap_all > article > section.order > div > div.easy_form > form > ul.visual_first > li > small > span.fourth_flag > span {
   left: 0;
   width: 58px;
   border: 0;
@@ -1097,7 +1097,7 @@ body.under_overlay > div.data_checking.files {
   border-bottom-color: #dfdfdf;
   bottom: 0;
 }
-.wrap_all > article > section.order > div > div.easy_form > form > ul:first-child > li > small > span.fourth_flag > i {
+.wrap_all > article > section.order > div > div.easy_form > form > ul.visual_first > li > small > span.fourth_flag > i {
   left: -52px;
   bottom: -4px;
 }
