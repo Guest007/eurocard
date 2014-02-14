@@ -80,6 +80,9 @@ def save_order(request, step=1):
         result = {"result": "ERROR", "msg": "Wrong request method"}
         return http.HttpResponse(json.dumps(result),
                                  content_type="application/json")
+    else:
+        post_values = request.body
+
     try:
         templ_id = int(request.POST.get("templ_id", 0))  # Если редактруем созданный заказ
     except (TypeError, ValueError):
@@ -95,32 +98,54 @@ def save_order(request, step=1):
         templ = OrderTemplate(name=(user if user else ''))  # Создаем тело заказа. Название - имя заказчика
 
     if step > 10:
-        templ.color_back = Color(id=request.POST.get("color_back", None))
-        templ.color_front = Color(id=request.POST.get("color", None))
+        print "STEP more than 10"
+
+        templ.color_back = None  # Color(id=request.POST.get("color_back", None))
+        templ.color_front = Color(id=(request.POST.get("color", None)[0]
+                                      if len(request.POST.get("color", None)) > 1
+                                      else request.POST.get("color", None)))
+        print "RAW color^ ", request.POST.get("color", None)
+        print "COLOR: ", templ.color_front
+        templ.material = Material(id=(request.POST.get("materials", None)[0]
+                                      if len(request.POST.get("materials", None)) > 1
+                                      else request.POST.get("materials", None)))
+        print "MATERIAL: ", templ.material
+        templ.lamination = Lamination(id=(request.POST.get("lamination", None)[0]
+                                      if len(request.POST.get("lamination", None)) > 1
+                                      else request.POST.get("lamination", None)))
+        templ.chip = None  # request.POST.get("chip", False)
+        templ.uv = None  # request.POST.get("uv", False)
+        templ.magnet = (True if request.POST.get("magnet", False) > 0 else False)
+        templ.emboss = (True if request.POST.get("emboss", False) > 0 else False)
+        templ.scratch = (True if request.POST.get("scratch", False) > 0 else False)
+        templ.print_num = (True if request.POST.get("print_num", False) > 0 else False)
+        templ.sign = (True if request.POST.get("sign", False) > 0 else False)
+        templ.indent = (True if request.POST.get("indent", False) > 0 else False)
+        templ.barcode = (True if request.POST.get("barcode", False) > 0 else False)
+        templ.foil = (True if request.POST.get("foil", False) > 0 else False)
+
     else:
         templ.color_back = Color(id=request.POST.get("color_back", None))
         templ.color_front = Color(id=request.POST.get("color_front", None))
 
-    print templ.color_back, templ.color_front
+        templ.material = Material(id=request.POST.get("materials", None))
+        templ.lamination = Lamination(id=request.POST.get("lamination", None))
+        templ.chip = request.POST.get("chip", False)
+        templ.uv = request.POST.get("uv", False)
+        templ.magnet = request.POST.get("magnet", False)
+        templ.emboss = request.POST.get("emboss", False)
+        templ.scratch = request.POST.get("scratch", False)
+        templ.print_num = request.POST.get("print_num", False)
+        templ.sign = request.POST.get("sign", False)
+        templ.indent = request.POST.get("indent", False)
+        templ.barcode = request.POST.get("barcode", False)
+        templ.foil = request.POST.get("foil", False)
 
-    templ.material = Material(id=request.POST.get("materials", None))
-    templ.lamination = Lamination(id=request.POST.get("lamination", None))
-    templ.chip = request.POST.get("chip", False)
-    templ.uv = request.POST.get("uv", False)
-    templ.magnet = request.POST.get("magnet", False)
-    templ.emboss = request.POST.get("emboss", False)
-    templ.scratch = request.POST.get("scratch", False)
-    templ.print_num = request.POST.get("print_num", False)
-    templ.sign = request.POST.get("sign", False)
-    templ.indent = request.POST.get("indent", False)
-    templ.barcode = request.POST.get("barcode", False)
-    templ.foil = request.POST.get("foil", False)
-
-    # print templ.material
-    # print templ.lamination
-    # print templ.chip
-    # print templ.barcode
-    # print templ.foil
+    print "material", templ.material
+    print "lamination", templ.lamination
+    print "chip", templ.chip
+    print "barcode", templ.barcode
+    print "foil", templ.foil
 
     draw = request.POST.get("count", 500)  # количество в заказ
     # print "DRAW: ", draw
