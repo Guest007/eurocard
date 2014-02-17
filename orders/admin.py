@@ -37,14 +37,14 @@ class ColorAdmin(admin.ModelAdmin):
 
 
 class OrdersAdmin(admin.ModelAdmin):
-    list_display = ['FIO', 'phone', 'email', 'draw']
+    list_display = ['FIO', 'id', 'phone', 'email', 'draw']
     # ordering = ["category", 'published_at']
     list_filter = ['FIO', 'draw']
 
 
 class OrderTemplateAdmin(admin.ModelAdmin):
     model = OrderTemplate
-    list_display = ['name', 'is_template', 'price']
+    list_display = ['name', 'id', 'is_template', 'price']
     ordering = ["name", 'is_template', 'price']
     list_filter = ['name', 'is_template']
 

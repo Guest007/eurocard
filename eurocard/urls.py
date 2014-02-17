@@ -28,6 +28,8 @@ urlpatterns = patterns('',
     url(r"^second/(?P<pk>\d+)/$", orders.nextstep_order, name="ajax-nextstep-order"),
     url(r"^(?P<pk>\d+)/(?P<step>\d+)/$", orders.edit_fast, name="edit-fast"),
     url(r"^(?P<pk>\d+)/$", orders.edit_fast, name="edit-fast"),
+    url(r"^(?P<pk>\d+)/(?P<step>\d+)/$", orders.edit_easy, name="edit-easy"),
+    url(r"^(?P<pk>\d+)/$", orders.edit_easy, name="edit-easy"),
     url(r"^save/ajax/(?P<step>\d+)/$", orders.save_order, name="ajax-save-order"),
 
     url(r'^test/', views.test, name='test'),

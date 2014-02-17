@@ -3,19 +3,22 @@
 	<span>Ваш заказ<small class="close_order"><i class="fa fa-times"></i></small></span>
 	<ul class="info">
 		<li>
-			<span><i class="fa {% if templ.foil %}fa-check{% else %}fa-times{% endif %}"></i>Тиснение фольгой</span>
-			<span><i class="fa {% if templ.emboss %}fa-check{% else %}fa-times{% endif %}"></i>Эмбоссирование</span>
-			<span><i class="fa {% if templ.sign %}fa-check{% else %}fa-times{% endif %}"></i>Полоса для подписи</span>
-			<span><i class="fa {% if templ.indent %}fa-check{% else %}fa-times{% endif %}"></i>Индент печать</span>
-			<span><i class="fa {% if templ.print_num %}fa-check{% else %}fa-times{% endif %}"></i>Печатный номер</span>
-			<span><i class="fa {% if templ.magnet %}fa-check{% else %}fa-times{% endif %}"></i>Магнитная полоса</span>
-			<span><i class="fa {% if templ.barcode %}fa-check{% else %}fa-times{% endif %}"></i>Штрих код</span>
-			<span><i class="fa {% if templ.scratch %}fa-check{% else %}fa-times{% endif %}"></i>Скрейтч панель</span>
+			<span class="foil"><i class="fa {% if templ.foil %}fa-check{% else %}fa-times{% endif %}"></i>Тиснение фольгой</span>
+			<span class="emboss"><i class="fa {% if templ.emboss %}fa-check{% else %}fa-times{% endif %}"></i>Эмбоссирование</span>
+			<span class="sign"><i class="fa {% if templ.sign %}fa-check{% else %}fa-times{% endif %}"></i>Полоса для подписи</span>
+			<span class="indent"><i class="fa {% if templ.indent %}fa-check{% else %}fa-times{% endif %}"></i>Индент печать</span>
+			<span class="print_num"><i class="fa {% if templ.print_num %}fa-check{% else %}fa-times{% endif %}"></i>Печатный номер</span>
+			<span class="magnet"><i class="fa {% if templ.magnet %}fa-check{% else %}fa-times{% endif %}"></i>Магнитная полоса</span>
+			<span class="barcode"><i class="fa {% if templ.barcode %}fa-check{% else %}fa-times{% endif %}"></i>Штрих код</span>
+			<span class="scratch"><i class="fa {% if templ.scratch %}fa-check{% else %}fa-times{% endif %}"></i>Скрейтч панель</span>
+            <span class="chip"><i class="fa {% if templ.chip %}fa-check{% else %}fa-times{% endif %}"></i>Карта с чипом</span>
+			<span class="uv"><i class="fa {% if templ.uv %}fa-check{% else %}fa-times{% endif %}"></i>Печать УФ краской</span>
 		</li>
 		<li>
 			<span><span>Тираж</span>{{ object.draw }}</span>
-			<span><span>Цвета</span>{{ color_front }}+{{ color_back }}</span>
+			<span><span>Цвета</span>{{ color_front }}{% if color_back %}+{{ color_back }}{% else %}{% endif %}</span>
 			<span><span>Материал</span>{{ material }}</span>
+            <span><span>Ламинция</span>{% if lamination %}{{ lamination }}{% else %}Нет{% endif %}</span>
 			<span><span>ФИО</span>{{ object.FIO }}</span>
 			<span><span>Телефон</span>{{ object.phone }}</span>
 			<span><span>Email</span>{{ object.email }}</span>

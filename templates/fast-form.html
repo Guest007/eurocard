@@ -1,6 +1,6 @@
 
             <form id='fast_form' class="jClever" action="{% url 'ajax-save-order' step=2 %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
+{#                {% csrf_token %}#}
             <input type="hidden" id="id" name="id" class="common" value="{{ object.id }}">
             <input type="hidden" id="templ" class="common" value="{{ object.templ }}">
             {{ coeff }}+ {% for it in coeff %}
