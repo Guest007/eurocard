@@ -143,6 +143,7 @@ body.under_overlay > div.data_checking > form > div.order > ul.info > li > span 
   margin: 0;
   display: block;
   position: relative;
+  height: 34px;
   font: 400 14px/34px 'Open Sans', sans-serif;
   padding: 0 0 0 110px;
 }
@@ -153,11 +154,17 @@ body.under_overlay > div.data_checking > form > div.order > ul.info > li > span 
   color: #656565;
   font: 300 14px/34px 'Open Sans', sans-serif;
 }
+body.under_overlay > div.data_checking > form > div.order > ul.info > li > span > small {
+  font: 400 14px/34px 'Open Sans', sans-serif;
+}
 body.under_overlay > div.data_checking > form > div.order > ul.info > li > span.full_price {
   color: #dc3b3b;
   font: 30px/20px 'Open Sans', sans-serif;
   padding: 34px 0 0 110px;
-  height: 34px;
+}
+body.under_overlay > div.data_checking > form > div.order > ul.info > li > span.full_price > small {
+  color: #dc3b3b;
+  font: 30px/20px 'Open Sans', sans-serif;
 }
 body.under_overlay > div.data_checking > form > div.order > ul.info > li:first-child {
   width: 198px;

@@ -50,6 +50,7 @@ $(document).ready(function(){
 	});
 
 	//Табы
+/*
 	var i=0,
 		h=0;
 	tabs_count = $('section.order > div > ul > li').length;
@@ -68,7 +69,14 @@ $(document).ready(function(){
 		.addClass('current')
 		.siblings('div')
 		.removeClass('current');
+		if(this_id == 1){
+			$('.easy_form').load('{% url "e_order" %}');
+		}
+		if(this_id == 2){
+			$('.fast_form').load('{% url "f_order" %}');
+		}
 	});
+*/
 
 	//Расчёт стоимости
 	$('.ready > ul > li').each(function(){
@@ -88,6 +96,7 @@ $(document).ready(function(){
 	});
 
 	//Заказ (открываем модальное окно)
+	/*
 	$('form.filter').each(function(){
 		var self=$(this);
 		$('a.next_step').click(function(){
@@ -110,7 +119,7 @@ $(document).ready(function(){
 			return false;
 		});
 	});
-
+	*/
 	//Заказ (закрываем модальное окно)
 	$(document).on('click', '.close_order', function(){
 		$('div.data_checking, div.overlay').remove();
@@ -185,11 +194,12 @@ $(document).ready(function(){
 		});
 	});
 	*/
+
 	//Подсказки в первой форме
 	$('div.easy_form > form > ul > li > small').click(function(){
 			$(this).toggleClass('active');
 	});
-
+	/*
 	//Калькулятор
 	$('form.calc').each(function(){
 
@@ -296,11 +306,12 @@ $(document).ready(function(){
 		//console.log(sum);
 
 	});
-
+	*/
 
 });
 
 //Глобальная загрузка Jclever для ajax контента
+
 $(document).ajaxComplete(function(event, xhr, settings){
 	$('.jClever').jClever({
 		selfClass: "alice",
@@ -315,3 +326,4 @@ $(document).ajaxComplete(function(event, xhr, settings){
 		}
 	});
 });
+

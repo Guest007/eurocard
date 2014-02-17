@@ -155,7 +155,7 @@
                     <li>
                         <label for="color">Цвет:</label>
                         <div class="select color">
-                            <select name="color" id="all_color">
+                            <select name="colors" id="all_color">
                                 {% for item in color %}
                                     <option value="{{ item.id }}"{% if templ.color_front and templ.color_front.id == item.id %}selected="selected"{% endif %} data-price="{{ item.cost }}">{{ item.name }}</option>
                                 {% endfor %}
@@ -189,25 +189,30 @@
                         <input type="email" name="email" value="{{ object.email }}">
                     </li>
                     <li>
-                        <!--
+                        
                         <a href="#" class="next_step">Заказать</a>
-                        -->
-
+                        
+                        <!--
                         <input type="submit" name="order" value="Заказать" class="next_step">
-
+                        -->
                     </li>
                 </ul>
-                <input type="hidden" name="p-foil" class="flag" value="">
-                <input type="hidden" name="p-emboss" class="flag" value="">
-                <input type="hidden" name="p-sign" class="flag" value="">
-                <input type="hidden" name="p-indent" class="flag" value="">
-                <input type="hidden" name="p-print_num" class="flag" value="">
-                <input type="hidden" name="p-magnet" class="flag" value="">
-                <input type="hidden" name="p-barcode" class="flag" value="">
-                <input type="hidden" name="p-scratch" class="flag" value="">
+                <input type="hidden" name="foil" class="flag" value="">
+                <input type="hidden" name="emboss" class="flag" value="">
+                <input type="hidden" name="sign" class="flag" value="">
+                <input type="hidden" name="indent" class="flag" value="">
+                <input type="hidden" name="print_num" class="flag" value="">
+                <input type="hidden" name="magnet" class="flag" value="">
+                <input type="hidden" name="barcode" class="flag" value="">
+                <input type="hidden" name="scratch" class="flag" value="">
+                <input type="hidden" name="uv" class="flag" value="">
+                <input type="hidden" name="chip" class="flag" value="">
+
                 <input type="hidden" name="count_hidden" value="">
-                <input type="hidden" name="p-color" value="">
-                <input type="hidden" name="p-materials" value="">
+                <input type="hidden" name="sum" value="">
+                <input type="hidden" name="colors" value="">
+                <input type="hidden" name="materials" value="">
+
                 <input type="hidden" name="1000" value="0.7" class="ratio">
                 <input type="hidden" name="4000" value="0.6" class="ratio">
                 <input type="hidden" name="7000" value="0.5" class="ratio">
@@ -217,127 +222,230 @@
             </form>
 
 
-<script type="application/javascript">
-    $('div.easy_form > form > ul > li > small').click(function(){
-        //console.log($(this));
-			$(this).toggleClass('active');
-	});
+<script>
+    $(document).ready(function(){
 
-    	//Калькулятор
-	$('form.calc').each(function(){
+        //Array.min = function( array ){
+           //return Math.min.apply( Math, array );
+        //};
 
-		//сбрасываем значения hidden
-		$('input[type="hidden"]').val(0);
+        //Калькулятор
+        $('form.calc').each(function(){
 
-		//присваиваем значение по умолчанию селектам
-		$('select').each(function(){
-			var this_name = $(this).attr('name'),
-			default_val = $(this).find("option:selected").data('price').replace(',','.');
-			$('input[name="'+this_name+'"]').val(default_val);
-		})
-		//min тираж  - 500
-		$('input[name="count"]').val('')
-		$('input[name="count_hidden"]').val(500);
+            //сбрасываем значения hidden
+            $('input[type="hidden"]').not('.ratio').val(0);
 
-		//переключаем состояние атрибута, передаем значение в hidden, следим за измененнием
-		$('span.flag').click(function(){
-			var this_flag = $(this),
-				flag_id = $(this).attr('id');
-			this_flag.toggleClass('active');
-			if($(this).hasClass('active')){
-				$(this).children('i').removeClass('fa-times').addClass('fa-check');
-                //console.log("qwertyui", parseFloat($(this).data('price')));
-				$('input[name="'+flag_id+'"]').val(parseFloat($(this).data('price').replace(',','.'))).trigger('change');
-			}
-			else{
-				if($(this).children('i').hasClass('fa-check')){
-					$(this).children('i').removeClass('fa-check').addClass('fa-times');
-				}
-				$('input[name="'+flag_id+'"]').val('0').trigger('change');
-			}
-		});
+            //присваиваем значение по умолчанию селектам
+            $('select').each(function(){
+                var this_name = $(this).attr('name'),
+                default_val = $(this).find('option:selected').data('price').replace(',','.');
+                $('input[name="'+this_name+'"]').val(default_val);
+            })
+            //min тираж  - 500
+            $('input[name="count"]').val('')
+            $('input[name="count_hidden"]').val(500);
 
-		//вводим тираж, следим за его значением (min - 500)
-		$('input[name="count"]').keyup(function(){
-			var count_val = parseFloat($(this).val())||0,
-				this_name = $(this).attr('name');
-			//error mes.
-			if(count_val < 500){
-				$(this).addClass('error').siblings('i').addClass('show');
-				$('input[name="count_hidden"]').val(0);
-			}
-			else{
-				$(this).removeClass('error').siblings('i').removeClass('show');
-				$('input[name="'+this_name+'_hidden"]').val(parseFloat(count_val)).trigger('change');
-			};
-		});
-
-		//следим за изменением значений селектов
-		$('select').change(function(){
-			var this_name = $(this).attr('name'),
-				this_val = $(this).find("option:selected").data('price').replace(',','.');
-
-			$('input[name="'+this_name+'"]').val(parseFloat(this_val)).trigger('change');
-		});
-
-		//счетаем
-		$('input[type="hidden"]').change(function(){
-			var flag_val = 0,
-				count_val = parseFloat($('input[name="count_hidden"]').val()),
-				color_val = parseFloat($('input[name="color"]').val()),
-				material_val = parseFloat($('input[name="materials"]').val());
-
-			$('input.flag').each(function() {
-				flag_val += parseFloat($(this).val())||0;
-			});
-
-			sum = count_val*(flag_val+color_val+material_val);
-			$('p.sum').html(sum.toFixed(2)+' руб.');
-			//console.log(sum);
-		});
-
-		//console.log(sum);
-
-	})
-
-</script>
-
-<script type="application/javascript">
-
-    $('#easy_form').submit(function(){
-        console.log("Call AJAX");
-        var action = $(this).attr('action');
-        var that = $(this);
-        console.log(that);
-        $.ajax({
-            url: action,
-            type: 'POST',
-            data: that.serialize(),
-            success: function(result){
-                confirmOrder(result);
-            }
-        });
-        return false;
-    });
-
-    	//Заказ (открываем модальное окно)
-	function confirmOrder(result) {
-        $('input#id').val(result.id);
-        $('body').addClass('under_overlay')
-        .append('<div class="overlay"></div><div class="data_checking check_easy"><form class="jClever"></form></div>');
-        $('.check_easy > form').load('/second/'+result.id+'/', function(){
-            $('.jClever').jClever({
-                selfClass: "alice",
-                applyTo: {
-                    input: false,
-                    select: true,
-                    checkbox: true,
-                    radio: true,
-                    button: false,
-                    file: true,
-                    textarea: false
+            //переключаем состояние атрибута, передаем значение в hidden, следим за измененнием
+            $('span.flag').click(function(){
+                var this_flag = $(this),
+                    flag_id = $(this).attr('id');
+                this_flag.toggleClass('active');
+                if($(this).hasClass('active')){
+                    $(this).children('i').removeClass('fa-times').addClass('fa-check');
+                    //console.log("qwertyui", parseFloat($(this).data('price')));
+                    $('input[name="'+flag_id+'"]').val(parseFloat($(this).data('price').replace(',','.'))).trigger('change');
+                }
+                else{
+                    if($(this).children('i').hasClass('fa-check')){
+                        $(this).children('i').removeClass('fa-check').addClass('fa-times');
+                    }
+                    $('input[name="'+flag_id+'"]').val('0').trigger('change');
                 }
             });
+
+            //вводим тираж, следим за его значением (min - 500)
+            $('input[name="count"]').keyup(function(){
+                var count_val = parseFloat($(this).val())||0,
+                    this_name = $(this).attr('name');
+                //error mes.
+                if(count_val < 500){
+                    $(this).addClass('error').siblings('i').addClass('show');
+                    $('input[name="count_hidden"]').val(0);
+                }
+                else{
+                    $(this).removeClass('error').siblings('i').removeClass('show');
+                    $('input[name="'+this_name+'_hidden"]').val(parseFloat(count_val)).trigger('change');
+                };
+            });
+
+            //следим за изменением значений селектов
+            $('select').change(function(){
+                var this_name = $(this).attr('name'),
+                    this_val = $(this).find("option:selected").data('price').replace(',','.');
+
+                $('input[name="'+this_name+'"]').val(parseFloat(this_val)).trigger('change');
+            });
+
+            //счетаем
+            $('input[type="hidden"]').change(function(){
+                var flag_val = 0,
+                    count_val = parseFloat($('input[name="count_hidden"]').val()),
+                    color_val = parseFloat($('input[name="colors"]').val()),
+                    material_val = parseFloat($('input[name="materials"]').val());
+
+                $('input.flag').each(function() {
+                    flag_val += parseFloat($(this).val())||0;
+                });
+
+                var values = {},
+                    range_array =[];
+
+                $('input.ratio').each(function() {
+                    var this_val = parseFloat($(this).val());
+                        this_name = parseFloat($(this).attr('name')),
+                        q = count_val-this_name;
+                    if(q > 0){
+                        values[this_val] = q;
+                        range_array.push(q);
+                        //console.log(varrr);
+                    } 
+                });
+                //console.log(values, range_array);
+                var min = Math.min.apply(null, range_array);
+                //console.log(min);
+
+                var z = 1;
+                $.each(values, function(key, value){
+                    if(value == min){
+                        z = parseFloat(key);
+                    }              
+                });
+                //console.log(z);
+                //console.log(val_arr);
+                
+                var sum = parseFloat(z*count_val*(flag_val+color_val+material_val)).toFixed(2);
+                $('input[name="sum"]').val(sum);
+                $('p.sum').html(sum+' руб.');
+                //console.log(sum);
+            });
+            //console.log(sum);
+
+            $('#easy_form a.next_step').click(function(){
+                //var data = $('#easy_form input').not('.flag, .ratio').serialize();
+                var flags = {};
+
+                $('input[type="hidden"]').not('.ratio').each(function() {
+                    var this_val = parseFloat($(this).val());
+                        this_name = $(this).attr('name'),
+                        flags[this_name] = this_val;
+                });
+                function add_marker(){
+                    $.each(flags, function(key, value){
+                       console.log(key, value);
+                       if($('ul.info > li > span.'+key+' > i').length){
+                            if(value != 0){
+                                $('ul.info > li > span.'+key+' > i').removeClass('fa-times').addClass('fa-check');
+                            }
+                            else{
+                                $('ul.info > li > span.'+key+' > i').removeClass('fa-check').addClass('fa-times');
+                            }    
+                       }
+                       else {
+                            $('ul.info > li > span.'+key).not('.colors, .materials').children('small').html(value);
+                       };
+
+
+                           
+                    });
+                }
+
+                console.log(flags);
+                //$('input#id').val(result.id);
+                $('body').addClass('under_overlay')
+                .append('<div class="overlay"></div><div class="data_checking check_easy"><form class="jClever"></form></div>');
+                $('.check_easy > form').load('/static/include/helpers.html' 
+                , function(){
+                    add_marker();
+
+                }
+                
+                );
+                //console.log(data);
+                //console.log(data_flag);
+                return false;
+            });
+
+           
+        })
+        /*
+        $('#easy_form').submit(function(){
+            //console.log("Call AJAX");
+            var action = $(this).attr('action');
+            var that = $(this);
+            console.log(that);
+            $.ajax({
+                url: action,
+                type: 'POST',
+                data: that.serialize(),
+                success: function(result){
+                    confirmOrder(result);
+                }
+            });
+            console.log(data)
+            return false;
         });
-    }
+        */
+        /*
+        $('#easy_form a.next_step').click(function(){
+            var data = $('#easy_form input').not('.flag, .ratio').serialize();
+                //data_flag = $('#easy_form input.flag').serialize();
+            //$('input#id').val(result.id);
+            $('body').addClass('under_overlay')
+            .append('<div class="overlay"></div><div class="data_checking check_easy"><form class="jClever"></form></div>');
+            $('.check_easy > form').load('/static/include/helpers.html' 
+                /*, function(){
+                $('.jClever').jClever({
+                    selfClass: "alice",
+                    applyTo: {
+                        input: false,
+                        select: true,
+                        checkbox: true,
+                        radio: true,
+                        button: false,
+                        file: true,
+                        textarea: false
+                    }
+                });
+            }
+
+            );
+            console.log(data);
+            console.log(data_flag);
+            return false;
+        });
+*/
+        //Заказ (открываем модальное окно)
+        function confirmOrder(result) {
+            $('input#id').val(result.id);
+            $('body').addClass('under_overlay')
+            .append('<div class="overlay"></div><div class="data_checking check_easy"><form class="jClever"></form></div>');
+            $('.check_easy > form').load('/second/'+result.id+'/'
+                /*, function(){
+                $('.jClever').jClever({
+                    selfClass: "alice",
+                    applyTo: {
+                        input: false,
+                        select: true,
+                        checkbox: true,
+                        radio: true,
+                        button: false,
+                        file: true,
+                        textarea: false
+                    }
+                });
+            }
+            */
+            );
+        }
+    });
 </script>
