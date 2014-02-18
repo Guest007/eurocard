@@ -1,0 +1,32 @@
+
+<ul>
+{% for item in templs %}
+
+    <li>
+        <form id="{{ item.id }}" action="{% url 'ajax-save-order' step=22 %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{ item.id }}">
+            <span>{{ item.name }}</span>
+            <img src="{{ MEDIA_URL }}{{ item.image }}">
+            <ul>
+            {% if item.chip %}<li><input type="hidden" name="chip" value="1">карта с чипом</li>{% endif %}
+            {% if item.scratch %}<li><input type="hidden" name="scratch" value="1">стираемая полоса</li>{% endif %}
+            {% if item.magnet %}<li><input type="hidden" name="magnet" value="1">магнитная полоса</li>{% endif %}
+            {% if item.emboss %}<li><input type="hidden"  name="emboss" value="1">эмбоссирование</li>{% endif %}
+            {% if item.uv %}<li><input type="hidden" name="uv" value="1">печать УФ краской</li>{% endif %}
+            {% if item.print_num %}<li><input type="hidden" name="print_num" value="1">печать номера</li>{% endif %}
+            {% if item.sign %}<li><input type="hidden" name="sign" value="1">полоса для подписи</li>{% endif %}
+            {% if item.foil %}<li><input type="hidden" name="foil" value="1">тиснение фольгой</li>{% endif %}
+            {% if item.barcode %}<li><input type="hidden" name="barcode" value="1">печать штрих-кода</li>{% endif %}
+            {% if item.indent %}<li><input type="hidden" name="indent" value="1">индентная печать</li>{% endif %}
+            </ul>
+
+            <label>Тираж<span><i class="fa fa-question"></i></span></label>
+            <input type="text" name="draw"><span>x <small>{{ item.price }}</small> = <span></span></span>
+            <input type="submit" name="order" value="Заказать" class="next_step">
+        </form>
+    </li>
+
+{% endfor %}
+
+</ul>

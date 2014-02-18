@@ -11,6 +11,7 @@ from django.views.decorators.csrf import csrf_exempt, csrf_protect, ensure_csrf_
 from django import http
 from django.http import HttpResponse
 
+
 __author__ = 'guest007'
 
 
@@ -40,6 +41,18 @@ def easyform(request):
                               'materials': Material.objects.all(),
                               'lamination': Lamination.objects.all(),
                               'color': Color.objects.filter(is_easy=True).order_by('-id')},
+                              context_instance=RequestContext(request))
+
+
+@csrf_exempt
+def readyform(request):
+    # price = Modificators.objects.all()
+    # coeff = Coefficient.objects.all()
+    templ = OrderTemplate.objects.filter(is_template=True)
+    template_name = 'ready-form.html'
+    return render_to_response(template_name,
+                              {'templs': templ,
+                               },
                               context_instance=RequestContext(request))
 
 
@@ -107,6 +120,7 @@ def save_order(request, step=1):
     user = request.POST.get("user", None)
     phone = request.POST.get("phone", None)
     email = request.POST.get("email", None)
+    maket = request.POST.get("maket", None)
 
     if id != 0:
         templ_id = Orders.objects.get(id=id).template.id
@@ -120,7 +134,11 @@ def save_order(request, step=1):
     if templ is None:
         templ = OrderTemplate(name=(user if user else ''))  # Создаем тело заказа. Название - имя заказчика
 
-    if step > 10:
+    if step > 20:
+        print request.POST
+        print request.POST.get("id", False)
+        print request.POST.get("emboss", False)
+    elif step > 10:
         # print "STEP more than 10"
         print request.POST
         templ.color_back = None  # Color(id=request.POST.get("color_back", None))
@@ -196,7 +214,7 @@ def save_order(request, step=1):
     # print order.email
     order.phone = phone
     # print order.phone
-    order.maket = ''  # TODO: Пока ничего не пишем. ИСПРАВИТЬ!!!
+    order.maket = maket
 
     order.save()
     # print "ID of Order (order.id): ", order.id
@@ -217,4 +235,7 @@ def save_order(request, step=1):
                   "url": reverse("edit-fast", args=[order.id, step])}
         return HttpResponse(json.dumps(result),
                                  content_type="application/json")
+
+
+
 

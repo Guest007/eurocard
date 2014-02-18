@@ -24,6 +24,8 @@ urlpatterns = patterns('',
     url(r'^contacts/', views.contacts, name='contacts'),
     url(r'^form_2/', orders.fastform, name='f_order'),
     url(r'^form_1/', orders.easyform, name='e_order'),
+    url(r'^form_3/', orders.readyform, name='r_order'),
+
     # Ajax actions
     url(r"^second/(?P<pk>\d+)/$", orders.nextstep_order, name="ajax-nextstep-order"),
     url(r"^(?P<pk>\d+)/(?P<step>\d+)/$", orders.edit_fast, name="edit-fast"),
