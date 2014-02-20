@@ -2,7 +2,6 @@
 {% extends "layout.html" %}
 
 {% block content %}
-
 <section class="order">
     <div>
         <ul>
@@ -10,106 +9,9 @@
             <li>Быстрый заказ</li>
             <li>Готовые варианты</li>
         </ul>
-        <div class="easy_form current">
-        </div>
-            <!--
-            <script>
-                $('.easy_form').load('{% url "e_order" %}'
-                    , function(){
-                        $('.jClever').jClever({
-                            selfClass: "alice",
-                            applyTo: {
-                                input: false,
-                                select: true,
-                                checkbox: true,
-                                radio: true,
-                                button: false,
-                                file: true,
-                                textarea: false
-                            }
-                        });
-                    }
-                );
-            </script>
-            -->
-        <div class="fast_form">
-        </div>
-            <!--
-            <script>
-                $('.fast_form').load('{% url "f_order" %}'
-                    , function(){
-                        $('.jClever').jClever({
-                            selfClass: "alice",
-                            applyTo: {
-                                input: false,
-                                select: true,
-                                checkbox: true,
-                                radio: true,
-                                button: false,
-                                file: true,
-                                textarea: false
-                            }
-                        });
-                    }
-                );
-            </script>
-            -->
-
-        <div class="ready no_background">
-
-        </div>
+        <div class="easy_form current"></div>
+        <div class="fast_form"></div>
+        <div class="ready no_background"></div>
     </div>
 </section>
-<script>
-    $(document).ready(function(){
-        //Табы
-        var i=0,
-            h=0;
-        tabs_count = $('section.order > div > ul > li').length;
-        $('section.order > div > ul > li').each(function(){
-            i++;
-            $(this).attr('id', i);
-        });
-        $('section.order > div > div').each(function(){
-            h++;
-            $(this).attr('rel', h);
-            //должно быть так
-            /*
-            if($(this).hasClass('current')){
-                $(this).load('/folder/form_'h);
-            }
-            */
-        });
-        // а не так
-        if($('section.order > div > div[rel="1"]').hasClass('current')){
-            $('.easy_form').load('{% url "e_order" %}');
-        }
-
-        $('section.order > div > ul > li').not('current').click(function(){
-            var this_id = $(this).attr('id'),
-                form_container = $('section.order > div > div[rel="'+this_id+'"]');
-            $(this).addClass('current').siblings('li').removeClass('current');
-            form_container
-            .addClass('current')
-            .siblings('div')
-            .removeClass('current');
-            if(form_container.children('form').length == 0){
-                //Должно быть так
-                //form_container.load('/folder/form_'+this_id+'.html);
-
-                //а не так
-                if(this_id == 1){
-                    $('.easy_form').load('{% url "e_order" %}');
-                }
-                if(this_id == 2){
-                    $('.fast_form').load('{% url "f_order" %}');
-                }
-                if(this_id == 3){
-                    $('.ready').load('{% url "r_order" %}');
-                }
-            }
-        });   
-    });
-</script>
-
 {% endblock %}

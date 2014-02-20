@@ -9,6 +9,7 @@ from django.contrib import admin
 import grappelli
 from filebrowser.sites import site
 from orders.views import save_order
+# from django.views.generic.simple import direct_to_template
 
 admin.autodiscover()
 
@@ -32,6 +33,7 @@ urlpatterns = patterns('',
     url(r"^(?P<pk>\d+)/$", orders.edit_fast, name="edit-fast"),
     url(r"^(?P<pk>\d+)/(?P<step>\d+)/$", orders.edit_easy, name="edit-easy"),
     url(r"^(?P<pk>\d+)/$", orders.edit_easy, name="edit-easy"),
+    url(r"^uploadfile/", orders.ajax_save, name="uploadfile"),
     url(r"^save/ajax/(?P<step>\d+)/$", orders.save_order, name="ajax-save-order"),
 
     url(r'^test/', views.test, name='test'),
@@ -47,3 +49,4 @@ if settings.DEBUG:
             'document_root': settings.MEDIA_ROOT,
         }),
    ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+	

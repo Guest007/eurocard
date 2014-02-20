@@ -2,6 +2,9 @@ html {
   height: 100%;
   overflow-y: scroll;
 }
+html.hidden {
+  overflow: hidden;
+}
 input[type="submit"] {
   background: #373333;
   border: 1px solid #000;
@@ -44,23 +47,58 @@ body.under_overlay > div.overlay {
   height: 100%;
   width: 100%;
   top: 0;
-  bottom: 0;
   left: 0;
-  right: 0;
+  overflow: hidden;
 }
-body.under_overlay > div.data_checking {
+body.under_overlay > div.data_wrap {
   position: fixed;
-  left: 50%;
-  top: 50%;
-  width: 640px;
-  height: 564px;
-  margin: -282px 0 0 -310px;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 100%;
   z-index: 9991;
+  outline: medium none !important;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+body.under_overlay > div.data_wrap > div {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 100%;
+}
+body.under_overlay > div.data_wrap > div:after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+body.under_overlay > div.data_wrap > div > .data_container {
+  display: inline-block;
+  margin: 0 auto;
+  position: relative;
+  text-align: left;
+  vertical-align: middle;
+  width: 100%;
+  z-index: 9993;
+}
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking {
+  width: 640px;
   background: #f4f4f4;
   overflow: hidden;
   border-radius: 6px;
+  margin: 0 auto;
+  position: relative;
+  text-align: left;
+  vertical-align: middle;
 }
-body.under_overlay > div.data_checking > form > div > span {
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form {
+  display: inline-block;
+  width: 100%;
+}
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div > span {
   display: inline-block;
   width: 600px;
   padding: 20px;
@@ -68,61 +106,61 @@ body.under_overlay > div.data_checking > form > div > span {
   border-bottom: 2px solid #e2e2e2;
   background: #fff;
 }
-body.under_overlay > div.data_checking > form > div > span > small {
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div > span > small {
   float: right;
   display: inline-block;
   width: 24px;
   height: 24px;
   cursor: pointer;
 }
-body.under_overlay > div.data_checking > form > div > ul {
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div > ul {
   display: inline-block;
   width: 100%;
   padding: 10px 0 0;
 }
-body.under_overlay > div.data_checking > form > div > ul.info {
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div > ul.info {
   background: #fff;
   padding: 0;
   border-bottom: 2px solid #e2e2e2;
 }
-body.under_overlay > div.data_checking > form > div.order > ul > li {
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order > ul > li {
   padding: 7px 20px 10px;
   width: 360px;
   float: left;
 }
-body.under_overlay > div.data_checking > form > div.order > ul > li > div.select {
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order > ul > li > div.select {
   font: 14px/22px 'Open Sans', sans-serif;
   margin: 0 0 40px;
 }
-body.under_overlay > div.data_checking > form > div.order > ul > li > div.select > div {
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order > ul > li > div.select > div {
   border: 2px solid #e2e2e2;
   border-radius: 4px;
 }
-body.under_overlay > div.data_checking > form > div.order > ul > li > div.select > div > div > div > div .jClever-element-select-list-wrapper {
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order > ul > li > div.select > div > div > div > div .jClever-element-select-list-wrapper {
   border: 2px solid #e2e2e2;
   border-top: 0;
   left: -2px;
 }
-body.under_overlay > div.data_checking > form > div.order > ul > li > input[type="submit"] {
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order > ul > li > input[type="submit"] {
   width: 358px;
   background: #dc3b3b;
   border: 1px solid #a21919;
   border-bottom: 2px solid #a21919;
   margin: 0 0 10px;
 }
-body.under_overlay > div.data_checking > form > div.order > ul > li:first-child {
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order > ul > li:first-child {
   width: 200px;
 }
-body.under_overlay > div.data_checking > form > div.order > ul > li:first-child > span {
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order > ul > li:first-child > span {
   display: inline-block;
   width: 100%;
   font: 400 24px/36px 'Open Sans', sans-serif;
-  margin: 0 0 50px;
-}
-body.under_overlay > div.data_checking > form > div.order > ul > li:first-child > div {
   margin: 0 0 10px;
 }
-body.under_overlay > div.data_checking > form > div.order > ul > li:first-child > div > div {
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order > ul > li:first-child > div {
+  margin: 0;
+}
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order > ul > li:first-child > div > div {
   float: left;
   border: 0;
   width: 20px;
@@ -132,14 +170,14 @@ body.under_overlay > div.data_checking > form > div.order > ul > li:first-child 
   top: 6px;
   left: -2px;
 }
-body.under_overlay > div.data_checking > form > div.order > ul > li:first-child > div > label {
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order > ul > li:first-child > div > label {
   font: italic 400 14px/34px 'Open Sans', sans-serif;
   margin: 0 0 0 25px;
 }
-body.under_overlay > div.data_checking > form > div.order > ul.info > li {
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order > ul.info > li {
   overflow: hidden;
 }
-body.under_overlay > div.data_checking > form > div.order > ul.info > li > span {
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order > ul.info > li > span {
   margin: 0;
   display: block;
   position: relative;
@@ -147,51 +185,51 @@ body.under_overlay > div.data_checking > form > div.order > ul.info > li > span 
   font: 400 14px/34px 'Open Sans', sans-serif;
   padding: 0 0 0 110px;
 }
-body.under_overlay > div.data_checking > form > div.order > ul.info > li > span > span {
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order > ul.info > li > span > span {
   display: inline-block;
   position: absolute;
   left: 0;
   color: #656565;
   font: 300 14px/34px 'Open Sans', sans-serif;
 }
-body.under_overlay > div.data_checking > form > div.order > ul.info > li > span > small {
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order > ul.info > li > span > small {
   font: 400 14px/34px 'Open Sans', sans-serif;
 }
-body.under_overlay > div.data_checking > form > div.order > ul.info > li > span.full_price {
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order > ul.info > li > span.full_price {
   color: #dc3b3b;
   font: 30px/20px 'Open Sans', sans-serif;
   padding: 34px 0 0 110px;
 }
-body.under_overlay > div.data_checking > form > div.order > ul.info > li > span.full_price > small {
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order > ul.info > li > span.full_price > small {
   color: #dc3b3b;
   font: 30px/20px 'Open Sans', sans-serif;
 }
-body.under_overlay > div.data_checking > form > div.order > ul.info > li:first-child {
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order > ul.info > li:first-child {
   width: 198px;
   border-right: 2px solid #e2e2e2;
 }
-body.under_overlay > div.data_checking > form > div.order > ul.info > li:first-child > span {
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order > ul.info > li:first-child > span {
   font: italic 400 14px/34px 'Open Sans', sans-serif;
   padding: 0;
 }
-body.under_overlay > div.data_checking > form > div.order > ul.info > li:first-child > span > i {
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order > ul.info > li:first-child > span > i {
   display: inline-block;
   width: 20px;
   margin: 0 20px 0 0;
   color: #dc3b3b;
   font-size: 16px;
 }
-body.under_overlay > div.data_checking > form > div.order > ul.info > li:first-child > span > i.fa-check {
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order > ul.info > li:first-child > span > i.fa-check {
   color: #33ae30;
 }
-body.under_overlay > div.data_checking > form > div.files > ul {
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.files > ul {
   padding: 20px 0;
 }
-body.under_overlay > div.data_checking > form > div.files > ul > li {
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.files > ul > li {
   padding: 0 20px;
   position: relative;
 }
-body.under_overlay > div.data_checking > form > div.files > ul > li > a {
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.files > ul > li > a {
   display: inline-block;
   position: absolute;
   right: 30px;
@@ -199,26 +237,26 @@ body.under_overlay > div.data_checking > form > div.files > ul > li > a {
   text-decoration: none;
   font: 400 14px/34px 'Open Sans', sans-serif;
 }
-body.under_overlay > div.data_checking > form > div.files > ul.info {
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.files > ul.info {
   padding: 30px 0 20px;
 }
-body.under_overlay > div.data_checking > form > div.files > ul.info > li {
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.files > ul.info > li {
   margin: 0 0 20px;
   padding: 0 100px 0 80px;
   font: 400 18px/34px 'Open Sans', sans-serif;
   background: url('../images/file_icon.png') no-repeat 30px 3px;
 }
-body.under_overlay > div.data_checking > form > div.hide {
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.hide {
   display: none;
 }
-body.under_overlay > div.data_checking input[type="submit"] {
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking input[type="submit"] {
   width: 358px;
   background: #dc3b3b;
   border: 1px solid #a21919;
   border-bottom: 2px solid #a21919;
   margin: 0 0 10px;
 }
-body.under_overlay > div.data_checking.files {
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking.files {
   height: 360px;
   margin: -180px 0 0 -310px;
 }
@@ -843,6 +881,7 @@ body.under_overlay > div.data_checking.files {
 .wrap_all > article > section.order > div > div > form > ul.order > li > input a.next_step {
   width: 208px;
   margin: 48px 0 0;
+  float: right;
 }
 .wrap_all > article > section.order > div > div > form > ul.order > li a.next_step {
   width: 208px;
@@ -1316,6 +1355,10 @@ body.under_overlay > div.data_checking.files {
 }
 .wrap_all > article > section.order > div > div.fast_form > form > ul > li > a.next_step {
   margin: 28px auto 0;
+}
+.wrap_all > article > section.order > div > div.fast_form > form > ul > li > p.sum {
+  margin: 48px 0 0;
+  float: left;
 }
 .wrap_all > article > section.order > div > div.ready > ul {
   width: 960px;

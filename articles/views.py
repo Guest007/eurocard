@@ -62,3 +62,4 @@ def test(request):
     # production = Article.objects.get(category__slug='prod')
     # context = {'prod': production}
     return render(request, 'home1.html')
+
