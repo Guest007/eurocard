@@ -40,15 +40,6 @@ urlpatterns = patterns('',
 
     url(r'^test/', views.test, name='test'),
 
-    # url(r'^tiote/', include('tiote.urls')),
-
-
-# urlpatterns = patterns('',
-    (r'^tiote/$', 'tiote.views.start.index'),
-    (r'^tiote/ajax/$', 'tiote.views.start.ajax'),
-    (r'^tiote/login/$', 'tiote.views.start.login'),
-# )
-
     url(r'^grappelli/', include('grappelli.urls')),
     url(r'^admin/filebrowser/', include(site.urls)),
     url(r'^admin/', include(admin.site.urls)),
