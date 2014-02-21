@@ -45,6 +45,8 @@ INSTALLED_APPS = (
     'menu',
     'articles',
     'orders',
+    "mailshelf",
+    "tiote",
 )
 
 MIDDLEWARE_CLASSES = (

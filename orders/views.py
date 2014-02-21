@@ -14,7 +14,8 @@ import json
 from django.views.decorators.csrf import csrf_exempt, csrf_protect, ensure_csrf_cookie, requires_csrf_token
 from django import http
 from django.http import HttpResponse
-
+from mailshelf import messages
+from config.models import Settings
 
 __author__ = 'guest007'
 
@@ -270,5 +271,27 @@ def save_order(request, step=1):
                                  content_type="application/json")
 
 
+@csrf_exempt
+def callback(request):
+    name = request.POST.get('fio', False)
+    phone = request.POST.get('phone', False)
+    message = request.POST.get('message', '')
+    time = datetime.datetime.now()
 
+    email = Settings.objects.get(slug='callback-mail')
+    print email.content
 
+    try:
+        messages.CALL_BACK.send(email,
+                                   **{
+                                       'name': name,
+                                       'phone': phone,
+                                       'message': message,
+                                       'time': time
+                                   })
+        print "SENT"
+    except:
+        pass
+
+    response = http.HttpResponse('OK', content_type="text/html; charset=utf-8")
+    return response

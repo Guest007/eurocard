@@ -10,7 +10,7 @@ import grappelli
 from filebrowser.sites import site
 from orders.views import save_order
 # from django.views.generic.simple import direct_to_template
-
+from django.conf.urls import patterns, include, url
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -23,11 +23,13 @@ urlpatterns = patterns('',
     url(r'^price/', views.price, name='price'),
     url(r'^cooperation/', views.cooperation, name='cooperation'),
     url(r'^contacts/', views.contacts, name='contacts'),
+
+    # Ajax actions
     url(r'^form_2/', orders.fastform, name='f_order'),
     url(r'^form_1/', orders.easyform, name='e_order'),
     url(r'^form_3/', orders.readyform, name='r_order'),
+    url(r'^call-back/', orders.callback, name='call-back'),
 
-    # Ajax actions
     url(r"^second/(?P<pk>\d+)/$", orders.nextstep_order, name="ajax-nextstep-order"),
     url(r"^(?P<pk>\d+)/(?P<step>\d+)/$", orders.edit_fast, name="edit-fast"),
     url(r"^(?P<pk>\d+)/$", orders.edit_fast, name="edit-fast"),
@@ -37,6 +39,15 @@ urlpatterns = patterns('',
     url(r"^save/ajax/(?P<step>\d+)/$", orders.save_order, name="ajax-save-order"),
 
     url(r'^test/', views.test, name='test'),
+
+    # url(r'^tiote/', include('tiote.urls')),
+
+
+# urlpatterns = patterns('',
+    (r'^tiote/$', 'tiote.views.start.index'),
+    (r'^tiote/ajax/$', 'tiote.views.start.ajax'),
+    (r'^tiote/login/$', 'tiote.views.start.login'),
+# )
 
     url(r'^grappelli/', include('grappelli.urls')),
     url(r'^admin/filebrowser/', include(site.urls)),
