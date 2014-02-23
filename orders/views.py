@@ -216,7 +216,9 @@ def save_order(request, step=1):
         templ.barcode = (True if float(request.POST.get("barcode", False)) > 0 else False)
         templ.foil = (True if float(request.POST.get("foil", False)) > 0 else False)
 
-    draw = request.POST.get("count", 500)  # количество в заказ
+    draw = request.POST.get("count", None)  # количество в заказ
+    if not draw:
+        draw = 0
 
     templ.save()  # Сохраняем тело заказа для того, чтобы потом создать сам заказ
     if templ is None:  # Если тело заказа не сохранилось - возвращаем ошибку?
@@ -226,7 +228,7 @@ def save_order(request, step=1):
 
     try:  # Проверяем, это новый заказ или редактируем созданный
         pk = int(request.POST.get("id", 0))
-        print "ID of Order: ", pk
+        # print "ID of Order: ", pk
     except (TypeError, ValueError):
         pk = 0
     order = None
@@ -248,7 +250,7 @@ def save_order(request, step=1):
     order.phone = phone
     # print order.phone
     order.maket = maket
-    print maket
+    # print maket
 
     order.save()
     # print "ID of Order (order.id): ", order.id
