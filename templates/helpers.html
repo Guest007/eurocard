@@ -63,9 +63,10 @@ $('#final_form').submit(function(){
             type: 'POST',
             data: that.serialize(),
             complete: function(result){
+                document.location.href = "/";
 {#                $('#easy_form').trigger( 'reset' );#}
 {#                $('#fast_form').trigger( 'reset' );#}
-                $('#final_form').addClass('hide');
+{#                $('#final_form').addClass('hide');#}
             }
         });
         return false;
