@@ -1,4 +1,5 @@
-<form class="jClever">
+<form id="final_form" class="jClever" method="post" action="{% url 'finish' %}">
+    <input type="hidden" name="id" value="{{ object.id }}">
 	<div class="order">
 		<span>Ваш заказ<small class="close_order"><i class="fa fa-times"></i></small></span>
 		<ul class="info">
@@ -29,19 +30,19 @@
 			<li>
 				<span>Способ оплаты</span>
 				<div class="radio">
-					<input type="radio">
-					<label>Физическое лицо</label>
+					<input type="radio" name="payment_status" value="f" id="r_01" checked>
+					<label for="r_01">Физическое лицо</label>
 				</div>
 				<div class="radio">
-					<input type="radio">
-					<label>Юридическое лицо</label>
+					<input type="radio" name="payment_status" value="u" id="r_02">
+					<label for="r_02">Юридическое лицо</label>
 				</div>
 			</li>
 			<li>
 				<div class="select">
-					<select>
-						<option value="1">Безналичный расчёт</option>
-						<option value="2">Наличный расчёт</option>
+					<select name="raschet">
+						<option value="1">Наличный расчёт</option>
+						<option value="2">Безналичный расчёт</option>
 					</select>
 				</div>
 				<input type="submit" value="Отправить заказ">
@@ -52,3 +53,21 @@
 		</ul>
 	</div>
 </form>
+
+<script type="application/javascript">
+$('#final_form').submit(function(){
+        var action = $(this).attr('action');
+        var that = $(this);
+        $.ajax({
+            url: action,
+            type: 'POST',
+            data: that.serialize(),
+            complete: function(result){
+{#                $('#easy_form').trigger( 'reset' );#}
+{#                $('#fast_form').trigger( 'reset' );#}
+                $('#final_form').addClass('hide');
+            }
+        });
+        return false;
+    });
+</script>

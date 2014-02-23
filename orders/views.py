@@ -297,3 +297,70 @@ def callback(request):
 
     response = http.HttpResponse('OK', content_type="text/html; charset=utf-8")
     return response
+
+
+@csrf_exempt
+def finish(request):
+    time = datetime.datetime.now()
+
+    payment_status = request.POST.get('payment_status', False)
+    raschet = request.POST.get('raschet', False)
+    order = request.POST.get('id', False)
+
+    obj = Orders.objects.get(id=int(order))
+
+    items = {
+        u'с чипом': (u'да' if obj.template.chip else u'нет'),
+        u'скрэтч панель': (u'да' if obj.template.scratch else u'нет'),
+        u'магнитная полоса': (u'да' if obj.template.magnet else u'нет'),
+        u'эмбоссирование': (u'да' if obj.template.emboss else u'нет'),
+        u'ультрафиолетовые чернила': (u'да' if obj.template.uv else u'нет'),
+        u'печатный номер': (u'да' if obj.template.print_num else u'нет'),
+        u'полоса для подписи': (u'да' if obj.template.sign else u'нет'),
+        u'фольгирование': (u'да' if obj.template.foil else u'нет'),
+        u'штрихкод': (u'да' if obj.template.barcode else u'нет'),
+        u'индентная печать': (u'да' if obj.template.indent else u'нет'),
+        u'Материал': obj.template.material,
+        u'Ламинирование': obj.template.lamination,
+        u'Количество цветов лицевой стороны (или комбинация)': obj.template.color_front,
+        u'Количество цветов обратной стороны': obj.template.color_back
+    }
+
+    mail_content = {
+        'fio': obj,
+        'phone': obj.phone,
+        'email': obj.email,
+        'draw': obj.draw,
+        'cost': obj.cost,
+        'maket': obj.maket,
+        'items': items,
+        'payment_status': (u'Юр.лицо' if payment_status == 'u' else u'Физ.лицо'),
+        'raschet': (u'Наличный' if raschet == '1' else u'Безналичный'),
+        'time': time
+    }
+
+    # print obj.template.magnet
+    # for i in obj:
+    #     print i
+    # message = request.POST.get('message', '')
+    # time = datetime.datetime.now()
+    #
+    email = Settings.objects.get(slug='order-mail').content
+    # # print email.content
+    #
+    try:
+        messages.ORDER_TO_CLIENT.send(obj.email,
+                                      **mail_content)
+        # print "SENT"
+    except:
+        pass
+
+    try:
+        messages.ORDER_TO_MANAGER.send(email,
+                                       **mail_content)
+        # print "SENT"
+    except:
+        pass
+
+    response = http.HttpResponse('OK', content_type="text/html; charset=utf-8")
+    return response

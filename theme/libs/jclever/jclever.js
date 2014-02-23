@@ -1271,7 +1271,8 @@ window.onDomChange = onDomChange;
                                     ;
                                     $('label[for='+radioId+']').addClass('active');
                                 } else {
-                                    _self.next('.jClever-element-radio-twins').removeClass('checked').removeClass('fa-dot-circle-o').addClass('fa-circle-o')
+                                    _self.next('.jClever-element-radio-twins').removeClass('checked')
+                                    .children('span.jClever-element-radio-twins-element').children('i').removeClass('fa-dot-circle-o').addClass('fa-circle-o')
                                     ;
                                     $('label[for='+radioId+']').removeClass('active');
                                 }
@@ -1279,7 +1280,8 @@ window.onDomChange = onDomChange;
                                     $('input:radio[name="'+ $(radio).attr('name') +'"]').not($(this)).each(function(){
                                         var _self = $(this);
 
-                                        _self.removeAttr('checked').prop('checked', false);
+                                        _self.removeAttr('checked').prop('checked', false).next('.jClever-element-radio-twins').removeClass('checked')
+                                        .children('span.jClever-element-radio-twins-element').children('i').removeClass('fa-dot-circle-o').addClass('fa-circle-o');
                                         $('label[for='+$(this).attr('id')+']').removeClass('active');
                                     });
                                 }

@@ -4,7 +4,7 @@
 
     <li id="{{ item.id }}">
         <span>{{ item.name }}</span>
-        <img src="{{ MEDIA_URL }}{{ item.image }}">
+        <img src="{{ MEDIA_URL }}{{ item.image }} width='288px'">
         <ul>
         {% if item.chip %}<li>карта с чипом</li>{% endif %}
         {% if item.scratch %}<li>стираемая полоса</li>{% endif %}

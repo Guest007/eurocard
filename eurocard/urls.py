@@ -29,6 +29,7 @@ urlpatterns = patterns('',
     url(r'^form_1/', orders.easyform, name='e_order'),
     url(r'^form_3/', orders.readyform, name='r_order'),
     url(r'^call-back/', orders.callback, name='call-back'),
+    url(r'^finish/', orders.finish, name='finish'),
 
     url(r"^second/(?P<pk>\d+)/$", orders.nextstep_order, name="ajax-nextstep-order"),
     url(r"^(?P<pk>\d+)/(?P<step>\d+)/$", orders.edit_fast, name="edit-fast"),

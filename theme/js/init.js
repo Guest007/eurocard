@@ -230,7 +230,7 @@
                                     }
                                 }
                                 if(key == 'user') {
-                                    pattern = /^[a-zA-ZА-Яа-я]+$/;
+                                    pattern = /^[a-zA-ZА-Яа-яЁё\s-]+$/;
                                     error_text = 'name_is_not_valid';
                                     check_function();
 
@@ -276,7 +276,7 @@
                             }
                         }
                         if(key == 'user') {
-                            pattern = /^[a-zA-ZА-Яа-я]+$/;
+                            pattern = /^[a-zA-ZА-Яа-яЁё\s-]+$/;
                             error_text = 'name_is_not_valid';
                             check_function();
 
