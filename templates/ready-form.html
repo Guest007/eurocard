@@ -17,22 +17,22 @@
         {% if item.barcode %}<li>печать штрих-кода</li>{% endif %}
         {% if item.indent %}<li>индентная печать</li>{% endif %}
         </ul>
-        <form id="{{ item.id }}" class="jClever calc_easy" action="{% url 'ajax-save-order' step=22 %}" method="POST">
+        <form id="{{ item.id }}" class="jClever calc_easy" action="{% url 'ajax-save-torder' step=22 %}" method="POST">
             {% csrf_token %}
             <input type="hidden" name="id" value="{{ item.id }}">
             <label>Тираж<span><i class="fa fa-question"></i></span></label>
             <input type="text" name="count" class="calc"><span>x <small>{{ item.price }}</small> = <span></span></span>
             <input type="submit" name="order" value="Заказать" class="next_step">
-            {% if item.chip %}<input type="hidden" name="chip" value="1">{% endif %}
-            {% if item.scratch %}<input type="hidden" name="scratch" value="1">{% endif %}
-            {% if item.magnet %}<input type="hidden" name="magnet" value="1">{% endif %}
-            {% if item.emboss %}<input type="hidden"  name="emboss" value="1">{% endif %}
-            {% if item.uv %}<input type="hidden" name="uv" value="1">{% endif %}
-            {% if item.print_num %}<input type="hidden" name="print_num" value="1">{% endif %}
-            {% if item.sign %}<input type="hidden" name="sign" value="1">{% endif %}
-            {% if item.foil %}<input type="hidden" name="foil" value="1">{% endif %}
-            {% if item.barcode %}<input type="hidden" name="barcode" value="1">{% endif %}
-            {% if item.indent %}<input type="hidden" name="indent" value="1">{% endif %}
+{#            {% if item.chip %}<input type="hidden" name="chip" value="1">{% endif %}#}
+{#            {% if item.scratch %}<input type="hidden" name="scratch" value="1">{% endif %}#}
+{#            {% if item.magnet %}<input type="hidden" name="magnet" value="1">{% endif %}#}
+{#            {% if item.emboss %}<input type="hidden"  name="emboss" value="1">{% endif %}#}
+{#            {% if item.uv %}<input type="hidden" name="uv" value="1">{% endif %}#}
+{#            {% if item.print_num %}<input type="hidden" name="print_num" value="1">{% endif %}#}
+{#            {% if item.sign %}<input type="hidden" name="sign" value="1">{% endif %}#}
+{#            {% if item.foil %}<input type="hidden" name="foil" value="1">{% endif %}#}
+{#            {% if item.barcode %}<input type="hidden" name="barcode" value="1">{% endif %}#}
+{#            {% if item.indent %}<input type="hidden" name="indent" value="1">{% endif %}#}
         </form>
     </li>
 

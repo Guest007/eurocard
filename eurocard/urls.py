@@ -38,6 +38,7 @@ urlpatterns = patterns('',
     url(r"^(?P<pk>\d+)/$", orders.edit_easy, name="edit-easy"),
     url(r"^uploadfile/", orders.ajax_save, name="uploadfile"),
     url(r"^save/ajax/(?P<step>\d+)/$", orders.save_order, name="ajax-save-order"),
+    url(r"^save/templ/(?P<step>\d+)/$", orders.save_order1, name="ajax-save-torder"),
 
     url(r'^test/', views.test, name='test'),
 

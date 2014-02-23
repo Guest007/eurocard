@@ -274,6 +274,64 @@ def save_order(request, step=1):
 
 
 @csrf_exempt
+def save_order1(request, step=1):
+    """Save order from template with AJAX"""
+    if request.method != "POST":
+        result = {"result": "ERROR", "msg": "Wrong request method"}
+        return http.HttpResponse(json.dumps(result),
+                                 content_type="application/json")
+
+    try:
+        id = int(request.POST.get("id", 0))  # Если редактруем созданный заказ
+    except (TypeError, ValueError):
+        id = 0
+
+    time = datetime.datetime.now()
+
+    templ = OrderTemplate.objects.get(id=id)
+    price = templ.price
+    print price
+    templ.pk = 0
+    templ.is_template = False
+    templ.name = str(time) + " " + templ.name
+    templ.price = None
+    templ.save()  # взяли шаблон по id, обрали признак шаблона и скопировали.
+
+    order = Orders(template=templ)
+    draw = request.POST.get("count", None)
+    order.draw = draw
+    order.cost = float(draw) * float(price)
+
+    order.save()  # привязали заказ к шаблону, посчитали цену, записали. Теперь нужны остальные данные и всё.
+
+    print order.cost
+    print order.template.name
+
+
+    # user = request.POST.get("user", None)
+    # phone = request.POST.get("phone", None)
+    # email = request.POST.get("email", None)
+
+    if step == '1':
+        result = {"result": "OK", "id": order.id,
+                  "msg": "Changes are saved",
+                  "url": reverse("edit-order", args=[order.id, 3])}
+        return HttpResponse(json.dumps(result),
+                                 content_type="application/json")
+    elif step > 10:
+        result = {"result": "OK", "id": order.id, "msg": "This case 'elif step > 10'",
+                  "url": reverse("edit-easy", args=[order.id, step])}
+        return HttpResponse(json.dumps(result),
+                                 content_type="application/json")
+    else:
+        result = {"result": "OK", "id": order.id, "msg": "This case 'else'",
+                  "url": reverse("edit-fast", args=[order.id, step])}
+        return HttpResponse(json.dumps(result),
+                                 content_type="application/json")
+
+
+
+@csrf_exempt
 def callback(request):
     name = request.POST.get('fio', False)
     phone = request.POST.get('phone', False)
