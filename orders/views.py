@@ -281,17 +281,17 @@ def callback(request):
     time = datetime.datetime.now()
 
     email = Settings.objects.get(slug='callback-mail')
-    print email.content
+    # print email.content
 
     try:
-        messages.CALL_BACK.send(email,
+        messages.CALL_BACK.send(email.content,
                                    **{
                                        'name': name,
                                        'phone': phone,
                                        'message': message,
                                        'time': time
                                    })
-        print "SENT"
+        # print "SENT"
     except:
         pass
 

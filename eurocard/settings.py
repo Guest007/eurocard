@@ -70,16 +70,6 @@ WSGI_APPLICATION = 'eurocard.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        "HOST": 'mysql',
-        'NAME': 'eurocard',
-        'USER': 'eurocard',
-        'PASSWORD': 'sUoh5tezRL',
-    }
-}
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
