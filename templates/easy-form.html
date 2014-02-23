@@ -1,5 +1,5 @@
 
-            <form id="easy_form" class="jClever filter calc" action="{% url 'ajax-save-order' step=12 %}" method="POST">
+            <form id="easy_form" class="jClever filter calc" action="{% url 'ajax-save-order' step=12 %}" method="POST" novalidate>
             {% csrf_token %}
             <input type="hidden" id="id" name="id" class="common" value="{{ object.id }}">
                 <ul class="visual_first">
@@ -14,7 +14,7 @@
                             <span></span>
                             <i class="fa fa-times"></i>
                         </span>
-                        <small>
+                        <small class="question">
                             <i class="fa fa-question"></i>
                             <span class="first_flag"><i class="fa fa-circle"></i></span>
                         </small>
@@ -31,7 +31,7 @@
                             <span></span>
                             <i class="fa fa-times"></i>
                         </span>
-                        <small>
+                        <small class="question">
                             <i class="fa fa-question"></i>
                             <span class="second_flag"><i class="fa fa-circle"></i></span>
                         </small>
@@ -48,7 +48,7 @@
                             <span></span>
                             <i class="fa fa-times"></i>
                         </span>
-                        <small>
+                        <small class="question">
                             <i class="fa fa-question"></i>
                             <span class="third_flag"><span></span><i class="fa fa-circle"></i></span>
                         </small>
@@ -65,7 +65,7 @@
                             <span></span>
                             <i class="fa fa-times"></i>
                         </span>
-                        <small>
+                        <small class="question">
                             <i class="fa fa-question"></i>
                             <span class="fourth_flag"><span></span><i class="fa fa-circle"></i></span>
                         </small>
@@ -84,7 +84,7 @@
                             <span></span>
                             <i class="fa fa-times"></i>
                         </span>
-                        <small>
+                        <small class="question">
                             <i class="fa fa-question"></i>
                             <span class="fifth_flag"><i class="fa fa-circle"></i></span>
                         </small>
@@ -101,7 +101,7 @@
                             <span></span>
                             <i class="fa fa-times"></i>
                         </span>
-                        <small>
+                        <small class="question">
                             <i class="fa fa-question"></i>
                             <span class="sixth_flag"><i class="fa fa-circle"></i></span>
                         </small>
@@ -118,7 +118,7 @@
                             <span></span>
                             <i class="fa fa-times"></i>
                         </span>
-                        <small>
+                        <small class="question">
                             <i class="fa fa-question"></i>
                             <span class="seventh_flag"><i class="fa fa-circle"></i></span>
                         </small>
@@ -135,7 +135,7 @@
                             <span></span>
                             <i class="fa fa-times"></i>
                         </span>
-                        <small>
+                        <small class="question">
                             <i class="fa fa-question"></i>
                             <span class="eighth_flag"><i class="fa fa-circle"></i></span>
                         </small>
@@ -143,18 +143,19 @@
                     </li>
                 </ul>
                 <ul class="order">
+                    <li class="prompt">Поля отмеченные звёздочкой - обязательны для заполнения.</li>
                     <li class="info"></li>
 					<li class="printing"></li>
 					<li class="time"></li>
                     <li>
-                        <i class="error">Минимальное количество - 500 экземпляров</i>
-                        <label for="count">Тираж:</label>
-                        <input type="text" class="edition" id="count" name="count" placeholder="500" value="{{ object.draw }}">
+                        
+                        <label for="i_01"><i class="fa fa-asterisk"></i> Тираж: </label>
+                        <input type="text" class="edition for_valid" id="i_01" name="count" placeholder="500" value="{{ object.draw }}">
                     </li>
                     <li>
-                        <label for="color">Цвет:</label>
+                        <label for="s_01">Цвет:</label>
                         <div class="select color">
-                            <select name="colors" class="calc">
+                            <select name="colors" id="s_01">
                                 {% for item in color %}
                                     <option value="{{ item.id }}"{% if templ.color_front and templ.color_front.id == item.id %}selected="selected"{% endif %} data-price="{{ item.cost }}">{{ item.name }}</option>
                                 {% endfor %}
@@ -162,9 +163,9 @@
                         </div>
                     </li>
                     <li>
-                        <label>Материал:</label>
+                        <label for="s_02">Материал:</label>
                         <div class="select materials">
-                            <select name="materials" class="calc">
+                            <select name="materials" id="s_02">
                                 {% for item in materials %}
                                     <option value="{{ item.id }}" {% if templ.material and templ.material.id == item.id %}selected="selected"{% endif %}  data-price="{{ item.cost }}">{{ item.name }}</option>
                                 {% endfor %}
@@ -176,24 +177,19 @@
                         <p class="sum">0 руб.</p>
                     </li>
                     <li>
-                        <label>ФИО:</label>
-                        <input type="text" name="user" value="{{ object.fio }}">
+                        <label for="i_02"><i class="fa fa-asterisk"></i> ФИО:</label>
+                        <input type="text" name="user" id="i_02" value="{{ object.fio }}" class="for_valid">
                     </li>
                     <li>
-                        <label>Телефон:</label>
-                        <input type="text" name="phone" value="{{ object.phone }}">
+                        <label for="i_03"><i class="fa fa-asterisk"></i> Телефон:</label>
+                        <input type="text" name="phone_" id="i_03" value="{{ object.phone }}" class="for_valid">
                     </li>
                     <li>
-                        <label>Email:</label>
-                        <input type="email" name="email" value="{{ object.email }}">
+                        <label for="i_04"><i class="fa fa-asterisk"></i> Email:</label>
+                        <input type="email" name="email" id="i_04" value="{{ object.email }}" class="for_valid">
                     </li>
                     <li>
-<!--
-                        <a href="#" class="next_step">Заказать</a>
--->
-
                         <input type="submit" name="order" value="Заказать" class="next_step">
-
                     </li>
                 </ul>
                 <input type="hidden" name="foil" class="flag" value="">

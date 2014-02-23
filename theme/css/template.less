@@ -1009,6 +1009,16 @@ body {
 										top: -39px !important;
 										background: url('../images/order_printing.png') no-repeat center center;
 									}
+									&.prompt {
+										position: absolute !important;
+										bottom: 0;
+										left: 30px;
+										color: #fff;
+										font: 10px/30px @main_font; 
+										margin: 0 !important;
+										width: auto;
+										height: auto !important;
+									}
 								}
 							}
 						}
@@ -1260,11 +1270,19 @@ body {
 											float: left;
 											margin: -25px 18px 75px 0;
 											height: 80px;
-											position: relative;
+											//position: relative;
 											& > label {
 												display: block;
 												font: 600 14px/48px @main_font;
 												color: #fff;
+												& > i {
+													font-size: 10px;
+
+												}
+												&.error {
+													background: #22B77E;
+
+												}
 											}
 											& > input {
 												height: 36px;
@@ -1988,10 +2006,10 @@ i.error {
 	border-radius: 6px 6px 6px 0;
 	background: #22B77E;
 	opacity: 0.8;
-	width: 200px;
+	//width: 200px;
 	color: #fff;
 	font: 600 14px/14px @main_font;
-	top: -10px;
+	//top: -10px;
 	z-index: 99;
 	&.show {
 		display: inline-block;

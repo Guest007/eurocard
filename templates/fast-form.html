@@ -1,5 +1,5 @@
 
-            <form id='fast_form' class="jClever calc" action="{% url 'ajax-save-order' step=2 %}" method="POST" enctype="multipart/form-data">
+            <form id='fast_form' class="jClever calc" action="{% url 'ajax-save-order' step=2 %}" method="POST" enctype="multipart/form-data" novalidate>
             {% csrf_token %}
             <input type="hidden" id="id" name="id" class="common" value="{{ object.id }}">
 
@@ -203,19 +203,5 @@
             </form>
 
 
-<script type="application/javascript">
-    $("#file_data").change(function() {
 
-        var options = {
-            url: '/uploadfile/',
-            replaceTarget: true,
-            target: $('#fd'),
-            success: function(data) {
-              /*alert(data);*/
-            }
-        };
-
-        $('#fast_form').ajaxSubmit(options);
-    });
-</script>
 

@@ -924,6 +924,16 @@ body.under_overlay > div.data_wrap > div > .data_container > .data_checking.file
   top: -39px !important;
   background: url('../images/order_printing.png') no-repeat center center;
 }
+.wrap_all > article > section.order > div > div > form > ul.order > li.prompt {
+  position: absolute !important;
+  bottom: 0;
+  left: 30px;
+  color: #fff;
+  font: 10px/30px 'Open Sans', sans-serif;
+  margin: 0 !important;
+  width: auto;
+  height: auto !important;
+}
 .wrap_all > article > section.order > div > div.easy_form {
   width: 944px;
   padding: 0 29px;
@@ -1163,12 +1173,17 @@ body.under_overlay > div.data_wrap > div > .data_container > .data_checking.file
   float: left;
   margin: -25px 18px 75px 0;
   height: 80px;
-  position: relative;
 }
 .wrap_all > article > section.order > div > div.easy_form > form > ul.order > li > label {
   display: block;
   font: 600 14px/48px 'Open Sans', sans-serif;
   color: #fff;
+}
+.wrap_all > article > section.order > div > div.easy_form > form > ul.order > li > label > i {
+  font-size: 10px;
+}
+.wrap_all > article > section.order > div > div.easy_form > form > ul.order > li > label.error {
+  background: #22B77E;
 }
 .wrap_all > article > section.order > div > div.easy_form > form > ul.order > li > input {
   height: 36px;
@@ -1818,10 +1833,8 @@ i.error {
   border-radius: 6px 6px 6px 0;
   background: #22B77E;
   opacity: 0.8;
-  width: 200px;
   color: #fff;
   font: 600 14px/14px 'Open Sans', sans-serif;
-  top: -10px;
   z-index: 99;
 }
 i.error.show {
