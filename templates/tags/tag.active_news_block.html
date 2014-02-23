@@ -5,7 +5,8 @@
 {% for item in objects %}
 <li>
     <a href="/article/{{ item.slug }}">{{ item.title }}</a>
-    <span>{{ item.content|safe|truncatewords_html:35 }}</span>
+    <img src="/media/{{ item.card }}" width="280px">
+    <span>{{ item.annotation|safe|truncatewords_html:35 }}</span>
 </li>
 
 {% endfor %}

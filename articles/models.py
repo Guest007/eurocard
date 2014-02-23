@@ -26,7 +26,7 @@ class Article(models.Model):
     published_at = models.DateField(auto_now_add=True, verbose_name="Date of publication")
     is_active = models.BooleanField(default=False, db_index=True, verbose_name="Active")
     logo = models.ImageField(upload_to='logo/', blank=True, null=True, verbose_name="Logo")
-    card = models.ImageField(upload_to='card/', blank=True, null=True, verbose_name="Card")
+    card = models.ImageField(upload_to='card/', blank=True, null=True, verbose_name="Изображение карты или изображение для 'Акции и Спецпредложения'")
 
     class Meta:
         verbose_name = "Article"
