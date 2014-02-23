@@ -4,7 +4,7 @@
 
     <li id="{{ item.id }}">
         <span>{{ item.name }}</span>
-        <img src="{{ MEDIA_URL }}{{ item.image }} width='288px'">
+        <img src="{{ MEDIA_URL }}{{ item.image }}">
         <ul>
         {% if item.chip %}<li>карта с чипом</li>{% endif %}
         {% if item.scratch %}<li>стираемая полоса</li>{% endif %}
@@ -17,7 +17,7 @@
         {% if item.barcode %}<li>печать штрих-кода</li>{% endif %}
         {% if item.indent %}<li>индентная печать</li>{% endif %}
         </ul>
-        <form id="{{ item.id }}" class="jClever calc" action="{% url 'ajax-save-order' step=22 %}" method="POST">
+        <form id="{{ item.id }}" class="jClever calc_easy" action="{% url 'ajax-save-order' step=22 %}" method="POST">
             {% csrf_token %}
             <input type="hidden" name="id" value="{{ item.id }}">
             <label>Тираж<span><i class="fa fa-question"></i></span></label>
