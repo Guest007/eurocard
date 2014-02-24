@@ -353,19 +353,19 @@
 
                     $(this).find('form').submit(function(){
 
-
                         //console.log("Call AJAX", csrftoken);
                         $(this).find('input[name="csrfmiddlewaretoken"]').val(csrftoken);
                         //console.log($('#file_data'));
-                        var action = $(this).attr('action'),
-                            self = $(this),
-                            selection = $this.find('input, select').not(' .ratio, input[name="colors"], input[name="materials"], input[name="count_hidden"], input[name="lamination"], input[name="color_front"], input[name="color_back"]').serialize();
+                        var self = $(this),
+                            action = $(this).attr('action'),
+                            self = $(this);
+                            //selection = $this.find('input, select').not(' .ratio, input[name="colors"], input[name="materials"], input[name="count_hidden"], input[name="lamination"], input[name="color_front"], input[name="color_back"]').serialize();
                         //console.log(selection);
                         //console.log(action);
                         $.ajax({
                             url: action,
                             type: 'POST',
-                            data: selection,
+                            data: self.serialize(),
                             before_send: function(xhr, settings) {
                                 //console.log("Before SENT")
                                 if (!csrf_safe_method(settings.type) && same_origin(settings.url)) {
@@ -419,39 +419,61 @@ $(document).ready(function(){
     //form_style();
 
     //Выбор адреса
-    var x=0,
-        y=0,
-        z=0,
-        f=0;
-    tabs_count = $('section.location > div > ul > li').length;
-    $('section.location > div > ul > li').each(function(){
-        x++;
-        $(this).attr('id', x);
-    });
-    $('section.location > div > span').each(function(){
-        y++;
-        $(this).attr('rel', y);
-    });
-    $('section.location > span > span').each(function(){
-        z++;
-        $(this).attr('rel', z);
-    });
-    $('footer > div > span > span').each(function(){
-        f++;
-        $(this).attr('rel', f);
-    });
-    $('section.location > div > ul > li').not('current').click(function(){
-        var this_id = $(this).attr('id');
-        $(this).addClass('current').siblings('li').removeClass('current');
-        $('section.location > div > span[rel="'+this_id+'"], section.location > span > span[rel="'+this_id+'"], footer > div > span > span[rel="'+this_id+'"]')
-        .addClass('current')
-        .siblings('span')
-        .removeClass('current');
-    });
-    $('section.location > div > ul > li').click(function(){
-        $('section.location > div:first-child').toggleClass('drop');
-        $(this).prependTo($(this).parent()[0])
-    });
+    function change_adress(){
+        var x=0,
+            y=0,
+            z=0,
+            f=0,
+            w=0,
+            r=0,
+            e=0;
+            
+        tabs_count = $('section.location > div > ul > li').length;
+        $('section.location > div > ul > li').each(function(){
+            x++;
+            $(this).attr('rel', x);
+        });
+        $('section.location > div > span').each(function(){
+            y++;
+            $(this).attr('rel', y);
+        });
+        $('section.location > span > span').each(function(){
+            z++;
+            $(this).attr('rel', z);
+        });
+        $('footer > div > span > span').each(function(){
+            f++;
+            $(this).attr('rel', f);
+        });
+        $('div.contacts > div > span > a').each(function(){
+            w++;
+            $(this).attr('rel', w);
+        });
+        $('div.contacts > div > ul').each(function(){
+            r++;
+            $(this).attr('rel', r);
+        });
+        $('div.contacts > div > img').each(function(){
+            e++;
+            $(this).attr('rel', e);
+        });
+        $('section.location > div > ul > li, div.contacts > div > span > a').not('current').click(function(){
+            
+            var this_rel = $(this).attr('rel');
+            $('section.location > div > ul > li[rel="'+this_rel+'"], div.contacts > div > span > a[rel="'+this_rel+'"]').addClass('current').siblings().removeClass('current');
+            $(this).addClass('current').siblings().removeClass('current');
+            $('section.location > div > span[rel="'+this_rel+'"], section.location > span > span[rel="'+this_rel+'"], footer > div > span > span[rel="'+this_rel+'"], div.contacts > div > ul[rel="'+this_rel+'"], div.contacts > div > img[rel="'+this_rel+'"]')
+            .addClass('current')
+            .siblings()
+            .removeClass('current');
+            return false;
+        });
+        $('section.location > div > ul > li').click(function(){
+            $('section.location > div:first-child').toggleClass('drop');
+            $(this).prependTo($(this).parent()[0])
+        });
+    }
+    change_adress();
 
     //Табы
     var i=0,
@@ -493,7 +515,11 @@ $(document).ready(function(){
             });
         }
  
-    });   
+    });
+    $('a.show_price').click(function(){
+        $(this).siblings('div.hide').slideToggle();
+        return false;
+    });
 
     //Расчёт стоимости
     /*
@@ -556,7 +582,47 @@ $(document).ready(function(){
         return false;
     });
 
+    //Выравнивание высоты заголовка новостей
+
+    function news_title_height() {
+        var title_height = 0;
+        $('section.news > ul > li > a').each(function(){
+            var this_height = parseFloat($(this).height());
+            if(this_height > title_height) {
+                title_height = this_height;
+            };
+        });
+        $('section.news > ul > li > a').height(title_height);
+    }
+    news_title_height();
+
     //Обратный звонок
+    function call_() {
+        var self = $('form.call');
+        $('.location > a').click(function(){
+            self.removeClass('hide');
+            return false;
+        });
+        $('form.call > span > small').click(function(){
+            self.addClass('hide');
+        });
+        self.submit(function(){
+            var action = $(this).attr('action');
+            var that = $(this);
+            $.ajax({
+                url: action,
+                type: 'POST',
+                data: that.serialize(),
+                complete: function(result){
+                    $('#call_back').trigger( 'reset' );
+                    $('#call_back').addClass('hide');
+                }
+            });
+            return false;
+        });
+    }
+    call_();
+
     $('.location > a').click(function(){
         $(this).siblings('form').removeClass('hide');
         return false;

@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% load menubuilder %}
-
+{% load articles_tags %}
 {% block content %}
 
 {% if prod.category_id == 1 %}
@@ -53,14 +53,6 @@
         </ul>
         {{ prod.content|safe }}
     </div>
-{% endif %}
-
-{% endblock %}
-
-{% block our_clients %}
-{% endblock %}
-
-{% block benefits %}
     <section class="benefits">
         <span><span>Наши преимущества</span></span>
         <ul>
@@ -96,5 +88,9 @@
             </li>
         </ul>
     </section>
+    {% active_news_block %}
+{% endif %}
+
 {% endblock %}
+
 

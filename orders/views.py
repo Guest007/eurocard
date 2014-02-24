@@ -92,6 +92,18 @@ def edit_easy(request, pk, step=0):
             'color_back': Color.objects.all().order_by('-id')}
 
 
+@render_to()
+def edit_templ(request, pk, step=0):
+    """Edit selected Order"""
+    if step == 0:
+        return http.HttpResponseRedirect('1/')
+    order = get_object_or_404(Orders, pk=int(pk))
+    templ = OrderTemplate.objects.get(id=order.template.id)
+    return {"TEMPLATE": 'ready-form.html',
+            "object": order,
+            "templ": templ}
+
+
 @csrf_protect
 def nextstep_order(request, pk):
     """Final confirm of Order"""
@@ -286,16 +298,21 @@ def save_order1(request, step=1):
     except (TypeError, ValueError):
         id = 0
 
+    print request.POST
+
     time = datetime.datetime.now()
 
     templ = OrderTemplate.objects.get(id=id)
     price = templ.price
     print price
-    templ.pk = 0
+
+    templ.pk = None
+    # templ.id = 0
     templ.is_template = False
     templ.name = str(time) + " " + templ.name
     templ.price = None
     templ.save()  # взяли шаблон по id, обрали признак шаблона и скопировали.
+    print "1234", templ.pk
 
     order = Orders(template=templ)
     draw = request.POST.get("count", None)
@@ -311,22 +328,13 @@ def save_order1(request, step=1):
     # user = request.POST.get("user", None)
     # phone = request.POST.get("phone", None)
     # email = request.POST.get("email", None)
+    step = 2
 
-    if step == '1':
-        result = {"result": "OK", "id": order.id,
-                  "msg": "Changes are saved",
-                  "url": reverse("edit-order", args=[order.id, 3])}
-        return HttpResponse(json.dumps(result),
-                                 content_type="application/json")
-    elif step > 10:
-        result = {"result": "OK", "id": order.id, "msg": "This case 'elif step > 10'",
-                  "url": reverse("edit-easy", args=[order.id, step])}
-        return HttpResponse(json.dumps(result),
-                                 content_type="application/json")
-    else:
-        result = {"result": "OK", "id": order.id, "msg": "This case 'else'",
-                  "url": reverse("edit-fast", args=[order.id, step])}
-        return HttpResponse(json.dumps(result),
+
+    result = {"result": "OK", "id": order.id,
+              "msg": "Changes are saved",
+              "url": reverse("edit-templ", args=[order.pk, 3])}
+    return HttpResponse(json.dumps(result),
                                  content_type="application/json")
 
 

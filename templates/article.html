@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% load menubuilder %}
+{% load articles_tags %}
 
 {% block content %}
 
@@ -9,57 +10,61 @@
         <!--		
         {{ price.content|safe }}
         -->
-        <a class="button" href="#"><i class="fa fa-usd"></i> Посмотреть прайс</a>
+        <a class="button show_price" href="#"><i class="fa fa-usd"></i> Посмотреть прайс</a>
         <p>Карта 0,76мм толщиной и печатью с двух сторон!<br>Печатаем сборным тиражом, <span>офсетной печатью</span> на оборудовании KBA Genius, тонкие линии, микрошрифт - суперкачество.</p>
-        <table class="vertical">
-            <tr>
-                <th>Количество карт 0,76мм 4х4</th>
-                <td>500</td>
-                <td>1000</td>
-                <td>4000</td>
-                <td>5000</td>
-                <td>10000</td>
-            </tr>
-            <tr>
-                <th>Цена с учётом НДС</th>
-                <td>6 <i class="fa fa-rub"></i></td>
-                <td>4 <i class="fa fa-rub"></i></td>
-                <td>4 <i class="fa fa-rub"></i></td>
-                <td>3,5 <i class="fa fa-rub"></i></td>
-                <td>3,5 <i class="fa fa-rub"></i></td>
-            </tr>
-        </table>
+        <div class="hide">
+            <table class="vertical">
+                <tr>
+                    <th>Количество карт 0,76мм 4х4</th>
+                    <td>500</td>
+                    <td>1000</td>
+                    <td>4000</td>
+                    <td>5000</td>
+                    <td>10000</td>
+                </tr>
+                <tr>
+                    <th>Цена с учётом НДС</th>
+                    <td>6 <i class="fa fa-rub"></i></td>
+                    <td>4 <i class="fa fa-rub"></i></td>
+                    <td>4 <i class="fa fa-rub"></i></td>
+                    <td>3,5 <i class="fa fa-rub"></i></td>
+                    <td>3,5 <i class="fa fa-rub"></i></td>
+                </tr>
+            </table>
+        </div>
         <h3>Срок изготовления сборных тиражей - 7 рабочих дней.</h3>
-        <table class="vertical">
-            <tr>
-                <th>Печать штрих-кода печатной нумерации чёрным цветом</th>
-                <td>0.5 <i class="fa fa-rub"></i> за одну сторону</td>
-            </tr>
-            <tr>
-                <th>Эмбоссирование с окрасом(типирование) серебро, золото</th>
-                <td>1.8 <i class="fa fa-rub"></i> за карту</td>
-            </tr>
-            <tr>
-                <th>Магнитная полоса HiCo</th>
-                <td>1.8 <i class="fa fa-rub"></i> за карту</td>
-            </tr>
-            <tr>
-                <th>Кодирование магнитной полосы</th>
-                <td>0.9 <i class="fa fa-rub"></i> за карту</td>
-            </tr>
-            <tr>
-                <th>Нанесение полосы для подписи</th>
-                <td>3.5 <i class="fa fa-rub"></i> за одну сторону</td>
-            </tr>
-            <tr>
-                <th>Нанесение скретч-панели</th>
-                <td>2.5 <i class="fa fa-rub"></i> за одну сторону</td>
-            </tr>
-            <tr>
-                <th>Нанесение фольги</th>
-                <td>3 <i class="fa fa-rub"></i> за одну сторону</td>
-            </tr>
-        </table>
+        <div class="hide">
+            <table class="vertical">
+                <tr>
+                    <th>Печать штрих-кода печатной нумерации чёрным цветом</th>
+                    <td>0.5 <i class="fa fa-rub"></i> за одну сторону</td>
+                </tr>
+                <tr>
+                    <th>Эмбоссирование с окрасом(типирование) серебро, золото</th>
+                    <td>1.8 <i class="fa fa-rub"></i> за карту</td>
+                </tr>
+                <tr>
+                    <th>Магнитная полоса HiCo</th>
+                    <td>1.8 <i class="fa fa-rub"></i> за карту</td>
+                </tr>
+                <tr>
+                    <th>Кодирование магнитной полосы</th>
+                    <td>0.9 <i class="fa fa-rub"></i> за карту</td>
+                </tr>
+                <tr>
+                    <th>Нанесение полосы для подписи</th>
+                    <td>3.5 <i class="fa fa-rub"></i> за одну сторону</td>
+                </tr>
+                <tr>
+                    <th>Нанесение скретч-панели</th>
+                    <td>2.5 <i class="fa fa-rub"></i> за одну сторону</td>
+                </tr>
+                <tr>
+                    <th>Нанесение фольги</th>
+                    <td>3 <i class="fa fa-rub"></i> за одну сторону</td>
+                </tr>
+            </table>
+        </div>
         <p>Если у вас возникли вопросы, можете обратиться к нашим менеджерам по телефону: <span class="phone">(812) 999 99 88</span></p>
         <p>Так же вы можете воспользоваться интерективным калькулятором расчета карт</p>
         <h1>Калькулятор карт</h1>
@@ -67,7 +72,161 @@
     <section class="order">
         <div>
             <div class="easy_form current">
-
+                <form class="jClever filter">
+                    <ul>
+                        <li>
+                            <span id="first_flag">
+                                <span></span>
+                                <i class="fa fa-times"></i>
+                            </span>
+                            <small>
+                                <i class="fa fa-question"></i>
+                                <span class="first_flag"><i class="fa fa-circle"></i></span>
+                            </small>
+                            <p>Тиснение фольгой</p>
+                        </li>
+                        <li>
+                            <span id="second_flag">
+                                <span></span>
+                                <i class="fa fa-times"></i>
+                            </span>
+                            <small>
+                                <i class="fa fa-question"></i>
+                                <span class="second_flag"><i class="fa fa-circle"></i></span>
+                            </small>
+                            <p>Эмбоссирование</p>
+                        </li>
+                        <li>
+                            <span id="third_flag">
+                                <span></span>
+                                <i class="fa fa-times"></i>
+                            </span>
+                            <small>
+                                <i class="fa fa-question"></i>
+                                <span class="third_flag"><span></span><i class="fa fa-circle"></i></span>
+                            </small>
+                            <p>Полоса для подписи</p>
+                        </li>
+                        <li>
+                            <span id="fourth_flag">
+                                <span></span>
+                                <i class="fa fa-times"></i>
+                            </span>
+                            <small>
+                                <i class="fa fa-question"></i>
+                                <span class="fourth_flag"><span></span><i class="fa fa-circle"></i></span>
+                            </small>
+                            <p>Индент печать</p>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <span id="fifth_flag">
+                                <span></span>
+                                <i class="fa fa-times"></i>
+                            </span>
+                            <small>
+                                <i class="fa fa-question"></i>
+                                <span class="fifth_flag"><i class="fa fa-circle"></i></span>
+                            </small>
+                            <p>Печатный номер</p>
+                        </li>
+                        <li>
+                            <span id="sixth_flag">
+                                <span></span>
+                                <i class="fa fa-times"></i>
+                            </span>
+                            <small>
+                                <i class="fa fa-question"></i>
+                                <span class="sixth_flag"><i class="fa fa-circle"></i></span>
+                            </small>
+                            <p>Магнитная полоса</p>
+                        </li>
+                        <li>
+                            <span id="seventh_flag">
+                                <span></span>
+                                <i class="fa fa-times"></i>
+                            </span>
+                            <small>
+                                <i class="fa fa-question"></i>
+                                <span class="seventh_flag"><i class="fa fa-circle"></i></span>
+                            </small>
+                            <p>Штрих код</p>
+                        </li>
+                        <li>
+                            <span id="eighth_flag">
+                                <span></span>
+                                <i class="fa fa-times"></i>
+                            </span>
+                            <small>
+                                <i class="fa fa-question"></i>
+                                <span class="eighth_flag"><i class="fa fa-circle"></i></span>
+                            </small>
+                            <p>Скрейтч панель</p>
+                        </li>
+                    </ul>
+                    <ul class="order">
+                        <li class="info"></li>
+                        <li class="printing"></li>
+                        <li class="time"></li>
+                        <li>
+                            <label>Тираж:</label>
+                            <input type="text" class="edition" name="count">
+                        </li>
+                        <li>
+                            <label>Цвет:</label>
+                            <div class="select color">
+                                <select name="color">
+                                    <option value="1">Text one</option>
+                                    <option value="2">Text two</option>
+                                    <option value="3">Text three</option>
+                                    <option value="4">Text four</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li>
+                            <label>Материал:</label>
+                            <div class="select materials">
+                                <select name="material">
+                                    <option value="1">Text one</option>
+                                    <option value="2">Text two</option>
+                                    <option value="3">Text three</option>
+                                    <option value="4">Text four</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li>
+                            <label>Сумма:</label>
+                            <p class="sum">15 000 000 руб.</p>
+                        </li>
+                        <li>
+                            <label>ФИО:</label>
+                            <input type="text" name="user">
+                        </li>
+                        <li>
+                            <label>Телефон:</label>
+                            <input type="text" name="phone">
+                        </li>
+                        <li>
+                            <label>Email:</label>
+                            <input type="email" name="email">
+                        </li>
+                        <li>
+                            <a href="#" class="next_step">Заказать</a>
+                            <!--
+                            <input type="submit" value="Заказать">
+                            -->
+                        </li>
+                    </ul>
+                    <input type="hidden" name="first_flag" value="">
+                    <input type="hidden" name="second_flag" value="">
+                    <input type="hidden" name="third_flag" value="">
+                    <input type="hidden" name="fourth_flag" value="">
+                    <input type="hidden" name="fifth_flag" value="">
+                    <input type="hidden" name="sixth_flag" value="">
+                    <input type="hidden" name="seventh_flag" value="">
+                    <input type="hidden" name="eighth_flag" value="">
+                </form>
             </div>
         </div>
     </section>
@@ -104,8 +263,8 @@
 {% endif %}
 
 {% if clients %}
+<h1>Клиенты</h1>
 <ul class="clients">
-
 {% for client in clients %}
     <li>
         <span style="background: url('{{ client.logo.url }}') no-repeat center center" href="#"></span>
@@ -114,9 +273,11 @@
     </li>
 {% endfor %}
 </ul>
+
 {% endif %}
 
 {% if news %}
+<h1>Новости</h1>
 <ul class="news">
 {% for item in news %}
     <li>
@@ -130,20 +291,198 @@
 </ul>
 {% endif %}
 
+
 {% if newsitem %}
-
-    <h1>{{ newsitem.title }}</h1>
     <div class="content">
-            {{ newsitem.content|safe }}
+        <h1>{{ newsitem.title }}</h1>
+        {{ newsitem.content|safe }}
     </div>
+{% endif %}
+{% endblock %}
 
+{% block section %}
+
+{% if price %}
+    {% active_news_block %}
 {% endif %}
 
+{% if coop %}
+    <section class="about">
+        <span><span><span>Evrocard</span> - это:</span></span>
+        <ul>
+            <li class="good_price">
+                <span>Лучшие цены</span>
+                <span>1000 карт ВСЕГО 4 рубля за шт.</span>
+            </li>
+            <li class="equipment">
+                <span>Современное оборудование</span>
+                <span>Для печати мы выбрали KBA Genius</span>
+            </li>
+            <li class="once_we">
+                <span>Только у нас</span>
+                <span>Микрошрифт, печать волосяных линий</span>
+            </li>
+            <li class="fast_order">
+                <span>Быстрый заказ</span>
+                <span>Если вы здесь не в первый раз</span>
+            </li>
+        </ul>
+    </section>
+    <section class="clients">
+        <span><span>Наши клиенты</span></span>
+        <div class="carousel">
+            <a href="#" class="prev"><i class="fa fa-angle-left"></i></a>
+            <a href="#" class="next"><i class="fa fa-angle-right"></i></a>
+            <div>
+                <div class="item" style="background: url('/static/images/cl_1.png') no-repeat center center"></div>
+                <div class="item" style="background: url('/static/images/cl_2.png') no-repeat center center"></div>
+                <div class="item" style="background: url('/static/images/cl_3.png') no-repeat center center"></div>
+                <div class="item" style="background: url('/static/images/cl_4.png') no-repeat center center"></div>
+                <div class="item" style="background: url('/static/images/cl_5.png') no-repeat center center"></div>
+                <div class="item" style="background: url('/static/images/cl_6.png') no-repeat center center"></div>
+                <div class="item" style="background: url('/static/images/cl_3.png') no-repeat center center"></div>
+                <div class="item" style="background: url('/static/images/cl_4.png') no-repeat center center"></div>
+            </div>
+        </div>
+    </section>
+    {% active_news_block %}
+{% endif %}
+
+{% if about %}
+    <section class="about">
+        <span><span><span>Evrocard</span> - это:</span></span>
+        <ul>
+            <li class="good_price">
+                <span>Лучшие цены</span>
+                <span>1000 карт ВСЕГО 4 рубля за шт.</span>
+            </li>
+            <li class="equipment">
+                <span>Современное оборудование</span>
+                <span>Для печати мы выбрали KBA Genius</span>
+            </li>
+            <li class="once_we">
+                <span>Только у нас</span>
+                <span>Микрошрифт, печать волосяных линий</span>
+            </li>
+            <li class="fast_order">
+                <span>Быстрый заказ</span>
+                <span>Если вы здесь не в первый раз</span>
+            </li>
+        </ul>
+    </section>
+    <section class="clients">
+        <span><span>Наши клиенты</span></span>
+        <div class="carousel">
+            <a href="#" class="prev"><i class="fa fa-angle-left"></i></a>
+            <a href="#" class="next"><i class="fa fa-angle-right"></i></a>
+            <div>
+                <div class="item" style="background: url('/static/images/cl_1.png') no-repeat center center"></div>
+                <div class="item" style="background: url('/static/images/cl_2.png') no-repeat center center"></div>
+                <div class="item" style="background: url('/static/images/cl_3.png') no-repeat center center"></div>
+                <div class="item" style="background: url('/static/images/cl_4.png') no-repeat center center"></div>
+                <div class="item" style="background: url('/static/images/cl_5.png') no-repeat center center"></div>
+                <div class="item" style="background: url('/static/images/cl_6.png') no-repeat center center"></div>
+                <div class="item" style="background: url('/static/images/cl_3.png') no-repeat center center"></div>
+                <div class="item" style="background: url('/static/images/cl_4.png') no-repeat center center"></div>
+            </div>
+        </div>
+    </section>
+    {% active_news_block %}
+{% endif %}
+
+{% if clients %}
+     {% active_news_block %}
+{% endif %}
+
+
 {% endblock %}
 
+
+
+{% block about_ %}
+<section class="about">
+    <span><span><span>Evrocard</span> - это:</span></span>
+    <ul>
+        <li class="good_price">
+            <span>Лучшие цены</span>
+            <span>1000 карт ВСЕГО 4 рубля за шт.</span>
+        </li>
+        <li class="equipment">
+            <span>Современное оборудование</span>
+            <span>Для печати мы выбрали KBA Genius</span>
+        </li>
+        <li class="once_we">
+            <span>Только у нас</span>
+            <span>Микрошрифт, печать волосяных линий</span>
+        </li>
+        <li class="fast_order">
+            <span>Быстрый заказ</span>
+            <span>Если вы здесь не в первый раз</span>
+        </li>
+    </ul>
+</section>
+{% endblock %}
+{% block benefits %}
+<section class="benefits">
+    <span><span>Наши преимущества</span></span>
+    <ul>
+        <li>
+            <span class="cool_one"></span>
+            <h2>Сырьё Klekner</h2>
+            <span>Супер-качество.</span>
+        </li>
+        <li>
+            <span class="cool_two"></span>
+            <h2>Печать Kba</h2>
+            <span>Точность передачи цвета.</span>
+        </li>
+        <li>
+            <span class="cool_three"></span>
+            <h2>Ламинация VIP</h2>
+            <span>Английский пластик, идеальная поверхность.</span>
+        </li>
+        <li>
+            <span class="cool_four"></span>
+            <h2>Вырубка KARL RESSLER</h2>
+            <span>Немецкая точность</span>
+        </li>
+        <li>
+            <span class="cool_five"></span>
+            <h2>Сортировка VIP</h2>
+            <span>Ручной отбор, 3 уровня брака.</span>
+        </li>
+        <li>
+            <span class="cool_six"></span>
+            <h2>Персонализация Matica</h2>
+            <span>Быстро, качественно, надежно.</span>
+        </li>
+    </ul>
+</section>
+{% endblock %}          
 {% block our_clients %}
-
-
+    <section class="clients">
+        <span><span>Наши клиенты</span></span>
+        <div class="carousel">
+            <a href="#" class="prev"><i class="fa fa-angle-left"></i></a>
+            <a href="#" class="next"><i class="fa fa-angle-right"></i></a>
+            <div>
+                <div class="item" style="background: url('/static/images/cl_1.png') no-repeat center center"></div>
+                <div class="item" style="background: url('/static/images/cl_2.png') no-repeat center center"></div>
+                <div class="item" style="background: url('/static/images/cl_3.png') no-repeat center center"></div>
+                <div class="item" style="background: url('/static/images/cl_4.png') no-repeat center center"></div>
+                <div class="item" style="background: url('/static/images/cl_5.png') no-repeat center center"></div>
+                <div class="item" style="background: url('/static/images/cl_6.png') no-repeat center center"></div>
+                <div class="item" style="background: url('/static/images/cl_3.png') no-repeat center center"></div>
+                <div class="item" style="background: url('/static/images/cl_4.png') no-repeat center center"></div>
+            </div>
+        </div>
+    </section>
 {% endblock %}
+
+{% block actions %}
+    {% active_news_block %}
+{% endblock %}
+
+
 
 

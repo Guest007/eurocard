@@ -7,25 +7,21 @@
 		<div class="wrap_all">
 			<header>
 				<div>
-					<a href="/" title="eurocard"></a>
+					<a href="/" title="eurocard"><span>Качество даже в мелких деталях!</span></a>
 					<section class="location">
 						<div>
 							<ul>
 								<li class="current">Санкт-Петербург<i class="fa fa-caret-down"></i></li>
 								<li>Москва<i class="fa fa-caret-down"></i></li>
-								<li>Казахстан<i class="fa fa-caret-down"></i></li>
 							</ul>
 						</div>
 						<div>
 							<span class="current">812 702 77 77</span> {# телефон в Питере #}
 							<span>945 702 114 43</span> {# телефон в Москве #}
-							<span>600 702 100 000</span> {# телефон в Казахстане #}
-
 						</div>
 						<span>
 							<span class="current">Б.Сампсониевский проспект, д.30, к.1</span> {# Адрес в Питере #}
-							<span>Какаятоулицавмоскве, д.1, к.1</span> {# Адрес в Москве #}
-							<span>Ленинградская обл., д.30, к.1</span> {# Адрес в Казахстане #}
+							<span>Красная площадь, д.1</span> {# Адрес в Москве #}
 						</span>
 						<a href="#">Заказать обратный звонок
 
@@ -40,25 +36,9 @@
 							<input type="submit" value="Отправить">
 						</form>
 					</section>
+
 					<nav>
 						<ul>
-
-<script type="application/javascript">
-$('#call_back').submit(function(){
-        var action = $(this).attr('action');
-        var that = $(this);
-        $.ajax({
-            url: action,
-            type: 'POST',
-            data: that.serialize(),
-            complete: function(result){
-                $('#call_back').trigger( 'reset' );
-                $('#call_back').addClass('hide');
-            }
-        });
-        return false;
-    });
-</script>
 {% load menubuilder %}
 
 {% menu main_menu %}
@@ -75,13 +55,13 @@ $('#call_back').submit(function(){
 			</header>
 			<article>
             {% block content %}
-
+            {% endblock %}
+            {% block section %}
             {% endblock %}
 			</article>
 			<div class="clear_footer"></div>
 		</div>
     {% endblock %}
-
     {% block footer %}
 		<footer>
 			<div>
