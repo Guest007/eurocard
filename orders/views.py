@@ -303,7 +303,6 @@ def save_order1(request, step=1):
 
     templ = OrderTemplate.objects.get(id=id)
     price = templ.price
-    print price
 
     templ.pk = None
 
@@ -319,13 +318,6 @@ def save_order1(request, step=1):
 
     order.save()  # привязали заказ к шаблону, посчитали цену, записали. Теперь нужны остальные данные и всё.
 
-    print order.cost
-    # print order.template.name
-
-
-    # user = request.POST.get("user", None)
-    # phone = request.POST.get("phone", None)
-    # email = request.POST.get("email", None)
     step = 2
 
 
@@ -372,6 +364,12 @@ def finish(request):
     order = request.POST.get('id', False)
 
     obj = Orders.objects.get(id=int(order))
+    if not obj.FIO:
+        obj.FIO = request.POST.get('name', False)
+        obj.email = request.POST.get('email', False)
+        obj.phone = request.POST.get('phone_', False)
+        obj.save()
+
 
     items = {
         u'с чипом': (u'да' if obj.template.chip else u'нет'),
@@ -399,7 +397,7 @@ def finish(request):
         'maket': obj.maket,
         'items': items,
         'payment_status': (u'Юр.лицо' if payment_status == 'u' else u'Физ.лицо'),
-        'raschet': (u'Наличный' if raschet == '1' else u'Безналичный'),
+        'raschet': (u'Безналичный' if raschet == '2' else u'Наличный'),
         'time': time
     }
 
