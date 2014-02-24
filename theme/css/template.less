@@ -70,7 +70,6 @@ body {
 				& > div {
 					height: 100%;
 					left: 0;
-					
 					position: absolute;
 					text-align: center;
 					top: 0;
@@ -257,7 +256,7 @@ body {
 									}
 								}
 								&.info {
-									& > ul {
+									& > ul.info {
 										width: 100%;
 										padding: 20px 0;
 										& > li {
@@ -328,8 +327,37 @@ body {
 						height: 360px;
 						margin: -180px 0 0 -310px;
 					}
+					&.thanks {
+						background: #fff !important;
+						width: 600px !important;
+						padding: 20px !important;
+						& > span {
+							display: inline-block;
+							width: 600px;
+							//padding: 20px;
+							font: 14px/24px @main_font;
+							border-bottom: 0 !important;
+							background: #fff;
+							//color: #dc3b3b;
+							& > small {
+								float: right;
+								display: inline-block;
+								width: 24px;
+								height: 24px;
+								cursor: pointer;
+							}
+							&:first-child {
+								font: 24px/24px @main_font;
+								padding: 0 0 20px;
+								//color: #000;
+							}
+						}
+
+					}
 				}
+
 			}
+
 				
 			}	
 

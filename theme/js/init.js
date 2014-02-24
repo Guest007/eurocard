@@ -43,7 +43,7 @@
                 $('html').addClass('hidden');
                 $('body').addClass('under_overlay')
                 .append('<div class="overlay"></div><div class="data_wrap"><div><div class="data_container"><div class="data_checking"></div></div></div></div>');
-                $('.data_checking').load('/second/'+result.id+'/ .last_step');
+                $('.data_checking').load('/second/'+result.id+'/ .confirm');
             }
 
             if($(this).hasClass('calc')){
@@ -494,7 +494,7 @@ $(document).ready(function(){
         .addClass('current')
         .siblings('div')
         .removeClass('current');
-  
+        
         if(form_container.children('form').length == 0){
             form_container.load('/form_'+this_id+'/', function(){
                 //calc();
@@ -504,7 +504,7 @@ $(document).ready(function(){
                 $(this).children('ul').calc();
             });
         }
- 
+        
     });
     $('a.show_price').click(function(){
         $(this).siblings('div.hide').slideToggle();
@@ -559,6 +559,9 @@ $(document).ready(function(){
         $('div.data_checking, div.overlay').remove();
         $('body, html').removeClass();
     });
+    $(document).on('click', '.close_order.reset', function(){
+        document.location.href = "/";
+    });
 
     $(document).on('click', '.data_checking a.next_step', function(){
         $('.data_checking').find('.order').addClass('hide');
@@ -571,6 +574,22 @@ $(document).ready(function(){
         //$('.data_checking > form').load('/include/helpers.html .files');
         return false;
     });
+    
+    $(document).on('submit', '.last_step', function(){
+        var action = $(this).attr('action'),
+            that = $(this);
+        $.ajax({
+            url: action,
+            type: 'POST',
+            data: that.serialize(),
+            complete: function(result){
+                $('.data_checking').addClass('thanks').html('<span>Спасибо за ваш заказ.<small class="close_order reset"><i class="fa fa-times"></i></small></span><span>Письмо с информацией отправлено на указанный вами адрес электронной почты.</span><span>В ближайшее время наш сотрудник свяжется с вами для уточнения деталей.</span>');
+                //document.location.href = "/";
+            }
+        });
+        return false;
+    });
+
 
     //Выравнивание высоты заголовка новостей
 
@@ -592,7 +611,9 @@ $(document).ready(function(){
         $('.location > a').click(function(){
             self.removeClass('hide');
             return false;
+
         });
+        console.log(self);
         self.find('.close_form').click(function(){
             self.addClass('hide');
         });
@@ -604,17 +625,16 @@ $(document).ready(function(){
                 type: 'POST',
                 data: self.serialize(),
                 complete: function(result){
-                    self.trigger( 'reset' );
+                    //self.trigger( 'reset' );
                     self.addClass('hide');
+                    $('html').addClass('hidden');
+                    $('body').addClass('under_overlay')
+                    .append('<div class="overlay"></div><div class="data_wrap"><div><div class="data_container"><div class="data_checking"></div></div></div></div>');
+                    $('.data_checking').addClass('thanks').html('<span>Ваша заявка принята.<small class="close_order"><i class="fa fa-times"></i></small></span><span>В ближайшее время наш сотрудник свяжется с вами по указанному в заявке номеру телефона.</span>');
                 }
             });
+            return false;
         });
-        function confirm_answer() {
-            $('html').addClass('hidden');
-            $('body').addClass('under_overlay')
-            .append('<div class="overlay"></div><div class="data_wrap"><div><div class="data_container"><div class="data_checking"></div></div></div></div>');
-            $('.data_checking').html('<h2>Спасибо, Ваш запрос принят, в ближайшее время </h2>');
-        }
     }
     call_();
 

@@ -109,7 +109,6 @@ def nextstep_order(request, pk):
     """Final confirm of Order"""
     # print "pk: ", pk
     order = get_object_or_404(Orders, pk=int(pk))
-    # print "And what??? ", order.template.id
     templ = OrderTemplate.objects.get(id=order.template.id)
     result = {"object": order,
               "templ": templ,
@@ -179,13 +178,12 @@ def save_order(request, step=1):
 
     if id != 0:
         templ_id = Orders.objects.get(id=id).template.id
-        # print "templ_id: ", templ_id
+
     else:
         templ_id = 0
 
     templ = get_object_or_None(OrderTemplate, pk=templ_id)  # Или получаем тело заказа или создаём новое (новый заказ)
-    # if templ:
-    #     print "TEMPLATE IS PRESENT! ", templ.id
+
     if templ is None:
         templ = OrderTemplate(name=(user if user else ''))  # Создаем тело заказа. Название - имя заказчика
 
@@ -207,7 +205,6 @@ def save_order(request, step=1):
         templ.barcode = (True if float(request.POST.get("barcode", False)) > 0 else False)
         templ.foil = (True if float(request.POST.get("foil", False)) > 0 else False)
     else:
-        # print request.POST
         templ.color_back = Color(id=request.POST.get("color_back", None))
         templ.color_front = Color(id=request.POST.get("color_front", None))
 
@@ -236,7 +233,6 @@ def save_order(request, step=1):
 
     try:  # Проверяем, это новый заказ или редактируем созданный
         pk = int(request.POST.get("id", 0))
-        # print "ID of Order: ", pk
     except (TypeError, ValueError):
         pk = 0
     order = None
@@ -249,19 +245,13 @@ def save_order(request, step=1):
 
     order.template = OrderTemplate(id=templ.id)
     order.FIO = user
-    # print order.FIO
     order.draw = draw  # Количество
-    # print order.draw
     order.cost = request.POST.get("sum", False)
     order.email = email
-    # print order.email
     order.phone = phone
-    # print order.phone
     order.maket = maket
-    # print maket
 
     order.save()
-    # print "ID of Order (order.id): ", order.id
 
     if step == '1':
         result = {"result": "OK", "id": order.id,
@@ -312,7 +302,7 @@ def save_order1(request, step=1):
     templ.save()  # взяли шаблон по id, обрали признак шаблона и скопировали.
 
     order = Orders(template=templ)
-    # draw = request.POST.get("count", None)
+
     order.draw = draw
     order.cost = float(draw) * float(price)
 
@@ -401,15 +391,8 @@ def finish(request):
         'time': time
     }
 
-    # print obj.template.magnet
-    # for i in obj:
-    #     print i
-    # message = request.POST.get('message', '')
-    # time = datetime.datetime.now()
-    #
     email = Settings.objects.get(slug='order-mail').content
-    # # print email.content
-    #
+
     try:
         messages.ORDER_TO_CLIENT.send(obj.email,
                                       **mail_content)

@@ -222,24 +222,24 @@ body.under_overlay > div.data_wrap > div > .data_container > .data_checking > fo
 body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order > ul.info > li:first-child > span > i.fa-check {
   color: #33ae30;
 }
-body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order.info > ul {
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order.info > ul.info {
   width: 100%;
   padding: 20px 0;
 }
-body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order.info > ul > li {
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order.info > ul.info > li {
   width: 600px !important;
   padding: 0 20px !important;
   border: 0 !important;
   padding: 0;
 }
-body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order.info > ul > li > input {
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order.info > ul.info > li > input {
   height: 36px;
   display: block;
   position: relative;
   margin: 20px 0;
 }
-body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order.info > ul > li > input[type="text"],
-body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order.info > ul > li > input[type="email"] {
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order.info > ul.info > li > input[type="text"],
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order.info > ul.info > li > input[type="email"] {
   background: #fff;
   border: 2px solid #ddd;
   border-radius: 6px;
@@ -283,6 +283,29 @@ body.under_overlay > div.data_wrap > div > .data_container > .data_checking inpu
 body.under_overlay > div.data_wrap > div > .data_container > .data_checking.files {
   height: 360px;
   margin: -180px 0 0 -310px;
+}
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking.thanks {
+  background: #fff !important;
+  width: 600px !important;
+  padding: 20px !important;
+}
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking.thanks > span {
+  display: inline-block;
+  width: 600px;
+  font: 14px/24px 'Open Sans', sans-serif;
+  border-bottom: 0 !important;
+  background: #fff;
+}
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking.thanks > span > small {
+  float: right;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking.thanks > span:first-child {
+  font: 24px/24px 'Open Sans', sans-serif;
+  padding: 0 0 20px;
 }
 .wrap_all {
   width: 1024px;
