@@ -511,49 +511,7 @@ $(document).ready(function(){
         return false;
     });
 
-    //Расчёт стоимости
-    /*
-    $('.ready > ul > li').each(function(){
-        $(this).find('input[type="text"]').val('').keyup(function(){
-            var one_price = parseFloat($(this).siblings('span').children('small').html()),
-                count = parseFloat($(this).val())||0,
-                total = one_price*count,
-                total_fix = total.toFixed(2);
-                //console.log(count, total, one_price);
-            if(count <= 0){
-                $(this).addClass('error').siblings('span').children('span').html('');
-            }
-            else{
-                $(this).removeClass('error').siblings('span').children('span').html(total_fix+'руб.');
-            }
-        });
-    });
-*/
-    //Заказ (открываем модальное окно)
-    /*
-    $('form.filter').each(function(){
-        var self=$(this);
-        $('a.next_step').click(function(){
-            $('body').addClass('under_overlay')
-            .append('<div class="overlay"></div><div class="data_checking"><form class="jClever"></form></div>');
-            $('.data_checking > form').load('/static/include/helpers.html', function(){
-                $('.jClever').jClever({
-                    selfClass: "alice",
-                    applyTo: {
-                        input: false,
-                        select: true,
-                        checkbox: true,
-                        radio: true,
-                        button: false,
-                        file: true,
-                        textarea: false
-                    }
-                });
-            });
-            return false;
-        });
-    });
-    */
+
     //Заказ (закрываем модальное окно)
     $(document).on('click', '.close_order', function(){
         $('div.data_checking, div.overlay').remove();

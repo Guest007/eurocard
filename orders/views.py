@@ -379,7 +379,8 @@ def finish(request):
     }
 
     mail_content = {
-        'fio': obj,
+        'fio': obj.FIO,
+        'id': obj.id,
         'phone': obj.phone,
         'email': obj.email,
         'draw': obj.draw,

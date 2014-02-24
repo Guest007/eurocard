@@ -36,10 +36,53 @@ class ColorAdmin(admin.ModelAdmin):
     list_editable = ['is_easy', 'cost']
 
 
+class OrderForm(forms.ModelForm):
+    name = forms.CharField()
+    chip = forms.CharField()
+    scratch = forms.CharField()
+    magnet = forms.CharField()
+    emboss = forms.CharField()
+    uv = forms.CharField()
+    print_num = forms.CharField()
+    sign = forms.CharField()
+    foil = forms.CharField()
+    barcode = forms.CharField()
+    indent = forms.CharField()
+    material = forms.CharField()
+    lamination = forms.CharField()
+    color_front = forms.CharField()
+    color_back = forms.CharField()
+
+    class Meta:
+        model = Orders
+        readonly_fields = ['name', 'material']
+
+
+    def __init__(self, *args, **kwargs):
+        super(OrderForm, self).__init__(*args, **kwargs)
+        self.fields['name'].initial = self.instance.template.name
+        self.fields['chip'].initial = self.instance.template.chip
+        self.fields['scratch'].initial = self.instance.template.scratch
+        self.fields['magnet'].initial = self.instance.template.magnet
+        self.fields['emboss'].initial = self.instance.template.emboss
+        self.fields['uv'].initial = self.instance.template.uv
+        self.fields['print_num'].initial = self.instance.template.print_num
+        self.fields['sign'].initial = self.instance.template.sign
+        self.fields['foil'].initial = self.instance.template.foil
+        self.fields['barcode'].initial = self.instance.template.barcode
+        self.fields['indent'].initial = self.instance.template.indent
+        self.fields['material'].initial = self.instance.template.material
+        self.fields['lamination'].initial = self.instance.template.lamination
+        self.fields['color_front'].initial = self.instance.template.color_front
+        self.fields['color_back'].initial = self.instance.template.color_back
+
+
 class OrdersAdmin(admin.ModelAdmin):
     list_display = ['FIO', 'id', 'phone', 'email', 'draw']
     # ordering = ["category", 'published_at']
     list_filter = ['FIO', 'draw']
+
+    form = OrderForm
 
 
 class OrderTemplateAdmin(admin.ModelAdmin):
