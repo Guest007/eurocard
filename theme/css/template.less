@@ -256,6 +256,33 @@ body {
 										}
 									}
 								}
+								&.info {
+									& > ul {
+										width: 100%;
+										padding: 20px 0;
+										& > li {
+											width: 600px !important;
+											padding: 0 20px !important;
+											border: 0 !important;
+
+											padding: 0;
+											& > input {
+												height: 36px;
+												display: block;
+												position: relative;
+												margin: 20px 0;
+												&[type="text"],
+												&[type="email"] {
+													background: #fff;
+													border: 2px solid #ddd;
+													border-radius: 6px;
+													padding: 0 10px;
+													width: 400px;
+												}
+											}
+										}
+									}
+								}
 							}
 							&.files {
 								& > ul {
@@ -693,10 +720,23 @@ body {
 							height: 156px;
 							float: right;
 							border: 2px solid #dc3b3b;
-							overflow: hidden;
+							//overflow: hidden;
 							border-radius: 6px;
+							position: relative;
 							margin: 0 250px 0 20px;
-						
+							&:after {
+								content: " ";
+								display: block;
+								width: 97px;
+								height: 116px;
+								background: url('../images/prod_arrow.png') no-repeat right top;
+								position: absolute;
+								right: -116px;
+								top: -30px;
+
+
+							}
+							
 							& > img {
 								//float: left;
 								width: 244px;
@@ -721,6 +761,15 @@ body {
 							& > span {
 								float: left;
 								margin: 0 20px 0 250px;
+								&:after {
+									background: url('../images/prod_arrow.png') no-repeat left top;
+									position: absolute;
+									right: auto;
+									left: -116px;
+									top: -30px;
+
+
+								}
 							}
 							& > p,
 							& > h2 {
@@ -730,6 +779,9 @@ body {
 						&:first-child {
 							& > span {
 								margin: 0 20px;
+								&:after {
+									display: none;
+								}
 							}
 							
 						}
@@ -2007,18 +2059,6 @@ form.call {
 			border-radius: 6px;
 			padding: 0 10px;
 			width: 276px;
-		}
-		&[type="submit"] {
-			//background: #373333;
-			//border: 1px solid #000;
-			//border-bottom: 2px solid #000;
-			//border-top: 0;
-			//font: 600 18px/32px @main_font;
-			//height: 38px !important;
-			//top: 1px;
-			//padding: 0 10px 2px;
-			//color: #fff;
-			//border-radius: 6px;
 		}
 	}
 	& > textarea {

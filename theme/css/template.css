@@ -222,6 +222,30 @@ body.under_overlay > div.data_wrap > div > .data_container > .data_checking > fo
 body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order > ul.info > li:first-child > span > i.fa-check {
   color: #33ae30;
 }
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order.info > ul {
+  width: 100%;
+  padding: 20px 0;
+}
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order.info > ul > li {
+  width: 600px !important;
+  padding: 0 20px !important;
+  border: 0 !important;
+  padding: 0;
+}
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order.info > ul > li > input {
+  height: 36px;
+  display: block;
+  position: relative;
+  margin: 20px 0;
+}
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order.info > ul > li > input[type="text"],
+body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order.info > ul > li > input[type="email"] {
+  background: #fff;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  padding: 0 10px;
+  width: 400px;
+}
 body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.files > ul {
   padding: 20px 0;
 }
@@ -634,9 +658,19 @@ body.under_overlay > div.data_wrap > div > .data_container > .data_checking.file
   height: 156px;
   float: right;
   border: 2px solid #dc3b3b;
-  overflow: hidden;
   border-radius: 6px;
+  position: relative;
   margin: 0 250px 0 20px;
+}
+.wrap_all > article > div.content > ul.card_way > li > span:after {
+  content: " ";
+  display: block;
+  width: 97px;
+  height: 116px;
+  background: url('../images/prod_arrow.png') no-repeat right top;
+  position: absolute;
+  right: -116px;
+  top: -30px;
 }
 .wrap_all > article > div.content > ul.card_way > li > span > img {
   width: 244px;
@@ -658,12 +692,22 @@ body.under_overlay > div.data_wrap > div > .data_container > .data_checking.file
   float: left;
   margin: 0 20px 0 250px;
 }
+.wrap_all > article > div.content > ul.card_way > li:nth-child(even) > span:after {
+  background: url('../images/prod_arrow.png') no-repeat left top;
+  position: absolute;
+  right: auto;
+  left: -116px;
+  top: -30px;
+}
 .wrap_all > article > div.content > ul.card_way > li:nth-child(even) > p,
 .wrap_all > article > div.content > ul.card_way > li:nth-child(even) > h2 {
   text-align: left;
 }
 .wrap_all > article > div.content > ul.card_way > li:first-child > span {
   margin: 0 20px;
+}
+.wrap_all > article > div.content > ul.card_way > li:first-child > span:after {
+  display: none;
 }
 .wrap_all > article > div.contacts {
   margin: 0 0 30px;

@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'articles',
     'orders',
     "mailshelf",
+    "sorl.thumbnail",
 )
 
 MIDDLEWARE_CLASSES = (

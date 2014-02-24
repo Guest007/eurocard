@@ -43,7 +43,7 @@
                 $('html').addClass('hidden');
                 $('body').addClass('under_overlay')
                 .append('<div class="overlay"></div><div class="data_wrap"><div><div class="data_container"><div class="data_checking"></div></div></div></div>');
-                $('.data_checking').load('/second/'+result.id+'/');
+                $('.data_checking').load('/second/'+result.id+'/ .last_step');
             }
 
             if($(this).hasClass('calc')){
@@ -299,39 +299,34 @@
                         else{
                             valid = true;
                         }
-                        //console.log(valid);
                     } 
                 }
 
                 $this.submit(function(){
-
-
-                    //console.log("Call AJAX", csrftoken);
                     $this.find('input[name="csrfmiddlewaretoken"]').val(csrftoken);
-                    //console.log($('#file_data'));
                     var action = $(this).attr('action'),
                         self = $(this),
                         selection = $this.find('input, select').not(' .ratio, input[name="colors"], input[name="materials"], input[name="count_hidden"], input[name="lamination"], input[name="color_front"], input[name="color_back"]').serialize();
-                    //console.log(selection);
-                    //console.log(action);
+                         
                     $.ajax({
                         url: action,
                         type: 'POST',
                         data: selection,
+
                         before_send: function(xhr, settings) {
-                            //console.log("Before SENT")
                             if (!csrf_safe_method(settings.type) && same_origin(settings.url)) {
                                 xhr.setRequestHeader("X-CSRFToken", csrftoken);
                             }
                         },
                         success: function(result){
                             validate();
-                            //console.log(valid);
                             if(valid == true){
                                 confirm_order(result);
+
                             } 
                         }
                     });
+    
                     return false;
                 });
             }
@@ -342,7 +337,6 @@
                             count = parseFloat($(this).val())||0,
                             total = one_price*count,
                             total_fix = total.toFixed(2);
-                            //console.log(count, total, one_price);
                         if(count <= 0){
                             $(this).addClass('error').siblings('span').children('span').html('');
                         }
@@ -350,18 +344,12 @@
                             $(this).removeClass('error').siblings('span').children('span').html(total_fix+'руб.');
                         }
                     });
-
                     $(this).find('form').submit(function(){
-
-                        //console.log("Call AJAX", csrftoken);
                         $(this).find('input[name="csrfmiddlewaretoken"]').val(csrftoken);
-                        //console.log($('#file_data'));
                         var self = $(this),
                             action = $(this).attr('action'),
                             self = $(this);
-                            //selection = $this.find('input, select').not(' .ratio, input[name="colors"], input[name="materials"], input[name="count_hidden"], input[name="lamination"], input[name="color_front"], input[name="color_back"]').serialize();
-                        //console.log(selection);
-                        //console.log(action);
+                        
                         $.ajax({
                             url: action,
                             type: 'POST',
@@ -373,19 +361,21 @@
                                 }
                             },
                             success: function(result){
-
-                                    confirm_order(result);
- 
+                                confirm_order(result);
                             }
                         });
-                        return false;
+    
+                       return false;
                     });
                 });
-
-
+                function confirm_order(result) {
+                    $(this).find('input#id').val(result.id);
+                    $('html').addClass('hidden');
+                    $('body').addClass('under_overlay')
+                    .append('<div class="overlay"></div><div class="data_wrap"><div><div class="data_container"><div class="data_checking"></div></div></div></div>');
+                    $('.data_checking').load('/second/'+result.id+'/ .user_info');
+                }
             }
-
-
         });
     }
 }());
@@ -597,7 +587,36 @@ $(document).ready(function(){
     news_title_height();
 
     //Обратный звонок
-
+    function call_() {
+        var self = $('form.call');
+        $('.location > a').click(function(){
+            self.removeClass('hide');
+            return false;
+        });
+        self.find('.close_form').click(function(){
+            self.addClass('hide');
+        });
+        self.submit(function(){
+            var action = self.attr('action');
+            console.log(action);
+            $.ajax({
+                url: action,
+                type: 'POST',
+                data: self.serialize(),
+                complete: function(result){
+                    self.trigger( 'reset' );
+                    self.addClass('hide');
+                }
+            });
+        });
+        function confirm_answer() {
+            $('html').addClass('hidden');
+            $('body').addClass('under_overlay')
+            .append('<div class="overlay"></div><div class="data_wrap"><div><div class="data_container"><div class="data_checking"></div></div></div></div>');
+            $('.data_checking').html('<h2>Спасибо, Ваш запрос принят, в ближайшее время </h2>');
+        }
+    }
+    call_();
 
     $('.location > a').click(function(){
         $(this).siblings('form').removeClass('hide');

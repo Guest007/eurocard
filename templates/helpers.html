@@ -1,4 +1,4 @@
-<form id="final_form" class="jClever" method="post" action="{% url 'finish' %}">
+<form class="jClever last_step" method="post" action="{% url 'finish' %}">
     <input type="hidden" name="id" value="{{ object.id }}">
 	<div class="order">
 		<span>Ваш заказ<small class="close_order"><i class="fa fa-times"></i></small></span>
@@ -51,18 +51,37 @@
 	</div>
 </form>
 
-<script type="application/javascript">
-$('#final_form').submit(function(){
-        var action = $(this).attr('action');
-        var that = $(this);
-        $.ajax({
-            url: action,
-            type: 'POST',
-            data: that.serialize(),
-            complete: function(result){
-                document.location.href = "/";
-            }
-        });
-        return false;
-    });
+<script>
+	$('.last_step').submit(function(){
+	    var action = $(this).attr('action');
+	    var that = $(this);
+	    $.ajax({
+	        url: action,
+	        type: 'POST',
+	        data: that.serialize(),
+	        complete: function(result){
+	            document.location.href = "/";
+	        }
+	    });
+	});
 </script>
+
+<form class="jClever user_info" method="post" action="{% url 'finish' %}">
+    <input type="hidden" name="id" value="{{ object.id }}">
+	<div class="order info">
+		<span>Информация к заказу<small class="close_order"><i class="fa fa-times"></i></small></span>
+		<ul class="info">
+			<li>
+				<input type="text" name="name" placeholder="ФИО">
+				<input type="email" name="email" placeholder="Email">
+				<input type="text" name="phone_" placeholder="Номер телефона">
+			</li>
+		</ul>
+		<ul>
+			<li>
+				<input type="submit" value="Отправить заказ">
+			</li>
+		</ul>
+	</div>
+</form>
+

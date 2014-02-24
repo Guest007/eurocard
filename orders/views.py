@@ -189,11 +189,7 @@ def save_order(request, step=1):
     if templ is None:
         templ = OrderTemplate(name=(user if user else ''))  # Создаем тело заказа. Название - имя заказчика
 
-    if int(step) > 20:
-        print request.POST
-        print request.POST.get("id", False)
-        # print request.POST.get("emboss", False)
-    elif int(step) > 10:
+    if int(step) > 10:
         # print request.POST
         templ.color_back = None  # Color(id=request.POST.get("color_back", None))
         templ.color_front = Color(id=(request.POST.get("colors", None)))
@@ -298,7 +294,10 @@ def save_order1(request, step=1):
     except (TypeError, ValueError):
         id = 0
 
-    print request.POST
+    # print request.POST
+    draw = request.POST.get("count", None)  # количество в заказ
+    if not draw:
+        draw = 0
 
     time = datetime.datetime.now()
 
@@ -307,22 +306,21 @@ def save_order1(request, step=1):
     print price
 
     templ.pk = None
-    # templ.id = 0
+
     templ.is_template = False
     templ.name = str(time) + " " + templ.name
     templ.price = None
     templ.save()  # взяли шаблон по id, обрали признак шаблона и скопировали.
-    print "1234", templ.pk
 
     order = Orders(template=templ)
-    draw = request.POST.get("count", None)
+    # draw = request.POST.get("count", None)
     order.draw = draw
     order.cost = float(draw) * float(price)
 
     order.save()  # привязали заказ к шаблону, посчитали цену, записали. Теперь нужны остальные данные и всё.
 
     print order.cost
-    print order.template.name
+    # print order.template.name
 
 
     # user = request.POST.get("user", None)

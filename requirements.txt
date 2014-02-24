@@ -7,4 +7,4 @@ django-debug-toolbar
 django-menu
 django-annoying==0.7.7
 -e hg+https://bitbucket.org/anger/django-mailshelf@08649fb461d126d17b8569c2a763e5db835d6e1a#egg=django_mailshelf-dev
-
+sorl-thumbnail

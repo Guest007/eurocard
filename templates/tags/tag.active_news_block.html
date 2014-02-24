@@ -1,3 +1,4 @@
+{% load thumbnail %}
 <section class="news">
     <span><span>Акции и спецпредложения</span></span>
         <ul>
@@ -5,7 +6,11 @@
 {% for item in objects %}
 <li>
     <a href="/article/{{ item.slug }}">{{ item.title }}</a>
-    <img src="/media/{{ item.card }}" width="280px">
+    {% if item.card %}
+        {% thumbnail item.card "288" as im %}
+            <div style="background: url('{{ im.url }}') no-repeat center center"></div>
+        {% endthumbnail %}
+    {% endif %}
     <span>{{ item.annotation|safe|truncatewords_html:35 }}</span>
 </li>
 
