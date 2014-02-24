@@ -597,31 +597,7 @@ $(document).ready(function(){
     news_title_height();
 
     //Обратный звонок
-    function call_() {
-        var self = $('form.call');
-        $('.location > a').click(function(){
-            self.removeClass('hide');
-            return false;
-        });
-        $('form.call > span > small').click(function(){
-            self.addClass('hide');
-        });
-        self.submit(function(){
-            var action = $(this).attr('action');
-            var that = $(this);
-            $.ajax({
-                url: action,
-                type: 'POST',
-                data: that.serialize(),
-                complete: function(result){
-                    $('#call_back').trigger( 'reset' );
-                    $('#call_back').addClass('hide');
-                }
-            });
-            return false;
-        });
-    }
-    call_();
+
 
     $('.location > a').click(function(){
         $(this).siblings('form').removeClass('hide');

@@ -26,8 +26,8 @@
 						<a href="#">Заказать обратный звонок
 
 						</a>
-						<form id="call_back" class="call hide" method="post" action="/call-back/">
-							<span>Заказ звонка<small><i class="fa fa-times"></i></small></span>
+						<form class="call hide" method="post" action="/call-back/">
+							<span>Заказ звонка<small class="close_form"><i class="fa fa-times"></i></small></span>
 							<small><i class="fa fa-asterisk"></i></small>
 							<input type="text" name="fio" placeholder="ФИО">
 							<small class="phone"><i class="fa fa-asterisk"></i></small>
@@ -35,6 +35,33 @@
 							<textarea name="message" placeholder="Сообщение"></textarea>
 							<input type="submit" value="Отправить">
 						</form>
+						<script>
+						function call_() {
+					        var self = $('form.call');
+					        $('.location > a').click(function(){
+					            self.removeClass('hide');
+					            return false;
+					        });
+					        self.find('.close_form').click(function(){
+					            self.addClass('hide');
+					        });
+					        self.submit(function(){
+					            var action = self.attr('action');
+					            console.log(action);
+					            $.ajax({
+					                url: action,
+					                type: 'POST',
+					                data: self.serialize(),
+					                complete: function(result){
+					                    self.trigger( 'reset' );
+					                    self.addClass('hide');
+					                }
+					            });
+					            return false;
+					        });
+					    }
+					    call_();
+						</script>
 					</section>
 
 					<nav>
