@@ -409,61 +409,7 @@ $(document).ready(function(){
     //form_style();
 
     //Выбор адреса
-    function change_adress(){
-        var x=0,
-            y=0,
-            z=0,
-            f=0,
-            w=0,
-            r=0,
-            e=0;
-            
-        tabs_count = $('section.location > div > ul > li').length;
-        $('section.location > div > ul > li').each(function(){
-            x++;
-            $(this).attr('rel', x);
-        });
-        $('section.location > div > span').each(function(){
-            y++;
-            $(this).attr('rel', y);
-        });
-        $('section.location > span > span').each(function(){
-            z++;
-            $(this).attr('rel', z);
-        });
-        $('footer > div > span > span').each(function(){
-            f++;
-            $(this).attr('rel', f);
-        });
-        $('div.contacts > div > span > a').each(function(){
-            w++;
-            $(this).attr('rel', w);
-        });
-        $('div.contacts > div > ul').each(function(){
-            r++;
-            $(this).attr('rel', r);
-        });
-        $('div.contacts > div > img').each(function(){
-            e++;
-            $(this).attr('rel', e);
-        });
-        $('section.location > div > ul > li, div.contacts > div > span > a').not('current').click(function(){
-            
-            var this_rel = $(this).attr('rel');
-            $('section.location > div > ul > li[rel="'+this_rel+'"], div.contacts > div > span > a[rel="'+this_rel+'"]').addClass('current').siblings().removeClass('current');
-            $(this).addClass('current').siblings().removeClass('current');
-            $('section.location > div > span[rel="'+this_rel+'"], section.location > span > span[rel="'+this_rel+'"], footer > div > span > span[rel="'+this_rel+'"], div.contacts > div > ul[rel="'+this_rel+'"], div.contacts > div > img[rel="'+this_rel+'"]')
-            .addClass('current')
-            .siblings()
-            .removeClass('current');
-            return false;
-        });
-        $('section.location > div > ul > li').click(function(){
-            $('section.location > div:first-child').toggleClass('drop');
-            $(this).prependTo($(this).parent()[0])
-        });
-    }
-    change_adress();
+
 
     //Табы
     var i=0,
@@ -633,6 +579,104 @@ $(document).ready(function(){
 
     //calc();
 
+
+    
+    function change_adress(){
+        var x=0,
+            y=0,
+            z=0,
+            f=0,
+            w=0,
+            r=0,
+            e=0;
+            
+        //tabs_count = $('section.location > div > ul > li').length;
+        $('section.location > div > ul > li').each(function(){
+            x++;
+            $(this).attr('rel', x);
+        });
+        $('section.location > div > span').each(function(){
+            y++;
+            $(this).attr('rel', y);
+        });
+        $('section.location > span > span').each(function(){
+            z++;
+            $(this).attr('rel', z);
+        });
+        $('footer > div > span > span').each(function(){
+            f++;
+            $(this).attr('rel', f);
+        });
+        $('div.contacts > div > span > a').each(function(){
+            w++;
+            $(this).attr('rel', w);
+        });
+        $('div.contacts > div > ul').each(function(){
+            r++;
+            $(this).attr('rel', r);
+        });
+        $('div.contacts > div > img').each(function(){
+            e++;
+            $(this).attr('rel', e);
+        });
+        
+
+        $.getJSON('http://freegeoip.net/json/', function(location){
+            var city = location.city;
+            if(city=='Moscow'){
+                $('section.location > div > ul > li[rel="2"], section.location > div > span[rel="2"], section.location > span > span[rel="2"], footer > div > span > span[rel="2"], div.contacts > div > span > a[rel="2"], div.contacts > div > ul[rel="2"], div.contacts > div > img[rel="2"]').addClass('current');
+            }
+            else{
+                $('section.location > div > ul > li[rel="1"], section.location > div > span[rel="1"], section.location > span > span[rel="1"], footer > div > span > span[rel="1"], div.contacts > div > span > a[rel="1"], div.contacts > div > ul[rel="1"], div.contacts > div > img[rel="1"]').addClass('current');
+            }
+        });
+
+        
+
+        //console.log(city);
+
+
+
+
+        $('section.location > div > ul > li, div.contacts > div > span > a').not('current').click(function(){
+            
+            var this_rel = $(this).attr('rel');
+            $('section.location > div > ul > li[rel="'+this_rel+'"], div.contacts > div > span > a[rel="'+this_rel+'"]').addClass('current').siblings().removeClass('current');
+            $(this).addClass('current').siblings().removeClass('current');
+            $('section.location > div > span[rel="'+this_rel+'"], section.location > span > span[rel="'+this_rel+'"], footer > div > span > span[rel="'+this_rel+'"], div.contacts > div > ul[rel="'+this_rel+'"], div.contacts > div > img[rel="'+this_rel+'"]')
+            .addClass('current')
+            .siblings()
+            .removeClass('current');
+            return false;
+        });
+        $('section.location > div > ul > li').click(function(){
+            $('section.location > div:first-child').toggleClass('drop');
+            $(this).prependTo($(this).parent()[0])
+        });
+    }
+    change_adress();
+
+
+/*
+
+$.ajax({
+    type: 'GET',
+    url: 'http://ru.smart-ip.net/geoip-json',
+    dataType: '',
+    success: function(xml) {
+        jQuery(xml).find('ip').each(function(){
+            var city = $(this).find('city').text(),
+                region = $(this).find('region').text();
+            if(city!=region){
+                ipg = city+', '+region;
+            }else{
+                ipg = city;
+            }
+            $(’#ipg_content’).html(ipg);
+        });
+    }
+});
+*/
 
 
     

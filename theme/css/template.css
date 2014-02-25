@@ -39,6 +39,9 @@ body {
   position: relative;
   background: url('../images/main_background.png') repeat left top;
 }
+body > div.area {
+  display: none;
+}
 body.under_overlay > div.overlay {
   position: fixed;
   z-index: 9990;
