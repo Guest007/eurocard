@@ -2,16 +2,17 @@
 import os
 from annoying.functions import get_object_or_None
 from annoying.decorators import render_to
-import datetime, time
+import datetime
+import time
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 from django.core.urlresolvers import reverse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from orders.models import OrderTemplate, Orders, Material, Lamination, Color, Modificators, Coefficient
 import json
-from django.views.decorators.csrf import csrf_exempt, csrf_protect, ensure_csrf_cookie, requires_csrf_token
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django import http
 from django.http import HttpResponse
 from mailshelf import messages
@@ -51,8 +52,6 @@ def easyform(request):
 
 @csrf_exempt
 def readyform(request):
-    # price = Modificators.objects.all()
-    # coeff = Coefficient.objects.all()
     templ = OrderTemplate.objects.filter(is_template=True)
     template_name = 'ready-form.html'
     return render_to_response(template_name,
@@ -107,7 +106,6 @@ def edit_templ(request, pk, step=0):
 @csrf_protect
 def nextstep_order(request, pk):
     """Final confirm of Order"""
-    # print "pk: ", pk
     order = get_object_or_404(Orders, pk=int(pk))
     templ = OrderTemplate.objects.get(id=order.template.id)
     result = {"object": order,
@@ -123,14 +121,12 @@ def nextstep_order(request, pk):
 
 @csrf_exempt
 def ajax_save(request):
-    # print request.FILES
     result = []
     if len(request.FILES) == 1:
         upload = request.FILES.values()[0]
     else:
         raise http.Http404("Bad upload")
     filename = upload.name
-    # print filename
     ffile = save_uploaded_file_new(upload, filename)
     if ffile is not None and ffile is not False:
         result.append(ffile)
@@ -284,7 +280,6 @@ def save_order1(request, step=1):
     except (TypeError, ValueError):
         id = 0
 
-    # print request.POST
     draw = request.POST.get("count", None)  # количество в заказ
     if not draw:
         draw = 0
@@ -327,7 +322,6 @@ def callback(request):
     time = datetime.datetime.now()
 
     email = Settings.objects.get(slug='callback-mail')
-    # print email.content
 
     try:
         messages.CALL_BACK.send(email.content,

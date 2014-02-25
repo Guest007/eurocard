@@ -42,8 +42,6 @@ urlpatterns = patterns('',
     url(r"^save/ajax/(?P<step>\d+)/$", orders.save_order, name="ajax-save-order"),
     url(r"^save/templ/(?P<step>\d+)/$", orders.save_order1, name="ajax-save-torder"),
 
-    url(r'^test/', views.test, name='test'),
-
     url(r'^grappelli/', include('grappelli.urls')),
     url(r'^admin/filebrowser/', include(site.urls)),
     url(r'^admin/', include(admin.site.urls)),

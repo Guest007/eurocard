@@ -14,10 +14,6 @@ class TemplOrderForm(forms.ModelForm):
 
 
 class OrderForm(forms.ModelForm):
-    # name = forms.CharField(verbose_name="Наименование")
-    # description = forms.CharField(verbose_name="Описание")
-    # constant boolean fields
-    # is_template = forms.BooleanField(verbose_name="Это заготовка?")
     chip = forms.BooleanField()
     scratch = forms.BooleanField()
     magnet = forms.BooleanField()
