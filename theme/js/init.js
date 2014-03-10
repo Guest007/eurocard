@@ -1,12 +1,134 @@
-    //Калькулятор
+//Калькулятор
+var valid = null;
+(function() {
+    $.fn.valid = function() {
+        return this.each(function() {
+            var $this = $(this);
+            $this.find('input[type="submit"]').click(function() {
+                var b = [];
+                $this.find('input.for_valid').each(function() {
+                    var self = $(this),
+                        pattern,
+                        error_text;
+                    self_name = $(this).attr('name');
+                    self_val = $(this).val();
 
-(function(){
-    $.fn.calc = function(){
-        return this.each(function(){
+                    function add_mes() {
+                        b.push(0);
+                        if (self.siblings('i').length == 0) {
+                            self.parent().append('<i class="error show">' + error_text + '</i>');
+                            self.siblings('i.error').css({
+                                'left': self.parent().position().left,
+                                'top': self.parent().position().top - 36
+                            });
+                        }
+                    }
+                    if (self_val == '') {
+                        error_text = 'Поле не заполнено';
+                        add_mes();
+                    } else {
+                        function check_function() {
+                            if (self_val == '') {
+                                add_mes();
+                            } else if (self_val.match(pattern)) {
+                                b.push(1);
+                                self.siblings('i').remove();
+                            } else {
+                                error_text = 'Не верный формат данных';
+                                add_mes();
+                            }
+                        }
+                        if (self_name == 'count') {
+                            pattern = /^\d+$/;
+                            check_function();
+                            if (self_val < 500) {
+                                error_text = 'Минимальное значение - 500';
+                                add_mes();
+                            }
+                        }
+                        if (self_name == 'user') {
+                            pattern = /^[a-zA-ZА-Яа-яЁё\s-]+$/;
+                            check_function();
+                        }
+                        if (self_name == 'phone') {
+                            pattern = /^\d+$/;
+                            check_function();
+                        }
+                        if (self_name == 'email') {
+                            pattern = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,4}$/;
+                            check_function();
+                        }
+                    }
+                });
+                if ($.inArray(0, b) > -1) {
+                    valid = false;
+                } else {
+                    valid = true;
+                }
+            });
+            $this.find('input.for_valid').on("input", function() {
+                var self = $(this),
+                    pattern,
+                    error_text,
+                    self_name = $(this).attr('name'),
+                    self_val = $(this).val();
 
-            function get_cookie(name){
+                function add_mes() {
+                    if (self.siblings('i').length == 0) {
+                        self.parent().append('<i class="error show">' + error_text + '</i>');
+                        self.siblings('i.error').css({
+                            'left': self.parent().position().left,
+                            'top': self.parent().position().top - 36
+                        });
+                    }
+                }
+                self.siblings('i').remove();
+
+                function check_function() {
+                    if (self_val == '') {
+                        error_text = 'Поле не заполнено';
+                        add_mes();
+                    } else if (self_val.match(pattern)) {
+                        self.siblings('i').remove();
+                    } else {
+                        error_text = 'Не верный формат данных';
+                        add_mes();
+                    }
+                }
+                if (self_name == 'count') {
+                    pattern = /^\d+$/;
+                    check_function();
+                    if (self_val < 500) {
+                        error_text = 'Минимальное значение - 500';
+                        add_mes();
+                    }
+                }
+                if (self_name == 'user') {
+                    pattern = /^[a-zA-ZА-Яа-яЁё\s-]+$/;
+                    check_function();
+                }
+                if (self_name == 'phone') {
+                    pattern = /^\d+$/;
+                    check_function();
+                }
+                if (self_name == 'email') {
+                    pattern = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,4}$/;
+                    check_function();
+                }
+            });
+        });
+    }
+}());
+
+(function() {
+    $.fn.calc = function() {
+        return this.each(function() {
+            var $this = $(this);
+            //valid = null;
+
+            function get_cookie(name) {
                 var cookie_value = null;
-                if(document.cookie && document.cookie != ''){
+                if (document.cookie && document.cookie != '') {
                     var cookies = document.cookie.split(';');
                     for (var i = 0; i < cookies.length; i++) {
                         var cookie = $.trim(cookies[i]);
@@ -19,7 +141,6 @@
                 }
                 return cookie_value;
             }
-
             var csrftoken = get_cookie('csrftoken');
 
             function csrf_safe_method(method) {
@@ -34,115 +155,205 @@
                 // Allow absolute or scheme relative URLs to same origin
                 return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
                     (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
-                    // or any other URL that isn't scheme relative or absolute i.e relative.
-                    !(/^(\/\/|http:|https:).*/.test(url));
+                // or any other URL that isn't scheme relative or absolute i.e relative.
+                !(/^(\/\/|http:|https:).*/.test(url));
             }
 
             function confirm_order(result) {
                 $this.find('input#id').val(result.id);
-                $('html').addClass('hidden');
-                $('body').addClass('under_overlay')
-                .append('<div class="overlay"></div><div class="data_wrap"><div><div class="data_container"><div class="data_checking"></div></div></div></div>');
-                $('.data_checking').load('/second/'+result.id+'/ .confirm');
+                add_popup();
+                $('.data_checking').load('/second/' + result.id + '/ .confirm');
             }
 
-            if($(this).hasClass('calc')){
-                var $this = $(this),
-                    valid = null,
-                    hidden = $(this).find('input[type="hidden"]'),
-                    select = $(this).find('select'),
-                    checkbox = $(this).find('input[type="checkbox"]');
 
-                hidden.not('.ratio').val(0);
-                $this.find('input[name="count"]').val('');
-                $this.find('input[name="count_hidden"]').val(0);
-
-                select.each(function(){
-                    var self = $(this),
-                        self_name = $(this).attr('name'),
-                        self_val = $(this).find('option:selected').data('price').replace(',','.');
-                    $this.find('input[name="'+self_name+'"]').val(self_val);
-                });
-
-                select.change(function(){
-                    var self_name = $(this).attr('name'),
-                        self_val = $(this).find('option:selected').data('price').replace(',','.');
-                    $this.find('input[name="'+self_name+'"]').val(parseFloat(self_val)).trigger('change');
-                });
-
-                if($this.find('span.flag').length > 0) {
-                    $('span.flag').click(function(){
+            /*
+            function validate() {
+                $this.find('input[type="submit"]').click(function() {
+                    var b = [];
+                    $this.find('input.for_valid').each(function() {
                         var self = $(this),
-                            self_id = $(this).attr('id');
-                        self.toggleClass('active');
-                        if(self.hasClass('active')){
-                            self.children('i').removeClass('fa-times').addClass('fa-check');
-                            $this.find('input[name="'+self_id+'"]').val(parseFloat(self.data('price').replace(',','.')));
-                        }
-                        else{
-                            if(self.children('i').hasClass('fa-check')){
-                                self.children('i').removeClass('fa-check').addClass('fa-times');
+                            pattern,
+                            error_text;
+                        self_name = $(this).attr('name');
+                        self_val = $(this).val();
+
+                        function add_mes() {
+                            b.push(0);
+                            if (self.siblings('i').length == 0) {
+                                self.parent().append('<i class="error show">' + error_text + '</i>');
+                                self.siblings('i.error').css({
+                                    'left': self.parent().position().left,
+                                    'top': self.parent().position().top - 36
+                                });
                             }
-                            $this.find('input[name="'+self_id+'"]').val('0');
-                        };
-                        $this.find('input[name="'+self_id+'"]').trigger('change');
-                    });
-                    $this.find('small.question').click(function(){
-                            $(this).toggleClass('active');
-                    });
-                }
-                else {
-                    checkbox.change(function(){
-                        var self = $(this),
-                            self_name = $(this).attr('name'),
-                            //this_checked = $(this).prop('checked'),
-                            self_val = $(this).data('price').replace(',','.');
-                        if(self.is(':checked')){
-                            $this.find('input[name="'+self_name+'"]').val(parseFloat(self_val));
                         }
-                        else{
-                            $this.find('input[name="'+self_name+'"]').val(0);
+                        if (self_val == '') {
+                            error_text = 'Поле не заполнено';
+                            add_mes();
+                        } else {
+                            function check_function() {
+                                if (self_val == '') {
+                                    add_mes();
+                                } else if (self_val.match(pattern)) {
+                                    b.push(1);
+                                    self.siblings('i').remove();
+                                } else {
+                                    error_text = 'Не верный формат данных';
+                                    add_mes();
+                                }
+                            }
+                            if (self_name == 'count') {
+                                pattern = /^\d+$/;
+                                check_function();
+                                if (self_val < 500) {
+                                    error_text = 'Минимальное значение - 500';
+                                    add_mes();
+                                }
+                            }
+                            if (self_name == 'user') {
+                                pattern = /^[a-zA-ZА-Яа-яЁё\s-]+$/;
+                                check_function();
+                            }
+                            if (self_name == 'phone') {
+                                pattern = /^\d+$/;
+                                check_function();
+                            }
+                            if (self_name == 'email') {
+                                pattern = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,4}$/;
+                                check_function();
+                            }
                         }
-
                     });
-                }
-
-                $this.find('input[name="count"]').keyup(function(){
+                    if ($.inArray(0, b) > -1) {
+                        valid = false;
+                    } else {
+                        valid = true;
+                    }
+                });
+                $this.find('input.for_valid').on("input", function() {
                     var self = $(this),
-                        self_val = parseFloat($(this).val())||0;
-                    if(self_val < 500){
-                        /*
-                        if(self.siblings('i.error').length == 0){
-                            self.addClass('error')
-                            self.parent().append('<i class="error show">Минимальное значение 500 экземпляров</i>');
+                        pattern,
+                        error_text,
+                        self_name = $(this).attr('name'),
+                        self_val = $(this).val();
+
+                    function add_mes() {
+                        if (self.siblings('i').length == 0) {
+                            self.parent().append('<i class="error show">' + error_text + '</i>');
                             self.siblings('i.error').css({
                                 'left': self.parent().position().left,
                                 'top': self.parent().position().top - 36
                             });
                         }
-                        */
-                        $this.find('input[name="count_hidden"]').val(0).trigger('change');
                     }
-                    else{
-                        //self.removeClass('error').siblings('i.error').remove();
+                    self.siblings('i').remove();
+
+                    function check_function() {
+                        if (self_val == '') {
+                            error_text = 'Поле не заполнено';
+                            add_mes();
+                        } else if (self_val.match(pattern)) {
+                            self.siblings('i').remove();
+                        } else {
+                            error_text = 'Не верный формат данных';
+                            add_mes();
+                        }
+                    }
+                    if (self_name == 'count') {
+                        pattern = /^\d+$/;
+                        check_function();
+                        if (self_val < 500) {
+                            error_text = 'Минимальное значение - 500';
+                            add_mes();
+                        }
+                    }
+                    if (self_name == 'user') {
+                        pattern = /^[a-zA-ZА-Яа-яЁё\s-]+$/;
+                        check_function();
+                    }
+                    if (self_name == 'phone') {
+                        pattern = /^\d+$/;
+                        check_function();
+                    }
+                    if (self_name == 'email') {
+                        pattern = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,4}$/;
+                        check_function();
+                    }
+                });
+            }
+*/
+            if ($this.hasClass('calc')) {
+                var hidden = $(this).find('input[type="hidden"]'),
+                    select = $(this).find('select'),
+                    checkbox = $(this).find('input[type="checkbox"]');
+                //validate();
+                hidden.not('.ratio').val(0);
+                $this.find('input[name="count"]').val('');
+                $this.find('input[name="count_hidden"]').val(0);
+                select.each(function() {
+                    var self = $(this),
+                        self_name = $(this).attr('name'),
+                        self_val = $(this).find('option:selected').data('price').replace(',', '.');
+                    $this.find('input[name="' + self_name + '"]').val(self_val);
+                });
+                select.change(function() {
+                    var self_name = $(this).attr('name'),
+                        self_val = $(this).find('option:selected').data('price').replace(',', '.');
+                    $this.find('input[name="' + self_name + '"]').val(parseFloat(self_val)).trigger('change');
+                });
+                if ($this.find('span.flag').length > 0) {
+                    $('span.flag').click(function() {
+                        var self = $(this),
+                            self_id = $(this).attr('id');
+                        self.toggleClass('active');
+                        if (self.hasClass('active')) {
+                            self.children('i').removeClass('fa-times').addClass('fa-check');
+                            $this.find('input[name="' + self_id + '"]').val(parseFloat(self.data('price').replace(',', '.')));
+                        } else {
+                            if (self.children('i').hasClass('fa-check')) {
+                                self.children('i').removeClass('fa-check').addClass('fa-times');
+                            }
+                            $this.find('input[name="' + self_id + '"]').val('0');
+                        };
+                        $this.find('input[name="' + self_id + '"]').trigger('change');
+                    });
+                    $this.find('small.question').click(function() {
+                        $(this).toggleClass('active');
+                    });
+                } else {
+                    checkbox.change(function() {
+                        var self = $(this),
+                            self_name = $(this).attr('name'),
+                            self_val = $(this).data('price').replace(',', '.');
+                        if (self.is(':checked')) {
+                            $this.find('input[name="' + self_name + '"]').val(parseFloat(self_val));
+                        } else {
+                            $this.find('input[name="' + self_name + '"]').val(0);
+                        }
+                        $this.find('input[type="hidden"]').trigger('change');
+                    });
+                }
+                $this.find('input[name="count"]').on("input", function() {
+                    var self = $(this),
+                        self_val = parseFloat($(this).val()) || 0;
+                    if (self_val < 500) {
+                        $this.find('input[name="count_hidden"]').val(0).trigger('change');
+                    } else {
                         $this.find('input[name="count_hidden"]').val(parseFloat(self_val)).trigger('change');
                     };
                 });
-
-                if($this.find('input[type="file"]').length > 0){
+                if ($this.find('input[type="file"]').length > 0) {
                     $("#file_data").change(function() {
                         var options = {
                             url: '/uploadfile/',
                             replaceTarget: true,
                             target: $('#fd'),
-                            success: function(data) {
-                            }
+                            success: function(data) {}
                         };
                         $this.ajaxSubmit(options);
                     });
                 }
-
-                hidden.change(function(){
+                hidden.change(function() {
                     var flag_val = 0,
                         count_val = parseFloat($this.find('input[name="count_hidden"]').val()),
                         color_val = parseFloat($this.find('input[name="colors"]').val()),
@@ -151,240 +362,129 @@
                         face_color = parseFloat($this.find('input[name="color_front"]').val()),
                         back_color = parseFloat($this.find('input[name="color_back"]').val()),
                         total_colors = color_val + face_color + back_color;
-
                     $this.find('input.flag').each(function() {
-                        flag_val += parseFloat($(this).val())||0;
+                        flag_val += parseFloat($(this).val()) || 0;
                     });
                     var values = {},
-                        range_array =[];
+                        range_array = [];
                     $this.find('input.ratio').each(function() {
-                        var self_val = parseFloat($(this).val().replace(',','.'));
-                            self_name = parseFloat($(this).attr('name')),
-                            q = count_val-self_name;
-                        if(q > 0){
+                        var self_val = parseFloat($(this).val().replace(',', '.'));
+                        self_name = parseFloat($(this).attr('name')),
+                        q = count_val - self_name;
+                        if (q > 0) {
                             values[self_val] = q;
                             range_array.push(q);
-                        } 
+                        }
                     });
                     var min = Math.min.apply(null, range_array);
                     var z = 1;
-                    $.each(values, function(key, value){
-                        if(value == min){
+                    $.each(values, function(key, value) {
+                        if (value == min) {
                             z = parseFloat(key);
-                        }              
+                        }
                     });
-                    var sum = parseFloat(z*count_val*(flag_val+total_colors+material_val+lamination_val)).toFixed(2);
+                    var sum = parseFloat(z * count_val * (flag_val + total_colors + material_val + lamination_val)).toFixed(2);
                     $this.find('input[name="sum"]').val(sum);
-                    $this.find('p.sum').html(sum+' руб.');
+                    $this.find('p.sum').html(sum + ' руб.');
                 });
-
-
-
-                function validate() {
-                    var validate_values = {},
-                        a = [],
-                        b = [];  
-                    $this.find('input.for_valid').each(function(){
-                        var self = $(this),
-                            self_name = $(this).attr('name'),
-                            self_val = $(this).val();
-                            console.log(self, self_name);
-                        validate_values[self_name] = self_val;
-                        a.push(self_val);
-                    });
-                    if ($.inArray('', a) > -1 ) {
-                        $.each(validate_values, function(key, value){
-                            if(value == ''){
-                                if($this.find('input[name="'+key+'"]').siblings('i').length == 0){
-                                    $this.find('input[name="'+key+'"]').parent().append('<i class="error show">Поле не заполнено</i>');
-                                    $this.find('input[name="'+key+'"]').siblings('i.error').css({
-                                        'left': $this.find('input[name="'+key+'"]').parent().position().left,
-                                        'top': $this.find('input[name="'+key+'"]').parent().position().top - 36
-                                    });
-                                    console.log($this.find('input[name="'+key+'"]').position().left, $this.find('input[name="'+key+'"]').parent().position().top);
-                                }
-                            }
-                            else {
-                                $this.find('input[name="'+key+'"]').siblings('i.error').remove();
-                                    var pattern,
-                                        error_text;
-                                    function check_function() {
-                                        if(value.match(pattern)){
-                                            b.push(1);
-                                            $this.find('input[name="'+key+'"]').siblings('i.error').remove();
-
-
-                                        }
-                                        else{
-                                            b.push(0);
-
-                                            if($this.find('input[name="'+key+'"]').siblings('i').length == 0){
-                                                $this.find('input[name="'+key+'"]').parent().append('<i class="error show">'+error_text+'</i>');
-                                                $this.find('input[name="'+key+'"]').siblings('i.error').css({
-                                                    'left': $this.find('input[name="'+key+'"]').parent().position().left,
-                                                    'top': $this.find('input[name="'+key+'"]').parent().position().top - 36
-                                                });
-                                                console.log($this.find('input[name="'+key+'"]').position().left, $this.find('input[name="'+key+'"]').parent().position().top);
-                                            }
-                                    
-                                            //$this.find('i.error').addClass('show')
-                                        }
-                                    }
-                                    if(key == 'user') {
-                                        pattern = /^[a-zA-ZА-Яа-яЁё\s-]+$/;
-                                        error_text = 'name_is_not_valid';
-                                        check_function();
-
-                                    }
-                                    if(key == 'phone_'){
-                                        pattern = /^\d+$/;
-                                        error_text = 'phone_is_not_valid';
-                                        check_function();
-                                    }
-                                    if(key == 'email'){
-                                        pattern = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,4}$/;
-                                        error_text = 'email_is_not_valid';
-                                        check_function();
-                                    }
-                            }
-                        });
-                    } 
-                    else {
-                        $.each(validate_values, function(key, value){
-                            $this.find('input[name="'+key+'"]').siblings('label').removeClass('error');
-                            var pattern,
-                                error_text;
-                            function check_function() {
-                                if(value.match(pattern)){
-                                    b.push(1);
-                                    $this.find('input[name="'+key+'"]').siblings('i.error').remove();
-
-
-                                }
-                                else{
-                                    b.push(0);
-
-                                    if($this.find('input[name="'+key+'"]').siblings('i').length == 0){
-                                        $this.find('input[name="'+key+'"]').parent().append('<i class="error show">'+error_text+'</i>');
-                                        $this.find('input[name="'+key+'"]').siblings('i.error').css({
-                                            'left': $this.find('input[name="'+key+'"]').parent().position().left,
-                                            'top': $this.find('input[name="'+key+'"]').parent().position().top - 36
-                                        });
-                                        console.log($this.find('input[name="'+key+'"]').position().left, $this.find('input[name="'+key+'"]').parent().position().top);
-                                    }
-                            
-                                    //$this.find('i.error').addClass('show')
-                                }
-                            }
-                            if(key == 'user') {
-                                pattern = /^[a-zA-ZА-Яа-яЁё\s-]+$/;
-                                error_text = 'name_is_not_valid';
-                                check_function();
-
-                            }
-                            if(key == 'phone_'){
-                                pattern = /^\d+$/;
-                                error_text = 'phone_is_not_valid';
-                                check_function();
-                            }
-                            if(key == 'email'){
-                                pattern = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,4}$/;
-                                error_text = 'email_is_not_valid';
-                                check_function();
-                            }
-                        });
-                        if ($.inArray(0, b) > -1 ) {
-                            valid = false;
-                        }
-                        else{
-                            valid = true;
-                        }
-                    } 
-                }
-
-                $this.submit(function(){
+                $this.submit(function() {
                     $this.find('input[name="csrfmiddlewaretoken"]').val(csrftoken);
-                    var action = $(this).attr('action'),
-                        self = $(this),
+                    var action = $this.attr('action'),
                         selection = $this.find('input, select').not(' .ratio, input[name="colors"], input[name="materials"], input[name="count_hidden"], input[name="lamination"], input[name="color_front"], input[name="color_back"]').serialize();
-                         
-                    $.ajax({
-                        url: action,
-                        type: 'POST',
-                        data: selection,
-
-                        before_send: function(xhr, settings) {
-                            if (!csrf_safe_method(settings.type) && same_origin(settings.url)) {
-                                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    if (valid == true) {
+                        $.ajax({
+                            url: action,
+                            type: 'POST',
+                            data: selection,
+                            before_send: function(xhr, settings) {
+                                if (!csrf_safe_method(settings.type) && same_origin(settings.url)) {
+                                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                                }
+                            },
+                            success: function(result) {
+                                if (valid == true) {
+                                    confirm_order(result);
+                                }
                             }
-                        },
-                        success: function(result){
-                            validate();
-                            if(valid == true){
-                                confirm_order(result);
-
-                            } 
-                        }
-                    });
-    
+                        });
+                    }
                     return false;
                 });
-            }
-            else{
-                $(this).children('li').each(function(){
-                    $(this).find('input[type="text"]').val('').keyup(function(){
+            } else {
+                $this.each(function() {
+                    //validate();
+                    $(this).find('input[type="text"]').val('').on('input', function() {
+
                         var one_price = parseFloat($(this).siblings('span').children('small').html()),
-                            count = parseFloat($(this).val())||0,
-                            total = one_price*count,
+                            count = parseFloat($(this).val()) || 0,
+                            total = one_price * count,
                             total_fix = total.toFixed(2);
-                        if(count <= 0){
+                        if (count <= 500) {
                             $(this).addClass('error').siblings('span').children('span').html('');
-                        }
-                        else{
-                            $(this).removeClass('error').siblings('span').children('span').html(total_fix+'руб.');
+                        } else {
+                            $(this).removeClass('error').siblings('span').children('span').html(total_fix + 'руб.');
                         }
                     });
-                    $(this).find('form').submit(function(){
+
+                    $(this).submit(function() {
                         $(this).find('input[name="csrfmiddlewaretoken"]').val(csrftoken);
                         var self = $(this),
                             action = $(this).attr('action'),
                             self = $(this);
-                        
+
                         $.ajax({
                             url: action,
                             type: 'POST',
                             data: self.serialize(),
                             before_send: function(xhr, settings) {
-                                //console.log("Before SENT")
                                 if (!csrf_safe_method(settings.type) && same_origin(settings.url)) {
                                     xhr.setRequestHeader("X-CSRFToken", csrftoken);
                                 }
                             },
-                            success: function(result){
-                                confirm_order(result);
+                            success: function(result) {
+
+                                //console.log(valid)
+                                if (valid == true) {
+                                    confirm_order(result);
+                                }
                             }
                         });
-    
-                       return false;
+                        return false;
                     });
                 });
+
                 function confirm_order(result) {
                     $(this).find('input#id').val(result.id);
-                    $('html').addClass('hidden');
-                    $('body').addClass('under_overlay')
-                    .append('<div class="overlay"></div><div class="data_wrap"><div><div class="data_container"><div class="data_checking"></div></div></div></div>');
-                    $('.data_checking').load('/second/'+result.id+'/ .user_info');
+                    add_popup();
+                    $('.data_checking').load('/second/' + result.id + '/ .user_info',
+                        function() {
+                            valid = false;
+                            //console.log(valid, 'ronin', $(this));
+                            $(this).find('form').valid();
+                        }
+                    );
                 }
             }
         });
     }
 }());
 
+function add_popup() {
+    var s = 0,
+        scrollDiv = document.createElement("div");
+    scrollDiv.id = "mfp-sbm";
+    scrollDiv.style.cssText = 'width: 99px; height: 99px; overflow: scroll; position: absolute; top: -9999px;';
+    document.body.appendChild(scrollDiv);
+    s = scrollDiv.offsetWidth - scrollDiv.clientWidth;
+    document.body.removeChild(scrollDiv);
 
-
-
-
-
+    $('html').addClass('hidden').css({
+        'margin-right': s
+    });
+    //console.log(s);
+    $('body').addClass('under_overlay')
+        .append('<div class="overlay"></div><div class="data_wrap"><div><div class="data_container"><div class="data_checking"></div></div></div></div>');
+}
 
 //Формы
 function form_style() {
@@ -402,156 +502,152 @@ function form_style() {
     });
 }
 
-$(document).ready(function(){
-
-    //$('form.calc').calc();
-    //Формы
-    //form_style();
-
-    //Выбор адреса
-
-
-    //Табы
-    var i=0,
-        h=0;
+//Табы на главной, загрузка форм
+function index_tabs() {
+    var x = 0,
+        y = 0;
     tabs_count = $('section.order > div > ul > li').length;
-    $('section.order > div > ul > li').each(function(){
-        i++;
-        $(this).attr('id', i);
+    $('section.order > div > ul > li').each(function() {
+        x++;
+        $(this).attr('id', x);
     });
-    $('section.order > div > div').each(function(){
-        h++;
-        $(this).attr('rel', h);
-
-        if($(this).hasClass('current')){
-            $(this).load('/form_'+h+'/', function(){
-                //console.log($(this));
-                $(this).children('form').calc();
-                //form_style();
+    $('section.order > div > div').each(function() {
+        y++;
+        $(this).attr('rel', y);
+        if ($(this).hasClass('current')) {
+            $(this).load('/form_' + y + '/', function() {
+                $(this).find('form').calc().valid();
             });
         }
- 
     });
-    $('section.order > div > ul > li').not('current').click(function(){
+    $('section.order > div > ul > li').not('current').click(function() {
         var this_id = $(this).attr('id'),
-            form_container = $('section.order > div > div[rel="'+this_id+'"]');
+            form_container = $('section.order > div > div[rel="' + this_id + '"]');
         $(this).addClass('current').siblings('li').removeClass('current');
-        form_container
-        .addClass('current')
-        .siblings('div')
-        .removeClass('current');
-        
-        if(form_container.children('form').length == 0){
-            form_container.load('/form_'+this_id+'/', function(){
-                //calc();
-                //form_style()
-                console.log($(this));
-                $(this).children('form').calc();
-                $(this).children('ul').calc();
+        form_container.addClass('current').siblings('div').removeClass('current');
+        if (form_container.children('form').length == 0) {
+            form_container.load('/form_' + this_id + '/', function() {
+                $(this).find('form').calc().valid();
+                //$(this).find('ul').calc();
             });
         }
-        
     });
-    $('a.show_price').click(function(){
-        $(this).siblings('div.hide').slideToggle();
+}
+
+//Выравнивание высоты заголовка новостей
+function news_title_height() {
+    var title_height = 0;
+    $('section.news > ul > li > a').each(function() {
+        var this_height = parseFloat($(this).height());
+        if (this_height > title_height) {
+            title_height = this_height;
+        };
+    });
+    $('section.news > ul > li > a').height(title_height);
+}
+
+//Обратный звонок
+function call_() {
+    var $this = $('form.call'),
+        valid;
+    $('.location > div > a').click(function() {
+        $this.removeClass('hide');
         return false;
     });
-
-
-    //Заказ (закрываем модальное окно)
-    $(document).on('click', '.close_order', function(){
-        $('div.data_checking, div.overlay').remove();
-        $('body, html').removeClass();
+    $this.find('.close_form').click(function() {
+        $this.addClass('hide').find('i').not('.fa').remove();
+        $this.find('input[type="text"], textarea').val('');
     });
-    $(document).on('click', '.close_order.reset', function(){
-        document.location.href = "/";
-    });
-
-    $(document).on('click', '.data_checking a.next_step', function(){
-        $('.data_checking').find('.order').addClass('hide');
-        $('.data_checking').addClass('files').find('.files').removeClass('hide');
-        return false;
-    });
-    $(document).on('click', '.data_checking a.back', function(){
-        $('.data_checking').find('.files').removeClass('hide');
-        $('.data_checking').removeClass('files').find('.order').removeClass('hide');
-        //$('.data_checking > form').load('/include/helpers.html .files');
-        return false;
-    });
-    
-    $(document).on('submit', '.last_step', function(){
-        var action = $(this).attr('action'),
-            that = $(this);
+    $this.submit(function() {
+        var action = $this.attr('action');
         $.ajax({
             url: action,
             type: 'POST',
-            data: that.serialize(),
-            complete: function(result){
-                $('.data_checking').addClass('thanks').html('<span>Спасибо за ваш заказ.<small class="close_order reset"><i class="fa fa-times"></i></small></span><span>Письмо с информацией отправлено на указанный вами адрес электронной почты.</span><span>В ближайшее время наш сотрудник свяжется с вами для уточнения деталей.</span>');
-                //document.location.href = "/";
+            data: $this.serialize(),
+            complete: function(result) {
+                $this.addClass('hide');
+                add_popup();
+                $('.data_checking').addClass('thanks').html('<span>Ваша заявка принята.<small class="close_order"><i class="fa fa-times"></i></small></span><span>В ближайшее время наш сотрудник свяжется с вами по указанному в заявке номеру телефона.</span>');
             }
         });
         return false;
     });
+}
 
+//Смена адреса в раделе 'Контакты'
+function change_adress() {
+    var x = 0,
+        y = 0,
+        z = 0;
+    $('div.contacts > div > span > a').each(function() {
+        x++;
+        $(this).attr('rel', x);
+    });
+    $('div.contacts > div > ul').each(function() {
+        y++;
+        $(this).attr('rel', y);
+    });
+    $('div.contacts > div > img').each(function() {
+        z++;
+        $(this).attr('rel', z);
+    });
+    $('div.contacts > div > span > a').not('current').click(function() {
+        var this_rel = $(this).attr('rel');
+        $(this).addClass('current').siblings().removeClass('current');
+        $('div.contacts > div > ul[rel="' + this_rel + '"], div.contacts > div > img[rel="' + this_rel + '"]').addClass('current').siblings().removeClass('current');
+        return false;
+    });
+}
 
-    //Выравнивание высоты заголовка новостей
+$(document).ready(function() {
 
-    function news_title_height() {
-        var title_height = 0;
-        $('section.news > ul > li > a').each(function(){
-            var this_height = parseFloat($(this).height());
-            if(this_height > title_height) {
-                title_height = this_height;
-            };
-        });
-        $('section.news > ul > li > a').height(title_height);
-    }
+    index_tabs();
+
     news_title_height();
 
-    //Обратный звонок
-    function call_() {
-        var self = $('form.call');
-        $('.location > a').click(function(){
-            self.removeClass('hide');
-            return false;
+    call_();
 
+    change_adress();
+
+    //Тоглим таблиц с ценами в разделе 'Цены'
+    $('a.show_price').click(function() {
+        $(this).siblings('div.hide').slideToggle();
+        return false;
+    });
+
+    //Заказ (закрываем модальное окно)
+    $(document).on('click', '.close_order', function() {
+        $('div.data_checking, div.overlay').remove();
+        $('body, html').removeClass();
+        $('html').css({
+            'margin-right': 0
         });
-        console.log(self);
-        self.find('.close_form').click(function(){
-            self.addClass('hide');
-        });
-        self.submit(function(){
-            var action = self.attr('action');
-            console.log(action);
+    });
+    $(document).on('click', '.close_order.reset', function() {
+        document.location.href = "/";
+    });
+
+    //Подтверждение заказа.
+    $(document).on('submit', '.last_step', function() {
+        var action = $(this).attr('action'),
+            self = $(this);
+        if (valid == true) {
             $.ajax({
                 url: action,
                 type: 'POST',
                 data: self.serialize(),
-                complete: function(result){
-                    //self.trigger( 'reset' );
-                    self.addClass('hide');
-                    $('html').addClass('hidden');
-                    $('body').addClass('under_overlay')
-                    .append('<div class="overlay"></div><div class="data_wrap"><div><div class="data_container"><div class="data_checking"></div></div></div></div>');
-                    $('.data_checking').addClass('thanks').html('<span>Ваша заявка принята.<small class="close_order"><i class="fa fa-times"></i></small></span><span>В ближайшее время наш сотрудник свяжется с вами по указанному в заявке номеру телефона.</span>');
+                complete: function(result) {
+                    $('.data_checking').addClass('thanks').html('<span>Спасибо за ваш заказ.<small class="close_order reset"><i class="fa fa-times"></i></small></span><span>Письмо с информацией отправлено на указанный вами адрес электронной почты.</span><span>В ближайшее время наш сотрудник свяжется с вами для уточнения деталей.</span>');
                 }
             });
             return false;
-        });
-    }
-    call_();
-
-    $('.location > a').click(function(){
-        $(this).siblings('form').removeClass('hide');
-        return false;
-    });
-    $('form.call > span > small').click(function(){
-        $(this).parents('form').addClass('hide');
+        } else {
+            return false;
+        };
     });
 
     //Убираем слэш
-    $('div.ready > ul > li').each(function(){
+    $('div.ready > ul > li').each(function() {
         $(this).children().children('li').last().addClass('last');
     });
 
@@ -572,124 +668,9 @@ $(document).ready(function(){
         },
     });
 
-    //Подсказки в первой форме
-    $('div.easy_form > form > ul > li > small').click(function(){
-            $(this).toggleClass('active');
-    });
-
-    //calc();
-
-
-    
-    function change_adress(){
-        var x=0,
-            y=0,
-            z=0,
-            f=0,
-            w=0,
-            r=0,
-            e=0;
-            
-        //tabs_count = $('section.location > div > ul > li').length;
-        $('section.location > div > ul > li').each(function(){
-            x++;
-            $(this).attr('rel', x);
-        });
-        $('section.location > div > span').each(function(){
-            y++;
-            $(this).attr('rel', y);
-        });
-        $('section.location > span > span').each(function(){
-            z++;
-            $(this).attr('rel', z);
-        });
-        $('footer > div > span > span').each(function(){
-            f++;
-            $(this).attr('rel', f);
-        });
-        $('div.contacts > div > span > a').each(function(){
-            w++;
-            $(this).attr('rel', w);
-        });
-        $('div.contacts > div > ul').each(function(){
-            r++;
-            $(this).attr('rel', r);
-        });
-        $('div.contacts > div > img').each(function(){
-            e++;
-            $(this).attr('rel', e);
-        });
-        
-
-        $.getJSON('http://freegeoip.net/json/', function(location){
-            var city = location.city;
-            if(city=='Moscow'){
-                $('section.location > div > ul > li[rel="2"], section.location > div > span[rel="2"], section.location > span > span[rel="2"], footer > div > span > span[rel="2"], div.contacts > div > span > a[rel="2"], div.contacts > div > ul[rel="2"], div.contacts > div > img[rel="2"]').addClass('current');
-            }
-            else{
-                $('section.location > div > ul > li[rel="1"], section.location > div > span[rel="1"], section.location > span > span[rel="1"], footer > div > span > span[rel="1"], div.contacts > div > span > a[rel="1"], div.contacts > div > ul[rel="1"], div.contacts > div > img[rel="1"]').addClass('current');
-            }
-        });
-
-        
-
-        //console.log(city);
-
-
-
-
-        $('section.location > div > ul > li, div.contacts > div > span > a').not('current').click(function(){
-            
-            var this_rel = $(this).attr('rel');
-            $('section.location > div > ul > li[rel="'+this_rel+'"], div.contacts > div > span > a[rel="'+this_rel+'"]').addClass('current').siblings().removeClass('current');
-            $(this).addClass('current').siblings().removeClass('current');
-            $('section.location > div > span[rel="'+this_rel+'"], section.location > span > span[rel="'+this_rel+'"], footer > div > span > span[rel="'+this_rel+'"], div.contacts > div > ul[rel="'+this_rel+'"], div.contacts > div > img[rel="'+this_rel+'"]')
-            .addClass('current')
-            .siblings()
-            .removeClass('current');
-            return false;
-        });
-        $('section.location > div > ul > li').click(function(){
-            $('section.location > div:first-child').toggleClass('drop');
-            $(this).prependTo($(this).parent()[0])
-        });
-    }
-    change_adress();
-
-
-/*
-
-$.ajax({
-    type: 'GET',
-    url: 'http://ru.smart-ip.net/geoip-json',
-    dataType: '',
-    success: function(xml) {
-        jQuery(xml).find('ip').each(function(){
-            var city = $(this).find('city').text(),
-                region = $(this).find('region').text();
-            if(city!=region){
-                ipg = city+', '+region;
-            }else{
-                ipg = city;
-            }
-            $(’#ipg_content’).html(ipg);
-        });
-    }
-});
-*/
-
-
-    
-
-
-
 });
 
 //Глобальная загрузка Jclever для ajax контента
-
-$(document).ajaxComplete(function(event, xhr, settings){
+$(document).ajaxComplete(function(event, xhr, settings) {
     form_style();
 });
-
-
-

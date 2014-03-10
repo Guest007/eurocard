@@ -44,8 +44,12 @@ body {
 	min-width: 1024px;
 	position: relative;
 	background: url('../images/main_background.png') repeat left top;
-	& > div.area {
-		display: none;
+	div.scroll_ {
+		width: 99px; 
+		height: 99px; 
+		overflow: scroll; 
+		position: absolute; 
+		top: -9999px;
 	}
 	&.under_overlay {
 		& > div {
@@ -105,6 +109,7 @@ body {
 					& > form {
 						display: inline-block;
 						width: 100%;
+
 						& > div {
 							& > span {
 								display: inline-block;
@@ -380,7 +385,7 @@ body {
 	box-shadow: 0 0 8px #999;
 	& > header {
 		width: 100%;
-		height: 178px;
+		//height: 178px;
 		min-width: 1024px;
 		position: relative;
 		background: #fff;
@@ -436,23 +441,38 @@ body {
 					margin: 0 80px 0 0;
 					top: 2px;
 					& > span {
-						display: none;
+						//display: none;
+						display: block;
 					}
 				}
 				& > div {
 					width: 230px;
 					& > span {
-						display: none;
+						//display: none;
+						display: block;
 						font: 400 30px/48px @main_font;
 						color: #dc3b3b;
+						height: 58px;
+					}
+					& > a {
+						width: 250px;
+						float: left;
+						color: #000;
+						font: 400 13px/19px @main_font;
+						position: absolute;
+						bottom: -20px;
 					}
 					& > ul {
-						position: absolute;
+						//position: absolute;
+						position: relative;
 						& > li {
-							display: none;
+							//display: none;
+							display: block;
 							width: 100%;
 							font: 400 24px/48px @main_font;
 							cursor: pointer;
+							height: 58px;
+							position: relative;
 							&.current {
 								& > i {
 									font-size: 12px;
@@ -461,6 +481,14 @@ body {
 									color: #dc3b3b;
 									margin: 0 0 0 10px;
 								}
+							}
+							& > span {
+								display: block;
+								color: #000;
+								position: absolute;
+								bottom: 0;
+								font: 400 13px/19px @main_font;
+
 							}
 						}
 					}
@@ -1037,99 +1065,101 @@ body {
 							display: inline-block;
 						}
 						& > form {
-							& > ul.order {
-								position: relative;
-								width: 936px;
-								height: 192px;
-								padding: 45px 30px 35px;
-								margin: 0 0 0 2px;
-								left: -28px;
-								background: #dc3b3b;
-								border-radius: 10px;
-								& > li {
-									display: inline-block;
-									width: auto;
-									float: left;
-									margin: -25px 20px 75px 0;
-									height: 80px;
-									& > label {
-										display: block;
-										font: 600 14px/48px @main_font;
-										color: #fff;
-										border: 0 !important;
-									}
-									& > input {
-										height: 36px;
-										display: block;
-										position: relative;
-										&[type="text"],
-										&[type="email"] {
-											background: #fff;
-											border: 2px solid #cb3434;
-											border-radius: 6px;
-											padding: 0 10px;
-											width: 196px;
+							& > fieldset {
+								& > ul.order {
+									position: relative;
+									width: 936px;
+									height: 192px;
+									padding: 45px 30px 35px;
+									margin: 0 0 0 2px;
+									left: -28px;
+									background: #dc3b3b;
+									border-radius: 10px;
+									& > li {
+										display: inline-block;
+										width: auto;
+										float: left;
+										margin: -25px 20px 75px 0;
+										height: 80px;
+										& > label {
+											display: block;
+											font: 600 14px/48px @main_font;
+											color: #fff;
+											border: 0 !important;
 										}
-										&.edition {
-											width: 105px;
+										& > input {
+											height: 36px;
+											display: block;
+											position: relative;
+											&[type="text"],
+											&[type="email"] {
+												background: #fff;
+												border: 2px solid #cb3434;
+												border-radius: 6px;
+												padding: 0 10px;
+												width: 196px;
+											}
+											&.edition {
+												width: 105px;
+											}
+											&[type="submit"],
+											a.next_step {
+												width: 208px;
+												margin: 48px 0 0;
+												float: right;
+											}
 										}
-										&[type="submit"],
 										a.next_step {
 											width: 208px;
 											margin: 48px 0 0;
-											float: right;
 										}
-									}
-									a.next_step {
-										width: 208px;
-										margin: 48px 0 0;
-									}
-									& > p {
-										display: block;
-										width: 380px;
-										height: 50px;
-										border: 2px solid transparent;
-										border-radius: 0;
-										font: 48px/32px @main_font;
-										color: #fff;
-										margin: 0;
-									}
-									&.time {
-										position: absolute !important;
-										width: 215px !important;
-										height: 98px !important;
-										right: 0 !important;
-										margin: 0 !important;
-										top: -39px !important;
-										background: url('../images/order_time.png') no-repeat center center;
-									}
-									&.info {
-										position: absolute !important;
-										width: 329px !important;
-										height: 70px !important;
-										left: 10px !important;
-										margin: 0 !important;
-										top: -26px !important;
-										background: url('../images/order_info.png') no-repeat center center;
-									}
-									&.printing {
-										position: absolute !important;
-										width: 200px !important;
-										height: 95px !important;
-										right: 225px !important;
-										margin: 0 !important;
-										top: -39px !important;
-										background: url('../images/order_printing.png') no-repeat center center;
-									}
-									&.prompt {
-										position: absolute !important;
-										bottom: 0;
-										left: 30px;
-										color: #fff;
-										font: 10px/30px @main_font; 
-										margin: 0 !important;
-										width: auto;
-										height: auto !important;
+										& > p {
+											display: block;
+											width: 380px;
+											height: 50px;
+											border: 2px solid transparent;
+											border-radius: 0;
+											font: 48px/32px @main_font;
+											color: #fff;
+											margin: 0;
+										}
+										&.time {
+											position: absolute !important;
+											width: 215px !important;
+											height: 98px !important;
+											right: 0 !important;
+											margin: 0 !important;
+											top: -39px !important;
+											background: url('../images/order_time.png') no-repeat center center;
+										}
+										&.info {
+											position: absolute !important;
+											width: 329px !important;
+											height: 70px !important;
+											left: 10px !important;
+											margin: 0 !important;
+											top: -26px !important;
+											background: url('../images/order_info.png') no-repeat center center;
+										}
+										&.printing {
+											position: absolute !important;
+											width: 200px !important;
+											height: 95px !important;
+											right: 225px !important;
+											margin: 0 !important;
+											top: -39px !important;
+											background: url('../images/order_printing.png') no-repeat center center;
+										}
+										&.prompt {
+											position: absolute !important;
+											bottom: 0;
+											left: 30px;
+											color: #fff;
+											font: 10px/30px @main_font; 
+											margin: 0 !important;
+											width: auto;
+											height: auto !important;
+										}
 									}
 								}
 							}
@@ -1141,310 +1171,463 @@ body {
 							left: -29px;
 							background: url('../images/easy_form_background.png') no-repeat left 100px;
 							& > form {
-								& > ul {
-									width: 100%;
-									display: inline-block;
-									margin: 0 0 50px;
-									& > li {
-										width: 235px;
-										float: left;
-										height: 75px;
-										& > span {
-											width: 76px;
-											height: 26px;
-											border-radius: 30px;
-											border: 2px solid #dfdfdf;
-											display: block;
+								& > fieldset {
+									& > ul {
+										width: 100%;
+										display: inline-block;
+										margin: 0 0 50px;
+										& > li {
+											width: 235px;
 											float: left;
-											position: relative;
-											font-size: 16px;
-											cursor: pointer;
-											& > i {
-												display: inline-block;
-												position: relative;
-												margin: 4px 0 0 17px;
-											}
+											height: 75px;
 											& > span {
-												float: left;
-												height: 22px;
-												width: 22px;
-												border-radius: 100%;
-												background: #dfdfdf;
-												margin: 2px;
-												display: block;
-											}
-											&.active {
-												border: 2px solid #ededed;
-												background: #ededed;
-												& > span {
-													float: right;
-													background: #dc3b3b;
-												}
-												& > i {
-													//margin: 4px 0px 0 0;
-												}
-											}
-										}
-										& > small {
-											width: 26px;
-											height: 26px;
-											border-radius: 30px;
-											border: 2px solid #dfdfdf;
-											display: block;
-											float: left;
-											position: relative;
-											font-size: 16px;
-											text-align: center;
-											cursor: pointer;
-											color: #dc3b3b;
-											margin: 0 0 0 10px;
-											& > i {
-												display: inline-block;
-												position: relative;
-												margin: 4px 0 0;
-
-											}
-											& > span {
-												display: block;
-												position: absolute;
+												width: 76px;
+												height: 26px;
+												border-radius: 30px;
 												border: 2px solid #dfdfdf;
-												color: #dfdfdf;
-												top: -30px;
-
+												display: block;
+												float: left;
+												position: relative;
+												font-size: 16px;
+												cursor: pointer;
 												& > i {
-													font-size: 10px !important;
-													position: absolute;
+													display: inline-block;
+													position: relative;
+													margin: 4px 0 0 17px;
 												}
 												& > span {
-													border: 2px solid #dfdfdf;
-													position: absolute;
+													float: left;
+													height: 22px;
+													width: 22px;
+													border-radius: 100%;
+													background: #dfdfdf;
+													margin: 2px;
 													display: block;
 												}
-												&.fifth_flag {
-													border-bottom: 0;
-													border-right: 0;
-													top: -120px;
-													right: -78px;
-													width: 90px;
-													height: 110px;
-													& > i {
-														top: -7px;
-														right: -5px;
+												&.active {
+													border: 2px solid #ededed;
+													background: #ededed;
+													& > span {
+														float: right;
+														background: #dc3b3b;
 													}
-												}
-												&.sixth_flag {
-													border-bottom: 0;
-													border-right: 0;
-													top: -155px;
-													right: -148px;
-													width: 160px;
-													height: 145px;
 													& > i {
-														top: -7px;
-														right: -7px;
+														//margin: 4px 0px 0 0;
 													}
-												}
-												&.seventh_flag,
-												&.eighth_flag {
-													border-bottom: 0;
-													border-right: 0;
-													border-top: 0;
-													top: -130px;
-													right: -68px;
-													width: 80px;
-													height: 120px;
-													& > i {
-														top: -9px;
-														right: 76px;
-													}
-												}
-												&.eighth_flag {
-													top: -240px;
-													height: 230px;
 												}
 											}
-											&.active {
-												border: 2px solid #dc3b3b;
-												color: #fff;
-												background: #dc3b3b;
+											& > small {
+												width: 26px;
+												height: 26px;
+												border-radius: 30px;
+												border: 2px solid #dfdfdf;
+												display: block;
+												float: left;
+												position: relative;
+												font-size: 16px;
+												text-align: center;
+												cursor: pointer;
+												color: #dc3b3b;
+												margin: 0 0 0 10px;
+												& > i {
+													display: inline-block;
+													position: relative;
+													margin: 4px 0 0;
+
+												}
 												& > span {
-													border: 2px solid #dc3b3b;
-													color: #dc3b3b;
-													& > span {
-														border: 2px solid #dc3b3b !important;
+													display: block;
+													position: absolute;
+													border: 2px solid #dfdfdf;
+													color: #dfdfdf;
+													top: -30px;
+
+													& > i {
+														font-size: 10px !important;
+														position: absolute;
 													}
-													&.third_flag,
-													&.fourth_flag {
-														& > span {
-															border: 0 !important;
-															border-bottom: 2px solid #dc3b3b !important;
+													& > span {
+														border: 2px solid #dfdfdf;
+														position: absolute;
+														display: block;
+													}
+													&.fifth_flag {
+														border-bottom: 0;
+														border-right: 0;
+														top: -120px;
+														right: -78px;
+														width: 90px;
+														height: 110px;
+														& > i {
+															top: -7px;
+															right: -5px;
 														}
 													}
-													&.fifth_flag,
-													&.sixth_flag,
+													&.sixth_flag {
+														border-bottom: 0;
+														border-right: 0;
+														top: -155px;
+														right: -148px;
+														width: 160px;
+														height: 145px;
+														& > i {
+															top: -7px;
+															right: -7px;
+														}
+													}
 													&.seventh_flag,
 													&.eighth_flag {
 														border-bottom: 0;
 														border-right: 0;
-													}
-													&.seventh_flag,
-													&.eighth_flag {
 														border-top: 0;
+														top: -130px;
+														right: -68px;
+														width: 80px;
+														height: 120px;
+														& > i {
+															top: -9px;
+															right: 76px;
+														}
+													}
+													&.eighth_flag {
+														top: -240px;
+														height: 230px;
+													}
+												}
+												&.active {
+													border: 2px solid #dc3b3b;
+													color: #fff;
+													background: #dc3b3b;
+													& > span {
+														border: 2px solid #dc3b3b;
+														color: #dc3b3b;
+														& > span {
+															border: 2px solid #dc3b3b !important;
+														}
+														&.third_flag,
+														&.fourth_flag {
+															& > span {
+																border: 0 !important;
+																border-bottom: 2px solid #dc3b3b !important;
+															}
+														}
+														&.fifth_flag,
+														&.sixth_flag,
+														&.seventh_flag,
+														&.eighth_flag {
+															border-bottom: 0;
+															border-right: 0;
+														}
+														&.seventh_flag,
+														&.eighth_flag {
+															border-top: 0;
+														}
+													}
+												}
+											}
+											& > p {
+												display: inline-block;
+												width: 100%;
+												font: italic 18px/24px @main_font;
+												color: #000;
+												margin: 20px 0 0;
+											}
+										}
+										&.visual_first {
+											margin: 0 0 405px;
+											& > li {
+												& > small {
+													& > span {
+														//right: -10px;
+														border-left: 0;
+														border-bottom: 0;
+														top: 12px;
+														& > i {
+															position: absolute;
+															bottom: -6px;
+															right: -6px;
+															font-size: 10px;
+														}
+														&.first_flag {
+															right: -66px;
+															width: 56px;
+															height: 195px;
+														}
+														&.second_flag {
+															right: -66px;
+															width: 56px;
+															height: 184px;
+														}
+														&.third_flag {
+															right: -66px;
+															width: 56px;
+															height: 235px;
+															& > span {
+																right: -48px;
+																width: 46px;
+																border: 0;
+																border-bottom-width: 2px;
+																border-style: solid;
+																border-bottom-color: #dfdfdf;
+																bottom: 0;
+															}
+															& > i {
+																right: -50px;
+																bottom: -4px;
+															}
+														}
+														&.fourth_flag {
+															right: -66px;
+															width: 56px;
+															height: 170px;
+															& > span {
+																left: 0;
+																width: 58px;
+																border: 0;
+																border-bottom-width: 2px;
+																border-style: solid;
+																border-bottom-color: #dfdfdf;
+																bottom: 0;
+															}
+															& > i {
+																left: -52px;
+																bottom: -4px;
+															}
+														}
 													}
 												}
 											}
 										}
-										& > p {
-											display: inline-block;
-											width: 100%;
-											font: italic 18px/24px @main_font;
-											color: #000;
-											margin: 20px 0 0;
-										}
-									}
-									&.visual_first {
-										margin: 0 0 405px;
-										& > li {
-											& > small {
-												& > span {
-													//right: -10px;
-													border-left: 0;
-													border-bottom: 0;
-													top: 12px;
+										&.order {
+											position: relative;
+											width: 936px;
+											height: 192px;
+											padding: 70px 30px 35px;
+											margin: 0 0 0 2px;
+											left: -28px;
+											background: #dc3b3b;
+											border-radius: 10px;
+											& > li {
+												display: inline-block;
+												width: auto;
+												float: left;
+												margin: -25px 18px 75px 0;
+												height: 80px;
+												//position: relative;
+												& > label {
+													display: block;
+													font: 600 14px/48px @main_font;
+													color: #fff;
 													& > i {
-														position: absolute;
-														bottom: -6px;
-														right: -6px;
 														font-size: 10px;
 													}
-													&.first_flag {
-														right: -66px;
-														width: 56px;
-														height: 195px;
+													&.error {
+														background: #22B77E;
 													}
-													&.second_flag {
-														right: -66px;
-														width: 56px;
-														height: 184px;
+												}
+												& > input {
+													height: 36px;
+													display: block;
+													position: relative;
+													&[type="text"],
+													&[type="email"] {
+														background: #fff;
+														border: 2px solid #cb3434;
+														border-radius: 6px;
+														padding: 0 10px;
+														width: 196px;
 													}
-													&.third_flag {
-														right: -66px;
-														width: 56px;
-														height: 235px;
-														& > span {
-															right: -48px;
-															width: 46px;
-															border: 0;
-															border-bottom-width: 2px;
-															border-style: solid;
-															border-bottom-color: #dfdfdf;
-															bottom: 0;
-														}
-														& > i {
-															right: -50px;
-															bottom: -4px;
-														}
+													&.edition {
+														width: 105px;
 													}
-													&.fourth_flag {
-														right: -66px;
-														width: 56px;
-														height: 170px;
-														& > span {
-															left: 0;
-															width: 58px;
-															border: 0;
-															border-bottom-width: 2px;
-															border-style: solid;
-															border-bottom-color: #dfdfdf;
-															bottom: 0;
+													&[type="submit"] {
+														width: 200px;
+														margin: 48px 0 0;
+													}
+												}
+												a.next_step {
+													width: 200px;
+													margin: 48px 0 0;
+												}
+												& > p {
+													display: block;
+													width: 360px;
+													height: 50px;
+													border: 2px solid transparent;
+													border-radius: 0;
+													font: 48px/32px @main_font;
+													color: #fff;
+													margin: 0;
+												}
+												.jClever-element {
+													display: inline-block;
+													//margin: 0 0 0 10px !important;
+													//margin: 0 5px !important;
+													.jClever-element-select-list {
+														font: 600 14px/24px @main_font;
+													}
+												}
+												& > div {
+													&.select {
+														//width: 280px;
+														position: relative;
+														display: inline-block;
+														vertical-align: middle;
+														//margin: 0 10px;
+														& > div {
+															width: 100%;
+															& > div {
+																width: 100%;
+																& > div {
+																	width: 100%;
+																	& > div {
+																		width: 100%;
+																	}
+																}
+															}
 														}
-														& > i {
-															left: -52px;
-															bottom: -4px;
+														&.materials {
+															width: 220px;
+														}
+														&.color {
+															width: 140px;
+															& > div {
+																width: 140px;
+															}
 														}
 													}
 												}
 											}
 										}
 									}
-									&.order {
+									& > div {
 										position: relative;
-										width: 936px;
+										width: 960px;
 										height: 192px;
-										padding: 70px 30px 35px;
+										padding: 35px 30px;
 										margin: 0 0 0 2px;
 										left: -28px;
 										background: #dc3b3b;
 										border-radius: 10px;
+									}
+								}
+							}
+						}
+						&.fast_form {
+							& > form {
+								& > fieldset {
+									& > ul {
+										display: inline-block;
+										height: auto;
 										& > li {
+											width: 100%;
 											display: inline-block;
-											width: auto;
-											float: left;
-											margin: -25px 18px 75px 0;
-											height: 80px;
-											//position: relative;
-											& > label {
-												display: block;
+											margin: 0 0 10px 0;
+											height: auto;
+											& > span {
 												font: 600 14px/48px @main_font;
 												color: #fff;
+												vertical-align: middle;
 												& > i {
 													font-size: 10px;
+													margin: 0 5px 0 0;
+												}
+											}
+											& > ul {
+												display: inline-block;
+												width: 100%;
+												font: 0px/0px @main_font;
+												padding: 30px 0 0;
+												& > li {
+													display: inline-block;
+													height: 80px;
+													vertical-align: top;
+													padding: 24px 0 0;
+													& > label {
+														margin: 0 10px 0 30px;
+														font: 600 14px/40px @main_font;
+														vertical-align: middle;
+														display: inline-block;
+														color: #fff;
+														//&:first-child {
+															//margin: 0;
+														//}
+														& > i {
+															font-size: 10px;
+															margin: 0 5px 0 0;
+														}
+													}
+													& > input {
+														//margin: 30px 0 0;
+														
+													}
+													&:first-child {
+														& > label {
+															margin: 0 10px 0 0;
+														}
+													}
 
 												}
-												&.error {
-													background: #22B77E;
 
+											}
+											& > small {
+												display: inline-block;
+												width: 210px;
+												margin: 0 10px 0 0;
+												& > input {
+													display: inline-block;
+												}
+												& > label {
+													font: 600 14px/48px @main_font;
+													color: #fff;
+													margin: 0 0 0 5px !important;
+													position: relative;
+													vertical-align: middle;
+													border: 0 !important;
+												}
+												& > .jClever-element {
+													display: inline-block;
+													vertical-align: middle;
+													 & > span {
+														& > span {
+															text-align: center;
+															& > i {
+																font-size: 16px;
+																color: #000;
+																display: none;
+																position: relative;
+																top: -2px;
+																&.show {
+																	display: inline-block;
+																}
+															}
+														}
+													}
 												}
 											}
 											& > input {
-												height: 36px;
-												display: block;
-												position: relative;
-												&[type="text"],
-												&[type="email"] {
-													background: #fff;
-													border: 2px solid #cb3434;
-													border-radius: 6px;
-													padding: 0 10px;
-													width: 196px;
-												}
-												&.edition {
-													width: 105px;
-												}
-												&[type="submit"] {
-													width: 200px;
-													margin: 48px 0 0;
-												}
+												display: inline-block;
+												vertical-align: middle;
+												margin: 0 10px;
 											}
-											a.next_step {
-												width: 200px;
-												margin: 48px 0 0;
-											}
-											& > p {
-												display: block;
-												width: 360px;
-												height: 50px;
-												border: 2px solid transparent;
-												border-radius: 0;
-												font: 48px/32px @main_font;
-												color: #fff;
-												margin: 0;
+											& > label {
+												display: inline-block;
+												vertical-align: middle;
+
 											}
 											.jClever-element {
 												display: inline-block;
-												//margin: 0 0 0 10px !important;
-												//margin: 0 5px !important;
+												vertical-align: middle;
 												.jClever-element-select-list {
 													font: 600 14px/24px @main_font;
 												}
 											}
 											& > div {
 												&.select {
-													//width: 280px;
 													position: relative;
 													display: inline-block;
 													vertical-align: middle;
-													//margin: 0 10px;
+													margin: 0 10px;
 													& > div {
 														width: 100%;
 														& > div {
@@ -1458,149 +1641,89 @@ body {
 														}
 													}
 													&.materials {
-														width: 220px;
+														width: 280px;
+													}
+													&.type_of_lamination {
+														width: 200px;
 													}
 													&.color {
-														width: 140px;
-														& > div {
-															width: 140px;
-														}
+														width: 80px;
+													}
+												}
+												&.file {
+													position: relative;
+													display: inline-block;
+													vertical-align: middle;
+													margin: 0 10px;
+													span.jClever-element-file-name {
+														font: 14px/36px @main_font;
+														color: #000;
 													}
 												}
 											}
-										}
-									}
-								}
-								& > div {
-									position: relative;
-									width: 960px;
-									height: 192px;
-									padding: 35px 30px;
-									margin: 0 0 0 2px;
-									left: -28px;
-									background: #dc3b3b;
-									border-radius: 10px;
-								}
-							}
-						}
-						&.fast_form {
-							& > form {
-								& > ul {
-									display: inline-block;
-									height: auto;
-									& > li {
-										width: 100%;
-										display: inline-block;
-										margin: 0 0 10px 0;
-										height: auto;
-										& > span {
-											font: 600 14px/48px @main_font;
-											color: #fff;
-											vertical-align: middle;
-										}
-										& > label {
-											margin: 0 0 0 30px;
-											&:first-child {
-												margin: 0;
+											& > input.next_step {
+												margin: 18px 0 0;
 											}
-										}
-										& > small {
-											display: inline-block;
-											width: 210px;
-											margin: 0 10px 0 0;
-											& > input {
-												display: inline-block;
+											& > p.sum {
+												margin: 18px 0 0;
+												float: left;
 											}
-											& > label {
-												font: 600 14px/48px @main_font;
-												color: #fff;
-												margin: 0 0 0 5px !important;
-												position: relative;
-												vertical-align: middle;
-												border: 0 !important;
-											}
-											& > .jClever-element {
-												display: inline-block;
-												vertical-align: middle;
-												 & > span {
-													& > span {
-														text-align: center;
-														& > i {
-															font-size: 16px;
-															color: #000;
-															display: none;
-															position: relative;
-															top: -2px;
-															&.show {
+											&.second_line {
+												& > ul {
+													padding: 0;
+													margin: 0;
+													& > li {
+														height: auto;
+														margin: 0;
+														padding: 0;
+														& > span {
+															font: 600 14px/48px @main_font;
+															color: #fff;
+															vertical-align: middle;
+															& > i {
+																font-size: 10px;
+																margin: 0 5px 0 0;
+															}
+														}
+														.jClever-element {
+															display: inline-block;
+															vertical-align: middle;
+															.jClever-element-select-list {
+																font: 600 14px/24px @main_font;
+															}
+														}
+														& > div {
+															&.select {
+																position: relative;
 																display: inline-block;
+																vertical-align: middle;
+																margin: 0 10px;
+																& > div {
+																	width: 100%;
+																	& > div {
+																		width: 100%;
+																		& > div {
+																			width: 100%;
+																			& > div {
+																				width: 100%;
+																			}
+																		}
+																	}
+																}
+																&.materials {
+																	width: 280px;
+																}
 															}
 														}
-													}
-												}
-											}
-										}
-										& > input {
-											display: inline-block;
-											vertical-align: middle;
-											margin: 0 10px;
-										}
-										& > label {
-											display: inline-block;
-											vertical-align: middle;
+														& > input {
+															display: inline-block;
+															vertical-align: middle;
+															margin: 0 10px;
+														}
 
-										}
-										.jClever-element {
-											display: inline-block;
-											vertical-align: middle;
-											.jClever-element-select-list {
-												font: 600 14px/24px @main_font;
-											}
-										}
-										& > div {
-											&.select {
-												position: relative;
-												display: inline-block;
-												vertical-align: middle;
-												margin: 0 10px;
-												& > div {
-													width: 100%;
-													& > div {
-														width: 100%;
-														& > div {
-															width: 100%;
-															& > div {
-																width: 100%;
-															}
-														}
 													}
 												}
-												&.materials {
-													width: 280px;
-												}
-												&.type_of_lamination {
-													width: 200px;
-												}
-												&.color {
-													width: 80px;
-												}
 											}
-											&.file {
-												position: relative;
-												display: inline-block;
-												vertical-align: middle;
-												margin: 0 10px;
-												span.jClever-element-file-name {
-													font: 14px/36px @main_font;
-													color: #000;
-												}
-											}
-										}
-										& > a.next_step {
-											margin: 28px auto 0;
-										}
-										& > p.sum {
-											margin: 48px 0 0;
-											float: left;
 										}
 									}
 								}
@@ -1971,7 +2094,7 @@ footer {
 		text-align: left;
 		& > span {
 			display: inline-block;
-			width: 40%;
+			width: 550px;
 			min-height: 200px;
 			float: left;
 			color: #000;
@@ -1981,11 +2104,12 @@ footer {
 			& > span,
 			& > a {
 				display: inline-block;
-				width: 100%;
+				width: 240px;
 			}
 
 			& > span {
-				display: none;
+				//display: none;
+				margin: 0 0 0 30px;
 				& > * {
 					display: inline-block;
 					width: 100%;
@@ -1998,8 +2122,13 @@ footer {
 				& > small {
 					//color: #000;
 				}
+				/*
 				&.current {
 					display: inline-block;
+				}
+				*/
+				&:first-child {
+					margin: 0;
 				}
 			}
 
@@ -2012,18 +2141,18 @@ footer {
 		}
 		& > ul {
 			display: inline-block;
-			width: 450px;
+			width: 380px;
 			min-height: 200px;
 			float: right;
-			padding: 0 10px 0 0;
+			//padding: 0 10px 0 0;
 			text-align: right;
 			position: relative;
 			top: -8px;
 			& > li {
-				width: 220px;
+				width: 190px;
 				display: inline-block;
 				float: left;
-				margin: 0 0 0 0px;
+				//margin: 0;
 				text-align: left;
 				& > a {
 					display: inline-block;
@@ -2066,6 +2195,7 @@ form.call {
 			font: 24px/24px @main_font;
 		}
 	}
+	/*
 	& > small {
 		display: block;
 		position: absolute;
@@ -2079,29 +2209,49 @@ form.call {
 			top: 102px;
 		}
 	}
-	& > input {
-		height: 36px;
-		display: block;
+	*/
+	& > ul {
 		position: relative;
-		margin: 10px 0;
-		&[type="text"] {
-			background: #fff;
-			border: 2px solid #cb3434;
-			border-radius: 6px;
-			padding: 0 10px;
-			width: 276px;
+		& > li {
+			& > input {
+				height: 36px;
+				display: block;
+				position: relative;
+				margin: 10px 0;
+				&[type="text"] {
+					background: #fff;
+					border: 2px solid #cb3434;
+					border-radius: 6px;
+					padding: 0 10px;
+					width: 276px;
+					&:after {
+						content: "/f069";
+						display: block;
+						position: absolute;
+						left: -12px;
+						font-size: 10px;
+						color: #fff;
+						width: 10px;
+						height: 10px;
+						top: 5px
+
+					}
+				}
+			}
+			& > textarea {
+				width: 276px;
+				background: #fff;
+				border: 2px solid #cb3434;
+				border-radius: 6px;
+				padding: 10px;
+				height: 70px;
+				font: 14px/14px @main_font;
+				resize: none;
+			}
+
 		}
 	}
-	& > textarea {
-		width: 276px;
-		background: #fff;
-		border: 2px solid #cb3434;
-		border-radius: 6px;
-		padding: 10px;
-		height: 70px;
-		font: 14px/14px @main_font;
-		resize: none;
-	}
+
 	&.hide {
 		display: none;
 	}

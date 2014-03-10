@@ -1,9 +1,6 @@
 {% extends 'base.html' %}
-
 {% load articles_tags %}
-
     {% block wrap_all %}
-
 		<div class="wrap_all">
 			<header>
 				<div>
@@ -11,86 +8,86 @@
 					<section class="location">
 						<div>
 							<ul>
-								<li>Санкт-Петербург<i class="fa fa-caret-down"></i></li>
-								<li>Москва<i class="fa fa-caret-down"></i></li>
+								<li>Санкт-Петербург{#<i class="fa fa-caret-down"></i>#}
+									<span>Б.Сампсониевский проспект, д.30, к.1</span> {# Адрес в Питере #}
+								</li>
+								<li>Москва{#<i class="fa fa-caret-down"></i>#}
+									<span>Южнопортовая улица, д.5, офис 410</span> {# Адрес в Москве #}
+								</li>
 							</ul>
 						</div>
 						<div>
 							<span>812 702 77 77</span> {# телефон в Питере #}
-							<span>945 702 114 43</span> {# телефон в Москве #}
+							<span>495 374 58 58</span> {# телефон в Москве #}
+							<a href="#">Заказать обратный звонок</a>
 						</div>
+						{% comment %}
 						<span>
 							<span>Б.Сампсониевский проспект, д.30, к.1</span> {# Адрес в Питере #}
-							<span>Красная площадь, д.1</span> {# Адрес в Москве #}
+							<span>Южнопортовая улица, д.5, офис 410</span> {# Адрес в Москве #}
 						</span>
-						<a href="#">Заказать обратный звонок
-
-						</a>
+						{% endcomment %}
+						{#<a href="#">Заказать обратный звонок</a>#}
 						<form class="call hide" method="post" action="/call-back/">
+
 							<span>Заказ звонка<small class="close_form"><i class="fa fa-times"></i></small></span>
+							<ul>
+								<li><input type="text" name="fio" placeholder="ФИО" class="for_valid"></li>
+								<li><input type="text" name="phone" placeholder="Телефон"  class="for_valid"></li>
+								<li><textarea name="message" placeholder="Сообщение"  class="for_valid"></textarea></li>
+								<li><input type="submit" value="Отправить"></li>
+
+							</ul>
+							{% comment %}
 							<small><i class="fa fa-asterisk"></i></small>
 							<input type="text" name="fio" placeholder="ФИО" class="for_valid">
 							<small class="phone"><i class="fa fa-asterisk"></i></small>
 							<input type="text" name="phone" placeholder="Телефон"  class="for_valid">
 							<textarea name="message" placeholder="Сообщение"  class="for_valid"></textarea>
 							<input type="submit" value="Отправить">
+							{% endcomment %}
 						</form>
 					</section>
-
 					<nav>
-						<ul>
-{% load menubuilder %}
-
-{% menu main_menu %}
-
-{% for item in menuitems %}
-    <li>
-        <a href="{{ item.url }}" {% if item.current %} class='current'{% endif %}>{{ item.title }}</a>
-    </li>
-{% endfor %}
-
+						<ul>{% load menubuilder %}{% menu main_menu %}{% for item in menuitems %}
+						    <li>
+						        <a href="{{ item.url }}" {% if item.current %} class='current'{% endif %}>{{ item.title }}</a>
+						    </li>{% endfor %}
 						</ul>
 					</nav>
 				</div>
 			</header>
 			<article>
-            {% block content %}
-            {% endblock %}
-            {% block section %}
-            {% endblock %}
+            	{% block content %}
+            	{% endblock %}
+            	{% block section %}
+            	{% endblock %}
 			</article>
 			<div class="clear_footer"></div>
 		</div>
-    {% endblock %}
-    {% block footer %}
+		{% endblock %}
+		{% block footer %}
 		<footer>
 			<div>
 				<span>
 					<span>
-						Приходите в наш офис на м. Выборгская, по адресу:<br>
+						наш офис в Санкт-Петербурге:<br>
 						<small>Б. Сампсониевский проспект д.30 к.1</small>
 						<span>812 702 77 77</span>
 					</span>
 					<span>
-						Приходите в наш офис в Москве, по адресу:<br>
-						<small>Красная площадь д. 1</small>
-						<span>495 000 00 00</span>
+						наш офис в Москве:<br>
+						<small>Южнопортовая улица, д.5, офис 410</small>
+						<span>495 374 58 58</span>
 					</span>
 					<a href="mailto:order@eurocard.ru">order@eurocard.ru</a><br>
-					Eurocard &copy; 2002-2013
+					Eurocard &copy; 2002-2014
 				</span>
-						<ul>
-{% load menubuilder %}
-
-{% menu main_menu %}
-
-{% for item in menuitems %}
-    <li>
-        <a href="{{ item.url }}">{{ item.title }}</a>
-    </li>
-{% endfor %}
-
-						</ul>
+				<ul>{% load menubuilder %}{% menu main_menu %}{% for item in menuitems %}
+				    <li>
+				        <a href="{{ item.url }}">{{ item.title }}</a>
+				    </li>{% endfor %}
+				</ul>
 			</div>
 		</footer>
     {% endblock %}

@@ -1,23 +1,6 @@
 
 {% extends "layout.html" %}
 
-{% comment %}
-	{% block ya_map %}
-	<script src="http://api-maps.yandex.ru/1.1/index.xml?key=ANxN8FIBAAAAwwWmJgMAdxD_6S60PBGwZbTm-YJElYTF6M8AAAAAAAAAAADE8N30b15UFGH66Kyv30Bukcr01w=="
-		type="text/javascript"></script>
-	<script type="text/javascript">
-		window.onload = function () {
-			var map = new YMaps.Map(document.getElementById("YMapsID"));
-			map.setCenter(new YMaps.GeoPoint(37.64, 55.76), 10);
-		}
-	</script>
-	{% endblock %}
-{% endcomment %}
-
-{% block header-additions %}
-
-{% endblock %}
-
 {% block content %}
 <div class="contacts">
 	<div>
@@ -26,12 +9,13 @@
 		{% endcomment %}
 		<h1>Контактные данные</h1>
 		<span>
-			<a href="#">Санкт-Петербург</a>
+			<a href="#" class="current">Санкт-Петербург</a>
 			<a href="#">Москва</a>
 		</span>
 		<a href="#">order@eurocard.ru</a>
-		<ul>
+		<ul class="current">
 			<li>194044, СПб. Б. Сампсониевский проспект д.30, к.1, м. Выборгская</li>
+
 			<li><span>(812) 702-77-77</span></li>
 			<li><h3>Время работы:</h3> с 9:00 до 18:00 (Суббота, воскресенье - выходной)</li>
 			<li>
@@ -44,9 +28,9 @@
 			</li>
 		</ul>
 		<ul>
-			<li>122223, Москва. Красная площадь, д.1</li>
-			<li><span>(495) 000-00-00</span></li>
-			<li><h3>Время работы:</h3> с 21:00 до 6:00 (Суббота, воскресенье - выходной)</li>
+			<li>115088 Москва, Южнопортовая улица, д.5, офис 410, м. Кожуховская</li>
+			<li><span>(495) 374-58-58</span></li>
+			<li><h3>Время работы:</h3> с 9:00 до 18:00 (Суббота, воскресенье - выходной)</li>
 			<li>
 				<img src="/static/images/content/photo_1_m.jpg" alt="Вход на нашу территорию с Большого Сампсониевского проспекта">
 				<small>Вход на нашу территорию с Красной площади</small>
@@ -58,7 +42,7 @@
 		</ul>
 	</div>
 	<div>
-		<img src="/static/images/content/map.jpg" alt="Схема проезда в Санкт-Петкрбурге">
+		<img class="current" src="/static/images/content/map.jpg" alt="Схема проезда в Санкт-Петкрбурге">
 		<img src="/static/images/content/map_m.jpg" alt="Схема проезда в Москве">
 	</div>
 </div>

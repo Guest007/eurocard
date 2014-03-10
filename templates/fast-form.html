@@ -1,205 +1,212 @@
 
             <form id='fast_form' class="jClever calc" action="{% url 'ajax-save-order' step=2 %}" method="POST" enctype="multipart/form-data" novalidate>
-            {% csrf_token %}
-            <input type="hidden" id="id" name="id" class="common" value="{{ object.id }}">
-
-                <ul class="order">
-                    <li class="info"></li>
-					<li class="printing"></li>
-					<li class="time"></li>
-                    <li>
-                        <span>Я хочу напечатать карты</span>
-                    </li>
-                    <li>
-                        <span>из</span>
-                        <div class="select materials">
-                            <select name="materials" class="calc">
-                                {% for item in materials %}
-                                    <option value="{{ item.id }}" {% if templ.material and templ.material.id == item.id %}selected="selected"{% endif %}  data-price="{{ item.cost }}">{{ item.name }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                        <span>, тиражом</span>
-                        <i class="error">Минимальное количество - 500 экземпляров</i>
-                        <input type="text" name="count" value="{{ object.draw }}" placeholder="500">
-                        <span>штук</span>
-                    </li>
-                    <li>
-                        <span>Количество цветов на лицевой стороне</span>
-                        <div class="select color">
-                            <select name="color_front" class="calc">
-                                {% for item in color_front %}
-                                    <option value="{{ item.id }}"{% if templ.color_front and templ.color_front.id == item.id %}selected="selected"{% endif %} data-price="{{ item.cost }}">{{ item.name }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                        <span>, на обороте</span>
-                        <div class="select color">
-                            <select name="color_back" class="calc">
-                                {% for item in color_back %}
-                                    <option value="{{ item.id }}"{% if templ.color_back and templ.color_back.id == item.id %}selected="selected"{% endif %} data-price="{{ item.cost }}">{{ item.name }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                    </li>
-                    <li>
-                        <span>Вид ламинации</span>
-                        <div class="select type_of_lamination">
-                            <select name="lamination" class="calc">
-                                {% for item in lamination %}
-                                    <option value="{{ item.id }}"
-                                    {% if templ.lamination and templ.lamination.id == item.id %}
-                                        selected="selected"
-                                    {% endif %} data-price="{{ item.cost }}">{{ item.name }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                    </li>
-                    <li>
-                        <div>Необходимо использовть следующие виды персонализации:</div>
-                        <small>
-                            <input type="checkbox" name="chip" data-price="
-                        {% for item in modif %}
-                            {% if item.slug == 'chip' %}
-                                {{ item.cost }}
-                            {% endif %}
-                        {% endfor %}
-                        " {% if templ.chip %}checked="" {% endif %}>
-                            <label>карта с чипом</label>
-                        </small>
-                        <small>
-                            <input type="checkbox" name="scratch" data-price="
-                        {% for item in modif %}
-                            {% if item.slug == 'scratch' %}
-                                {{ item.cost }}
-                            {% endif %}
-                        {% endfor %}
-                        " {% if templ.scratch %}checked="" {% endif %}>
-                            <label>стираемая полоса<label>
-                        </small>
-                        <small>
-                            <input type="checkbox" name="magnet" data-price="
-                        {% for item in modif %}
-                            {% if item.slug == 'magnet' %}
-                                {{ item.cost }}
-                            {% endif %}
-                        {% endfor %}
-                        " {% if templ.magnet %}checked="" {% endif %}>
-                            <label>магнитная полоса</label>
-                        </small>
-                        <small>
-                            <input type="checkbox" name="emboss" data-price="
-                        {% for item in modif %}
-                            {% if item.slug == 'emboss' %}
-                                {{ item.cost }}
-                            {% endif %}
-                        {% endfor %}
-                        " {% if templ.emboss %}checked="" {% endif %}>
-                            <label>эмбоссирование</label>
-                        </small>
-                        <small>
-                            <input type="checkbox" name="uv" data-price="
-                        {% for item in modif %}
-                            {% if item.slug == 'uv' %}
-                                {{ item.cost }}
-                            {% endif %}
-                        {% endfor %}
-                        " {% if templ.uv %}checked="" {% endif %}>
-                            <label>печать УФ краской</label>
-                        </small>
-                        <small>
-                            <input type="checkbox" name="print_num" data-price="
-                        {% for item in modif %}
-                            {% if item.slug == 'print_num' %}
-                                {{ item.cost }}
-                            {% endif %}
-                        {% endfor %}
-                        " {% if templ.print_num %}checked="" {% endif %}>
-                            <label>печать номера</label>
-                        </small>
-                        <small>
-                            <input type="checkbox" name="sign" data-price="
-                        {% for item in modif %}
-                            {% if item.slug == 'sign' %}
-                                {{ item.cost }}
-                            {% endif %}
-                        {% endfor %}
-                        " {% if templ.sign %}checked="" {% endif %}>
-                            <label>полоса для подписи</label>
-                        </small>
-                        <small>
-                            <input type="checkbox" name="foil" data-price="
-                        {% for item in modif %}
-                            {% if item.slug == 'foil' %}
-                                {{ item.cost }}
-                            {% endif %}
-                        {% endfor %}
-                        " {% if templ.foil %}checked="" {% endif %}>
-                            <label>тиснение фольгой</label>
-                        </small>
-                        <small>
-                            <input type="checkbox" name="barcode" data-price="
-                        {% for item in modif %}
-                            {% if item.slug == 'barcode' %}
-                                {{ item.cost }}
-                            {% endif %}
-                        {% endfor %}
-                        " {% if templ.barcode %}checked="" {% endif %}>
-                            <label>печать штрих-кода</label>
-                        </small>
-                        <small>
-                            <input type="checkbox" name="indent" data-price="
-                        {% for item in modif %}
-                            {% if item.slug == 'indent' %}
-                                {{ item.cost }}
-                            {% endif %}
-                        {% endfor %}
-                        " {% if templ.indent %}checked="" {% endif %}>
-                            <label>идентная печать</label>
-                        </small>
-                    </li>
-                    <li>
-                        <span>Мой макет (если есть)</span>
-                        <div class="file">
-                            <input id="file_data" type="file" name="maket" value="{{ object.maket }}">
-                        </div>
-                    </li>
-                    <li>
-                        <label>ФИО:</label>
-                        <input type="text" name="user" value="{{ object.fio }}">
-                        <label>Телефон:</label>
-                        <input type="text" name="phone" value="{{ object.phone }}">
-                        <label>Email:</label>
-                        <input type="email" name="email" value="{{ object.email }}">
-                    </li>
-                    <li>
-                        <p class="sum"></p>
-                        <input type="submit" name="order" value="Заказать" class="next_step">
-
-                    </li>
-                </ul>
-                <input type="hidden" name="foil" class="flag" value="">
-                <input type="hidden" name="emboss" class="flag" value="">
-                <input type="hidden" name="sign" class="flag" value="">
-                <input type="hidden" name="indent" class="flag" value="">
-                <input type="hidden" name="print_num" class="flag" value="">
-                <input type="hidden" name="magnet" class="flag" value="">
-                <input type="hidden" name="barcode" class="flag" value="">
-                <input type="hidden" name="scratch" class="flag" value="">
-                <input type="hidden" name="uv" class="flag" value="">
-                <input type="hidden" name="chip" class="flag" value="">
-
-                <input type="hidden" name="count_hidden" value="">
-                <input type="hidden" name="sum" value="">
-                <input type="hidden" name="colors" value="">
-                <input type="hidden" name="color_front" value="">
-                <input type="hidden" name="color_back" value="">
-                <input type="hidden" name="lamination" value="">
-                <input type="hidden" name="materials" value="">
-                <input type="hidden" id="fd" name="maket" value="">
-                {% for it in coeff %}
+                <fieldset>
+                    {% csrf_token %}
+                    <input type="hidden" id="id" name="id" class="common" value="{{ object.id }}">
+                    <ul class="order">
+                        <li class="prompt">Поля отмеченные звёздочкой - обязательны для заполнения.</li>
+                        <li class="info"></li>
+    					<li class="printing"></li>
+    					<li class="time"></li>
+                        <li>
+                            <span>Я хочу напечатать карты</span>
+                        </li>
+                        <li class="second_line">
+                            <ul>
+                                <li>
+                                    <span>из</span>
+                                    <div class="select materials">
+                                        <select name="materials" class="calc">
+                                            {% for item in materials %}
+                                                <option value="{{ item.id }}" {% if templ.material and templ.material.id == item.id %}selected="selected"{% endif %}  data-price="{{ item.cost }}">{{ item.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <span>, <i class="fa fa-asterisk"></i>тиражом</span>
+                                </li>
+                                <li>
+                                    <input type="text" name="count" value="{{ object.draw }}" placeholder="500" class="for_valid">
+                                    <span>штук</span>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span>Количество цветов на лицевой стороне</span>
+                            <div class="select color">
+                                <select name="color_front" class="calc">
+                                    {% for item in color_front %}
+                                        <option value="{{ item.id }}"{% if templ.color_front and templ.color_front.id == item.id %}selected="selected"{% endif %} data-price="{{ item.cost }}">{{ item.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <span>, на обороте</span>
+                            <div class="select color">
+                                <select name="color_back" class="calc">
+                                    {% for item in color_back %}
+                                        <option value="{{ item.id }}"{% if templ.color_back and templ.color_back.id == item.id %}selected="selected"{% endif %} data-price="{{ item.cost }}">{{ item.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </li>
+                        <li>
+                            <span>Вид ламинации</span>
+                            <div class="select type_of_lamination">
+                                <select name="lamination" class="calc">
+                                    {% for item in lamination %}
+                                        <option value="{{ item.id }}"
+                                        {% if templ.lamination and templ.lamination.id == item.id %}
+                                            selected="selected"
+                                        {% endif %} data-price="{{ item.cost }}">{{ item.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </li>
+                        <li>
+                            <div>Необходимо использовть следующие виды персонализации:</div>
+                            <small>
+                                <input type="checkbox" id="cb_01" name="chip" data-price="
+                            {% for item in modif %}
+                                {% if item.slug == 'chip' %}
+                                    {{ item.cost }}
+                                {% endif %}
+                            {% endfor %}
+                            " {% if templ.chip %}checked="" {% endif %}>
+                                <label for="cb_01">карта с чипом</label>
+                            </small>
+                            <small>
+                                <input type="checkbox" id="cb_02"  name="scratch" data-price="
+                            {% for item in modif %}
+                                {% if item.slug == 'scratch' %}
+                                    {{ item.cost }}
+                                {% endif %}
+                            {% endfor %}
+                            " {% if templ.scratch %}checked="" {% endif %}>
+                                <label for="cb_02">стираемая полоса<label>
+                            </small>
+                            <small>
+                                <input type="checkbox" id="cb_03" name="magnet" data-price="
+                            {% for item in modif %}
+                                {% if item.slug == 'magnet' %}
+                                    {{ item.cost }}
+                                {% endif %}
+                            {% endfor %}
+                            " {% if templ.magnet %}checked="" {% endif %}>
+                                <label for="cb_03">магнитная полоса</label>
+                            </small>
+                            <small>
+                                <input type="checkbox" id="cb_04" name="emboss" data-price="
+                            {% for item in modif %}
+                                {% if item.slug == 'emboss' %}
+                                    {{ item.cost }}
+                                {% endif %}
+                            {% endfor %}
+                            " {% if templ.emboss %}checked="" {% endif %}>
+                                <label for="cb_04">эмбоссирование</label>
+                            </small>
+                            <small>
+                                <input type="checkbox" id="cb_05" name="uv" data-price="
+                            {% for item in modif %}
+                                {% if item.slug == 'uv' %}
+                                    {{ item.cost }}
+                                {% endif %}
+                            {% endfor %}
+                            " {% if templ.uv %}checked="" {% endif %}>
+                                <label for="cb_05">печать УФ краской</label>
+                            </small>
+                            <small>
+                                <input type="checkbox" id="cb_06" name="print_num" data-price="
+                            {% for item in modif %}
+                                {% if item.slug == 'print_num' %}
+                                    {{ item.cost }}
+                                {% endif %}
+                            {% endfor %}
+                            " {% if templ.print_num %}checked="" {% endif %}>
+                                <label for="cb_06">печать номера</label>
+                            </small>
+                            <small>
+                                <input type="checkbox" id="cb_07" name="sign" data-price="
+                            {% for item in modif %}
+                                {% if item.slug == 'sign' %}
+                                    {{ item.cost }}
+                                {% endif %}
+                            {% endfor %}
+                            " {% if templ.sign %}checked="" {% endif %}>
+                                <label for="cb_07">полоса для подписи</label>
+                            </small>
+                            <small>
+                                <input type="checkbox"  id="cb_08" name="foil" data-price="
+                            {% for item in modif %}
+                                {% if item.slug == 'foil' %}
+                                    {{ item.cost }}
+                                {% endif %}
+                            {% endfor %}
+                            " {% if templ.foil %}checked="" {% endif %}>
+                                <label for="cb_08">тиснение фольгой</label>
+                            </small>
+                            <small>
+                                <input type="checkbox"  id="cb_09" name="barcode" data-price="
+                            {% for item in modif %}
+                                {% if item.slug == 'barcode' %}
+                                    {{ item.cost }}
+                                {% endif %}
+                            {% endfor %}
+                            " {% if templ.barcode %}checked="" {% endif %}>
+                                <label for="cb_09">печать штрих-кода</label>
+                            </small>
+                            <small>
+                                <input type="checkbox" id="cb_10" name="indent" data-price="
+                            {% for item in modif %}
+                                {% if item.slug == 'indent' %}
+                                    {{ item.cost }}
+                                {% endif %}
+                            {% endfor %}
+                            " {% if templ.indent %}checked="" {% endif %}>
+                                <label for="cb_10">идентная печать</label>
+                            </small>
+                        </li>
+                        <li>
+                            <span>Мой макет (если есть)</span>
+                            <div class="file">
+                                <input id="file_data" type="file" name="maket" value="{{ object.maket }}">
+                            </div>
+                        </li>
+                        <li>
+                            <ul><!--
+                                --><li><label><i class="fa fa-asterisk"></i>ФИО:</label></li><!--
+                                --><li><input type="text" name="user" value="{{ object.fio }}" class="for_valid"></li><!--
+                                --><li><label><i class="fa fa-asterisk"></i>Телефон:</label></li><!--
+                                --><li><input type="text" name="phone" value="{{ object.phone }}" class="for_valid"></li><!--
+                                --><li><label><i class="fa fa-asterisk"></i>Email:</label></li><!--
+                                --><li><input type="email" name="email" value="{{ object.email }}" class="for_valid"></li><!--
+                            --></ul>
+                        </li>
+                        <li>
+                            <p class="sum">0.00 руб.</p>
+                            <input type="submit" name="order" value="Заказать" class="next_step">
+                        </li>
+                    </ul>
+                    <input type="hidden" name="foil" class="flag" value="">
+                    <input type="hidden" name="emboss" class="flag" value="">
+                    <input type="hidden" name="sign" class="flag" value="">
+                    <input type="hidden" name="indent" class="flag" value="">
+                    <input type="hidden" name="print_num" class="flag" value="">
+                    <input type="hidden" name="magnet" class="flag" value="">
+                    <input type="hidden" name="barcode" class="flag" value="">
+                    <input type="hidden" name="scratch" class="flag" value="">
+                    <input type="hidden" name="uv" class="flag" value="">
+                    <input type="hidden" name="chip" class="flag" value="">
+                    <input type="hidden" name="count_hidden" value="">
+                    <input type="hidden" name="sum" value="">
+                    <input type="hidden" name="colors" value="">
+                    <input type="hidden" name="color_front" value="">
+                    <input type="hidden" name="color_back" value="">
+                    <input type="hidden" name="lamination" value="">
+                    <input type="hidden" name="materials" value="">
+                    <input type="hidden" id="fd" name="maket" value="">
+                    {% for it in coeff %}
                     <input type="hidden" name="{{ it.numb }}" value="{{ it.coeff }}" class="ratio">
-                {% endfor %}
+                    {% endfor %}
+                <fieldset>
             </form>
 
 

@@ -1,7 +1,5 @@
 
-<ul>
-{% for item in templs %}
-
+<ul>{% for item in templs %}
     <li id="{{ item.id }}">
         <span>{{ item.name }}</span>
         <img src="{{ MEDIA_URL }}{{ item.image }}">
@@ -21,21 +19,18 @@
             {% csrf_token %}
             <input type="hidden" name="id" value="{{ item.id }}">
             <label>Тираж<span><i class="fa fa-question"></i></span></label>
-            <input type="text" name="count" class="calc"><span>x <small>{{ item.price }}</small> = <span></span></span>
+            <input type="text" name="count" class="calc for_valid"><span>x <small>{{ item.price }}</small> = <span></span></span>
             <input type="submit" name="order" value="Заказать" class="next_step">
-{#            {% if item.chip %}<input type="hidden" name="chip" value="1">{% endif %}#}
-{#            {% if item.scratch %}<input type="hidden" name="scratch" value="1">{% endif %}#}
-{#            {% if item.magnet %}<input type="hidden" name="magnet" value="1">{% endif %}#}
-{#            {% if item.emboss %}<input type="hidden"  name="emboss" value="1">{% endif %}#}
-{#            {% if item.uv %}<input type="hidden" name="uv" value="1">{% endif %}#}
-{#            {% if item.print_num %}<input type="hidden" name="print_num" value="1">{% endif %}#}
-{#            {% if item.sign %}<input type="hidden" name="sign" value="1">{% endif %}#}
-{#            {% if item.foil %}<input type="hidden" name="foil" value="1">{% endif %}#}
-{#            {% if item.barcode %}<input type="hidden" name="barcode" value="1">{% endif %}#}
-{#            {% if item.indent %}<input type="hidden" name="indent" value="1">{% endif %}#}
+{% comment %}
+            {% if item.chip %}<input type="hidden" name="chip" value="1">{% endif %}
+            {% if item.emboss %}<input type="hidden"  name="emboss" value="1">{% endif %}
+            {% if item.uv %}<input type="hidden" name="uv" value="1">{% endif %}
+            {% if item.print_num %}<input type="hidden" name="print_num" value="1">{% endif %}
+            {% if item.sign %}<input type="hidden" name="sign" value="1">{% endif %}
+            {% if item.foil %}<input type="hidden" name="foil" value="1">{% endif %}
+            {% if item.barcode %}<input type="hidden" name="barcode" value="1">{% endif %}
+            {% if item.indent %}<input type="hidden" name="indent" value="1">{% endif %}
+{% endcomment %}
         </form>
-    </li>
-
-{% endfor %}
-
+    </li>{% endfor %}
 </ul>
