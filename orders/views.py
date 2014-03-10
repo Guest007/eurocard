@@ -320,6 +320,8 @@ def callback(request):
     phone = request.POST.get('phone', False)
     message = request.POST.get('message', '')
     time = datetime.datetime.now()
+    if not phone or len(phone) < 3:
+        return http.HttpResponse('Without Phone', content_type="text/html; charset=utf-8")
 
     email = Settings.objects.get(slug='callback-mail')
 
@@ -331,7 +333,6 @@ def callback(request):
                                        'message': message,
                                        'time': time
                                    })
-        # print "SENT"
     except:
         pass
 
