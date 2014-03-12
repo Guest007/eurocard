@@ -231,11 +231,11 @@ body.under_overlay > div.data_wrap > div > .data_container > .data_checking > fo
 }
 body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order.info > ul.info {
   width: 100%;
-  padding: 20px 0;
+  padding: 20px;
 }
 body.under_overlay > div.data_wrap > div > .data_container > .data_checking > form > div.order.info > ul.info > li {
   width: 600px !important;
-  padding: 0 20px !important;
+  padding: 0 !important;
   border: 0 !important;
   padding: 0;
 }
@@ -1403,9 +1403,8 @@ body.under_overlay > div.data_wrap > div > .data_container > .data_checking.than
 }
 .wrap_all > article > section.order > div > div.fast_form > form > fieldset > ul > li > ul > li {
   display: inline-block;
-  height: 80px;
+  height: auto;
   vertical-align: top;
-  padding: 24px 0 0;
 }
 .wrap_all > article > section.order > div > div.fast_form > form > fieldset > ul > li > ul > li > label {
   margin: 0 10px 0 30px;
@@ -1527,6 +1526,10 @@ body.under_overlay > div.data_wrap > div > .data_container > .data_checking.than
   font: 600 14px/48px 'Open Sans', sans-serif;
   color: #fff;
   vertical-align: middle;
+  margin: 0 10px;
+}
+.wrap_all > article > section.order > div > div.fast_form > form > fieldset > ul > li.second_line > ul > li > span:first-child {
+  margin: 0 10px 0 0;
 }
 .wrap_all > article > section.order > div > div.fast_form > form > fieldset > ul > li.second_line > ul > li > span > i {
   font-size: 10px;
@@ -1543,7 +1546,6 @@ body.under_overlay > div.data_wrap > div > .data_container > .data_checking.than
   position: relative;
   display: inline-block;
   vertical-align: middle;
-  margin: 0 10px;
 }
 .wrap_all > article > section.order > div > div.fast_form > form > fieldset > ul > li.second_line > ul > li > div.select > div {
   width: 100%;
@@ -1563,7 +1565,6 @@ body.under_overlay > div.data_wrap > div > .data_container > .data_checking.than
 .wrap_all > article > section.order > div > div.fast_form > form > fieldset > ul > li.second_line > ul > li > input {
   display: inline-block;
   vertical-align: middle;
-  margin: 0 10px;
 }
 .wrap_all > article > section.order > div > div.ready > ul {
   width: 960px;
@@ -2045,16 +2046,13 @@ form.call.hide {
 }
 i.error {
   position: absolute;
-  display: none;
-  padding: 20px;
+  padding: 10px 20px;
   border-radius: 6px 6px 6px 0;
   background: #22B77E;
   opacity: 0.8;
   color: #fff;
   font: 600 14px/14px 'Open Sans', sans-serif;
   z-index: 99;
-}
-i.error.show {
   display: inline-block;
 }
 input.error {
