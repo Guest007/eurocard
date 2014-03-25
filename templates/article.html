@@ -233,13 +233,13 @@
 
 {% endif %}
 
-{% if coop %}
+{% if makets %}
     <div class="content">
     {% comment %}
         <h1>{{ coop.title }}</h1>
-        {{ coop.content|safe }}
     {% endcomment %}
-        <h1>Требования к макету</h1>          
+        <h1>Требования к макету</h1>
+        <img src="{{ client.card.url }}">
         <h2>Общие требования к макету для изготовления пластиковых карт</h2> 
         <ul>
             <li>Файлы должны быть предоставлены в формате векторных программ: Adobe Illustrator или Corel Draw. Возможно использование растровых изображений с разрешением не менее 300 dpi.</li>

@@ -21,7 +21,7 @@ urlpatterns = patterns('',
     url(r'^news/', views.news, name='news'),
     url(r'^about/', views.about, name='about'),
     url(r'^price/', views.price, name='price'),
-    url(r'^cooperation/', views.cooperation, name='cooperation'),
+    url(r'^makets/', views.makets, name='makets'),
     url(r'^contacts/', views.contacts, name='contacts'),
 
     # Ajax actions

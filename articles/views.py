@@ -47,9 +47,9 @@ def price(request):
     return render(request, 'article.html', context)
 
 
-def cooperation(request):
-    cooperation_ = Article.objects.get(category__slug='coop')
-    context = {'coop': cooperation_}
+def makets(request):
+    makets_ = Article.objects.get(category__slug='makets')
+    context = {'makets': makets_}
     return render(request, 'article.html', context)
 
 
