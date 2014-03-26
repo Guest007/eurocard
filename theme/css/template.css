@@ -352,8 +352,8 @@ body.under_overlay > div.data_wrap > div > .data_container > .data_checking.than
   width: 100%;
   font: 600 16px/16px 'Open Sans', sans-serif;
   color: #dc3b3b;
-  bottom: -15px;
-  left: 0;
+  bottom: -80px;
+  left: 9px;
   width: 330px;
 }
 .wrap_all > header > div > section.location {

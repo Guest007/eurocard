@@ -142,7 +142,7 @@
                             z = parseFloat(key);
                         }
                     });
-                    var sum = parseFloat(z * count_val * (flag_val + total_colors + material_val + lamination_val)).toFixed(2);
+                    var sum = Math.ceil(parseFloat(z * count_val * (flag_val + total_colors + material_val + lamination_val)).toFixed(2));
                     $this.find('input[name="sum"]').val(sum);
                     $this.find('p.sum').html(sum + ' руб.');
                 });
