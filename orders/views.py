@@ -25,11 +25,31 @@ __author__ = 'guest007'
 def fastform(request):
     price = Modificators.objects.all()
     coeff = Coefficient.objects.all()
+    try:
+        material_def = Settings.objects.get(slug='material').content
+    except:
+        material_def = 0
+    try:
+        lam_def = Settings.objects.get(slug='lamination').content
+    except:
+        lam_def = 0
+    try:
+        fc_def = Settings.objects.get(slug='frontcolor').content
+    except:
+        fc_def = 0
+    try:
+        bc_def = Settings.objects.get(slug='backcolor').content
+    except:
+        bc_def = 0
     template_name = 'fast-form.html'
     return render_to_response(template_name,
                               {'modif': price,
                                'coeff': coeff,
                               'materials': Material.objects.all(),
+                              'md': material_def,
+                              'ld': lam_def,
+                              'fcd': fc_def,
+                              'bcd': bc_def,
                               'lamination': Lamination.objects.all(),
                               'color_front': Color.objects.filter(is_easy=False).order_by('-id'),
                               'color_back': Color.objects.filter(is_easy=False).order_by('-id')},
@@ -40,11 +60,21 @@ def fastform(request):
 def easyform(request):
     price = Modificators.objects.all()
     coeff = Coefficient.objects.all()
+    try:
+        material_def = Settings.objects.get(slug='material').content
+    except:
+        material_def = 0
+    try:
+        color_def = Settings.objects.get(slug='fullcolor').content
+    except:
+        color_def = 0
     template_name = 'easy-form.html'
     return render_to_response(template_name,
                               {'modif': price,
                                'coeff': coeff,
                               'materials': Material.objects.all(),
+                              'md': material_def,
+                              'cd': color_def,
                               'lamination': Lamination.objects.all(),
                               'color': Color.objects.filter(is_easy=True).order_by('-id')},
                               context_instance=RequestContext(request))

@@ -17,9 +17,13 @@
                                     <span>из</span>
                                     <div class="select materials">
                                         <select name="materials" class="calc">
-                                            {% for item in materials %}
-                                                <option value="{{ item.id }}" {% if templ.material and templ.material.id == item.id %}selected="selected"{% endif %}  data-price="{{ item.cost }}">{{ item.name }}</option>
-                                            {% endfor %}
+                                    {% for item in materials %}
+                                        <option value="{{ item.id }}"
+                                                {% if templ.material and templ.material.id == item.id %}selected="selected"
+                                                {% elif md == item.id|slugify %}selected="selected"
+                                                {% endif %}
+                                                data-price="{{ item.cost }}">{{ item.name }}</option>
+                                    {% endfor %}
                                         </select>
                                     </div>
                                     <span>, <i class="fa fa-asterisk"></i>тиражом</span>
@@ -35,7 +39,11 @@
                             <div class="select color">
                                 <select name="color_front" class="calc">
                                     {% for item in color_front %}
-                                        <option value="{{ item.id }}"{% if templ.color_front and templ.color_front.id == item.id %}selected="selected"{% endif %} data-price="{{ item.cost }}">{{ item.name }}</option>
+                                        <option value="{{ item.id }}"
+                                                {% if templ.color_front and templ.color_front.id == item.id %}selected="selected"
+                                                {% elif fcd == item.id|slugify %}selected="selected"
+                                                {% endif %}
+                                                data-price="{{ item.cost }}">{{ item.name }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -43,7 +51,11 @@
                             <div class="select color">
                                 <select name="color_back" class="calc">
                                     {% for item in color_back %}
-                                        <option value="{{ item.id }}"{% if templ.color_back and templ.color_back.id == item.id %}selected="selected"{% endif %} data-price="{{ item.cost }}">{{ item.name }}</option>
+                                        <option value="{{ item.id }}"
+                                                {% if templ.color_back and templ.color_back.id == item.id %}selected="selected"
+                                                {% elif bcd == item.id|slugify %}selected="selected"
+                                                {% endif %}
+                                                data-price="{{ item.cost }}">{{ item.name }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -54,9 +66,10 @@
                                 <select name="lamination" class="calc">
                                     {% for item in lamination %}
                                         <option value="{{ item.id }}"
-                                        {% if templ.lamination and templ.lamination.id == item.id %}
-                                            selected="selected"
-                                        {% endif %} data-price="{{ item.cost }}">{{ item.name }}</option>
+                                                {% if templ.lamination and templ.lamination.id == item.id %}selected="selected"
+                                                {% elif ld == item.id|slugify %}selected="selected"
+                                                {% endif %}
+                                                data-price="{{ item.cost }}">{{ item.name }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
