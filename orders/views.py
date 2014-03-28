@@ -50,7 +50,7 @@ def fastform(request):
                               'ld': lam_def,
                               'fcd': fc_def,
                               'bcd': bc_def,
-                              'lamination': Lamination.objects.all(),
+                              'lamination': Lamination.objects.all().order_by('-id'),
                               'color_front': Color.objects.filter(is_easy=False).order_by('-id'),
                               'color_back': Color.objects.filter(is_easy=False).order_by('-id')},
                               context_instance=RequestContext(request))

@@ -1,5 +1,42 @@
 var valid = null;
 
+function MP_init(objects,enable_gallery) { // ааНаИбаИаАаЛаИаЗаАбаИб Magnific Popup
+    var set = $(objects);
+    set.magnificPopup({
+        type: 'image',
+        removalDelay: 300,
+        tLoading: '<div class="preloader_box"><img src="/images/modules/preloader_white.gif"></div>',
+        closeMarkup: '<button title="%title%" type="button" class="mfp-close">&#xf00d;</button>',
+        closeOnBgClick: true,
+        gallery: {
+            enabled: enable_gallery,
+            preload: [0,0],
+            arrowMarkup: '<button title="%title%" type="button" class="mfp-arrow mfp-arrow-%dir% "><span><i class="fa fa-chevron-%dir%"></i></span></button>'
+        },
+        callbacks: {
+            beforeOpen: function() {
+                this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');
+                this.st.mainClass = this.st.el.attr('data-effect');
+            },
+            imageLoadComplete: function() {
+                var self = this;
+                setTimeout(function() {
+                    self.wrap.addClass('mfp-image-loaded');
+                }, 16);
+            },
+            buildControls: set.size()==1 || enable_gallery==false ? function() {} : function() {
+                this.contentContainer.append(this.arrowLeft.add(this.arrowRight));
+            },
+            close: function() {
+                this.wrap.removeClass('mfp-image-loaded');
+            },
+            beforeClose: function() {
+                $('.mfp-content .mfp-arrow').remove();
+            }
+        },
+    });
+};
+
 function add_popup() {
     var s = 0,
         scrollDiv = document.createElement("div");
@@ -47,6 +84,13 @@ function index_tabs() {
         if ($(this).hasClass('current')) {
             $(this).load('/form_' + y + '/', function() {
                 $(this).find('form').calc().valid();
+                    $('.tooltip.top').each(function(){
+                        var self_height = $(this).outerHeight();
+                        console.log(self_height);
+                        $(this).css({
+                            'top': -(self_height+10)
+                        });
+                    });
             });
         }
     });
@@ -137,6 +181,11 @@ $(document).ready(function() {
     call_();
 
     change_adress();
+
+    $.each(['a[rel="kool"]'], function(index,value) {
+        MP_init(value,false);
+    });
+
 
     //Тоглим таблиц с ценами в разделе 'Цены'
     $('a.show_price').click(function() {

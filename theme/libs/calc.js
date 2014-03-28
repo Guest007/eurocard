@@ -45,7 +45,6 @@
             if ($this.hasClass('calc')) {
                 var hidden = $(this).find('input[type="hidden"]'),
                     select = $(this).find('select'),
-                    select_without_lam = $(this).find('select[name="lamination"]');
                     checkbox = $(this).find('input[type="checkbox"]');
                 hidden.not('.ratio').val(0);
                 $this.find('input[name="count"]').val('');
@@ -55,17 +54,32 @@
                         self_name = $(this).attr('name'),
                         self_val = $(this).find('option:selected').data('price').replace(',', '.');
                     $this.find('input[name="' + self_name + '"]').val(self_val);
-                    if(self_name == 'lamination') {
-                        if($('option[value="1"]').prop('selected', true)){
-                            checkbox.addClass('ronin').attr("disabled", true);
-                        }
-                    }
+
+                    //if(self_name == 'lamination') {
+                        //if($('option[value="3"]').prop('selected', true)){
+                            //checkbox.attr("disabled", true);
+                        //}
+                        //else {
+                            //checkbox.attr("disabled", false);
+                        //}
+                    //}
                 });
 
                 select.change(function() {
                     var self_name = $(this).attr('name'),
+                        selected_val = $(this).find('option:selected').val();
                         self_val = $(this).find('option:selected').data('price').replace(',', '.');
                     $this.find('input[name="' + self_name + '"]').val(parseFloat(self_val)).trigger('change');
+                    if(self_name == 'lamination') {
+                        //console.log(selected_val);
+                        if(selected_val == 3) {
+                            //alert('ninja detected');
+                            checkbox.attr("disabled", true);
+                        }
+                        else {
+                            checkbox.attr("disabled", false);
+                        }
+                    }
 
                 });
                 if ($this.find('span.flag').length > 0) {
@@ -86,6 +100,9 @@
                     });
                     $this.find('small.question').click(function() {
                         $(this).toggleClass('active');
+                        $(this).siblings('i').toggleClass('active');
+                        $(this).parent('li').siblings().find('small, i').removeClass('active');
+                        $(this).parents('ul').siblings().find('small, i').removeClass('active');
                     });
                 } else {
                     checkbox.change(function() {

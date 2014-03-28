@@ -35,7 +35,8 @@
                             </ul>
                         </li>
                         <li>
-                            <span>Количество цветов на лицевой стороне</span>
+                            <span>Цвет: 4+4</span>
+                            
                             <div class="select color">
                                 <select name="color_front" class="calc">
                                     {% for item in color_front %}
@@ -59,6 +60,20 @@
                                     {% endfor %}
                                 </select>
                             </div>
+                            
+                            {% comment %}
+                            <div class="select color">
+                                <select name="colors">
+                                    {% for item in color %}
+                                        <option value="{{ item.id }}"
+                                                {% if templ.color_front and templ.color_front.id == item.id %}selected="selected"
+                                                {% elif cd == item.id|slugify %}selected="selected"
+                                                {% endif %}
+                                                data-price="{{ item.cost }}">{{ item.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            {% endcomment %}
                         </li>
                         <li>
                             <span>Вид ламинации</span>
