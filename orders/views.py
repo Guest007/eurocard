@@ -68,11 +68,16 @@ def easyform(request):
         color_def = Settings.objects.get(slug='fullcolor').content
     except:
         color_def = 0
+    tips = {}
+    for i in Settings.objects.filter(slug__startswith='tip-'):
+        tips[i.slug] = [i.content, i.richtext]
+
     template_name = 'easy-form.html'
     return render_to_response(template_name,
                               {'modif': price,
                                'coeff': coeff,
                               'materials': Material.objects.all(),
+                              'tips': tips,
                               'md': material_def,
                               'cd': color_def,
                               'lamination': Lamination.objects.all(),

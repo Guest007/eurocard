@@ -6,12 +6,12 @@
                     <ul class="visual_first">
                         <li>
                             <i class="tooltip">
-                            <span>Тиснение фольгой</span><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></i>
+                                {% for k, v in tips.iteritems %}
+                                    {% if k == 'tip-foil' %}
+                                        <span>{{ v|first }}</span>{{ v|last|safe }}
+                                    {% endif %}
+                                {% endfor %}
+                            </i>
                             <span id="foil" data-price="
                             {% for item in modif %}
                                 {% if item.slug == 'foil' %}
@@ -30,20 +30,11 @@
                         </li>
                         <li>
                             <i class="tooltip">
-                                <span>Тиснение фольгой</span>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                </p><p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                {% for k, v in tips.iteritems %}
+                                    {% if k == 'tip-emboss' %}
+                                        <span>{{ v|first }}</span>{{ v|last|safe }}
+                                    {% endif %}
+                                {% endfor %}
                             </i>
                             <span id="emboss" data-price="
                             {% for item in modif %}
@@ -63,11 +54,11 @@
                         </li>
                         <li>
                             <i class="tooltip">
-                            <span>Полоса для подписи</span>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit.</p>
+                                {% for k, v in tips.iteritems %}
+                                    {% if k == 'tip-sign' %}
+                                        <span>{{ v|first }}</span>{{ v|last|safe }}
+                                    {% endif %}
+                                {% endfor %}
                             </i>
                             <span id="sign" data-price="
                             {% for item in modif %}
@@ -87,10 +78,12 @@
                         </li>
                         <li>
                             <i class="tooltip">
-                            <span>Индент печать</span><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat. Duis aute irure dolor in reprehenderit</p></i>
+                                {% for k, v in tips.iteritems %}
+                                    {% if k == 'tip-indent' %}
+                                        <span>{{ v|first }}</span>{{ v|last|safe }}
+                                    {% endif %}
+                                {% endfor %}
+                            </i>
                             <span id="indent" data-price="
                             {% for item in modif %}
                                 {% if item.slug == 'indent' %}
@@ -111,9 +104,12 @@
                     <ul class="visual_second">
                         <li>
                             <i class="tooltip top">
-                            <span>Печатный номер</span><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud</p></i>
+                                {% for k, v in tips.iteritems %}
+                                    {% if k == 'tip-printnum' %}
+                                        <span>{{ v|first }}</span>{{ v|last|safe }}
+                                    {% endif %}
+                                {% endfor %}
+                            </i>
                             <span id="print_num" data-price="
                             {% for item in modif %}
                                 {% if item.slug == 'print_num' %}
@@ -133,12 +129,12 @@
                         <li>
 
                             <i class="tooltip top">
-                            <span>Магнитная полоса</span><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></i>
+                                {% for k, v in tips.iteritems %}
+                                    {% if k == 'tip-magnet' %}
+                                        <span>{{ v|first }}</span>{{ v|last|safe }}
+                                    {% endif %}
+                                {% endfor %}
+                            </i>
                             <span id="magnet" data-price="
                             {% for item in modif %}
                                 {% if item.slug == 'magnet' %}
@@ -157,13 +153,12 @@
                         </li>
                         <li>
                             <i class="tooltip top">
-                            <span>Штрих код</span>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></i>
+                                {% for k, v in tips.iteritems %}
+                                    {% if k == 'tip-barcode' %}
+                                        <span>{{ v|first }}</span>{{ v|last|safe }}
+                                    {% endif %}
+                                {% endfor %}
+                            </i>
                             <span id="barcode" data-price="
                             {% for item in modif %}
                                 {% if item.slug == 'barcode' %}
@@ -182,12 +177,12 @@
                         </li>
                         <li>
                             <i class="tooltip top">
-                            <span>Скрейтч панель</span><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></i>
+                                {% for k, v in tips.iteritems %}
+                                    {% if k == 'tip-scratch' %}
+                                        <span>{{ v|first }}</span>{{ v|last|safe }}
+                                    {% endif %}
+                                {% endfor %}
+                            </i>
                             <span id="scratch" data-price="
                             {% for item in modif %}
                                 {% if item.slug == 'scratch' %}
