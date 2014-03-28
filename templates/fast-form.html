@@ -35,31 +35,31 @@
                             </ul>
                         </li>
                         <li>
-                            <span>Цвет: 4+4</span>
+                            <span>Цвет: </span>
                             
                             <div class="select color">
                                 <select name="color_front" class="calc">
-                                    {% for item in color_front %}
+                                    {% for item in color %}
                                         <option value="{{ item.id }}"
                                                 {% if templ.color_front and templ.color_front.id == item.id %}selected="selected"
-                                                {% elif fcd == item.id|slugify %}selected="selected"
+                                                {% elif cd == item.id|slugify %}selected="selected"
                                                 {% endif %}
                                                 data-price="{{ item.cost }}">{{ item.name }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
-                            <span>, на обороте</span>
-                            <div class="select color">
-                                <select name="color_back" class="calc">
-                                    {% for item in color_back %}
-                                        <option value="{{ item.id }}"
-                                                {% if templ.color_back and templ.color_back.id == item.id %}selected="selected"
-                                                {% elif bcd == item.id|slugify %}selected="selected"
-                                                {% endif %}
-                                                data-price="{{ item.cost }}">{{ item.name }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
+{#                            <span>, на обороте</span>#}
+{#                            <div class="select color">#}
+{#                                <select name="color_back" class="calc">#}
+{#                                    {% for item in color_back %}#}
+{#                                        <option value="{{ item.id }}"#}
+{#                                                {% if templ.color_back and templ.color_back.id == item.id %}selected="selected"#}
+{#                                                {% elif bcd == item.id|slugify %}selected="selected"#}
+{#                                                {% endif %}#}
+{#                                                data-price="{{ item.cost }}">{{ item.name }}</option>#}
+{#                                    {% endfor %}#}
+{#                                </select>#}
+{#                            </div>#}
                             
                             {% comment %}
                             <div class="select color">
@@ -74,8 +74,8 @@
                                 </select>
                             </div>
                             {% endcomment %}
-                        </li>
-                        <li>
+{#                        </li>#}
+{#                        <li>#}
                             <span>Вид ламинации</span>
                             <div class="select type_of_lamination">
                                 <select name="lamination" class="calc">
@@ -109,7 +109,7 @@
                                 {% endif %}
                             {% endfor %}
                             " {% if templ.scratch %}checked="" {% endif %}>
-                                <label for="cb_02">стираемая полоса<label>
+                                <label for="cb_02">стираемая полоса</label>
                             </small>
                             <small>
                                 <input type="checkbox" id="cb_03" name="magnet" data-price="
@@ -234,7 +234,7 @@
                     {% for it in coeff %}
                     <input type="hidden" name="{{ it.numb }}" value="{{ it.coeff }}" class="ratio">
                     {% endfor %}
-                <fieldset>
+                </fieldset>
             </form>
 
 
