@@ -59,3 +59,8 @@ def contacts(request):
     return render(request, 'contacts.html', context)
 
 
+def pages(request, slug):
+    page = Article.objects.filter(category__slug='page').get(slug=slug)
+    context = {'page': page}
+    return render(request, 'page.html', context)
+

@@ -23,6 +23,7 @@ urlpatterns = patterns('',
     url(r'^price/', views.price, name='price'),
     url(r'^makets/', views.makets, name='makets'),
     url(r'^contacts/', views.contacts, name='contacts'),
+    url(r'^page/(?P<slug>[\S\-]+?)/$', views.pages, name='page'),
 
     # Ajax actions
     url(r'^form_2/', orders.fastform, name='f_order'),
