@@ -8,6 +8,7 @@ function MP_init(objects,enable_gallery) { // ааНаИбаИаАаЛаИа
         tLoading: '<div class="preloader_box"><img src="/images/modules/preloader_white.gif"></div>',
         closeMarkup: '<button title="%title%" type="button" class="mfp-close">&#xf00d;</button>',
         closeOnBgClick: true,
+        closeOnContentClick: true,
         gallery: {
             enabled: enable_gallery,
             preload: [0,0],

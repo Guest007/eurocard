@@ -1081,7 +1081,6 @@ body.under_overlay > div.data_wrap > div > .data_container > .data_checking.than
   width: 235px;
   float: left;
   height: 75px;
-  position: relative;
 }
 .wrap_all > article > section.order > div > div.easy_form > form > fieldset > ul > li > span {
   width: 76px;
@@ -1231,6 +1230,9 @@ body.under_overlay > div.data_wrap > div > .data_container > .data_checking.than
 }
 .wrap_all > article > section.order > div > div.easy_form > form > fieldset > ul.visual_first {
   margin: 0 0 405px;
+}
+.wrap_all > article > section.order > div > div.easy_form > form > fieldset > ul.visual_first > li {
+  position: relative;
 }
 .wrap_all > article > section.order > div > div.easy_form > form > fieldset > ul.visual_first > li > small > span {
   border-left: 0;
