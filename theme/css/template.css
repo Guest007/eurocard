@@ -2131,3 +2131,6 @@ i.tooltip.top:after {
 i.tooltip.active {
   display: inline-block;
 }
+.visual_second > li {
+  position: relative;
+}
