@@ -91,16 +91,16 @@
                         </li>
                         <li>
                             <div>Необходимо использовть следующие виды персонализации:</div>
-                            <small>
-                                <input type="checkbox" id="cb_01" name="chip" data-price="
-                            {% for item in modif %}
-                                {% if item.slug == 'chip' %}
-                                    {{ item.cost }}
-                                {% endif %}
-                            {% endfor %}
-                            " {% if templ.chip %}checked="" {% endif %}>
-                                <label for="cb_01">карта с чипом</label>
-                            </small>
+{#                            <small>#}
+{#                                <input type="checkbox" id="cb_01" name="chip" data-price="#}
+{#                            {% for item in modif %}#}
+{#                                {% if item.slug == 'chip' %}#}
+{#                                    {{ item.cost }}#}
+{#                                {% endif %}#}
+{#                            {% endfor %}#}
+{#                            " {% if templ.chip %}checked="" {% endif %}>#}
+{#                                <label for="cb_01">карта с чипом</label>#}
+{#                            </small>#}
                             <small>
                                 <input type="checkbox" id="cb_02"  name="scratch" data-price="
                             {% for item in modif %}
