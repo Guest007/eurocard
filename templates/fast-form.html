@@ -16,7 +16,10 @@
                                 <li>
                                     <span>из</span>
                                     <div class="select materials">
-                                <span class="materials"  value="{{ materials.id }}" data-price="{{ materials.cost }}">
+                                <span class="materials"  value="{{ materials.id }}" data-price="{{ materials.cost }}"
+                                        style="background: none repeat scroll 0 0 #FFFFFF;border: 2px solid #CB3434;
+    border-radius: 6px;padding: 0 85px;display: block;height: 36px;position: relative;font: 23px/32px 'Open Sans',sans-serif;"
+                                        >
                                     {{ materials.name }}
                                 </span>
 {#                                        <select name="materials" class="calc">#}
@@ -41,7 +44,10 @@
                             <span>Цвет: </span>
                             
                             <div class="select color">
-                                <span class="color_front" value="{{ color.id }}" data-price="{{ color.cost }}">
+                                <span class="color_front" value="{{ color.id }}" data-price="{{ color.cost }}"
+                                        style="background: none repeat scroll 0 0 #FFFFFF;border: 2px solid #CB3434;
+    border-radius: 6px;padding: 0 18px;display: block;height: 36px;position: relative;font: 23px/32px 'Open Sans',sans-serif;"
+                                        >
                                     {{ color.name }}
                                 </span>
 {#                                <select name="color_front" class="calc">#}
