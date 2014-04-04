@@ -137,16 +137,16 @@
                             " {% if templ.emboss %}checked="" {% endif %}>
                                 <label for="cb_04">эмбоссирование</label>
                             </small>
-                            <small>
-                                <input type="checkbox" id="cb_05" name="uv" data-price="
-                            {% for item in modif %}
-                                {% if item.slug == 'uv' %}
-                                    {{ item.cost }}
-                                {% endif %}
-                            {% endfor %}
-                            " {% if templ.uv %}checked="" {% endif %}>
-                                <label for="cb_05">печать УФ краской</label>
-                            </small>
+{#                            <small>#}
+{#                                <input type="checkbox" id="cb_05" name="uv" data-price="#}
+{#                            {% for item in modif %}#}
+{#                                {% if item.slug == 'uv' %}#}
+{#                                    {{ item.cost }}#}
+{#                                {% endif %}#}
+{#                            {% endfor %}#}
+{#                            " {% if templ.uv %}checked="" {% endif %}>#}
+{#                                <label for="cb_05">печать УФ краской</label>#}
+{#                            </small>#}
                             <small>
                                 <input type="checkbox" id="cb_06" name="print_num" data-price="
                             {% for item in modif %}
