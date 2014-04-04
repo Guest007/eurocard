@@ -16,15 +16,18 @@
                                 <li>
                                     <span>из</span>
                                     <div class="select materials">
-                                        <select name="materials" class="calc">
-                                    {% for item in materials %}
-                                        <option value="{{ item.id }}"
-                                                {% if templ.material and templ.material.id == item.id %}selected="selected"
-                                                {% elif md == item.id|slugify %}selected="selected"
-                                                {% endif %}
-                                                data-price="{{ item.cost }}">{{ item.name }}</option>
-                                    {% endfor %}
-                                        </select>
+                                <span class="materials"  value="{{ materials.id }}" data-price="{{ materials.cost }}">
+                                    {{ materials.name }}
+                                </span>
+{#                                        <select name="materials" class="calc">#}
+{#                                    {% for item in materials %}#}
+{#                                        <option value="{{ item.id }}"#}
+{#                                                {% if templ.material and templ.material.id == item.id %}selected="selected"#}
+{#                                                {% elif md == item.id|slugify %}selected="selected"#}
+{#                                                {% endif %}#}
+{#                                                data-price="{{ item.cost }}">{{ item.name }}</option>#}
+{#                                    {% endfor %}#}
+{#                                        </select>#}
                                     </div>
                                     <span>, <i class="fa fa-asterisk"></i>тиражом</span>
                                 </li>
@@ -38,15 +41,18 @@
                             <span>Цвет: </span>
                             
                             <div class="select color">
-                                <select name="color_front" class="calc">
-                                    {% for item in color %}
-                                        <option value="{{ item.id }}"
-                                                {% if templ.color_front and templ.color_front.id == item.id %}selected="selected"
-                                                {% elif cd == item.id|slugify %}selected="selected"
-                                                {% endif %}
-                                                data-price="{{ item.cost }}">{{ item.name }}</option>
-                                    {% endfor %}
-                                </select>
+                                <span class="color_front" value="{{ color.id }}" data-price="{{ color.cost }}">
+                                    {{ color.name }}
+                                </span>
+{#                                <select name="color_front" class="calc">#}
+{#                                    {% for item in color %}#}
+{#                                        <option value="{{ item.id }}"#}
+{#                                                {% if templ.color_front and templ.color_front.id == item.id %}selected="selected"#}
+{#                                                {% elif cd == item.id|slugify %}selected="selected"#}
+{#                                                {% endif %}#}
+{#                                                data-price="{{ item.cost }}">{{ item.name }}</option>#}
+{#                                    {% endfor %}#}
+{#                                </select>#}
                             </div>
 {#                            <span>, на обороте</span>#}
 {#                            <div class="select color">#}
@@ -89,7 +95,7 @@
                                 </select>
                             </div>
                         </li>
-                        <li>
+                        <li class="personalization">
                             <div>Необходимо использовть следующие виды персонализации:</div>
 {#                            <small>#}
 {#                                <input type="checkbox" id="cb_01" name="chip" data-price="#}

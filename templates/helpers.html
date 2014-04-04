@@ -1,4 +1,4 @@
-<form class="jClever confirm last_step" method="post" action="{% url 'finish' %}">
+<form class="jClever last_step" id="confirm" method="post" action="{% url 'finish' %}">
     <input type="hidden" name="id" value="{{ object.id }}">
 	<div class="order">
 		<span>Ваш заказ<small class="close_order"><i class="fa fa-times"></i></small></span>
@@ -52,7 +52,7 @@
 
 </form>
 
-<form class="jClever user_info last_step" method="post" action="{% url 'finish' %}">
+<form class="jClever last_step" id="user_info" method="post" action="{% url 'finish' %}">
     <input type="hidden" name="id" value="{{ object.id }}">
 	<div class="order info">
 		<span>Информация к заказу<small class="close_order"><i class="fa fa-times"></i></small></span>

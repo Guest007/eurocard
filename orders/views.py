@@ -37,16 +37,19 @@ def fastform(request):
         color_def = Settings.objects.get(slug='fullcolor').content
     except:
         color_def = 0
+    material = Material.objects.get(id=1)  # захардкодили Пластик
+    color = Color.objects.filter(is_easy=True).get(name='4+4')  # захардкодили Color
     template_name = 'fast-form.html'
     return render_to_response(template_name,
                               {'modif': price,
                                'coeff': coeff,
-                              'materials': Material.objects.all(),
+                              'materials': material,
                               'md': material_def,
                               'ld': lam_def,
                               'cd': color_def,
                               'lamination': Lamination.objects.all().order_by('-id'),
-                              'color': Color.objects.filter(is_easy=True).order_by('-id')},
+                              'color': color
+                              },
                               context_instance=RequestContext(request))
 
 
@@ -65,17 +68,19 @@ def easyform(request):
     tips = {}
     for i in Settings.objects.filter(slug__startswith='tip-'):
         tips[i.slug] = [i.content, i.richtext]
-
+    material = Material.objects.get(id=1)  # захардкодили Пластик
+    color = Color.objects.filter(is_easy=True).get(name='4+4')  # захардкодили Color
     template_name = 'easy-form.html'
     return render_to_response(template_name,
                               {'modif': price,
                                'coeff': coeff,
-                              'materials': Material.objects.all(),
+                              'materials': material,
                               'tips': tips,
                               'md': material_def,
                               'cd': color_def,
                               'lamination': Lamination.objects.all(),
-                              'color': Color.objects.filter(is_easy=True).order_by('-id')},
+                              'color': color
+                              },
                               context_instance=RequestContext(request))
 
 

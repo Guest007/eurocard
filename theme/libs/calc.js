@@ -39,7 +39,7 @@
             function confirm_order(result) {
                 $this.find('input#id').val(result.id);
                 add_popup();
-                $('.data_checking').load('/second/' + result.id + '/ .confirm');
+                $('.data_checking').load('/second/' + result.id + '/ #confirm');
             }
 
             if ($this.hasClass('calc')) {
@@ -56,32 +56,48 @@
                     $this.find('input[name="' + self_name + '"]').val(self_val);
 
                     //if(self_name == 'lamination') {
-                        //if($('option[value="3"]').prop('selected', true)){
-                            //checkbox.attr("disabled", true);
-                        //}
-                        //else {
-                            //checkbox.attr("disabled", false);
-                        //}
+                    //if($('option[value="3"]').prop('selected', true)){
+                    //checkbox.attr("disabled", true);
+                    //}
+                    //else {
+                    //checkbox.attr("disabled", false);
+                    //}
                     //}
                 });
 
                 select.change(function() {
                     var self_name = $(this).attr('name'),
                         selected_val = $(this).find('option:selected').val();
-                        self_val = $(this).find('option:selected').data('price').replace(',', '.');
+                    self_val = $(this).find('option:selected').data('price').replace(',', '.');
                     $this.find('input[name="' + self_name + '"]').val(parseFloat(self_val)).trigger('change');
-                    if(self_name == 'lamination') {
+                    if (self_name == 'lamination') {
                         //console.log(selected_val);
-                        if(selected_val == 3) {
+
+                        if (selected_val == 3) {
                             //alert('ninja detected');
+                            $('.personalization').fadeOut();
                             checkbox.attr("disabled", true);
-                        }
-                        else {
+                        } else {
+                            $('.personalization').fadeIn();
                             checkbox.attr("disabled", false);
                         }
                     }
 
                 });
+
+
+                //$(document).click(function() {
+                //alert('ooops');
+                //$('small.question').parent('li').siblings().find('small, i').removeClass('active');
+                //$('small.question').parents('ul').siblings().find('small, i').removeClass('active');
+                //});
+                /*
+
+                $this.children().not('small.question').click(function() {
+                    $('small.question').parent('li').siblings().find('small, i').removeClass('active');
+                    $('small.question').parents('ul').siblings().find('small, i').removeClass('active');
+                });
+*/
                 if ($this.find('span.flag').length > 0) {
                     $('span.flag').click(function() {
                         var self = $(this),
@@ -103,7 +119,15 @@
                         $(this).siblings('i').toggleClass('active');
                         $(this).parent('li').siblings().find('small, i').removeClass('active');
                         $(this).parents('ul').siblings().find('small, i').removeClass('active');
+
                     });
+                    if ($('.tooltip').hasClass('active')) {
+                        $(document).click(function() {
+                            //alert('ooops');
+                            $('small.question').parent('li').siblings().find('small, i').removeClass('active');
+                            $('small.question').parents('ul').siblings().find('small, i').removeClass('active');
+                        });
+                    }
                 } else {
                     checkbox.change(function() {
                         var self = $(this),
@@ -194,8 +218,11 @@
                     }
                     return false;
                 });
-            } else {
+            }
+            /*
+            else {
                 $this.each(function() {
+
                     $(this).find('input[type="text"]').val('').on('input', function() {
 
                         var one_price = parseFloat($(this).siblings('span').children('small').html()),
@@ -210,6 +237,7 @@
                     });
 
                     $(this).submit(function() {
+                        console.log($this);
                         $(this).find('input[name="csrfmiddlewaretoken"]').val(csrftoken);
                         var self = $(this),
                             action = $(this).attr('action'),
@@ -240,7 +268,7 @@
                 function confirm_order(result) {
                     $(this).find('input#id').val(result.id);
                     add_popup();
-                    $('.data_checking').load('/second/' + result.id + '/ .user_info',
+                    $('.data_checking').load('/second/' + result.id + '/ #user_info',
                         function() {
                             valid = false;
                             $(this).find('form').valid();
@@ -248,6 +276,7 @@
                     );
                 }
             }
+            */
         });
     }
 }());
