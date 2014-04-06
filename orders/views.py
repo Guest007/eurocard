@@ -78,7 +78,7 @@ def easyform(request):
                               'tips': tips,
                               'md': material_def,
                               'cd': color_def,
-                              'lamination': Lamination.objects.all(),
+                              'lamination': Lamination.objects.all().order_by('-id'),
                               'color': color
                               },
                               context_instance=RequestContext(request))
