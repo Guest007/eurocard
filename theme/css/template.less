@@ -131,6 +131,27 @@ body {
 									height: 24px;
 									cursor: pointer;
 								}
+								span {
+									font: 14px/24px @main_font;
+									//vertical-align: middle;
+									position: relative;
+									//top: -2px;
+									float: left;
+									margin: 0 80px 0 0;
+									& > i {
+										margin: 0 10px;
+									}
+									& > small {
+										font: 14px/16px @main_font;
+										vertical-align: middle;
+										text-decoration: underline;
+										cursor: pointer;
+										&:hover {
+											text-decoration: none;
+										}
+									}
+
+								}
 							}
 							& > ul {
 								display: inline-block;
@@ -152,6 +173,16 @@ body {
 											&.select {
 												font: 14px/22px @main_font;
 												margin: 0 0 40px;
+												& > span {
+													background: #fff;
+													border: 2px solid #CB3434;
+    												border-radius: 6px;
+    												
+    												display: block;
+    												height: 36px;
+    												position: relative;
+    												
+												}
 												& > div {
 													border: 2px solid #e2e2e2;
 													border-radius: 4px;
@@ -401,6 +432,7 @@ body {
 			padding: 0 40px;
 			height: 100%;
 			margin: 0 auto;
+			position: relative;
 			& > a {
 				display: inline-block;
 				width: 173px;
@@ -409,6 +441,7 @@ body {
 				float: left;
 				margin: -18px 158px 0 0;
 				position: relative;
+
 				& > span {
 					position: absolute;
 					display: inline-block;
@@ -470,6 +503,25 @@ body {
 						font: 400 14px/19px @main_font;
 						position: absolute;
 						bottom: -32px;
+						border-radius: 6px;
+					    color: #fff;
+					    display: inline-block;
+					    font: 600 14px/28px @main_font;
+					    height: 30px;
+					    padding: 0 10px;
+					    text-decoration: none;
+					    position: absolute;
+					    margin: 0;
+					    width: auto;
+					    right: 35px;
+					    background: #DC3B3B;
+					    //left: 45px;
+					    z-index: 10;
+					    &.call_back {
+					    	left: 0;
+					    	right: auto;
+					    }
+
 					}
 					& > ul {
 						//position: absolute;
@@ -1165,7 +1217,7 @@ body {
 											left: 10px !important;
 											margin: 0 !important;
 											top: -26px !important;
-											background: url('../images/order_info.png') no-repeat center center;
+											background: url('../images/order_info_.png') no-repeat center center;
 										}
 										&.printing {
 											position: absolute !important;
@@ -1492,11 +1544,23 @@ body {
 													//margin: 0 0 0 10px !important;
 													//margin: 0 5px !important;
 													.jClever-element-select-list {
-														font: 600 14px/24px @main_font;
+														font: 600 15px/24px @main_font;
 													}
 												}
 												& > div {
 													&.select {
+
+														& > span {
+															background: #fff;
+															border: 2px solid #CB3434;
+		    												border-radius: 6px;
+		    												//padding: 0 45px;
+		    												text-align: center;
+		    												display: block;
+		    												height: 36px;
+		    												position: relative;
+		    												font: 14px/34px @main_font;
+														}
 														//width: 280px;
 														position: relative;
 														display: inline-block;
@@ -1515,10 +1579,10 @@ body {
 															}
 														}
 														&.materials {
-															width: 220px;
+															width: 160px;
 														}
 														&.color {
-															width: 140px;
+															width: 100px;
 															& > div {
 																width: 140px;
 															}
@@ -1656,6 +1720,18 @@ body {
 													display: inline-block;
 													vertical-align: middle;
 													margin: 0 10px;
+
+													& > span {
+														background: #fff;
+														border: 2px solid #CB3434;
+	    												border-radius: 6px;
+	    												//padding: 0 45px;
+	    												text-align: center;
+	    												display: block;
+	    												height: 36px;
+	    												position: relative;
+	    												font: 14px/34px @main_font;
+													}
 													& > div {
 														width: 100%;
 														& > div {
@@ -1729,6 +1805,17 @@ body {
 																position: relative;
 																display: inline-block;
 																vertical-align: middle;
+																& > span {
+																	background: #fff;
+																	border: 2px solid #CB3434;
+				    												border-radius: 6px;
+				    												//padding: 0 45px;
+				    												text-align: center;
+				    												display: block;
+				    												height: 36px;
+				    												position: relative;
+				    												font: 14px/34px @main_font;
+																}
 																//margin: 0 10px;
 																& > div {
 																	width: 100%;
@@ -1743,13 +1830,14 @@ body {
 																	}
 																}
 																&.materials {
-																	width: 280px;
+																	width: 200px;
 																}
 															}
 														}
 														& > input {
 															display: inline-block;
 															vertical-align: middle;
+															width: 105px;
 															//margin: 0 10px 0 0;
 														}
 														&:first-child {
@@ -2212,7 +2300,7 @@ form.call {
 	background: #DC3B3B;
 	display: block;
 	right: 20px;
-	top: 30px;
+	top: 0;
 	z-index: 9990;
 	cursor: default;
 	& > span {
@@ -2340,7 +2428,25 @@ i.tooltip {
 	& > span {
 		display: block;
 		font: 14px/14px @main_font;
+		position: relative;
 		//margin: 0 0 5px;
+		& > small {
+			float: right;
+			position: relative;
+			cursor: pointer;
+			width: 11px;
+			height: 15px;
+			&:after {
+				content: "\f00d";
+				position: absolute;
+				font-family: 'FontAwesome';
+				width: 100%;
+				height: 100%;
+				left: 0;
+				top: 0;
+			}
+
+		}
 
 	}
 	& > p {

@@ -1,6 +1,6 @@
 var valid = null;
 
-function MP_init(objects,enable_gallery) { // ааНаИбаИаАаЛаИаЗаАбаИб Magnific Popup
+function MP_init(objects, enable_gallery) { // ааНаИбаИаАаЛаИаЗаАбаИб Magnific Popup
     var set = $(objects);
     set.magnificPopup({
         type: 'image',
@@ -11,7 +11,7 @@ function MP_init(objects,enable_gallery) { // ааНаИбаИаАаЛаИа
         closeOnContentClick: true,
         gallery: {
             enabled: enable_gallery,
-            preload: [0,0],
+            preload: [0, 0],
             arrowMarkup: '<button title="%title%" type="button" class="mfp-arrow mfp-arrow-%dir% "><span><i class="fa fa-chevron-%dir%"></i></span></button>'
         },
         callbacks: {
@@ -25,7 +25,7 @@ function MP_init(objects,enable_gallery) { // ааНаИбаИаАаЛаИа
                     self.wrap.addClass('mfp-image-loaded');
                 }, 16);
             },
-            buildControls: set.size()==1 || enable_gallery==false ? function() {} : function() {
+            buildControls: set.size() == 1 || enable_gallery == false ? function() {} : function() {
                 this.contentContainer.append(this.arrowLeft.add(this.arrowRight));
             },
             close: function() {
@@ -85,13 +85,13 @@ function index_tabs() {
         if ($(this).hasClass('current')) {
             $(this).load('/form_' + y + '/', function() {
                 $(this).find('form').calc().valid();
-                    $('.tooltip.top').each(function(){
-                        var self_height = $(this).outerHeight();
-                        console.log(self_height);
-                        $(this).css({
-                            'top': -(self_height+10)
-                        });
+                $('.tooltip.top').each(function() {
+                    var self_height = $(this).outerHeight();
+                    console.log(self_height);
+                    $(this).css({
+                        'top': -(self_height + 10)
                     });
+                });
             });
         }
     });
@@ -124,7 +124,7 @@ function news_title_height() {
 function call_() {
     var $this = $('form.call'),
         valid;
-    $('.location > div > a').click(function() {
+    $('.location > div > a.call_back').click(function() {
         $this.removeClass('hide');
         return false;
     });
@@ -183,8 +183,8 @@ $(document).ready(function() {
 
     change_adress();
 
-    $.each(['a[rel="kool"]'], function(index,value) {
-        MP_init(value,false);
+    $.each(['a[rel="kool"]'], function(index, value) {
+        MP_init(value, false);
     });
 
 

@@ -8,7 +8,7 @@
                             <i class="tooltip">
                                 {% for k, v in tips.iteritems %}
                                     {% if k == 'tip-foil' %}
-                                        <span>{{ v|first }}</span>{{ v|last|safe }}
+                                        <span>{{ v|first }}<small></small></span>{{ v|last|safe }}
                                     {% endif %}
                                 {% endfor %}
                             </i>
@@ -32,7 +32,7 @@
                             <i class="tooltip">
                                 {% for k, v in tips.iteritems %}
                                     {% if k == 'tip-emboss' %}
-                                        <span>{{ v|first }}</span>{{ v|last|safe }}
+                                        <span>{{ v|first }}<small></small></span>{{ v|last|safe }}
                                     {% endif %}
                                 {% endfor %}
                             </i>
@@ -56,7 +56,7 @@
                             <i class="tooltip">
                                 {% for k, v in tips.iteritems %}
                                     {% if k == 'tip-sign' %}
-                                        <span>{{ v|first }}</span>{{ v|last|safe }}
+                                        <span>{{ v|first }}<small></small></span>{{ v|last|safe }}
                                     {% endif %}
                                 {% endfor %}
                             </i>
@@ -80,7 +80,7 @@
                             <i class="tooltip">
                                 {% for k, v in tips.iteritems %}
                                     {% if k == 'tip-indent' %}
-                                        <span>{{ v|first }}</span>{{ v|last|safe }}
+                                        <span>{{ v|first }}<small></small></span>{{ v|last|safe }}
                                     {% endif %}
                                 {% endfor %}
                             </i>
@@ -106,7 +106,7 @@
                             <i class="tooltip top">
                                 {% for k, v in tips.iteritems %}
                                     {% if k == 'tip-printnum' %}
-                                        <span>{{ v|first }}</span>{{ v|last|safe }}
+                                        <span>{{ v|first }}<small></small></span>{{ v|last|safe }}
                                     {% endif %}
                                 {% endfor %}
                             </i>
@@ -131,7 +131,7 @@
                             <i class="tooltip top">
                                 {% for k, v in tips.iteritems %}
                                     {% if k == 'tip-magnet' %}
-                                        <span>{{ v|first }}</span>{{ v|last|safe }}
+                                        <span>{{ v|first }}<small></small></span>{{ v|last|safe }}
                                     {% endif %}
                                 {% endfor %}
                             </i>
@@ -155,7 +155,7 @@
                             <i class="tooltip top">
                                 {% for k, v in tips.iteritems %}
                                     {% if k == 'tip-barcode' %}
-                                        <span>{{ v|first }}</span>{{ v|last|safe }}
+                                        <span>{{ v|first }}<small></small></span>{{ v|last|safe }}
                                     {% endif %}
                                 {% endfor %}
                             </i>
@@ -179,7 +179,7 @@
                             <i class="tooltip top">
                                 {% for k, v in tips.iteritems %}
                                     {% if k == 'tip-scratch' %}
-                                        <span>{{ v|first }}</span>{{ v|last|safe }}
+                                        <span>{{ v|first }}<small></small></span>{{ v|last|safe }}
                                     {% endif %}
                                 {% endfor %}
                             </i>
@@ -212,10 +212,7 @@
                         <li>
                             <label for="s_01">Цвет:</label>
                             <div class="select color">
-                                <span class="colors" value="{{ color.id }}" data-price="{{ color.cost }}"
-                                        style="background: none repeat scroll 0 0 #FFFFFF;border: 2px solid #CB3434;
-    border-radius: 6px;padding: 0 45px;display: block;height: 36px;position: relative;font: 23px/32px 'Open Sans',sans-serif;"
-                                        >{{ color.name }}</span>
+                                <span class="colors" value="{{ color.id }}" data-price="{{ color.cost }}">{{ color.name }}</span>
 {#                                <select name="colors" id="s_01">#}
 {#                                    {% for item in color %}#}
 {#                                        <option value="{{ item.id }}"#}
@@ -230,10 +227,7 @@
                         <li>
                             <label for="s_02">Материал:</label>
                             <div class="select materials">
-                                <span class="materials"  value="{{ materials.id }}" data-price="{{ materials.cost }}"
-                                        style="background: none repeat scroll 0 0 #FFFFFF;border: 2px solid #CB3434;
-    border-radius: 6px;padding: 0 45px;display: block;height: 36px;position: relative;font: 23px/32px 'Open Sans',sans-serif;"
-                                        >
+                                <span class="materials"  value="{{ materials.id }}" data-price="{{ materials.cost }}">
                                     {{ materials.name }}
                                 </span>
 {#                                <select name="materials" id="s_02">#}

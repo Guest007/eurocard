@@ -1,7 +1,7 @@
 <form class="jClever last_step" id="confirm" method="post" action="{% url 'finish' %}">
     <input type="hidden" name="id" value="{{ object.id }}">
 	<div class="order">
-		<span>Ваш заказ<small class="close_order"><i class="fa fa-times"></i></small></span>
+		<span><span><i class="fa fa-long-arrow-left"></i><small class="close_order">Вернуться к заказу</small></span>Ваш заказ<small class="close_order"><i class="fa fa-times"></i></small></span>
 		<ul class="info">
 			<li>
 				<span class="foil"><i class="fa {% if templ.foil %}fa-check{% else %}fa-times{% endif %}"></i>Тиснение фольгой</span>
@@ -49,7 +49,6 @@
 			</li>
 		</ul>
 	</div>
-
 </form>
 
 <form class="jClever last_step" id="user_info" method="post" action="{% url 'finish' %}">

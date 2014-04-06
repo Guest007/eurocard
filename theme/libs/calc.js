@@ -45,7 +45,9 @@
             if ($this.hasClass('calc')) {
                 var hidden = $(this).find('input[type="hidden"]'),
                     select = $(this).find('select'),
-                    checkbox = $(this).find('input[type="checkbox"]');
+                    checkbox = $(this).find('input[type="checkbox"]'),
+                    color_ = $(this).find('span.colors').data('price').replace(',', '.'),
+                    materials_ = $(this).find('span.materials').data('price').replace(',', '.');
                 hidden.not('.ratio').val(0);
                 $this.find('input[name="count"]').val('');
                 $this.find('input[name="count_hidden"]').val(0);
@@ -115,19 +117,19 @@
                         $this.find('input[name="' + self_id + '"]').trigger('change');
                     });
                     $this.find('small.question').click(function() {
+                        var self = $(this);
                         $(this).toggleClass('active');
                         $(this).siblings('i').toggleClass('active');
                         $(this).parent('li').siblings().find('small, i').removeClass('active');
                         $(this).parents('ul').siblings().find('small, i').removeClass('active');
-
+                        if ($('.tooltip').hasClass('active')) {
+                            $('.tooltip > span > small').click(function() {
+                                $(this).parent().parent().removeClass('active');
+                                self.removeClass('active');
+                                // alert('ninja');
+                            });
+                        }
                     });
-                    if ($('.tooltip').hasClass('active')) {
-                        $(document).click(function() {
-                            //alert('ooops');
-                            $('small.question').parent('li').siblings().find('small, i').removeClass('active');
-                            $('small.question').parents('ul').siblings().find('small, i').removeClass('active');
-                        });
-                    }
                 } else {
                     checkbox.change(function() {
                         var self = $(this),
@@ -161,6 +163,11 @@
                         $this.ajaxSubmit(options);
                     });
                 }
+
+
+                $this.find('input[name="colors"]').val(color_);
+                $this.find('input[name="materials"]').val(materials_);
+
                 hidden.change(function() {
                     var flag_val = 0,
                         count_val = parseFloat($this.find('input[name="count_hidden"]').val()),
@@ -185,13 +192,14 @@
                         }
                     });
                     var min = Math.min.apply(null, range_array);
-                    var z = 1;
+                    var z = 0;
                     $.each(values, function(key, value) {
                         if (value == min) {
                             z = parseFloat(key);
                         }
                     });
-                    var sum = Math.ceil(parseFloat(z * count_val * (flag_val + total_colors + material_val + lamination_val)).toFixed(2));
+                    var sum = Math.ceil(parseFloat(count_val * (material_val - z + lamination_val + flag_val + total_colors)).toFixed(2));
+                    console.log(z);
                     $this.find('input[name="sum"]').val(sum);
                     $this.find('p.sum').html(sum + ' руб.');
                 });
