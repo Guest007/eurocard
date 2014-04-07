@@ -242,13 +242,17 @@
         <h1>{{ coop.title }}</h1>
     {% endcomment %}
         <h1>Требования к макету</h1>
-        <img src="{{ makets.card.url }}">
+        <div class="download_file_types">
+            <a href="http://eurocard.naminteresno.ru/static/images/content/Card-template.pdf"><i class="fa fa-file"></i><span>Скачать шаблон в формате PDF</span></a>
+            <a href="http://eurocard.naminteresno.ru/static/images/content/Card-template.ai"><i class="fa fa-file"></i><span>Скачать шаблон в фрмате Ai</span></a>
+        </div>
+        <img src="{{ makets.card.url }}" class="left">
+        
         <h2>Общие требования к макету для изготовления пластиковых карт</h2> 
         <ul>
             <li>Файлы должны быть предоставлены в формате векторных программ: Adobe Illustrator или Corel Draw. Возможно использование растровых изображений с разрешением не менее 300 dpi.</li>
             <li>Все шрифты должны быть конвертированы в кривые.</li>
             <li>Размер изображения должен быть 91*58 мм - больше формата пластиковой карты (86*54мм).</li>
-            <li><a href="http://maple-alley.ru/wp-content/uploads/2013/08/Card-template.ai">Скачать шаблон пластиковой карты</a></li>
         </ul>
         <h2>Магнитная полоса</h2>
         <img class="right" src="http://maple-alley.ru/wp-content/uploads/2013/08/magnet2.png" alt="Карта с магнитной полосой">

@@ -1,6 +1,69 @@
 
 {% extends "layout.html" %}
 
+{% block gmap %}
+<script>
+    function initialize() {
+        var map_moscow = new google.maps.LatLng(55.8045282, 37.5858647),
+            map_spb = new google.maps.LatLng(59.965778, 30.341068),
+            opt_m = {
+                zoom: 16,
+                center: map_moscow,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            },
+
+            opt_spb = {
+                zoom: 16,
+                center: map_spb,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            },
+
+            map = new google.maps.Map(document.getElementById("map_canvas_moscow"), opt_m),
+
+            map2 = new google.maps.Map(document.getElementById("map_canvas_spb"), opt_spb),
+
+            marker_moscow = new google.maps.Marker({
+                position: map_moscow,
+                map: map,
+                title: "127015, Москва, Большая Новодмитровская улица д.36"
+            }),
+
+            marker_spb = new google.maps.Marker({
+                position: map_spb,
+                map: map2,
+                title: "194044, СПб, Большой Сампсониевский проспект д.30, к.1"
+            });
+        var content_m = document.createElement('div');
+        content_m.innerHTML = "<h3><span style='color: #DC3B3B;'>Eurocard</span> Москва</h3><p style='padding: 0 0 10px; display: block;'>127015, Москва, Большая Новодмитровская улица д.36</p><p style='padding: 0 0 10px; display: block;'>тел.: <strong>(495) 374-58-58</strong></p>";
+        var content_spb = document.createElement('div');
+
+        content_spb.innerHTML = "<h3><span style='color: #DC3B3B;'>Eurocard</span> Санкт-Петербург</h3><p style='padding: 0 0 10px; display: block;'>194044, СПб, Большой Сампсониевский проспект д.30, к.1</p><p style='padding: 0 0 10px; display: block;>тел.: <strong>(812) 702-77-77</strong></p>";
+        var infowindow_m = new google.maps.InfoWindow({
+            content: content_m
+        });
+        var infowindow_spb = new google.maps.InfoWindow({
+            content: content_spb
+        });
+
+        google.maps.event.addListener(marker_moscow, 'click', function() {
+            infowindow_m.open(map, marker_moscow);
+        });
+        google.maps.event.addListener(marker_spb, 'click', function() {
+            infowindow_spb.open(map2, marker_spb);
+        });
+
+    }
+
+    function loadScript() {
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&' +
+            'callback=initialize';
+        document.body.appendChild(script);
+    }
+    window.onload = loadScript;
+</script>
+{% endblock %}
 {% block content %}
 <div class="contacts">
 	<div>
@@ -46,10 +109,14 @@
 		</ul>
 
 	</div>
-	<div>
-		<img class="current" src="/static/images/content/map_m.jpg" alt="Схема проезда в Москве">
-		<img src="/static/images/content/map.jpg" alt="Схема проезда в Санкт-Петкрбурге">
-		
+	
+	<div class="maps_container">
+		<div class="map current">
+			<div id="map_canvas_moscow"></div>
+		</div>
+		<div class="map">
+			<div id="map_canvas_spb" class="map"></div>
+		</div>
 	</div>
 </div>
 

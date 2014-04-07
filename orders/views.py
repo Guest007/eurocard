@@ -62,6 +62,10 @@ def easyform(request):
     except:
         material_def = 0
     try:
+        lam_def = Settings.objects.get(slug='lamination').content
+    except:
+        lam_def = 0
+    try:
         color_def = Settings.objects.get(slug='fullcolor').content
     except:
         color_def = 0
@@ -77,6 +81,7 @@ def easyform(request):
                               'materials': material,
                               'tips': tips,
                               'md': material_def,
+                              'ld': lam_def,
                               'cd': color_def,
                               'lamination': Lamination.objects.all().order_by('-id'),
                               'color': color

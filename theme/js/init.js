@@ -1,6 +1,4 @@
-var valid = null;
-
-function MP_init(objects, enable_gallery) { // ааНаИбаИаАаЛаИаЗаАбаИб Magnific Popup
+function MP_init(objects, enable_gallery) {
     var set = $(objects);
     set.magnificPopup({
         type: 'image',
@@ -161,17 +159,54 @@ function change_adress() {
         y++;
         $(this).attr('rel', y);
     });
-    $('div.contacts > div > img').each(function() {
+    $('div.contacts > div > div.map').each(function() {
         z++;
         $(this).attr('rel', z);
     });
     $('div.contacts > div > span > a').not('current').click(function() {
         var this_rel = $(this).attr('rel');
         $(this).addClass('current').siblings().removeClass('current');
-        $('div.contacts > div > ul[rel="' + this_rel + '"], div.contacts > div > img[rel="' + this_rel + '"]').addClass('current').siblings().removeClass('current');
+        $('div.contacts > div > ul[rel="' + this_rel + '"], div.contacts > div > div[rel="' + this_rel + '"]').addClass('current').siblings().removeClass('current');
         return false;
     });
 }
+
+
+function back_button() {
+    var path = window.location.pathname,
+        part = path.split('/'),
+        end_of_line = part[3],
+        url = path.replace('/' + end_of_line, '.html'),
+        previous = document.referrer,
+        need_part = previous.split('/'),
+        search_part = need_part[3],
+        go_go = need_part[5];
+
+    $('a.adress').click(function() {
+        var this_url = $(this).attr('href');
+        console.log(this_url);
+    });
+    console.log(path);
+    console.log(previous);
+    console.log(search_part);
+    console.log(end_of_line);
+    console.log(go_go);
+    if (previous == '') {
+        $('.go_back').attr('href', url).text('РќР°Р·Р°Рґ РІ РєР°С‚Р°Р»РѕРі');
+    } else {
+        if (search_part == 'catalog') {
+            //var gogo
+            if (go_go) {
+                $('.go_back').attr('href', url).text('РќР°Р·Р°Рґ РІ РєР°С‚Р°Р»РѕРі');
+            } else {
+                $('.go_back').attr('href', previous).text('РќР°Р·Р°Рґ РІ РєР°С‚Р°Р»РѕРі');
+            }
+        } else {
+            $('.go_back').attr('href', url).text('РќР°Р·Р°Рґ РІ РєР°С‚Р°Р»РѕРі');
+        }
+    }
+}
+
 
 $(document).ready(function() {
 
@@ -182,6 +217,8 @@ $(document).ready(function() {
     call_();
 
     change_adress();
+
+    back_button();
 
     $.each(['a[rel="kool"]'], function(index, value) {
         MP_init(value, false);

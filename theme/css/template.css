@@ -374,7 +374,7 @@ body.under_overlay > div.data_wrap > div > .data_container > .data_checking.than
   width: 173px;
   height: 71px;
   float: left;
-  margin: -18px 158px 0 0;
+  margin: -5px 158px 0 0;
   position: relative;
 }
 .wrap_all > header > div > a > span {
@@ -383,8 +383,8 @@ body.under_overlay > div.data_wrap > div > .data_container > .data_checking.than
   width: 100%;
   font: 600 16px/16px 'Open Sans', sans-serif;
   color: #dc3b3b;
-  bottom: -94px;
-  left: 6px;
+  bottom: -81px;
+  left: 0;
   width: 330px;
 }
 .wrap_all > header > div > section.location {
@@ -470,6 +470,20 @@ body.under_overlay > div.data_wrap > div > .data_container > .data_checking.than
   color: #dc3b3b;
   margin: 0 0 0 10px;
 }
+.wrap_all > header > div > section.location > div > ul > li > a.adress {
+  font: 400 24px/48px 'Open Sans', sans-serif;
+  display: block;
+  height: 58px;
+  color: #000;
+  text-decoration: none;
+}
+.wrap_all > header > div > section.location > div > ul > li > a.adress > span {
+  display: block;
+  color: #000;
+  position: absolute;
+  bottom: 0;
+  font: 400 13px/19px 'Open Sans', sans-serif;
+}
 .wrap_all > header > div > section.location > div > ul > li > a {
   font: 400 14px/19px 'Open Sans', sans-serif;
   color: #dc3b3b;
@@ -552,11 +566,14 @@ body.under_overlay > div.data_wrap > div > .data_container > .data_checking.than
   height: 100%;
   min-height: 300px;
 }
-.wrap_all > article > h1,
-.wrap_all > article > h2,
-.wrap_all > article > h3 {
+.wrap_all > article h1,
+.wrap_all > article h2,
+.wrap_all > article h3 {
   color: #000;
   margin: 0 0 20px;
+  clear: both;
+  display: inline-block;
+  width: 100%;
 }
 .wrap_all > article > h1:first-child {
   margin: 20px 0;
@@ -592,6 +609,10 @@ body.under_overlay > div.data_wrap > div > .data_container > .data_checking.than
 }
 .wrap_all > article > div.content img.right {
   float: right;
+  margin: 0 20px 20px;
+}
+.wrap_all > article > div.content img.left {
+  float: left;
   margin: 0 20px 20px;
 }
 .wrap_all > article > div.content i.fa-rub {
@@ -664,6 +685,23 @@ body.under_overlay > div.data_wrap > div > .data_container > .data_checking.than
 }
 .wrap_all > article > div.content div.hide {
   display: none;
+}
+.wrap_all > article > div.content div.download_file_types {
+  display: inline-block;
+  position: relative;
+}
+.wrap_all > article > div.content div.download_file_types > a {
+  text-decoration: none;
+  display: block;
+  margin: 0 0 20px;
+}
+.wrap_all > article > div.content div.download_file_types > a > span {
+  text-decoration: underline;
+  margin: 0 0 0 15px;
+}
+.wrap_all > article > div.content div.download_file_types > a > i {
+  font-size: 20px;
+  vertical-align: middle;
 }
 .wrap_all > article > div.content table {
   border: 1px solid #999;
@@ -904,13 +942,24 @@ body.under_overlay > div.data_wrap > div > .data_container > .data_checking.than
   padding: 25px;
   display: inline-block;
 }
-.wrap_all > article > div.contacts > div > img {
-  border-radius: 6px;
-  overflow: hidden;
-  display: none;
+.wrap_all > article > div.contacts > div.maps_container {
+  width: 501px;
+  height: 508px;
 }
-.wrap_all > article > div.contacts > div > img.current {
-  display: inline;
+.wrap_all > article > div.contacts > div.maps_container > div.map {
+  width: 501px;
+  height: 508px;
+  position: absolute;
+  visibility: hidden;
+}
+.wrap_all > article > div.contacts > div.maps_container > div.map > div {
+  height: 100%;
+  width: 100%;
+}
+.wrap_all > article > div.contacts > div.maps_container > div.map.current {
+  display: inline-block;
+  visibility: visible;
+  position: relative;
 }
 .wrap_all > article > ul.clients,
 .wrap_all > article > ul.news {
@@ -1093,6 +1142,10 @@ body.under_overlay > div.data_wrap > div > .data_container > .data_checking.than
   margin: 0 !important;
   top: -26px !important;
   background: url('../images/order_info_.png') no-repeat center center;
+  font: bold 16px/58px 'Open Sans', sans-serif;
+  color: #DC3B3B;
+  text-transform: uppercase;
+  text-align: center;
 }
 .wrap_all > article > section.order > div > div > form > fieldset > ul.order > li.printing {
   position: absolute !important;
@@ -1381,7 +1434,7 @@ body.under_overlay > div.data_wrap > div > .data_container > .data_checking.than
   width: 196px;
 }
 .wrap_all > article > section.order > div > div.easy_form > form > fieldset > ul.order > li > input.edition {
-  width: 105px;
+  width: 60px;
 }
 .wrap_all > article > section.order > div > div.easy_form > form > fieldset > ul.order > li > input[type="submit"] {
   width: 200px;
@@ -1435,13 +1488,16 @@ body.under_overlay > div.data_wrap > div > .data_container > .data_checking.than
   width: 100%;
 }
 .wrap_all > article > section.order > div > div.easy_form > form > fieldset > ul.order > li > div.select.materials {
-  width: 160px;
+  width: 140px;
 }
 .wrap_all > article > section.order > div > div.easy_form > form > fieldset > ul.order > li > div.select.color {
-  width: 100px;
+  width: 80px;
 }
 .wrap_all > article > section.order > div > div.easy_form > form > fieldset > ul.order > li > div.select.color > div {
   width: 140px;
+}
+.wrap_all > article > section.order > div > div.easy_form > form > fieldset > ul.order > li > div.select.lamination {
+  width: 160px;
 }
 .wrap_all > article > section.order > div > div.easy_form > form > fieldset > div {
   position: relative;

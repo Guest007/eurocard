@@ -439,7 +439,7 @@ body {
 				height: 71px;
 				//background: url('../images/logo.png') no-repeat left top;
 				float: left;
-				margin: -18px 158px 0 0;
+				margin: -5px 158px 0 0;
 				position: relative;
 
 				& > span {
@@ -448,8 +448,8 @@ body {
 					width: 100%;
 					font: 600 16px/16px @main_font;
 					color: #dc3b3b;
-					bottom: -94px;
-					left: 6px;
+					bottom: -81px;
+					left: 0;
 					width: 330px;
 				}
 
@@ -541,6 +541,21 @@ body {
 									top: -3px;
 									color: #dc3b3b;
 									margin: 0 0 0 10px;
+								}
+							}
+							& > a.adress {
+								font: 400 24px/48px @main_font;
+								display: block;
+								height: 58px;
+								color: #000;
+								text-decoration: none;
+								& > span {
+									display: block;
+									color: #000;
+									position: absolute;
+									bottom: 0;
+									font: 400 13px/19px @main_font;
+
 								}
 							}
 							& > a {
@@ -636,11 +651,14 @@ body {
 		margin: 0 auto;
 		height: 100%;
 		min-height: 300px; //Удалить
-		& > h1,
-		& > h2,
-		& > h3 {
+		h1,
+		h2,
+		h3 {
 			color: #000;
 			margin: 0 0 20px;
+			clear: both;
+			display: inline-block;
+			width: 100%;
 		}
 		& > h1 {
 			&:first-child {
@@ -679,6 +697,10 @@ body {
 					display: block;
 					&.right {
 						float: right;
+						margin: 0 20px 20px;
+					}
+					&.left {
+						float: left;
 						margin: 0 20px 20px;
 					}
 				}
@@ -748,6 +770,31 @@ body {
 				}
 				div.hide {
 					display: none;
+				}
+
+				div.download_file_types {
+					//float: right;
+					display: inline-block;
+					//right: 40px;
+					position: relative;
+					& > a {
+						text-decoration: none;
+						display: block;
+						margin: 0 0 20px;
+						& > span {
+							text-decoration: underline;
+							margin: 0 0 0 15px;
+						}
+						& > i {
+							font-size: 20px;
+							vertical-align: middle;
+						}
+						&:hover {
+							& > span {
+								//text-decoration: none;
+							}
+						}
+					}
 				}
 				table {
 					border: 1px solid #999;
@@ -1021,14 +1068,37 @@ body {
 					border: 2px solid #dc3b3b;
 					padding: 25px;
 					display: inline-block;
-					& > img {
-						border-radius: 6px;
-						overflow: hidden;
-						display: none;
-						&.current {
-							display: inline;
+					
+					&.maps_container {
+						width: 501px;
+						height: 508px;
+						& > div {
+							&.map {
+								width: 501px;
+								height: 508px;
+								position: absolute;
+								visibility: hidden;
+								& > div {
+									height: 100%;
+									width: 100%;
+								}
+
+								&.current {
+									display: inline-block;
+									visibility: visible;
+									position: relative;
+								}
+							}
 						}
 					}
+					// & > img {
+					// 	border-radius: 6px;
+					// 	overflow: hidden;
+					// 	display: none;
+					// 	&.current {
+					// 		display: inline;
+					// 	}
+					// }
 
 				}
 			}
@@ -1218,6 +1288,11 @@ body {
 											margin: 0 !important;
 											top: -26px !important;
 											background: url('../images/order_info_.png') no-repeat center center;
+											font: bold 16px/58px @main_font;
+											color: #DC3B3B;
+											text-transform: uppercase;
+											text-align: center;
+
 										}
 										&.printing {
 											position: absolute !important;
@@ -1518,7 +1593,7 @@ body {
 														width: 196px;
 													}
 													&.edition {
-														width: 105px;
+														width: 60px;
 													}
 													&[type="submit"] {
 														width: 200px;
@@ -1579,13 +1654,16 @@ body {
 															}
 														}
 														&.materials {
-															width: 160px;
+															width: 140px;
 														}
 														&.color {
-															width: 100px;
+															width: 80px;
 															& > div {
 																width: 140px;
 															}
+														}
+														&.lamination {
+															width: 160px;
 														}
 													}
 												}
