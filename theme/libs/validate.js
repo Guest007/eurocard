@@ -68,7 +68,7 @@
                             pattern = /^\d+$/;
                             check_function();
                             if (self_val < 500) {
-                                error_text = 'Минимальное значение - 500';
+                                error_text = 'Минимальный тираж 500 карт';
                                 add_mes();
                             }
                         }
