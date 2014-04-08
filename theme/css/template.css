@@ -872,10 +872,9 @@ body.under_overlay > div.data_wrap > div > .data_container > .data_checking.than
 .wrap_all > article > div.contacts > div {
   float: right;
   overflow: hidden;
-  border-radius: 6px;
   margin: 0 0 0 20px;
   border: 2px solid #dc3b3b;
-  padding: 25px;
+  padding: 15px;
   display: inline-block;
 }
 .wrap_all > article > div.contacts > div:first-child {
@@ -943,10 +942,9 @@ body.under_overlay > div.data_wrap > div > .data_container > .data_checking.than
   background: #fff;
   float: right;
   overflow: hidden;
-  border-radius: 6px;
   margin: 0 0 0 20px;
   border: 2px solid #dc3b3b;
-  padding: 25px;
+  padding: 15px;
   display: inline-block;
 }
 .wrap_all > article > div.contacts > div.maps_container {
@@ -1821,7 +1819,7 @@ body.under_overlay > div.data_wrap > div > .data_container > .data_checking.than
 }
 .wrap_all > article > section.about {
   width: 924px;
-  padding: 0 10px 60px;
+  padding: 0 10px 0px;
   display: inline-block;
 }
 .wrap_all > article > section.about > ul > li {
@@ -1836,7 +1834,7 @@ body.under_overlay > div.data_wrap > div > .data_container > .data_checking.than
 }
 .wrap_all > article > section.about > ul > li > span:first-child {
   color: #000;
-  font: 24px/40px 'Open Sans', sans-serif;
+  font: 24px/35px 'Open Sans', sans-serif;
   text-decoration: none;
   display: block;
 }
