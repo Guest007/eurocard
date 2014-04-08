@@ -70,8 +70,26 @@
                 <li>Телефон в Санкт-Петербурге: <span class="phone"><a class="tel" href="tel://+78127027777">(812) 702 77 77</a></span></li>
             </ul>
         <p>Так же вы можете воспользоваться интерективным калькулятором расчета карт</p>
-        <h1>Калькулятор карт</h1>
+        {#<h1>Калькулятор карт</h1>#}
     </div>
+    <section class="about">
+        <span><span><span>Наши преимущества:</span></span>
+        <ol class="round_numbers_">
+            <li><small>1</small>Обработка заказа не более 30 минут.</li>
+            <li><small>2</small>Собственное производство - низкие цены.</li>
+            <li><small>3</small>Отсрочка платежа до 30 календарных дней для постоянных клиентов.</li>
+            <li><small>4</small>Бесплатная удобная упаковка продукции.</li>
+            <li><small>5</small>Команда профессиональных дизайнеров.</li>
+            <li><small>6</small>Отменное качество продукции.</li>
+            <li><small>7</small>Производительность до 50 000 карт в день.</li>
+            <li><small>8</small>Офсетная печать!</li>
+            <li><small>9</small>Крупнейшее производство в Северо-Западном регионе.</li>
+            <li><small>10</small>Европейское качество продукции соответствующие стандартам ISO.</li>
+            <li><small>11</small>Используем самое современное оборудование! Для печати мы выбрали KBA Genius.</li>
+            <li><small>12</small>Карты, произведенные в EUROCARD, успешно используют более 33 000 компаний по всей России!</li>
+        </ol>
+    </section>
+    {% comment %}
     <section class="order">
         <div>
             <div class="easy_form current">
@@ -233,6 +251,7 @@
             </div>
         </div>
     </section>
+    {% endcomment %}
 
 {% endif %}
 
@@ -244,10 +263,11 @@
         <h1>Требования к макету</h1>
         <div class="download_file_types">
             <a href="http://eurocard.naminteresno.ru/static/images/content/Card-template.pdf"><i class="fa fa-file"></i><span>Скачать шаблон в формате PDF</span></a>
-            <a href="http://eurocard.naminteresno.ru/static/images/content/Card-template.ai"><i class="fa fa-file"></i><span>Скачать шаблон в фрмате Ai</span></a>
+            <a href="http://eurocard.naminteresno.ru/static/images/content/Card-template.ai"><i class="fa fa-file"></i><span>Скачать шаблон в формате Ai</span></a>
+            <a href="http://eurocard.naminteresno.ru/static/images/content/eurocard_makets.pdf"><i class="fa fa-file"></i><span>Полезная информация</span></a>
         </div>
         <img src="{{ makets.card.url }}" class="left">
-        
+        {% comment %}
         <h2>Общие требования к макету для изготовления пластиковых карт</h2> 
         <ul>
             <li>Файлы должны быть предоставлены в формате векторных программ: Adobe Illustrator или Corel Draw. Возможно использование растровых изображений с разрешением не менее 300 dpi.</li>
@@ -326,6 +346,7 @@
             <li>Эмбоссирование изображения, учитывая требования стандарта ISO 7811-3 должно располагаться на расстоянии не менее 5 мм от любого края карты</li>
             <li>При разработке дизайна рекомендуется учитывать месторасположение эмбоссирования с двух сторон карточки.</li>
         </ul>
+        {% endcomment %}
     </div>
 {% endif %}
 
@@ -489,25 +510,22 @@
 
 {% block about_ %}
 <section class="about">
-    <span><span><span>Evrocard</span> - это:</span></span>
-    <ul>
-        <li class="good_price">
-            <span>Лучшие цены</span>
-            <span>1000 карт ВСЕГО 4 рубля за шт.</span>
-        </li>
-        <li class="equipment">
-            <span>Современное оборудование</span>
-            <span>Для печати мы выбрали KBA Genius</span>
-        </li>
-        <li class="once_we">
-            <span>Только у нас</span>
-            <span>Микрошрифт, печать волосяных линий</span>
-        </li>
-        <li class="fast_order">
-            <span>Быстрый заказ</span>
-            <span>Если вы здесь не в первый раз</span>
-        </li>
-    </ul>
+    <span><span><span>Наши</span> - преимущества:</span></span>
+    <ol class="round_numbers">
+        <li><small>1</small>Обработка заказа не более 30 минут.</li>
+        <li><small>2</small>Собственное производство - низкие цены.</li>
+        <li><small>3</small>Отсрочка платежа до 30 календарных дней для постоянных клиентов.</li>
+        <li><small>4</small>Бесплатная удобная упаковка продукции.</li>
+        <li><small>5</small>Команда профессиональных дизайнеров.</li>
+        <li><small>6</small>Отменное качество продукции.</li>
+        <li><small>7</small>Большой выбор персонализации.</li>
+        <li><small>8</small>Производительность до 50 000 карт в день.</li>
+        <li><small>9</small>Офсетная печать!</li>
+        <li><small>10</small>Крупнейшее производство в Северо-Западном регионе.</li>
+        <li><small>11</small>Европейское качество продукции соответствующие стандартам ISO.</li>
+        <li><small>12</small>Используем самое современное оборудование! Для печати мы выбрали KBA Genius.</li>
+        <li><small>13</small>Карты, произведенные в EUROCARD, успешно используют более 33 000 компаний по всей России!</li>
+    </ol>
 </section>
 {% endblock %}
 {% block benefits %}

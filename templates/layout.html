@@ -2,6 +2,7 @@
 {% load articles_tags %}
     {% block wrap_all %}
 		<div class="wrap_all">
+
 			<header>
 				<div>
 					<a href="/" title="eurocard">
@@ -11,13 +12,13 @@
 						<div>
 							<ul>
 								<li>
-									<a href="http://eurocard.naminteresno.ru/contacts/" class="adress">
+									<a href="http://eurocard.naminteresno.ru/contacts/" class="adress" rel="1">
 										Москва{#<i class="fa fa-caret-down"></i>#}
 										<span>Большая Новодмитровская улица, д.36</span> {# Адрес в Москве #}
 									</a>
 								</li>
 								<li>
-									<a href="http://eurocard.naminteresno.ru/contacts/#spb" class="adress">
+									<a href="http://eurocard.naminteresno.ru/contacts/" class="adress" rel="2">
 										Санкт-Петербург{#<i class="fa fa-caret-down"></i>#}
 										<span>Большой Сампсониевский проспект, д.30, к.1</span> {# Адрес в Питере #}
 									</a>
@@ -28,8 +29,8 @@
 						<div>
 							<span><a class="tel" href="tel://+74953745858">495 374 58 58</a></span> {# телефон в Москве #}
 							<span><a class="tel" href="tel://+78127027777">812 702 77 77</a></span> {# телефон в Питере #}
-							<a href="#" class="call_back"><i class="fa fa-phone"></i></a>
-							<a href="#">Презентация <i class="fa fa-download"></i></a>
+							<a href="#" class="call_back"></i>Обратный звонок</a>
+							<a href="http://eurocard.naminteresno.ru/static/images/content/presentation_rus.pdf">Презентация <i class="fa fa-download"></i></a>
 						</div>
 						{% comment %}
 						<span>
@@ -67,6 +68,7 @@
 					</nav>
 				</div>
 			</header>
+
 			<article>
             	{% block content %}
             	{% endblock %}
@@ -74,7 +76,9 @@
             	{% endblock %}
 			</article>
 			<div class="clear_footer"></div>
+
 		</div>
+
 		{% endblock %}
 		{% block footer %}
 		<footer>
@@ -102,4 +106,5 @@
 				</ul>
 			</div>
 		</footer>
+
     {% endblock %}

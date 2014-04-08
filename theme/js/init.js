@@ -85,7 +85,7 @@ function index_tabs() {
                 $(this).find('form').calc().valid();
                 $('.tooltip.top').each(function() {
                     var self_height = $(this).outerHeight();
-                    console.log(self_height);
+                    //console.log(self_height);
                     $(this).css({
                         'top': -(self_height + 10)
                     });
@@ -147,6 +147,7 @@ function call_() {
 }
 
 //Смена адреса в раделе 'Контакты'
+/*
 function change_adress() {
     var x = 0,
         y = 0,
@@ -170,8 +171,8 @@ function change_adress() {
         return false;
     });
 }
-
-
+*/
+/*
 function back_button() {
     var path = window.location.pathname,
         part = path.split('/'),
@@ -206,7 +207,7 @@ function back_button() {
         }
     }
 }
-
+*/
 
 $(document).ready(function() {
 
@@ -216,14 +217,53 @@ $(document).ready(function() {
 
     call_();
 
-    change_adress();
 
-    back_button();
+
+    //back_button();
 
     $.each(['a[rel="kool"]'], function(index, value) {
         MP_init(value, false);
     });
 
+
+
+
+    var
+    x = 0,
+        y = 0,
+        z = 0;
+    $('div.contacts > div > span > a').each(function() {
+        x++;
+        $(this).attr('rel', x);
+    });
+    $('div.contacts > div > ul').each(function() {
+        y++;
+        $(this).attr('rel', y);
+    });
+    $('div.contacts > div > div.map').each(function() {
+        z++;
+        $(this).attr('rel', z);
+    });
+    //$.removeCookie('city');
+    $('a.adress').click(function() {
+        $.removeCookie('city');
+        var this_rel = $(this).attr('rel');
+        $.cookie('city', this_rel);
+    });
+
+    //console.log($.cookie('city'));
+    $('div.contacts > div > span > a[rel="' + $.cookie('city') + '"]').addClass('current').siblings().removeClass('current');
+    $('div.contacts > div > ul[rel="' + $.cookie('city') + '"], div.contacts > div > div[rel="' + $.cookie('city') + '"]').addClass('current').siblings().removeClass('current');
+
+
+
+
+    $('div.contacts > div > span > a').not('current').click(function() {
+        var this_rel = $(this).attr('rel');
+        $(this).addClass('current').siblings().removeClass('current');
+        $('div.contacts > div > ul[rel="' + this_rel + '"], div.contacts > div > div[rel="' + this_rel + '"]').addClass('current').siblings().removeClass('current');
+        return false;
+    });
 
     //Тоглим таблиц с ценами в разделе 'Цены'
     $('a.show_price').click(function() {
