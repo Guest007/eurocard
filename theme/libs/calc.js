@@ -48,7 +48,7 @@
                     checkbox = $(this).find('input[type="checkbox"]'),
                     color_ = $(this).find('span.colors').data('price').replace(',', '.'),
                     materials_ = $(this).find('span.materials').data('price').replace(',', '.');
-                hidden.not('.ratioб .colors, .materials').val(0);
+                hidden.not('.ratio, .colors, .materials').val(0);
                 $this.find('input[name="count"]').val('');
                 $this.find('input[name="count_hidden"]').val(0);
 
