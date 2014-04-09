@@ -35,9 +35,9 @@ def home(request):
     return render(request, 'home.html')
 
 
-def about(request):
-    about_ = Article.objects.get(category__slug='about')
-    context = {'about': about_}
+def cards(request):
+    about_ = Article.objects.get(category__slug='cards')
+    context = {'cards': about_}
     return render(request, 'article.html', context)
 
 
