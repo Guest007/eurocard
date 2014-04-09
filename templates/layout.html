@@ -6,19 +6,19 @@
 			<header>
 				<div>
 					<a href="/" title="eurocard">
-						<img src="/static/images/logo.png" alt="eurocard.ru">
+						<img src="{{ STATIC_URL }}images/logo.png" alt="eurocard.ru">
 						<span>Качество даже в мелких деталях!</span></a>
 					<section class="location">
 						<div>
 							<ul>
 								<li>
-									<a href="http://eurocard.naminteresno.ru/contacts/" class="adress" rel="1">
+									<a href="/contacts/" class="adress" rel="1">
 										Москва{#<i class="fa fa-caret-down"></i>#}
 										<span>Большая Новодмитровская улица, д.36</span> {# Адрес в Москве #}
 									</a>
 								</li>
 								<li>
-									<a href="http://eurocard.naminteresno.ru/contacts/" class="adress" rel="2">
+									<a href="/contacts/" class="adress" rel="2">
 										Санкт-Петербург{#<i class="fa fa-caret-down"></i>#}
 										<span>Большой Сампсониевский проспект, д.30, к.1</span> {# Адрес в Питере #}
 									</a>
@@ -30,7 +30,7 @@
 							<span><a class="tel" href="tel://+74953745858">495 374 58 58</a></span> {# телефон в Москве #}
 							<span><a class="tel" href="tel://+78127027777">812 702 77 77</a></span> {# телефон в Питере #}
 							<a href="#" class="call_back"></i>Обратный звонок</a>
-							<a href="http://eurocard.naminteresno.ru/static/images/content/presentation_rus.pdf">Презентация <i class="fa fa-download"></i></a>
+							<a target="_blank" href="{{ STATIC_URL }}images/content/presentation_rus.pdf">Презентация <i class="fa fa-download"></i></a>
 						</div>
 						{% comment %}
 						<span>

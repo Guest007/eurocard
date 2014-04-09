@@ -228,7 +228,7 @@ def save_order(request, step=1):
         templ.color_front = Color(id=(request.POST.get("colors", None)))
 
         templ.material = Material(id=(request.POST.get("materials", None)))
-
+        templ.lamination = Lamination(id=request.POST.get("lamination", None))
         templ.chip = False  # request.POST.get("chip", False)
         templ.uv = False  # request.POST.get("uv", False)
         templ.magnet = (True if float(request.POST.get("magnet", False)) > 0 else False)
