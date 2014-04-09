@@ -293,7 +293,8 @@ $(document).ready(function() {
                 type: 'POST',
                 data: self.serialize(),
                 complete: function(result) {
-                    $('.data_checking').addClass('thanks').html('<span>Спасибо за ваш заказ.<small class="close_order reset"><i class="fa fa-times"></i></small></span><span>Письмо с информацией отправлено на указанный вами адрес электронной почты.</span><span>В ближайшее время наш сотрудник свяжется с вами для уточнения деталей.</span>');
+                    window.location.href = "/page/fast";
+                    //$('.data_checking').addClass('thanks').html('<span>Спасибо за ваш заказ.<small class="close_order reset"><i class="fa fa-times"></i></small></span><span>Письмо с информацией отправлено на указанный вами адрес электронной почты.</span><span>В ближайшее время наш сотрудник свяжется с вами для уточнения деталей.</span>');
                 }
             });
             return false;
