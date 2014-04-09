@@ -259,10 +259,7 @@
 
 {% if makets %}
     <div class="content">
-    {% comment %}
-        <h1>{{ coop.title }}</h1>
-    {% endcomment %}
-        <h1>Требования к макету</h1>
+        <h1>{{ makets.title }}</h1>
         <div class="download_file_types">
             <a target="_blank" href="{{ STATIC_URL }}images/content/Card-template.pdf"><i class="fa fa-file"></i><span>Скачать шаблон в формате PDF</span></a>
             <a target="_blank" href="{{ STATIC_URL }}images/content/Card-template.ai"><i class="fa fa-file"></i><span>Скачать шаблон в формате Ai</span></a>
@@ -352,13 +349,12 @@
     </div>
 {% endif %}
 
-{% if about %}
+{% if cards %}
     <div class="content">
+        <h1>{{ cards.title }}</h1>
         {% comment %}
-        <h1>{{ about.title }}</h1>
             {{ about.content|safe }}
         {% endcomment %}
-        <h1>Виды пластиковых карт</h1>            
         <p>Компания &laquo;Еврокард&raquo; ежедневно выпускает порядка 150 тыс. пластиковых карточек разных видов, обеспечивая 100 тыс. заказчиков качественными носителями информации.</p>
         <h2>Классификация пластиковых карт нашего производства</h2>
         <p><a href="/page/diskontnye-karty/">Дисконтные (накопительные или бонусные)</a> - удобны для компании, предоставляющей льготы клиентам, поскольку позволяют отследить объемы продаж на тот или иной вид товаров/услуг.</p>
