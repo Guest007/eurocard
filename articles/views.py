@@ -18,12 +18,12 @@ def clients(request):
 
 def news(request):
     news = Article.objects.filter(category__slug='news')
-    context = {'news': news}
+    news_title = Settings.objects.get(slug='news-title')
+    context = {'news': news, 'news-title': news_title}
     return render(request, 'article.html', context)
 
 
 def newsitem(request, slug):
-    print slug
     news = Article.objects.get(slug=slug)
     context = {'newsitem': news}
     return render(request, 'article.html', context)
