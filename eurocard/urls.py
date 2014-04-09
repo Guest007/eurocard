@@ -11,6 +11,7 @@ from filebrowser.sites import site
 from orders.views import save_order
 # from django.views.generic.simple import direct_to_template
 from django.conf.urls import patterns, include, url
+from django.views.generic.base import TemplateView
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -42,6 +43,8 @@ urlpatterns = patterns('',
     url(r"^uploadfile/", orders.ajax_save, name="uploadfile"),
     url(r"^save/ajax/(?P<step>\d+)/$", orders.save_order, name="ajax-save-order"),
     url(r"^save/templ/(?P<step>\d+)/$", orders.save_order1, name="ajax-save-torder"),
+
+    url('^yandex_525028000777872e.html', TemplateView.as_view(template_name='yandex_525028000777872e.html')),
 
     url(r'^grappelli/', include('grappelli.urls')),
     url(r'^admin/filebrowser/', include(site.urls)),
