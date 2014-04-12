@@ -12,6 +12,11 @@ from orders.views import save_order
 # from django.views.generic.simple import direct_to_template
 from django.conf.urls import patterns, include, url
 from django.views.generic.base import TemplateView
+from rollyourown.seo.admin import register_seo_admin
+from django.contrib import admin
+from articles.seo import EuroCardMetadata
+
+register_seo_admin(admin.site, EuroCardMetadata)
 admin.autodiscover()
 
 urlpatterns = patterns('',
