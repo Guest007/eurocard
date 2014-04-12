@@ -3,7 +3,7 @@
 <html>
 	<head>
         {% get_metadata as metadata %}
-        {% if metadata %}{{ metadata }}{% else %}<title>eurocard</title>{% endif %}
+        {% if metadata.title.value %}{{ metadata }}{% else %}<title>eurocard</title>{% endif %}
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="{{ STATIC_URL }}css/reset.css">
 		<link rel="stylesheet" href="{{ STATIC_URL }}css/template.css">
