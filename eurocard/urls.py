@@ -50,6 +50,8 @@ urlpatterns = patterns('',
     url(r"^save/templ/(?P<step>\d+)/$", orders.save_order1, name="ajax-save-torder"),
 
     url('^yandex_525028000777872e.html', TemplateView.as_view(template_name='yandex_525028000777872e.html')),
+    url('^robots.txt', TemplateView.as_view(template_name='robots.txt')),
+    url('^sitemap.xml', TemplateView.as_view(template_name='sitemap.xml')),
 
     url(r'^grappelli/', include('grappelli.urls')),
     url(r'^admin/filebrowser/', include(site.urls)),
@@ -60,6 +62,5 @@ if settings.DEBUG:
     urlpatterns += patterns('',
         url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
             'document_root': settings.MEDIA_ROOT,
-        }),
-   ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-	
+            }),
+    ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
