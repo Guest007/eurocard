@@ -64,3 +64,7 @@ def pages(request, slug):
     context = {'page': page}
     return render(request, 'page.html', context)
 
+def card(request, slug):
+    page = Article.objects.filter(category__slug='card').get(slug=slug)
+    context = {'page': page}
+    return render(request, 'page.html', context)
