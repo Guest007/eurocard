@@ -21,15 +21,19 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', views.home, name='home'),
-    url(r'^prod/', views.prod, name='prod'),
-    url(r'^clients/', views.clients, name='clients'),
-    url(r'^article/(?P<slug>[\S\-]+?)/$', views.newsitem, name='newsitem'),
-    url(r'^news/', views.news, name='news'),
-    url(r'^cards/cards/', views.cards, name='cards'),
+    url(r'^prod/$', views.prod, name='prod'),
+    #url(r'^clients/$', views.clients, name='clients'),
+    #url(r'^article/(?P<slug>[\S\-]+?)/$', views.newsitem, name='newsitem'),
+
+    url(r'^news/(?P<slug>[\S\-]+?)/$', views.newsitem, name='newsitem'),
+    url(r'^news/$', views.news, name='news'),
+    #url(r'^cards/', views.cards, name='cards'),
     url(r'^cards/(?P<slug>[\S\-]+?)/$', views.card, name='card'),
-    url(r'^price/', views.price, name='price'),
-    url(r'^makets/', views.makets, name='makets'),
-    url(r'^contacts/', views.contacts, name='contacts'),
+    url(r'^cards/$', views.cards, name='cards'),
+
+    url(r'^price/$', views.price, name='price'),
+    url(r'^makets/$', views.makets, name='makets'),
+    url(r'^contacts/$', views.contacts, name='contacts'),
     url(r'^page/(?P<slug>[\S\-]+?)/$', views.pages, name='page'),
 
     # Ajax actions
@@ -52,12 +56,35 @@ urlpatterns = patterns('',
 
     url('^yandex_525028000777872e.html', TemplateView.as_view(template_name='yandex_525028000777872e.html')),
     url('^robots.txt', TemplateView.as_view(template_name='robots.txt')),
-    url('^sitemap.xml', TemplateView.as_view(template_name='sitemap.xml')),
+    #url('^sitemap.xml', TemplateView.as_view(template_name='sitemap.xml')),
+    #url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
 
     url(r'^grappelli/', include('grappelli.urls')),
     url(r'^admin/filebrowser/', include(site.urls)),
     url(r'^admin/', include(admin.site.urls)),
 )
+
+# sitemap.xml
+from django.contrib.sitemaps import views as sitemaps_views
+
+from articles.sitemaps import (HomepageViewSitemap, SectionViewSitemap,
+        CardsArticleSitemap, NewsArticleSitemap)
+
+sitemaps = {
+    'homepage': HomepageViewSitemap,
+    'sections': SectionViewSitemap,
+    'cards': CardsArticleSitemap,
+    'news': NewsArticleSitemap,
+}
+
+urlpatterns += patterns('',
+    url(r'^sitemap\.xml$', sitemaps_views.sitemap,
+        {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+
+    #url(r'^sitemap\.xml$', views.index, {'sitemaps': sitemaps}),
+    #url(r'^sitemap-(?P<section>.+)\.xml$', views.sitemap, {'sitemaps': sitemaps}),
+)
+
 
 if settings.DEBUG:
     urlpatterns += patterns('',

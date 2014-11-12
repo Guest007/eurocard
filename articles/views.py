@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from articles.models import Category, Article
 from config.models import Settings
 
@@ -17,16 +17,21 @@ def clients(request):
 
 
 def news(request):
-    news = Article.objects.filter(category__slug='news')
+    news = Article.objects.filter(category__slug='news').filter(is_active=True)
     news_title = Settings.objects.get(slug='news-title')
     context = {'news': news, 'news_title': news_title}
     return render(request, 'article.html', context)
 
 
 def newsitem(request, slug):
-    news = Article.objects.get(slug=slug)
-    context = {'newsitem': news}
-    return render(request, 'article.html', context)
+    try:
+        news = Article.objects.filter(is_active=True).filter(category__slug='news').get(slug=slug)
+        context = {'newsitem': news}
+        response = render(request, 'article.html', context)
+    except:
+        context = {'newsitem': ''}
+        response = render(request, '404.html', context)
+    return response
 
 
 def home(request):
@@ -36,7 +41,7 @@ def home(request):
 
 
 def cards(request):
-    about_ = Article.objects.get(category__slug='cards')
+    about_ = Article.objects.filter(is_active=True).get(category__slug='cards')
     context = {'cards': about_}
     return render(request, 'article.html', context)
 
@@ -60,11 +65,26 @@ def contacts(request):
 
 
 def pages(request, slug):
-    page = Article.objects.filter(category__slug='page').get(slug=slug)
-    context = {'page': page}
-    return render(request, 'page.html', context)
+    page = ''
+    try:
+        page = Article.objects.filter(is_active=True).filter(category__slug='page').get(slug=slug)
+        context = {'page': page}
+        response = render(request, 'page.html', context)
+    except:
+        context = {'page': ''}
+        response = render(request, '404.html', context)
+    #context = {'page': page}
+    return response # nder(request, 'page.html', context)
 
 def card(request, slug):
-    page = Article.objects.filter(category__slug='card').get(slug=slug)
-    context = {'page': page}
-    return render(request, 'page.html', context)
+    page = ''
+    try:
+        page = Article.objects.filter(is_active=True).filter(category__slug='card').get(slug=slug)
+        context = {'page': page}
+        response = render(request, 'page.html', context)
+    except:
+        #return render(request, 'home.html')
+        context = {'page': ''}
+        response = render(request, '404.html', context)
+    #context = {'page': page}
+    return response

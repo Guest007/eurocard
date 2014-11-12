@@ -17,6 +17,7 @@ from django import http
 from django.http import HttpResponse
 from mailshelf import messages
 from config.models import Settings
+from pytils import translit
 
 __author__ = 'guest007'
 
@@ -183,7 +184,7 @@ def save_uploaded_file_new(uploaded, fname):
         split = fname.rsplit('.', 1)
         file = uploaded
         dt = datetime.datetime.now()
-        name = '%s-%s' % (split[0], (int(time.mktime(dt.timetuple()))))
+        name = '%s-%s' % (translit.slugify(split[0]), (int(time.mktime(dt.timetuple()))))
         name = 'maket/' + name + '.' + split[1]
         path = default_storage.save(name, ContentFile(file.read()))
     except Exception as e:

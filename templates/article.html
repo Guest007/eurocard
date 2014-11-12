@@ -19,22 +19,81 @@
                     <th>Количество карт 0,76мм 4х4</th>
                     <td>500</td>
                     <td>1000</td>
-                    <td>4000</td>
+                    <td>3000</td>
                     <td>5000</td>
-                    <td>10000</td>
                 </tr>
                 <tr>
                     <th>Цена с учётом НДС</th>
-                    <td>6,5 <i class="fa fa-rub"></i></td>
+                    <td>8 <i class="fa fa-rub"></i></td>
+                    <td>5,5 <i class="fa fa-rub"></i></td>
                     <td>5 <i class="fa fa-rub"></i></td>
                     <td>4,5 <i class="fa fa-rub"></i></td>
-                    <td>4 <i class="fa fa-rub"></i></td>
+                </tr>
+            </table>
+        </div>
+<h3>Стоимость персонализации</h3>
+<div class="unhide">
+            <table class="vertical">
+                <tr>
+                    <th>Тираж</th>
+                    <td>500</td>
+                    <td>1000</td>
+                    <td>3000</td>
+                    <td>5000</td>
+                </tr>
+                <tr>
+                    <th>Печать штрих-кода печатной нумерации чёрным цветом</th>
+                    <td>0,5 <i class="fa fa-rub"></i></td>
+                    <td>0,5 <i class="fa fa-rub"></i></td>
+                    <td>0,5 <i class="fa fa-rub"></i></td>
+                    <td>0,5 <i class="fa fa-rub"></i></td>
+                </tr>
+ <tr>
+                    <th>Эмбоссирование с окрасом(типирование) серебро, золото</th>
+                    <td>1,8 <i class="fa fa-rub"></i></td>
+                    <td>1,5 <i class="fa fa-rub"></i></td>
+                    <td>1,5 <i class="fa fa-rub"></i></td>
+                    <td>1 <i class="fa fa-rub"></i></td>
+                </tr>
+ <tr>
+                    <th>Магнитная полоса HiCo</th>
+                    <td>1,8 <i class="fa fa-rub"></i></td>
+                    <td>1,8 <i class="fa fa-rub"></i></td>
+                    <td>1,8 <i class="fa fa-rub"></i></td>
+                    <td>1,8 <i class="fa fa-rub"></i></td>
+                </tr>
+ <tr>
+                    <th>Кодирование магнитной полосы</th>
+                    <td>0,5 <i class="fa fa-rub"></i></td>
+                    <td>0,5 <i class="fa fa-rub"></i></td>
+                    <td>0 <i class="fa fa-rub"></i></td>
+                    <td>0 <i class="fa fa-rub"></i></td>
+                </tr>
+ <tr>
+                    <th>Нанесение полосы для подписи</th>
                     <td>3,5 <i class="fa fa-rub"></i></td>
+                    <td>3,5 <i class="fa fa-rub"></i></td>
+                    <td>3,5 <i class="fa fa-rub"></i></td>
+                    <td>3,5 <i class="fa fa-rub"></i></td>
+                </tr>
+ <tr>
+                    <th>Нанесение скретч-панели</th>
+                    <td>2,5 <i class="fa fa-rub"></i></td>
+                    <td>2,5 <i class="fa fa-rub"></i></td>
+                    <td>2,5 <i class="fa fa-rub"></i></td>
+                    <td>2,5 <i class="fa fa-rub"></i></td>
+                </tr>
+ <tr>
+                    <th>Нанесение фольги</th>
+                    <td>3 <i class="fa fa-rub"></i></td>
+                    <td>3 <i class="fa fa-rub"></i></td>
+                    <td>3 <i class="fa fa-rub"></i></td>
+                    <td>3 <i class="fa fa-rub"></i></td>
                 </tr>
             </table>
         </div>
         <h3>Срок изготовления сборных тиражей - 7 рабочих дней.</h3>
-        <div class="unhide">
+    <!--    <div class="unhide">
             <table class="vertical">
                 <tr>
                     <th>Печать штрих-кода печатной нумерации чёрным цветом</th>
@@ -65,11 +124,11 @@
                     <td>3 <i class="fa fa-rub"></i> за одну сторону</td>
                 </tr>
             </table>
-        </div>
+        </div> -->
         <p>Если у вас возникли вопросы, можете обратиться к нашим менеджерам по телефону: </p>
             <ul>
-                <li>Телефон в Москве: <span class="phone"><a class="tel" href="tel://+74953745858">(495) 374 58 58</a></span></li>
-                <li>Телефон в Санкт-Петербурге: <span class="phone"><a class="tel" href="tel://+78127027777">(812) 702 77 77</a></span></li>
+                <li>Телефон в Москве: <span class="phone"><a class="tel" href="tel://+74953745858"><span class="ya-phone">+7 (495) 374 58 58</span></a></span></li>
+                <li>Телефон в Санкт-Петербурге: <span class="phone"><a class="tel" href="tel://+78127027777"><span class="ya-phone-1">+7 (812) 702 77 77</span></a></span></li>
             </ul>
 
         {#<h1>Калькулятор карт</h1>#}
@@ -400,7 +459,7 @@
 {% for item in news %}
     <li>
         <h2>
-            <a href="/article/{{ item.slug }}">{{ item.title }}</a>
+            <a href="/news/{{ item.slug }}">{{ item.title }}</a>
         </h2>
         <small>{{ item.published_at }}</small>
         {{ item.annotation|safe }}

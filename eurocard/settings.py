@@ -22,11 +22,14 @@ SECRET_KEY = '655ogv2f!6=x5a(kk603$op3gnjb*c11@^nje9morq^ta@g+m5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-TEMPLATE_DEBUG = False
+TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = [
     '.eurocard.naminteresno.ru',
     '.eurocard.naminteresno.ru.',
+    '.eurocard.ru',
+    '.eurocard.ru.',
+
 ]
 
 # Application definition
@@ -40,6 +43,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
     'south',
     'config',
     'menu',
