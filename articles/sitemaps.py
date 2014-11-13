@@ -19,7 +19,7 @@ class SectionViewSitemap(Sitemap):
     changefreq = 'monthly'
 
     def items(self):
-        return ['prod', 'makets', 'clients', 'contacts', 'news', 'cards']
+        return ['prod', 'makets', 'contacts', 'news', 'cards']
 
     def location(self, item):
         return reverse(item)
@@ -35,6 +35,9 @@ class CardsArticleSitemap(Sitemap):
     def location(self, item):
         return reverse('card', kwargs={'slug': item.slug})
 
+    def lastmod(self, item):
+        return item.modified_at if item.modified_at else item.published_at
+
 
 class NewsArticleSitemap(Sitemap):
     changefreq = "monthly"
@@ -46,3 +49,5 @@ class NewsArticleSitemap(Sitemap):
     def location(self, item):
         return reverse('newsitem', kwargs={'slug': item.slug})
 
+    def lastmod(self, item):
+        return item.modified_at if item.modified_at else item.published_at

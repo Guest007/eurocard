@@ -65,7 +65,7 @@
 					<nav>
 						<ul>{% load menubuilder %}{% menu main_menu %}{% for item in menuitems %}
 						    <li>
-						        <a href="{{ item.url }}" {% if item.current %} class='current'{% endif %}>{{ item.title }}</a>
+						        <a href="http://eurocard.ru{{ item.url }}" {% if item.current %} class='current'{% endif %}>{{ item.title }}</a>
 						    </li>{% endfor %}
 						</ul>
 					</nav>
@@ -104,7 +104,7 @@
 				</span>
 				<ul>{% load menubuilder %}{% menu main_menu %}{% for item in menuitems %}
 				    <li>
-				        <a href="{{ item.url }}">{{ item.title }}</a>
+				        <a href="http://eurocard.ru{{ item.url }}">{{ item.title }}</a>
 				    </li>{% endfor %}
 				</ul>
 			</div>
